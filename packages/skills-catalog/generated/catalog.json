@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "packageName": "@paperclipai/skills-catalog",
   "packageVersion": "0.3.1",
-  "generatedAt": "2026-10-06T01:21:47.421Z",
+  "generatedAt": "2026-10-31T15:18:08.652Z",
   "skills": [
     {
       "id": "paperclipai:bundled:docs:doc-maintenance",
@@ -451,6 +451,50 @@
       "contentHash": "sha256:eabb2c9f7b5e1a27ebb1e05a711d61433a266478154cd671a685e99e67aadea2"
     },
     {
+      "id": "paperclipai:optional:communications:meeting-notes",
+      "key": "paperclipai/optional/communications/meeting-notes",
+      "kind": "optional",
+      "category": "communications",
+      "slug": "meeting-notes",
+      "name": "meeting-notes",
+      "description": "Turn a scheduled meeting into notes, a short summary, and owner-tagged follow-ups, then deliver them to the requester. Use after calendar or Fireflies context arrives; not for live telephony or unapproved outreach.",
+      "path": "catalog/optional/communications/meeting-notes",
+      "entrypoint": "SKILL.md",
+      "trustLevel": "markdown_only",
+      "compatibility": "compatible",
+      "defaultInstall": false,
+      "recommendedForRoles": [
+        "meeting-agent",
+        "chief-of-staff",
+        "operations",
+        "general"
+      ],
+      "requires": [],
+      "tags": [
+        "meetings",
+        "notes",
+        "summary",
+        "action-items",
+        "calendar",
+        "fireflies"
+      ],
+      "files": [
+        {
+          "path": "SKILL.md",
+          "kind": "skill",
+          "sizeBytes": 5127,
+          "sha256": "45f1e56d93ae687a672f7239d4167d978cb33a17eb6122e7603a651aba98323e"
+        },
+        {
+          "path": "examples/weekly-standup-packet.md",
+          "kind": "markdown",
+          "sizeBytes": 1104,
+          "sha256": "70161061bc8876ef2bcdd605cc3bacdc18253527dab0e441245a163fecc2296b"
+        }
+      ],
+      "contentHash": "sha256:71f03753bc8718875390143c0f0c70d04f5117971a489afcb3ffcc2ec241d17f"
+    },
+    {
       "id": "paperclipai:optional:content:release-announcement",
       "key": "paperclipai/optional/content/release-announcement",
       "kind": "optional",
@@ -592,6 +636,52 @@
         }
       ],
       "contentHash": "sha256:429f94df398a0697042b5bbe4755b1ff1a230aa5f41d99118ad37493ac65d21c"
+    },
+    {
+      "id": "paperclipai:optional:research:investment-thesis",
+      "key": "paperclipai/optional/research/investment-thesis",
+      "kind": "optional",
+      "category": "research",
+      "slug": "investment-thesis",
+      "name": "investment-thesis",
+      "description": "Research a company or industry investment thesis with cited sources, including SEC EDGAR 10-K/10-Q analysis via browser or Browser Use. Use for diligence memos; never for trade execution or advice.",
+      "path": "catalog/optional/research/investment-thesis",
+      "entrypoint": "SKILL.md",
+      "trustLevel": "markdown_only",
+      "compatibility": "compatible",
+      "defaultInstall": false,
+      "recommendedForRoles": [
+        "research-analyst",
+        "researcher",
+        "analyst",
+        "investor"
+      ],
+      "requires": [],
+      "tags": [
+        "research",
+        "investment",
+        "thesis",
+        "sec",
+        "edgar",
+        "10-k",
+        "10-q",
+        "browser"
+      ],
+      "files": [
+        {
+          "path": "SKILL.md",
+          "kind": "skill",
+          "sizeBytes": 5912,
+          "sha256": "88df168c2b620bf3b63df989bd95da0fc6512def2866c22bafa1fcbbbee073fe"
+        },
+        {
+          "path": "examples/public-co-10k-brief.md",
+          "kind": "markdown",
+          "sizeBytes": 1288,
+          "sha256": "1f166e4f308780684e9422654f794f13f7df56190dfd26016122d8373caa1183"
+        }
+      ],
+      "contentHash": "sha256:5870bbe381eec80dbedc99eba52e65685751b9f42cc56aeaf6bb4ebd379205e5"
     },
     {
       "id": "paperclipai:optional:research:last30days",
@@ -1155,11 +1245,11 @@
         {
           "path": "examples/notion-mcp-research-gate.md",
           "kind": "markdown",
-          "sizeBytes": 1900,
-          "sha256": "944b13ac67c06c65643eb236e856f1479106749861535648d29334f84cf1b50b"
+          "sizeBytes": 1895,
+          "sha256": "f424e91298c338270eebe4cdafdeda860d454b3a6c57a95aff77165cf9e7f8c2"
         }
       ],
-      "contentHash": "sha256:84f2a28d7d004393719684f2b435e5ee01ddc58591e0dfeb73d72c7605db7f49"
+      "contentHash": "sha256:bec5f4cba33e55e3420198eb40fc9acf230f24289695665f4fad54003f4cd100"
     }
   ]
 }
