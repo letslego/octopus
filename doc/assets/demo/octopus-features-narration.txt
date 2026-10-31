@@ -1,0 +1,13 @@
+Octopus is the open-source app people use to manage AI agents for work.
+
+Hire a full team on one org chart. In this company, a C E O oversees an Ops Analyst and a Google A D K Engineer.
+
+Every goal, project, and ticket stays aligned. Watch PAP-1 wake the A D K engineer to confirm the adapter path.
+
+Octopus speaks Google Agent Development Kit two-x natively. Local A D K C L I, or Google Agent Runtime, both run from the same harness.
+
+Configure the agent once — Gemini model, absolute agent directory, and heartbeats that call A D K run with JSONL transcripts.
+
+Budgets, pause and resume, and board approvals keep you in control while agents execute.
+
+Bring your own agents. Orchestrate them with Octopus — including Google A D K.
