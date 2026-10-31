@@ -1,28 +1,33 @@
 import type { SVGProps } from "react";
 import { cn } from "../lib/utils";
 
+/** Animated Octopus mark used for loading/thinking affordances. */
 export function AnimatedPaperclipIcon({ className, ...props }: SVGProps<SVGSVGElement>) {
   return (
     <svg
-      viewBox="-1 -1 26 26"
+      viewBox="0 0 24 24"
       className={cn("paperclip-thinking-icon", className)}
       aria-hidden="true"
       {...props}
     >
-      <path
+      <g
         className="paperclip-thinking-icon-path"
-        d="M16 6 l-8.414 8.586 a2.000 2.000 0 0 0 2.828 2.828 l8.414 -8.586 a4.000 4.000 0 1 0 -5.657 -5.657 l-8.379 8.551 a6.000 6.000 0 1 0 8.485 8.485 l8.379 -8.551"
         fill="none"
         stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-      />
+      >
+        <ellipse cx="12" cy="9" rx="5.2" ry="4.4" />
+        <path d="M7.2 12.2c-1.8 1.4-3.2 3.4-3.2 5.3M12 13.2c0 1.8-.2 3.6-.2 5.4M16.8 12.2c1.8 1.4 3.2 3.4 3.2 5.3M9.2 13c-.6 1.8-1.1 3.5-1.1 5.1M14.8 13c.6 1.8 1.1 3.5 1.1 5.1" />
+      </g>
+      <circle cx="10.2" cy="8.6" r="0.9" fill="currentColor" />
+      <circle cx="13.8" cy="8.6" r="0.9" fill="currentColor" />
     </svg>
   );
 }
 
-/** Full-page loading state: a large, centered, gray animated paperclip. */
+/** Full-page loading state: a large, centered, muted animated Octopus mark. */
 export function PaperclipLoading({ className }: { className?: string }) {
   return (
     <div

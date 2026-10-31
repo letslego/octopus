@@ -18,11 +18,6 @@
   <a href="https://www.star-history.com/letslego/octopus"><img src="https://api.star-history.com/badge?repo=letslego/octopus" alt="Star History Rank" /></a>
 </p>
 
-<br/>
-
-<div align="center">
-  <video src="https://github.com/user-attachments/assets/773bdfb2-6d1e-4e30-8c5f-3487d5b70c8f" width="600" controls></video>
-</div>
 
 # Octopus is the app people use to manage AI agents for work.
 
@@ -88,9 +83,9 @@ Custom processes, HTTP endpoints, and external adapter packages extend the roste
 Four things have to work for an organization of AI agents to actually produce: the tasks, the org, the training, and the infrastructure. Octopus is built around exactly those four pillars.
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/letslego/octopus/1ec33ffd8b597f7e36aac3e2fbb4665b8c42dc3c/doc/assets/four-pillars-dark.png">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/letslego/octopus/1ec33ffd8b597f7e36aac3e2fbb4665b8c42dc3c/doc/assets/four-pillars-light.png">
-  <img src="https://raw.githubusercontent.com/letslego/octopus/1ec33ffd8b597f7e36aac3e2fbb4665b8c42dc3c/doc/assets/four-pillars-light.png" alt="The four pillars of Octopus">
+  <source media="(prefers-color-scheme: dark)" srcset="doc/assets/four-pillars-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="doc/assets/four-pillars-light.png">
+  <img src="doc/assets/four-pillars-light.png" alt="The four pillars of Octopus">
 </picture>
 
 | Pillar | Built for | What it covers |
