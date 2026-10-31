@@ -65,6 +65,16 @@ import {
 } from "@paperclipai/adapter-cursor-cloud/server";
 import { agentConfigurationDoc as cursorCloudAgentConfigurationDoc } from "@paperclipai/adapter-cursor-cloud";
 import {
+  execute as adkExecute,
+  testEnvironment as adkTestEnvironment,
+  sessionCodec as adkSessionCodec,
+  getConfigSchema as getAdkConfigSchema,
+} from "@paperclipai/adapter-adk-local/server";
+import {
+  agentConfigurationDoc as adkAgentConfigurationDoc,
+  models as adkModels,
+} from "@paperclipai/adapter-adk-local";
+import {
   execute as geminiExecute,
   listGeminiSkills,
   syncGeminiSkills,
@@ -820,6 +830,26 @@ const cursorCloudAdapter: ServerAdapterModule = {
   getConfigSchema: getCursorCloudConfigSchema,
 };
 
+const adkLocalAdapter: ServerAdapterModule = {
+  type: "adk_local",
+  runtimeToolDelivery: "environment",
+  execute: adkExecute,
+  testEnvironment: adkTestEnvironment,
+  sessionCodec: adkSessionCodec,
+  sessionManagement: getAdapterSessionManagement("adk_local") ?? undefined,
+  models: adkModels,
+  supportsLocalAgentJwt: true,
+  supportsInstructionsBundle: true,
+  instructionsPathKey: "instructionsFilePath",
+  getRuntimeCommandSpec: (config) => ({
+    command: readConfiguredCommand(config, "adk"),
+    detectCommand: readConfiguredCommand(config, "adk"),
+    installCommand: null,
+  }),
+  agentConfigurationDoc: adkAgentConfigurationDoc,
+  getConfigSchema: getAdkConfigSchema,
+};
+
 const geminiLocalAdapter: ServerAdapterModule = {
   type: "gemini_local",
   runtimeToolDelivery: "environment",
@@ -985,6 +1015,7 @@ function registerBuiltInAdapters() {
     piLocalAdapter,
     cursorCloudAdapter,
     cursorLocalAdapter,
+    adkLocalAdapter,
     geminiLocalAdapter,
     grokLocalAdapter,
     kimiLocalAdapter,

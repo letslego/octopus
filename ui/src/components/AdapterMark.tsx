@@ -5,6 +5,7 @@ const brandMarks: Record<string, { src: string; dark?: string }> = {
   openai_dot: { src: "/brands/adapters/openai-dot.svg" },
   claude_local: { src: "/brands/claude-color.svg" },
   codex_local: { src: "/brands/codex-color.svg" },
+  adk_local: { src: "/brands/adapters/gemini-color.svg" },
   gemini_local: { src: "/brands/adapters/gemini-color.svg" },
   antigravity_runtime: { src: "/brands/apps/google.svg" },
   kimi_local: {

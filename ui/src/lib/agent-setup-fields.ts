@@ -9,6 +9,7 @@ export const SETUP_CREDENTIAL_KEYS: Record<string, string> = {
   cursor: "CURSOR_API_KEY",
   cursor_cloud: "CURSOR_API_KEY",
   gemini_local: "GEMINI_API_KEY",
+  adk_local: "GEMINI_API_KEY",
   kimi_local: "KIMI_MODEL_API_KEY",
   hermes_gateway: "API_SERVER_KEY",
 };
@@ -48,6 +49,8 @@ export const SETUP_LOGIN_HINTS: Record<string, string> = {
     "Use a Cursor API key, or run agent login on the selected environment's host.",
   gemini_local:
     "Use a Gemini API key, or an existing supported Gemini CLI login on the selected environment's host.",
+  adk_local:
+    "Use a Gemini/Google API key (GEMINI_API_KEY or GOOGLE_API_KEY), or Vertex ADC on the selected environment's host. Requires google-adk 2.x.",
   kimi_local:
     "Use a Kimi API key and model settings below, or run kimi login on the selected environment's host.",
   grok_local:

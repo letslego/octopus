@@ -91,6 +91,11 @@ const adapterDisplayMap: Record<string, AdapterDisplayInfo> = {
     icon: Cpu,
     experimental: true,
   },
+  adk_local: {
+    label: "Google ADK",
+    description: "Google Agent Development Kit (Python 2.x) harness",
+    icon: Gem,
+  },
   gemini_local: {
     label: "Gemini CLI",
     description: "Gemini CLI harness",

@@ -103,3 +103,8 @@ test-results/
 
 # Content-addressed CI task results
 .turbo/
+
+# ADK local fixture runtime artifacts
+packages/adapters/adk-local/fixtures/**/.adk/
+packages/adapters/adk-local/fixtures/**/__pycache__/
+packages/adapters/adk-local/fixtures/**/*.pyc

@@ -85,7 +85,7 @@ export const AI_CONNECTION_CAPABILITIES: Record<
     methods: { api_key: { adapters: ["copilot_runtime"], envKey: "COPILOT_GITHUB_TOKEN" } },
   },
   google: { name: "Google", methods: {
-    api_key: { adapters: ["gemini_local", "pi_local", "antigravity_runtime"], envKey: "GEMINI_API_KEY" },
+    api_key: { adapters: ["adk_local", "gemini_local", "pi_local", "antigravity_runtime"], envKey: "GEMINI_API_KEY" },
     subscription: { adapters: ["antigravity_runtime"], envKey: "GEMINI_HOME" },
   } },
   anthropic: {
