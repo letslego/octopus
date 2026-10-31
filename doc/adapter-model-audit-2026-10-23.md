@@ -12,7 +12,7 @@ selections are migrated.
 | --- | --- |
 | Codex | No new selectable model IDs. Codex 0.160.0 through 0.164.0 ship the same bundled model set, which the picker already lists (including GPT-6 Astra, GPT-5.6 Terra, and GPT-5.6 Luna). OpenAI retired `gpt-5.5` (October 14, 2026) and `gpt-5.4` / `gpt-5.4-mini` (August 31, 2026) from Codex with ChatGPT sign-in. The API and API-key Codex sessions still serve them, so they stay in the picker. When the backend rejects one of them for a ChatGPT account, the environment Test (legacy CLI and Paperclip Runner) now names the retirement and the documented replacement instead of suggesting a stale CLI, a plan restriction, or generic account checks. |
 | OpenCode | Add `anthropic/claude-haiku-5-5` and `google/gemini-4-argon` to the static fallback used by remote environments and the Paperclip Runner picker. Both IDs are in the OpenCode model registry (models.dev). |
-| Claude Code (direct and Bedrock) | Claude Haiku 5.5 is covered by [#16708](https://github.com/paperclipai/paperclip/pull/16708); this audit does not duplicate it. Haiku 5.5 needs Claude Code 2.1.293 or later and supports all five effort levels. |
+| Claude Code (direct and Bedrock) | Claude Haiku 5.5 is covered by [#16708](https://github.com/letslego/octopus/pull/16708); this audit does not duplicate it. Haiku 5.5 needs Claude Code 2.1.293 or later and supports all five effort levels. |
 | Gemini CLI | Gemini 4 Argon (`gemini-4-argon`) is generally available on the Gemini API, but Gemini CLI 0.65.0 does not register it. Deferred. |
 | Grok Build, Kimi Code, Cursor | No new verified model IDs. Grok 4.7 and Kimi K3 remain the newest documented models. |
 
@@ -25,7 +25,7 @@ selections are migrated.
 | Kimi Code CLI | 2.1.1 | 2.3.3 |
 | Cursor CLI (sandbox layer) | 2026.10.01-e373342 | 2026.10.22-27dcf5f |
 | GitHub CLI | 2.102.0 | 2.103.3 |
-| Codex CLI (shared provider pack) | 0.160.0 | Unchanged here; [#17245](https://github.com/paperclipai/paperclip/pull/17245) moves it to 0.163.0 |
+| Codex CLI (shared provider pack) | 0.160.0 | Unchanged here; [#17245](https://github.com/letslego/octopus/pull/17245) moves it to 0.163.0 |
 | Claude Agent SDK / Claude Code | 0.3.286 / 2.1.286 | Unchanged; see "Deferred items" |
 | OpenCode (shared provider pack) | 1.18.34 | Unchanged; see "Deferred items" |
 | Hermes | 0.19.0 | 0.19.0 (newest on PyPI) |

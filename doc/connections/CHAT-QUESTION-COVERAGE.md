@@ -70,7 +70,7 @@ workflow engine to fill a matrix cell.
 ## Slack: October 24, 2026
 
 Reference implementation and review:
-[PR #17255](https://github.com/paperclipai/paperclip/pull/17255).
+[PR #17255](https://github.com/letslego/octopus/pull/17255).
 The local campaign's final implementation was recorded as
 `c3d458b2a06b660448940fd8cf33c5906f0058d5`; captures were collected during its
 implementation, with failures and repairs retained in the campaign gallery.

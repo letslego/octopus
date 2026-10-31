@@ -139,9 +139,9 @@ GitHub Actions owns `pnpm-lock.yaml`.
 
 ## Trusted PR Workflow
 
-The PR caller uses `paperclipai/paperclip/.github/workflows/pr-trusted.yml@master`.
+The PR caller uses `letslego/octopus/.github/workflows/pr-trusted.yml@master`.
 The AWS runner group `paperclip-public-pr` must allow
-`paperclipai/paperclip/.github/workflows/pr-trusted.yml@refs/heads/master`.
+`letslego/octopus/.github/workflows/pr-trusted.yml@refs/heads/master`.
 New workflow versions merged into master then receive runner access without a
 separate SHA allowlist update. Dependabot leaves this first-party reference on
 master.
@@ -1077,7 +1077,7 @@ runs leaves no stamp, so the next consumer rebuilds.
 stamp is for this platform, every recorded output is still there at its
 recorded size, and the current digest matches. Anything else (no stamp, a
 changed input, a deleted or truncated output, a stamp from another platform)
-runs `pnpm --filter @paperclipai/paperclip-runner build` exactly as before, so
+runs `pnpm --filter @letslego/octopus-runner build` exactly as before, so
 a standalone `pnpm --filter @paperclipai/server build` on a fresh checkout
 still builds the Runner itself. Inside `pnpm build` the Runner has just been
 built by the same command, and the step skips a 12-16s rebuild. The step
@@ -2800,9 +2800,9 @@ successful warm-session retention or admit another provider turn.
 Run the credential-free real-process restart suite with:
 
 ```sh
-pnpm --filter @paperclipai/paperclip-runner build:runner-binaries
+pnpm --filter @letslego/octopus-runner build:runner-binaries
 pnpm exec vitest run server/src/services/native-runtime/native-runner-restart-recovery.integration.test.ts
-pnpm --filter @paperclipai/paperclip-runner exec vitest run src/live/runnerd-codex-transport.test.ts -t 'adopts a live runner'
+pnpm --filter @letslego/octopus-runner exec vitest run src/live/runnerd-codex-transport.test.ts -t 'adopts a live runner'
 ```
 
 The suite uses isolated PostgreSQL state, isolated `PAPERCLIP_HOME` roots, real
@@ -2938,7 +2938,7 @@ paths at request time. Root `skills/` remains reserved for Paperclip runtime
 skills and is not part of the catalog.
 
 Skill-capable legacy local adapters always select the bundled
-`paperclipai/paperclip/paperclip` operational skill when it is present in the
+`letslego/octopus/paperclip` operational skill when it is present in the
 runtime inventory. This applies to existing agents without a stored skill
 preference and to explicit empty optional-skill selections. The operational
 skill supplies the control-plane workflow that those adapters need for

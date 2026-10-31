@@ -553,7 +553,7 @@ claim live-provider or fleet evidence from deterministic fixtures.
   chunks. Files missing either completeness field still require ordered source
   coverage. Corrupt metadata blocks publication; the conditional switch checks
   that the original completeness fields have not changed.
-- PR: https://github.com/paperclipai/paperclip/pull/18327. Initial CI passed 51
+- PR: https://github.com/letslego/octopus/pull/18327. Initial CI passed 51
   checks with one E2E teardown lock timeout. That E2E shard passed on the next
   revision; its Runner shard then failed the Antigravity authentication fixture.
   These failures are retained, and fresh-head CI remains required.

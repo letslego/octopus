@@ -217,7 +217,7 @@ export function TrustPresetSection({
                 Want to set more than one containment boundary?{" "}
                 <a
                   className="underline underline-offset-2 hover:text-foreground"
-                  href="https://paperclip.ing/ee"
+                  href="https://github.com/letslego/octopus/ee"
                   target="_blank"
                   rel="noreferrer"
                 >

@@ -17,7 +17,7 @@ the same dark theme. Static site styles live in
 colors and typography come from the Runner Lab token layer.
 Missing recordings show a notice in the same viewer; missing viewer builds
 fail generation. Build with
-`pnpm --filter @paperclipai/paperclip-runner build:issue-thread` and provide
+`pnpm --filter @letslego/octopus-runner build:issue-thread` and provide
 `--viewer-root` or `PAPERCLIP_EVAL_VIEWER_ROOT` to the canonical Python renderer.
 
 Legacy manual runs place full evidence in Actions artifacts. These artifacts
@@ -87,7 +87,7 @@ Refreshes also recover retry-inclusive estimated and provider-list costs from th
 retained attempt records. They never add another model-cost measurement.
 
 This is the provider-backed, one-turn protocol qualification layer in
-`paperclipai/paperclip-evals/evals/paperclip-runner`. It is intentionally
+`letslego/octopus-evals/evals/paperclip-runner`. It is intentionally
 separate from both the browser full-stack model E2E and the stress-derived
 workflow schedule in `runner-workflow-evals.md`.
 
@@ -543,7 +543,7 @@ from the default branch and provide:
 
 - `target_branch`: the Paperclip branch to build and test;
 - `evals_sha`: an exact 40-character commit from
-  `paperclipai/paperclip-evals`;
+  `letslego/octopus-evals`;
 - `rosters`: `all` for every enabled lane in the canonical
   `live-direct-full.json` campaign, or a comma-separated diagnostic subset.
   Disabled lanes remain available only through an explicit diagnostic
@@ -695,7 +695,7 @@ qualified context-aware harness revision is
 writes the GitHub OIDC token to a mode-`0600` file and never forwards long-lived
 AWS access keys.
 Provision the AgentCore stack with `--github-oidc-provider-arn` so that scoped
-role admits only the `paperclipai/paperclip` repository's protected
+role admits only the `letslego/octopus` repository's protected
 `runner-e2e-paid` environment as its web-identity subject.
 Scheduled runs additionally require `RUNNER_PROTOCOL_EVAL_NIGHTLY_ENABLED=true`
 and the pinned `RUNNER_PROTOCOL_EVALS_SHA` repository variable.
@@ -773,14 +773,14 @@ additive writes and reads for that prefix.
 These tests make no provider or AWS calls:
 
 ```sh
-pnpm --filter @paperclipai/paperclip-runner test:runner-protocol-eval-publish
+pnpm --filter @letslego/octopus-runner test:runner-protocol-eval-publish
 ```
 
 To inspect the catalog without executing it, point the command at a local
 evals checkout:
 
 ```sh
-pnpm --filter @paperclipai/paperclip-runner \
+pnpm --filter @letslego/octopus-runner \
   report:runner-protocol-eval:catalog -- \
   --evals-root /path/to/paperclip-evals \
   --campaign-id gha-1-1 \

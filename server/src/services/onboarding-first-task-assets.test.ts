@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { readFile } from "node:fs/promises";
 import { Ajv2020 } from "ajv/dist/2020.js";
-import { CAPABILITY_SEMANTIC_TOOL_CATALOG } from "@paperclipai/paperclip-runner";
+import { CAPABILITY_SEMANTIC_TOOL_CATALOG } from "@letslego/octopus-runner";
 import {
   ONBOARDING_FIRST_TASK_OPENING_INTERVIEW_OPTION_ID,
   ONBOARDING_FIRST_TASK_OPENING_QUESTION_ID,

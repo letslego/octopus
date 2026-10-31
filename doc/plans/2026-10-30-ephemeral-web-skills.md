@@ -2,7 +2,7 @@
 
 ## Qualification status
 
-Implementation is in [PR #18334](https://github.com/paperclipai/paperclip/pull/18334).
+Implementation is in [PR #18334](https://github.com/letslego/octopus/pull/18334).
 Hosted qualification uses the owned disposable
 [test tenant](https://ephemeral-skills-qa-oct-30.test.paperclip.app), external
 Postgres, S3, and a real remote Paperclip Computer. Cloud policy reserves the
@@ -66,7 +66,7 @@ handoff, and production volume removal are outside this slice.
 
 - Worktree: `/Users/dotta/.codex/worktrees/d084/paperclip`
 - Branch: `codex/skills-ephemeral-web`
-- Draft PR: https://github.com/paperclipai/paperclip/pull/18334
+- Draft PR: https://github.com/letslego/octopus/pull/18334
 - Approved plan: this chat, “Skills on ephemeral web servers,” nine sections.
 - Implemented managed create/read/edit/delete-file/fork/rename/restore publication,
   immutable catalog installation/reset, Studio version conflict recovery, durable
@@ -93,7 +93,7 @@ handoff, and production volume removal are outside this slice.
   Agent `dfd238b5-5e5d-43ef-b34a-cb5bff2267f3` (Skills Qualification), paused.
   OpenAI API-key setup uses the explicitly authorized local credential. Candidate
   `6518b323528b2b595c5949c3ed2c57a8d2438cb6` is building under release run
-  https://github.com/paperclipai/paperclip/actions/runs/41085949238.
+  https://github.com/letslego/octopus/actions/runs/41085949238.
   Single-tenant deploy request: `c65f3677-4b4e-4687-957a-28e2bfb89451`.
   Stack `stack-pool-50f5009d5644` is user-managed during qualification so unrelated
   fleet rollouts cannot replace the test candidate. No live run claimed yet.
@@ -146,7 +146,7 @@ handoff, and production volume removal are outside this slice.
   https://ephemeral-skills-qa-oct-30.test.paperclip.app
   Stack `stack-ephemeral-skills-qa-oct-30` is pinned user-managed. Baseline A
   `6518b323528b2b595c5949c3ed2c57a8d2438cb6` is confirmed serving from image
-  `ghcr.io/paperclipai/paperclip:sha-6518b323528b2b595c5949c3ed2c57a8d2438cb6-cloud`.
+  `ghcr.io/letslego/octopus:sha-6518b323528b2b595c5949c3ed2c57a8d2438cb6-cloud`.
   Deploy request `19c33461-d232-453a-bdd1-ba357459be48`, campaign
   `fleet-campaign-1793366873548`, Cloud run `41094804453`: one target succeeded.
   The user approved saving the same OpenAI key to this test tenant; its remote
@@ -180,7 +180,7 @@ handoff, and production volume removal are outside this slice.
   and all three file digests matched independently calculated input digests.
   Its saved task document records the execution-local installation path.
 - Imported repository skill `581b718a-3681-48c4-96d5-87d12b694550` from
-  `paperclipai/paperclip` commit `dff63551fe07934a82a0942e502adba3fcbb08ca`.
+  `letslego/octopus` commit `dff63551fe07934a82a0942e502adba3fcbb08ca`.
   The existing import filter admitted 12 files and excluded the API reference.
   A later explicit source refresh hit the repository size limit and retained
   the installed revision. That refresh is not counted as a successful update.

@@ -1,6 +1,6 @@
 # @paperclipai/plugin-kubernetes (alpha)
 
-First-party Paperclip sandbox-provider plugin for Kubernetes.
+First-party Octopus sandbox-provider plugin for Kubernetes.
 
 **Alpha:** the default backend (`sandbox-cr`) is built on `kubernetes-sigs/agent-sandbox` v1alpha1 — expect breaking changes as that CRD evolves toward Beta. A stable fallback backend (`job`, using `batch/v1` Job) is available for clusters without agent-sandbox installed, but it does NOT support multi-command exec (paperclip-server's adapter-install pattern requires sandbox-cr).
 
@@ -10,23 +10,23 @@ First-party Paperclip sandbox-provider plugin for Kubernetes.
 
 1. A Kubernetes cluster running k8s 1.27+
 2. [`kubernetes-sigs/agent-sandbox`](https://github.com/kubernetes-sigs/agent-sandbox) controller installed in the cluster (alpha — installs the `sandboxes.agents.x-k8s.io/v1alpha1` CRD and controller)
-3. Paperclip-server running with access to the cluster (in-cluster via `inCluster: true` or external via `kubeconfig`)
+3. Octopus-server running with access to the cluster (in-cluster via `inCluster: true` or external via `kubeconfig`)
 
 ### For `job` backend (stable fallback)
 
 1. A Kubernetes cluster running k8s 1.27+
-2. Paperclip-server with cluster access — no additional controllers or CRDs required
+2. Octopus-server with cluster access — no additional controllers or CRDs required
 
 ## Installation
 
 ```bash
-paperclipai plugin install @paperclipai/plugin-kubernetes
+octopus plugin install @paperclipai/plugin-kubernetes
 ```
 
 Or, for local development:
 
 ```bash
-paperclipai plugin install --local /path/to/paperclip/packages/plugins/sandbox-providers/kubernetes
+octopus plugin install --local /path/to/paperclip/packages/plugins/sandbox-providers/kubernetes
 ```
 
 ## Backends
@@ -54,7 +54,7 @@ Create a `sandbox` environment with `driver: kubernetes`. One of these auth fiel
 
 - `inCluster: true` — use the in-pod ServiceAccount credentials (when paperclip-server runs inside the same cluster).
 - `kubeconfig: <YAML>` — inline kubeconfig (stored as a company secret).
-- `kubeconfigSecretRef: <secret-uuid>` — reference to an existing Paperclip secret.
+- `kubeconfigSecretRef: <secret-uuid>` — reference to an existing Octopus secret.
 
 Common optional fields:
 

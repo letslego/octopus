@@ -1604,8 +1604,8 @@ process.exit(1);
         engine: "cli", command, cwd: workspace,
         env: { CODEX_HOME: sourceHome, PAPERCLIP_TEST_CAPTURE_PATH: capture },
         paperclipConnectorSkillDigest: digest,
-        paperclipSkillSync: { desiredSkills: digest ? ["paperclipai/paperclip/agentmail"] : [] },
-        paperclipRuntimeSkills: digest ? [{ key: "paperclipai/paperclip/agentmail", runtimeName: "agentmail", source }] : [],
+        paperclipSkillSync: { desiredSkills: digest ? ["letslego/octopus/agentmail"] : [] },
+        paperclipRuntimeSkills: digest ? [{ key: "letslego/octopus/agentmail", runtimeName: "agentmail", source }] : [],
       };
       const result = await execute({ runId: `run-${agentId}-${digest?.slice(0, 1) ?? "none"}`,
         agent: { id: agentId, companyId: "company-1", name: "Email agent", adapterType: "codex_local", adapterConfig: config },
@@ -1686,8 +1686,8 @@ process.exit(1);
           } }, model_provider: "test_gateway" }),
         },
 
-        paperclipSkillSync: { desiredSkills: digest ? ["paperclipai/paperclip/agentmail"] : [] },
-        paperclipRuntimeSkills: digest ? [{ key: "paperclipai/paperclip/agentmail", runtimeName: "agentmail", source }] : [],
+        paperclipSkillSync: { desiredSkills: digest ? ["letslego/octopus/agentmail"] : [] },
+        paperclipRuntimeSkills: digest ? [{ key: "letslego/octopus/agentmail", runtimeName: "agentmail", source }] : [],
       };
       const result = await execute({ runId: `run-${agentId}-${digest?.slice(0, 1) ?? "none"}`,
         agent: { id: agentId, companyId: "company-1", name: "Email agent", adapterType: "codex_local", adapterConfig: config },

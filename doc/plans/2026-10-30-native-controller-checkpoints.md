@@ -1,7 +1,7 @@
 # Native-controller recovery during webserver upgrades
 
 Date: 2026-10-30. Status: implementation delivered; final qualification is tracked
-in [PR #18343](https://github.com/paperclipai/paperclip/pull/18343).
+in [PR #18343](https://github.com/letslego/octopus/pull/18343).
 Source inspected: `0c70cedce9a803bdc201324528abb35e423e7cd0` in the current task worktree.
 
 ## Goal and finish line
@@ -402,7 +402,7 @@ measurements are recorded below. Database cost acceptance, distinct-release appl
 compatible rollback, and native Daytona qualification remain open. The published Daytona qualification image was independently resolved from successful
 workflow 40709784515 to `sha256:b38ed051d00fed409092d354eea9ae1b01fb232bcb7d5a187ed763382dda2d0b`
 (source `8fe5d5defcdfb55a1b9049a801cfa5498629cebc`). The exact Linux Runner was
-extracted from that image. The local attempt failed during the environment probe before agent creation. A read-only lookup independently returned `DaytonaAuthenticationError: Invalid credentials`. The private database and cleanup obligation remain preserved. The protected single-cell workflow [41093316372](https://github.com/paperclipai/paperclip/actions/runs/41093316372), targeting `512cc6d6dc`, was cancelled during image/artifact builds before provider allocation so acceptance can use the rebased candidate. Its protected secret is separate from the invalid local fixture.
+extracted from that image. The local attempt failed during the environment probe before agent creation. A read-only lookup independently returned `DaytonaAuthenticationError: Invalid credentials`. The private database and cleanup obligation remain preserved. The protected single-cell workflow [41093316372](https://github.com/letslego/octopus/actions/runs/41093316372), targeting `512cc6d6dc`, was cancelled during image/artifact builds before provider allocation so acceptance can use the rebased candidate. Its protected secret is separate from the invalid local fixture.
 No production deployment or complete zero-downtime acceptance is claimed.
 
 Failures retained in the implementation record: sandbox listener denial and host
@@ -490,7 +490,7 @@ confirmed the original restricted run's `listen EPERM` cause.
 
 ### Rebased review and qualification follow-up
 
-Draft implementation: https://github.com/paperclipai/paperclip/pull/18343.
+Draft implementation: https://github.com/letslego/octopus/pull/18343.
 At rebased head `3aa90fbf0b5553ffa66a9cdc0fb153f348b56d75`, all 66 focused
 persistence/discovery cases and full `pnpm -r typecheck` passed. The PR's general
 server shard found 190 executor unit failures where synthetic IDs and a partial
@@ -558,7 +558,7 @@ duration bounds. Observer traffic contributes to the measured database cost;
 short unsampled waits and full HTTP latency remain outside that measurement.
 
 Live qualification uses protected campaign
-[41108162900](https://github.com/paperclipai/paperclip/actions/runs/41108162900).
+[41108162900](https://github.com/letslego/octopus/actions/runs/41108162900).
 Its initial catalog timeout occurred before provider allocation after Azure
 reported a dependency-cache egress limit. A scoped exact-entry cache invalidation
 and targeted retry forced a successful cold install. Only this campaign's
@@ -567,8 +567,8 @@ identity, source admission and provider authorization gates remain in force.
 
 Provider-free package builds pin first reader `59ff89a18fe1312b5f0bb908439bbdb1237b0252`
 and candidate `a0ef3ce7493c8bb76c4766ff007e8a390118d145` in runs
-[41108342354](https://github.com/paperclipai/paperclip/actions/runs/41108342354) and
-[41108352138](https://github.com/paperclipai/paperclip/actions/runs/41108352138).
+[41108342354](https://github.com/letslego/octopus/actions/runs/41108342354) and
+[41108352138](https://github.com/letslego/octopus/actions/runs/41108352138).
 The source-process crash probe independently observed B waiting for A's live
 lease and claiming the same execution after natural expiry, with no lease edits.
 Its initial all-turns/single-provider-process assertion also crossed completion
@@ -578,6 +578,6 @@ phase-specific observations distinguish that boundary from same-contract rollbac
 Earlier strict failures remain retained until that distinction is demonstrated.
 
 The final live, reader, installed-artifact, cleanup and CI outcomes are maintained
-in [PR #18343](https://github.com/paperclipai/paperclip/pull/18343), with their exact
+in [PR #18343](https://github.com/letslego/octopus/pull/18343), with their exact
 revisions and evidence limits. Campaign registration, successful artifact builds
 and this plan entry do not themselves certify that a live journey passed.

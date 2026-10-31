@@ -330,7 +330,7 @@ describe("managed GitHub launcher environment", () => {
     await command("git init -q && printf 'first\\n' > work.txt && git add work.txt && git commit -qm first");
     await command("printf 'second\\n' >> work.txt && git add work.txt && git commit -qm second");
     expect(await command("git log --format='%an <%ae>|%cn <%ce>'"))
-      .toBe(Array(2).fill("Paperclip <noreply@paperclip.ing>|Paperclip <noreply@paperclip.ing>").join("\n"));
+      .toBe(Array(2).fill("Paperclip <noreply@github.com/letslego/octopus>|Paperclip <noreply@github.com/letslego/octopus>").join("\n"));
     expect(await command("git show HEAD:work.txt")).toBe("first\nsecond");
     expect(await readFile(path.join(fixture.root, ".git", "config"), "utf8")).not.toContain("[user]");
     expect(await readFile(path.join(fixture.root, ".gitconfig"), "utf8")).toContain("Image User");

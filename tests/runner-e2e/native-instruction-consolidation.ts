@@ -144,7 +144,7 @@ export function assertNativeInstructionLineage(sourceSha: string, run = git, hos
     let ancestryError = error;
     for (const depth of [8, 32, 128]) {
       run("-c", "credential.helper=", "-c", "core.hooksPath=/dev/null", "fetch", "--no-tags", `--depth=${depth}`,
-        "https://github.com/paperclipai/paperclip.git", sourceSha);
+        "https://github.com/letslego/octopus.git", sourceSha);
       if (run("rev-parse", "HEAD") !== sourceSha) throw new Error("Source changed during ancestry hydration");
       try {
         run("merge-base", "--is-ancestor", NATIVE_INSTRUCTION_BASE_SHA, sourceSha);
@@ -250,7 +250,7 @@ export function validateNativeInstructionMeasurement(measurement: {
 export function prepareNativeInstructionPreflight(directory: string) {
   const source = sourceReceipt();
   const build = (script: string, file: string) => {
-    const log = execFileSync("pnpm", ["--filter", "@paperclipai/paperclip-runner", script], {
+    const log = execFileSync("pnpm", ["--filter", "@letslego/octopus-runner", script], {
       cwd: root, timeout: 10 * 60_000, env: nativeCompletionPreflightEnvironment(process.env), maxBuffer: 8 * 1024 * 1024,
     });
     writeFileSync(join(directory, file), log);

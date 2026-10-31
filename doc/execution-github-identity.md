@@ -55,7 +55,7 @@ the active run through that broker. They do not require a persistent GitHub CLI
 login or inherit an ambient host broker capability.
 
 Without a managed identity, local commits default to
-`Paperclip <noreply@paperclip.ing>`. The launcher writes this token-free default
+`Paperclip <noreply@github.com/letslego/octopus>`. The launcher writes this token-free default
 to a private per-operation global Git configuration file, removed on exit.
 Repository identity and `git -c user.name=... -c user.email=...` override it.
 The launcher leaves author/committer environment variables unset instead of

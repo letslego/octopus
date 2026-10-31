@@ -237,7 +237,7 @@ every catalog skill.
 ## Step 5 — Open the PR
 
 Follow the `prepare-paperclip-pr` skill (`.agents/skills/prepare-paperclip-pr/`)
-against `paperclipai/paperclip` master. The diff should contain exactly:
+against `letslego/octopus` master. The diff should contain exactly:
 
 1. the new skill directory (SKILL.md + examples/ + supporting files, **or**
    catalog-ref.json),

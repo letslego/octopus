@@ -16,7 +16,7 @@ import { remoteExecutionHasStopped } from "../services/remote-execution-terminat
 import { resolvePluginTaskResume } from "../services/environment-task-runtime.js";
 import { environmentRuntimeService } from "../services/environment-runtime.js";
 import { environmentRunOrchestrator } from "../services/environment-run-orchestrator.js";
-import { createRunnerProviderLaunch, runnerLaunchRequirementsDigest, type RunnerProviderLaunchRequirements } from "@paperclipai/paperclip-runner";
+import { createRunnerProviderLaunch, runnerLaunchRequirementsDigest, type RunnerProviderLaunchRequirements } from "@letslego/octopus-runner";
 import { createPluginRunnerTaskOwner } from "../services/native-runtime/plugin-runner-task.js";
 import type { PluginWorkerManager } from "../services/plugin-worker-manager.js";
 import { recoveryPostgresSupport as support, startRecoveryPostgres } from "./helpers/recovery-postgres.js";

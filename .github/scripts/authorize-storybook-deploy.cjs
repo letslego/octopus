@@ -2,7 +2,7 @@
 module.exports = async function authorizeStorybookDeploy({ github, context }) {
   const fail = (message) => { throw new Error(message); };
   if (context.repo.owner !== "paperclipai" || context.repo.repo !== "paperclip") {
-    fail("Storybook publishing is restricted to paperclipai/paperclip.");
+    fail("Storybook publishing is restricted to letslego/octopus.");
   }
   if (context.eventName !== "workflow_dispatch" || !context.ref.startsWith("refs/heads/")) {
     fail("Storybook publishing requires a manual run from a repository branch.");

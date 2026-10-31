@@ -2,7 +2,7 @@
 
 Outcome: one tested, reviewable PR and an isolated local preview. Preserve
 sidebar accuracy, account isolation, loading layout and recovery. No merge or
-staging deployment. PR: https://github.com/paperclipai/paperclip/pull/16851
+staging deployment. PR: https://github.com/letslego/octopus/pull/16851
 
 ## Implementation
 
@@ -22,7 +22,7 @@ staging deployment. PR: https://github.com/paperclipai/paperclip/pull/16851
 
 Initial checkout: clean at `0ed760ce9a`. Branch:
 `codex/sidebar-apps-startup-performance`. Route-splitting PR
-[#16849](https://github.com/paperclipai/paperclip/pull/16849) landed during this
+[#16849](https://github.com/letslego/octopus/pull/16849) landed during this
 work. The branch was rebased onto `9179d8dcc3`; the primary comparison includes
 that same route splitting on both sides. Tested application source:
 `085f7a6f1e2cac82be323ab099820767597936eb`. This includes strict rejection of mixed
@@ -115,7 +115,7 @@ held responses. No agent run was started.
 ## PR check repair
 
 At `453d488398`, every CI lane passed except serialized server shard 7/9.
-The [failed job](https://github.com/paperclipai/paperclip/actions/runs/39285071851/job/118169386829)
+The [failed job](https://github.com/letslego/octopus/actions/runs/39285071851/job/118169386829)
 reported one failure among 176 tests: the compact issue-list cache capacity test
 expected 256 entries and found 238. Its 261 HTTP requests took 5,631 ms, crossing
 the cache's 5,000 ms expiry. The production cache correctly prunes expired rows.

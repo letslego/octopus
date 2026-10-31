@@ -1,7 +1,7 @@
 # In-app announcements
 
 Paperclip displays one optional announcement card in the board UI. Its feed is
-`https://pages.paperclip.ing/announcements/v1/current.json`. The instance fetches
+`https://pages.github.com/letslego/octopus/announcements/v1/current.json`. The instance fetches
 JSON on demand and renders it with native components.
 
 ## Operator configuration
@@ -27,7 +27,7 @@ The shared `announcementManifestSchema` defines the format:
     "eyebrow": "New in Paperclip",
     "title": "Your next idea starts here",
     "description": "Bring your agents and work together in a project.",
-    "secondaryLink": { "kind": "external", "label": "Learn more", "url": "https://paperclip.ing" },
+    "secondaryLink": { "kind": "external", "label": "Learn more", "url": "https://github.com/letslego/octopus" },
     "primaryAction": { "kind": "route", "label": "Open projects", "path": "/projects" }
   }
 }

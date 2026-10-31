@@ -55,7 +55,7 @@ function executeStep(name, overrides = {}) {
         AWS_CI_ENABLED: "true",
         TRUSTED_USER_IDS: "[34892728]",
         EVENT_NAME: "pull_request",
-        EVENT_REPOSITORY: "paperclipai/paperclip",
+        EVENT_REPOSITORY: "letslego/octopus",
         EVENT_REPOSITORY_ID: "1170821064",
         EVENT_ACTION: "synchronize",
         EVENT_PR_NUMBER: "12350",

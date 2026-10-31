@@ -131,9 +131,9 @@ export const executionId = 'chat-features.runner-opencode-deepseek-1017.local.cr
 export const scenario = 'tasks.create-backlog';
 const positive = value => typeof value === 'string' && /^[1-9][0-9]{0,15}$/.test(value) && Number.isSafeInteger(Number(value));
 export function publicContext(env) {
-  if (env.GITHUB_REPOSITORY !== 'paperclipai/paperclip' || env.GITHUB_REF !== 'refs/heads/master'
+  if (env.GITHUB_REPOSITORY !== 'letslego/octopus' || env.GITHUB_REF !== 'refs/heads/master'
     || env.GITHUB_EVENT_NAME !== 'workflow_dispatch' || env.GITHUB_RUN_ATTEMPT !== '1'
-    || env.GITHUB_WORKFLOW_REF !== 'paperclipai/paperclip/.github/workflows/chat-feature-testops.yml@refs/heads/master'
+    || env.GITHUB_WORKFLOW_REF !== 'letslego/octopus/.github/workflows/chat-feature-testops.yml@refs/heads/master'
     || !/^[a-f0-9]{40}$/.test(env.GITHUB_SHA ?? '') || !positive(env.GITHUB_RUN_ID)) fail('untrusted_public_testops_context');
   return { runId: env.GITHUB_RUN_ID, attempt: '1', workflowSha: env.GITHUB_SHA, targetSha: env.GITHUB_SHA };
 }
@@ -156,7 +156,7 @@ export async function validateChatSelection(api, env) {
   const run = await api(`/api/jobrun/${jobRunId}`);
   if (run.id !== jobRunId || run.job?.id !== jobId || run.job?.type !== 'github'
     || !['scheduled', 'in_progress'].includes(run.stage) || !id(run.launchId)
-    || run.url !== `https://github.com/paperclipai/paperclip/actions/runs/${context.runId}`) fail('chat_testops_jobrun_mismatch');
+    || run.url !== `https://github.com/letslego/octopus/actions/runs/${context.runId}`) fail('chat_testops_jobrun_mismatch');
   const launch = await api(`/api/launch/${run.launchId}`);
   if (launch.id !== run.launchId || launch.projectId !== 1 || launch.closed === true) fail('chat_testops_launch_mismatch');
   const selection = await api(`/api/jobrun/${jobRunId}/plan?expected=true`);
@@ -174,9 +174,9 @@ function configuredIds(env) {
     parameterId: positive(operation) ? Number(operation) : null };
 }
 function publicJobUrl(url, env) {
-  return url === 'https://github.com/paperclipai/paperclip/actions/workflows/chat-feature-testops.yml'
-    || url === 'https://github.com/paperclipai/paperclip/actions?query=workflow%3A%22Chat+feature+TestOps%22'
-    || positive(env.CHAT_TESTOPS_GITHUB_WORKFLOW_ID) && url === `https://github.com/paperclipai/paperclip/actions/workflows/${env.CHAT_TESTOPS_GITHUB_WORKFLOW_ID}`;
+  return url === 'https://github.com/letslego/octopus/actions/workflows/chat-feature-testops.yml'
+    || url === 'https://github.com/letslego/octopus/actions?query=workflow%3A%22Chat+feature+TestOps%22'
+    || positive(env.CHAT_TESTOPS_GITHUB_WORKFLOW_ID) && url === `https://github.com/letslego/octopus/actions/workflows/${env.CHAT_TESTOPS_GITHUB_WORKFLOW_ID}`;
 }
 async function registeredPlan(api, env) {
   const ids = configuredIds(env);
@@ -237,7 +237,7 @@ export async function bootstrapJobMetadata(api, env, expectedLaunchId) {
     if (!id(run?.job?.id)) fail('chat_testops_jobrun_mismatch');
     if (strict) {
       if (run.id !== Number(env.ALLURE_JOB_RUN_ID) || run.job.type !== 'github' || run.launchId !== expectedLaunchId
-        || run.url !== `https://github.com/paperclipai/paperclip/actions/runs/${context.runId}`) fail('chat_testops_jobrun_mismatch');
+        || run.url !== `https://github.com/letslego/octopus/actions/runs/${context.runId}`) fail('chat_testops_jobrun_mismatch');
       const launch = await read('LAUNCH_GET', expectedLaunchId, `/api/launch/${expectedLaunchId}`);
       if (launch.id !== expectedLaunchId || launch.projectId !== 1) fail('chat_testops_launch_mismatch');
     }
@@ -259,7 +259,7 @@ export async function bootstrapJobMetadata(api, env, expectedLaunchId) {
     }
     return { ...(strict ? { schema: 'paperclip.chat-feature-testops-bootstrap-registration/v1', ...context, capturedAfterWatch: true, runnableBindingQualified: false } : {}),
       status: 'observed', projectId: 1, jobId: job.id, allureJobRunId: env.ALLURE_JOB_RUN_ID,
-      publicWorkflowMatches: publicJobUrl(job.url, env), currentRunUrlMatches: run.url === `https://github.com/paperclipai/paperclip/actions/runs/${env.GITHUB_RUN_ID}`,
+      publicWorkflowMatches: publicJobUrl(job.url, env), currentRunUrlMatches: run.url === `https://github.com/letslego/octopus/actions/runs/${env.GITHUB_RUN_ID}`,
       launchId: id(run.launchId) ? run.launchId : null, parameters, requests, actualResult: null };
   } catch (error) {
     const failure = error instanceof SetupFailure ? error : new SetupFailure('unknown_failure');
@@ -278,7 +278,7 @@ export async function admitLaunchPlan(env, fetchImpl = fetch) {
   try { allowed = JSON.parse(env.TESTOPS_ALLOWED_ACTOR_IDS ?? 'null'); } catch { fail('chat_testops_launch_admission'); }
   if (!Array.isArray(allowed) || !allowed.length || allowed.some(value => !id(value)) || !allowed.includes(Number(env.GITHUB_ACTOR_ID)) || !allowed.includes(Number(env.TESTOPS_TRIGGERING_ACTOR_ID))) fail('chat_testops_launch_admission');
   const read = async route => {
-    const response = await fetchImpl(`https://api.github.com/repos/paperclipai/paperclip${route ? `/${route}` : ''}`, {
+    const response = await fetchImpl(`https://api.github.com/repos/letslego/octopus${route ? `/${route}` : ''}`, {
       method: 'GET', redirect: 'error', headers: { Accept: 'application/vnd.github+json', Authorization: `Bearer ${env.GH_TOKEN}` },
       signal: AbortSignal.timeout(30_000) });
     if (!response.ok) fail(`chat_testops_github_http_${response.status}`);
@@ -289,11 +289,11 @@ export async function admitLaunchPlan(env, fetchImpl = fetch) {
   const repository = await read('');
   const workflow = await read('actions/workflows/chat-feature-testops.yml');
   const run = await read(`actions/runs/${source.runId}`);
-  if (repository.full_name !== 'paperclipai/paperclip' || repository.private !== false || repository.default_branch !== 'master'
+  if (repository.full_name !== 'letslego/octopus' || repository.private !== false || repository.default_branch !== 'master'
     || workflow.id !== Number(env.CHAT_TESTOPS_GITHUB_WORKFLOW_ID) || workflow.path !== '.github/workflows/chat-feature-testops.yml' || workflow.state !== 'active'
     || run.id !== Number(source.runId) || run.workflow_id !== workflow.id || run.run_attempt !== 1 || run.run_number !== Number(expected)
     || run.head_sha !== source.workflowSha || run.head_branch !== 'master' || run.event !== 'workflow_dispatch'
-    || run.repository?.full_name !== 'paperclipai/paperclip' || run.repository?.private !== false
+    || run.repository?.full_name !== 'letslego/octopus' || run.repository?.private !== false
     || run.actor?.id !== Number(env.GITHUB_ACTOR_ID) || run.triggering_actor?.id !== Number(env.TESTOPS_TRIGGERING_ACTOR_ID) || !allowed.includes(run.triggering_actor.id)) fail('chat_testops_launch_admission');
   const receipt = Object.freeze({ schema: 'paperclip.chat-feature-testops-launch-admission/v1', ...source,
     workflowId: workflow.id, runNumber: run.run_number, expectedRunNumber: Number(expected), actorId: run.actor.id, triggeringActorId: run.triggering_actor.id });
@@ -354,8 +354,8 @@ export async function verifyChatUpload(api, env, selected, exported, { wait = ms
     || exported.attachmentMetadata.filter(row => row.name === 'Sanitized Product E2E record and accounting').length !== 1
     || exported.status === 'passed' && !exported.attachmentMetadata.some(row => row.contentType === 'image/png')) fail('chat_testops_upload_mismatch');
   const signature = rows => rows.map(row => JSON.stringify([row.name, row.contentType, row.contentLength])).sort();
-  const runUrl = `https://github.com/paperclipai/paperclip/actions/runs/${context.runId}`;
-  const sourceUrl = `https://github.com/paperclipai/paperclip/commit/${context.targetSha}`;
+  const runUrl = `https://github.com/letslego/octopus/actions/runs/${context.runId}`;
+  const sourceUrl = `https://github.com/letslego/octopus/commit/${context.targetSha}`;
   const deadline = now() + 120_000;
   const get = async route => {
     const remaining = deadline - now();

@@ -22,7 +22,7 @@ import {
   issues,
   nativeRunFinalizations,
 } from "@paperclipai/db";
-import type { PrpEvent } from "@paperclipai/paperclip-runner";
+import type { PrpEvent } from "@letslego/octopus-runner";
 import { respondIssueThreadInteractionSchema } from "@paperclipai/shared";
 
 import {

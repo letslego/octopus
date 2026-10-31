@@ -450,7 +450,7 @@ describeEmbeddedPostgres("executionWorkspaceService.getCloseReadiness", () => {
       cwd: worktreePath,
       providerRef: worktreePath,
       providerType: "git_worktree",
-      repoUrl: "https://github.com/paperclipai/paperclip.git",
+      repoUrl: "https://github.com/letslego/octopus.git",
       baseRef: "main",
       branchName: "PAP-16015-delivery",
     });
@@ -489,7 +489,7 @@ describeEmbeddedPostgres("executionWorkspaceService.getCloseReadiness", () => {
         type: "pull_request",
         provider: "github",
         title: "Delivered PR",
-        url: "https://github.com/paperclipai/paperclip/pull/10623",
+        url: "https://github.com/letslego/octopus/pull/10623",
         status: "merged",
       });
     }
@@ -649,7 +649,7 @@ describeEmbeddedPostgres("executionWorkspaceService.getCloseReadiness", () => {
     try {
       await workProductService(db).createForIssue(seed.sourceIssueId, seed.companyId, {
         type: "pull_request", provider: "github", title: "PR", status: "merged",
-        url: "https://github.com/paperclipai/paperclip/pull/10623", executionWorkspaceId: seed.executionWorkspaceId,
+        url: "https://github.com/letslego/octopus/pull/10623", executionWorkspaceId: seed.executionWorkspaceId,
       });
       expect(await service.sweepTerminalWorkspaces()).toMatchObject({ archived: 1 });
       await expect(fs.access(seed.worktreePath)).rejects.toMatchObject({ code: "ENOENT" });
@@ -665,7 +665,7 @@ describeEmbeddedPostgres("executionWorkspaceService.getCloseReadiness", () => {
     expect(await service.sweepTerminalWorkspaces(1)).toMatchObject({ checked: 1, skippedUndelivered: 1 });
     await workProductService(db).createForIssue(seed.sourceIssueId, seed.companyId, {
       type: "pull_request", provider: "github", title: "PR", status: "merged",
-      url: "https://github.com/paperclipai/paperclip/pull/10623",
+      url: "https://github.com/letslego/octopus/pull/10623",
     });
     service.terminalWorkspaceWorkSettled(new Set([`issue:${seed.sourceIssueId}`]));
     expect(await service.sweepTerminalWorkspaces(1)).toMatchObject({ checked: 0 });
@@ -720,7 +720,7 @@ describeEmbeddedPostgres("executionWorkspaceService.getCloseReadiness", () => {
       expect(events).toEqual(["intent", "settled"]);
       expect(databaseWorkPending(db, DELIVERY_QUEUES.terminalWorkspaces)).toBe(false);
       await workProductService(db).createForIssue(seed.sourceIssueId, seed.companyId, {
-        type: "pull_request", provider: "github", title: "PR", status: "merged", url: "https://github.com/paperclipai/paperclip/pull/10623",
+        type: "pull_request", provider: "github", title: "PR", status: "merged", url: "https://github.com/letslego/octopus/pull/10623",
       });
       expect(events.slice(-2)).toEqual(["intent", "settled"]);
       await svc.update(seed.executionWorkspaceId, { status: "idle" });
@@ -735,7 +735,7 @@ describeEmbeddedPostgres("executionWorkspaceService.getCloseReadiness", () => {
       providerRef: seeded.worktreePath,
       providerType: "git_worktree",
       baseRef: "main",
-      repoUrl: "https://github.com/paperclipai/paperclip.git",
+      repoUrl: "https://github.com/letslego/octopus.git",
       branchName: "PAP-16015-delivery",
     }).where(eq(executionWorkspaces.id, seeded.executionWorkspaceId));
     await db.insert(issueWorkProducts).values({
@@ -744,7 +744,7 @@ describeEmbeddedPostgres("executionWorkspaceService.getCloseReadiness", () => {
       type: "pull_request",
       provider: "github",
       title: "Cross-branch delivery",
-      url: "https://github.com/paperclipai/paperclip/pull/10623",
+      url: "https://github.com/letslego/octopus/pull/10623",
       status: "merged",
     });
 
@@ -907,7 +907,7 @@ describeEmbeddedPostgres("executionWorkspaceService.getCloseReadiness", () => {
       cwd: worktreePath,
       providerRef: worktreePath,
       providerType: "git_worktree",
-      repoUrl: "https://github.com/paperclipai/paperclip.git",
+      repoUrl: "https://github.com/letslego/octopus.git",
       baseRef: "main",
       branchName,
     });
@@ -1413,7 +1413,7 @@ describeEmbeddedPostgres("executionWorkspaceService.getCloseReadiness", () => {
       type: "pull_request",
       provider: "github",
       title: "Unrelated merged PR",
-      url: "https://github.com/paperclipai/paperclip/pull/10624",
+      url: "https://github.com/letslego/octopus/pull/10624",
       status: "merged",
     });
 
@@ -1447,7 +1447,7 @@ describeEmbeddedPostgres("executionWorkspaceService.getCloseReadiness", () => {
         type: "pull_request",
         provider: "github",
         title: "Wrong branch merged PR",
-        url: "https://github.com/paperclipai/paperclip/pull/10624",
+        url: "https://github.com/letslego/octopus/pull/10624",
         status: "merged",
       },
       {
@@ -2279,7 +2279,7 @@ describeEmbeddedPostgres("executionWorkspaceService.getCloseReadiness", () => {
       type: "pull_request",
       provider: "github",
       title: "Descendant delivery",
-      url: "https://github.com/paperclipai/paperclip/pull/10625",
+      url: "https://github.com/letslego/octopus/pull/10625",
       status: "merged",
     });
 

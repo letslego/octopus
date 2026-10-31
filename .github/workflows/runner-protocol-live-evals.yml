@@ -6,11 +6,11 @@ on:
   workflow_dispatch:
     inputs:
       target_branch:
-        description: "Branch in paperclipai/paperclip to evaluate; trusted orchestration still runs from master"
+        description: "Branch in letslego/octopus to evaluate; trusted orchestration still runs from master"
         type: string
         required: false
       evals_sha:
-        description: "Exact 40-character paperclipai/paperclip-evals commit to execute"
+        description: "Exact 40-character letslego/octopus-evals commit to execute"
         type: string
         required: false
       rosters:
@@ -127,7 +127,7 @@ jobs:
         id: evals_token
         env:
           COMMITPERCLIP_KEY: ${{ secrets.COMMITPERCLIP_KEY }}
-          GH_REPO: paperclipai/paperclip-evals
+          GH_REPO: letslego/octopus-evals
         run: |
           set -euo pipefail
           token="$(node .github/scripts/get-bot-token.mjs)"
@@ -145,7 +145,7 @@ jobs:
             echo "evals_sha (or RUNNER_PROTOCOL_EVALS_SHA for schedules) must be an exact 40-character commit." >&2
             exit 1
           fi
-          resolved="$(gh api -X GET "repos/paperclipai/paperclip-evals/commits/$EVALS_SHA" --jq .sha)"
+          resolved="$(gh api -X GET "repos/letslego/octopus-evals/commits/$EVALS_SHA" --jq .sha)"
           test "$resolved" = "$EVALS_SHA"
           echo "sha=$resolved" >> "$GITHUB_OUTPUT"
 
@@ -273,7 +273,7 @@ jobs:
         id: evals_token
         env:
           COMMITPERCLIP_KEY: ${{ secrets.COMMITPERCLIP_KEY }}
-          GH_REPO: paperclipai/paperclip-evals
+          GH_REPO: letslego/octopus-evals
         run: |
           set -euo pipefail
           token="$(node .github/scripts/get-bot-token.mjs)"
@@ -282,7 +282,7 @@ jobs:
 
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
-          repository: paperclipai/paperclip-evals
+          repository: letslego/octopus-evals
           ref: ${{ needs.authorize.outputs.evals_sha }}
           path: .paperclip-evals
           token: ${{ steps.evals_token.outputs.value }}
@@ -405,9 +405,9 @@ jobs:
       - name: Build runner CLI, daemon, and canonical attempt viewer
         run: |
           set -euo pipefail
-          pnpm --filter @paperclipai/paperclip-runner build:typescript
-          pnpm --filter @paperclipai/paperclip-runner build:runner-binaries
-          pnpm --filter @paperclipai/paperclip-runner build:issue-thread
+          pnpm --filter @letslego/octopus-runner build:typescript
+          pnpm --filter @letslego/octopus-runner build:runner-binaries
+          pnpm --filter @letslego/octopus-runner build:issue-thread
           # Older target refs must fail before paid cells, not publish an empty viewer.
           grep -q 'paperclip-eval-report' packages/paperclip-runner/dist-issue-thread/assets/*.js
           grep -q 'evalbook-site' packages/paperclip-runner/dist-issue-thread/assets/*.css
@@ -420,7 +420,7 @@ jobs:
             --pack-destination "$RUNNER_TEMP/runner-protocol-build/package"
           package="$(find "$RUNNER_TEMP/runner-protocol-build/package" -maxdepth 1 -type f -name '*.tgz' -print -quit)"
           test -f "$package"
-          pnpm --filter @paperclipai/paperclip-runner deploy --prod \
+          pnpm --filter @letslego/octopus-runner deploy --prod \
             "$RUNNER_TEMP/runner-protocol-build/portable"
           cp "$package" "$RUNNER_TEMP/runner-protocol-build/paperclip-runner.tgz"
           cp packages/paperclip-runner/runner/target/debug/paperclip-runnerd "$RUNNER_TEMP/runner-protocol-build/paperclip-runnerd"
@@ -559,7 +559,7 @@ jobs:
         id: evals_token
         env:
           COMMITPERCLIP_KEY: ${{ secrets.COMMITPERCLIP_KEY }}
-          GH_REPO: paperclipai/paperclip-evals
+          GH_REPO: letslego/octopus-evals
         run: |
           set -euo pipefail
           token="$(node .github/scripts/get-bot-token.mjs)"
@@ -569,7 +569,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         if: needs.authorize.outputs.accounting_mode == 'controlled'
         with:
-          repository: paperclipai/paperclip-evals
+          repository: letslego/octopus-evals
           ref: ${{ needs.authorize.outputs.evals_sha }}
           path: .paperclip-evals
           token: ${{ steps.evals_token.outputs.value }}
@@ -714,7 +714,7 @@ jobs:
         id: evals_token
         env:
           COMMITPERCLIP_KEY: ${{ secrets.COMMITPERCLIP_KEY }}
-          GH_REPO: paperclipai/paperclip-evals
+          GH_REPO: letslego/octopus-evals
         run: |
           set -euo pipefail
           token="$(node .github/scripts/get-bot-token.mjs)"
@@ -723,7 +723,7 @@ jobs:
 
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
-          repository: paperclipai/paperclip-evals
+          repository: letslego/octopus-evals
           ref: ${{ needs.authorize.outputs.evals_sha }}
           path: .paperclip-evals
           token: ${{ steps.evals_token.outputs.value }}
@@ -1024,7 +1024,7 @@ jobs:
         id: evals_token
         env:
           COMMITPERCLIP_KEY: ${{ secrets.COMMITPERCLIP_KEY }}
-          GH_REPO: paperclipai/paperclip-evals
+          GH_REPO: letslego/octopus-evals
         run: |
           set -euo pipefail
           token="$(node .github/scripts/get-bot-token.mjs)"
@@ -1033,7 +1033,7 @@ jobs:
 
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
-          repository: paperclipai/paperclip-evals
+          repository: letslego/octopus-evals
           ref: ${{ needs.authorize.outputs.evals_sha }}
           path: .paperclip-evals
           token: ${{ steps.evals_token.outputs.value }}
@@ -1205,7 +1205,7 @@ jobs:
         if: needs.authorize.outputs.accounting_mode == 'legacy'
         run: |
           pnpm install --frozen-lockfile --ignore-scripts --store-dir "$RUNNER_TEMP/runner-report-pnpm-store"
-          pnpm --filter @paperclipai/paperclip-runner exec playwright install --with-deps chromium
+          pnpm --filter @letslego/octopus-runner exec playwright install --with-deps chromium
           node packages/paperclip-runner/scripts/verify-runner-evalbook-viewer.mjs --report-root runner-protocol-merged/public-report --screenshots runner-protocol-merged/viewer-proof
           node packages/paperclip-runner/scripts/verify-runner-evalbook-viewer.mjs --report-root runner-protocol-merged/report
 

@@ -15,7 +15,7 @@
   "providerPackDigest": "sha256:fb17098f93bbb888e605ee84201f4f6f0e6920dc81b1d9cd293f343876b959ed",
   "resolvedLockSha256": "sha256:83b5b1848a9e5c8bee2608732df317caab338e6f22a343bc8029fa86f1acbeab",
   "daytonaImage": {
-    "tag": "ghcr.io/paperclipai/paperclip-daytona-runner:copilot-qualification-434d749103ab3ae4058e",
+    "tag": "ghcr.io/letslego/octopus-daytona-runner:copilot-qualification-434d749103ab3ae4058e",
     "digest": "sha256:6ab9b0166580020cc16240bdcf27067459f7720cfdcb4f25bacd5fb6fca77be0",
     "contentId": "434d749103ab3ae4058ef1600795ce3e9ff1a78b7049c556c0d41b3fc3af1e93",
     "publication": "published-anonymous-pull-verified",

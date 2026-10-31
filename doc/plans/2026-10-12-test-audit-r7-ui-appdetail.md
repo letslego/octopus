@@ -10,7 +10,7 @@ Retired: `removes the separate always-installed controls from Permissions`.
 
 Keeper: `renders searchable action groups with three-way permission toggles`.
 
-Both cases use the same enclosing beforeEach, connection, catalog, profiles, grants, install state and spies. Their two pre-assertion statements are byte-identical: select the permissions tab, then await the same complete AppDetail render. Neither case changes a fixture or takes a user action before its assertions. Both permission observations were updated by [PR #12802](https://github.com/paperclipai/paperclip/pull/12802).
+Both cases use the same enclosing beforeEach, connection, catalog, profiles, grants, install state and spies. Their two pre-assertion statements are byte-identical: select the permissions tab, then await the same complete AppDetail render. Neither case changes a fixture or takes a user action before its assertions. Both permission observations were updated by [PR #12802](https://github.com/letslego/octopus/pull/12802).
 
 All three retired observations move unchanged into the keeper, immediately after render and before its existing assertions:
 

@@ -24,26 +24,26 @@ describe("chat provider conversation links", () => {
     expect(
       chatProviderConversationUrl({
         provider: "github",
-        threadId: "github:paperclipai/paperclip:issue:42",
+        threadId: "github:letslego/octopus:issue:42",
         providerMessageId: "99",
       }),
     ).toBe(
-      "https://github.com/paperclipai/paperclip/issues/42#issuecomment-99",
+      "https://github.com/letslego/octopus/issues/42#issuecomment-99",
     );
     expect(
       chatProviderConversationUrl({
         provider: "github",
-        threadId: "github:paperclipai/paperclip:43",
+        threadId: "github:letslego/octopus:43",
         providerMessageId: "100",
       }),
-    ).toBe("https://github.com/paperclipai/paperclip/pull/43#issuecomment-100");
+    ).toBe("https://github.com/letslego/octopus/pull/43#issuecomment-100");
     expect(
       chatProviderConversationUrl({
         provider: "github",
-        threadId: "github:paperclipai/paperclip:43:rc:101",
+        threadId: "github:letslego/octopus:43:rc:101",
         providerMessageId: "102",
       }),
-    ).toBe("https://github.com/paperclipai/paperclip/pull/43#discussion_r101");
+    ).toBe("https://github.com/letslego/octopus/pull/43#discussion_r101");
   });
 
   it("links Teams channel threads and chats using verified activity IDs", () => {

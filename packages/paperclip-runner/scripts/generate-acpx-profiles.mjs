@@ -25,7 +25,7 @@ for (const agent of Object.keys(manifest.profiles)) {
   if (manifest.profiles[agent].commandDigest === attestation.commandDigest
     && (!declaration || declaration[digestField] === attestation.commandDigest)) continue;
   assert.ok(!check, `${agent} commandDigest no longer matches its upstream release attestation. `
-    + "Run `pnpm --filter @paperclipai/paperclip-runner generate:acpx-profiles`; an upstream change keeps the profile version.");
+    + "Run `pnpm --filter @letslego/octopus-runner generate:acpx-profiles`; an upstream change keeps the profile version.");
   manifest.profiles[agent].commandDigest = attestation.commandDigest;
   writes.set("acpx-profiles.json", manifest);
   if (declaration) writes.set(path, { ...declaration, [digestField]: attestation.commandDigest });

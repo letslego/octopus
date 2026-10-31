@@ -95,7 +95,7 @@ export async function patchAntigravityRuntime({source,destination}) {
   const home = join(root, "home");
   const destination = join(home, ".paperclip/runtimes/antigravity/darwin-arm64", closureSha256);
   const options = { platform: "darwin", architecture: "arm64", archivePath, destination };
-  const provision = () => provisioner.provisionAntigravityRuntime({ ...options, home, moduleUrl: "file:///consumer/node_modules/@paperclipai/paperclip-runner/dist/cli/provision-antigravity.cjs" });
+  const provision = () => provisioner.provisionAntigravityRuntime({ ...options, home, moduleUrl: "file:///consumer/node_modules/@letslego/octopus-runner/dist/cli/provision-antigravity.cjs" });
   return { root, destination, options, api, provision, distribution: await api.antigravityDistribution("darwin", "arm64") };
 }
 

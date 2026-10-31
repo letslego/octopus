@@ -805,7 +805,7 @@ async function main() {
           ref: process.env.PAPERCLIP_PROTOCOL_EVAL_SOURCE_REF,
         },
         evals: {
-          repository: "paperclipai/paperclip-evals",
+          repository: "letslego/octopus-evals",
           sha: process.env.PAPERCLIP_PROTOCOL_EVALS_SHA,
         },
         workflowRunUrl: process.env.PAPERCLIP_PROTOCOL_EVAL_WORKFLOW_URL,

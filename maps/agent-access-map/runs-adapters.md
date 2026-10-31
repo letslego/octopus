@@ -6,7 +6,7 @@ Feature ID: `runs-adapters`.
 
 Scoped local Git author contract (`runs-adapters/runs`): an admitted execution
 with managed launchers can create a local commit without a GitHub grant. A
-private per-operation Git config supplies `Paperclip <noreply@paperclip.ing>`
+private per-operation Git config supplies `Paperclip <noreply@github.com/letslego/octopus>`
 only as a default. Repository/command configuration and captured managed identity
 retain precedence. The default conveys no API, repository-network or credential
 authority; current run, company, trust and GitHub-grant checks stay in force.
@@ -18,7 +18,7 @@ qualifies live cloud execution or GitHub writes. No REST operation changes.
 
 Delegated native entries inherit the [native admission and work-mode limits](README.md#native-rest-transport).
 
-Review date: 2026-10-26. Source base: `a1f77821b9cd5c9c846fdf7a0fa5cc620ad2b6bb`; implementation: [#17737](https://github.com/paperclipai/paperclip/pull/17737).
+Review date: 2026-10-26. Source base: `a1f77821b9cd5c9c846fdf7a0fa5cc620ad2b6bb`; implementation: [#17737](https://github.com/letslego/octopus/pull/17737).
 
 Connection operations reviewed in this working tree. The inventory was reconciled
 against production UI clients, REST registrations and service entry points; it is

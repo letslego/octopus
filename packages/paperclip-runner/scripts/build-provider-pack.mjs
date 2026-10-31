@@ -111,7 +111,7 @@ try {
     "pnpm",
     [
       "--filter",
-      "@paperclipai/paperclip-runner",
+      "@letslego/octopus-runner",
       "deploy",
       "--prod",
       temporaryRoot,

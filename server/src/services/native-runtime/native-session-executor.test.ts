@@ -63,7 +63,7 @@ import {
   type NativeExecutionInputV3,
   type NativeExecutionInput,
   type PrpEvent,
-} from "@paperclipai/paperclip-runner";
+} from "@letslego/octopus-runner";
 import { existsSync } from "node:fs";
 import { createHash, generateKeyPairSync, randomUUID } from "node:crypto";
 import { DatabaseSync } from "node:sqlite";
@@ -1755,7 +1755,7 @@ describe("remote provider pack manifest", () => {
       exitCode: 0, signal: null, timedOut: false, stderr: "",
       stdout: command.args?.[0] === "--build-metadata" ? JSON.stringify({
         schema: "paperclip-runner/runnerd-build-metadata/v1", binaryName: "paperclip-runnerd",
-        packageName: "@paperclipai/paperclip-runner", binaryContractVersion: 2,
+        packageName: "@letslego/octopus-runner", binaryContractVersion: 2,
         durableSessionCapabilities: ["unlimited_runtime", "connection_lease_renewal"], prpTransportModes: ["listen_ws"],
         providerPacks: [{ root: "/opt/paperclip-runner/provider-pack", manifest: installed, immutable: true }],
       }) : "",
@@ -1821,7 +1821,7 @@ describe("remote provider pack manifest", () => {
         const recoveryExecute = vi.fn(async (request: { args: string[] }) => {
           if (request.args[0] === "--build-metadata") return { exitCode: 0, timedOut: false, stderr: "", stdout: JSON.stringify({
             schema: "paperclip-runner/runnerd-build-metadata/v1", binaryName: "paperclip-runnerd",
-            packageName: "@paperclipai/paperclip-runner", binaryContractVersion: 2,
+            packageName: "@letslego/octopus-runner", binaryContractVersion: 2,
             durableSessionCapabilities: ["unlimited_runtime", "connection_lease_renewal"], prpTransportModes: ["listen_ws"],
             providerPacks: [{ root: "/opt/paperclip-runner/provider-pack", manifest: admitted, immutable: true }],
           }) };
@@ -3635,7 +3635,7 @@ describe("remote runner build metadata", () => {
   const current = {
     schema: "paperclip-runner/runnerd-build-metadata/v1",
     binaryName: "paperclip-runnerd",
-    packageName: "@paperclipai/paperclip-runner",
+    packageName: "@letslego/octopus-runner",
     binaryContractVersion: 2,
     durableSessionCapabilities: ["unlimited_runtime", "connection_lease_renewal"],
     prpTransportModes: ["dial_ws_loopback", "dial_wss", "listen_ws"],
@@ -7062,7 +7062,7 @@ describe("native startup restart detachment", () => {
 
 describe("native terminal-turn accounting", () => {
   it.each([false, true])("prices only complete direct Claude API turn accounting (%s)", async complete => {
-    const { rehydrateRunnerdUsageNotification } = await import("@paperclipai/paperclip-runner/live");
+    const { rehydrateRunnerdUsageNotification } = await import("@letslego/octopus-runner/live");
     const { priceAnthropicReceipt } = await import("../anthropic-pricing.js");
     const onUsage = vi.fn(async (_receipt: import("@paperclipai/adapter-utils").AdapterUsageCheckpoint) => {});
     const counts = { inputTokens: 12, outputTokens: 4, cacheReadTokens: 30, cacheWriteTokens: 20, providerCostUsd: 0 };
@@ -7081,7 +7081,7 @@ describe("native terminal-turn accounting", () => {
   it.each(["claude", "codex"].flatMap(agent => [false, true].flatMap(restart =>
     [false, true].flatMap(partialFirst => [false, true].map(zeroFirst => ({ agent, restart, partialFirst, zeroFirst }))),
   )))("accumulates ACPX turns for $agent (restart: $restart, partial: $partialFirst, zero first: $zeroFirst)", async ({ agent, restart, partialFirst, zeroFirst }) => {
-    const { rehydrateRunnerdUsageNotification } = await import("@paperclipai/paperclip-runner/live");
+    const { rehydrateRunnerdUsageNotification } = await import("@letslego/octopus-runner/live");
     const onUsage = vi.fn(async (_receipt: import("@paperclipai/adapter-utils").AdapterUsageCheckpoint) => {});
     const event = (eventType: string, turnId: string, sourceSeq: number, payload: object = {}) => ({
       eventType, turnId, sourceSeq, sourceInstanceId: "provider", emittedAt: new Date().toISOString(), payload,
@@ -7123,7 +7123,7 @@ describe("native terminal-turn accounting", () => {
   it.each(["claude", "codex"].flatMap(agent =>
     ["missing", "partial", "complete_zero", "later_partial", "recovered"].map(scenario => ({ agent, scenario })),
   ))("honors runner completeness for ACPX $agent ($scenario)", async ({ agent, scenario }) => {
-    const { rehydrateRunnerdUsageNotification } = await import("@paperclipai/paperclip-runner/live");
+    const { rehydrateRunnerdUsageNotification } = await import("@letslego/octopus-runner/live");
     const onUsage = vi.fn(async (_receipt: import("@paperclipai/adapter-utils").AdapterUsageCheckpoint) => {});
     const complete = ["complete_zero", "recovered"].includes(scenario);
     const zero = { inputTokens: 0, outputTokens: 0, cacheReadTokens: 0, cacheWriteTokens: 0, providerCostUsd: 0 };
@@ -7155,7 +7155,7 @@ describe("native terminal-turn accounting", () => {
   });
 
   it.each([0, 0.25])("keeps interrupted AgentCore accounting pending despite cumulative cost %s", async providerCostUsd => {
-    const { rehydrateRunnerdUsageNotification } = await import("@paperclipai/paperclip-runner/live");
+    const { rehydrateRunnerdUsageNotification } = await import("@letslego/octopus-runner/live");
     const onUsage = vi.fn(async (_receipt: import("@paperclipai/adapter-utils").AdapterUsageCheckpoint) => {});
     const total = { inputTokens: 10, outputTokens: 2, cacheReadTokens: 0, cacheWriteTokens: 0, providerCostUsd };
     const notification = rehydrateRunnerdUsageNotification({ provider: "aws_agentcore", cumulative: total, runDelta: null, runDeltaAvailable: false }, "session", "turn");
@@ -7173,7 +7173,7 @@ describe("native terminal-turn accounting", () => {
   });
 
   it.each(["claude_managed", "aws_agentcore"] as const)("settles fresh runner receipts for %s and preserves estimated pricing", async kind => {
-    const { rehydrateRunnerdUsageNotification } = await import("@paperclipai/paperclip-runner/live");
+    const { rehydrateRunnerdUsageNotification } = await import("@letslego/octopus-runner/live");
     const onUsage = vi.fn(async (_receipt: import("@paperclipai/adapter-utils").AdapterUsageCheckpoint) => {});
     const total = { inputTokens: 121, outputTokens: 18, cacheReadTokens: 33, cacheWriteTokens: 15, providerCostUsd: 1.25 };
     const delta = { inputTokens: 21, outputTokens: 8, cacheReadTokens: 13, cacheWriteTokens: 5, providerCostUsd: 0.25 };
@@ -12886,7 +12886,7 @@ describe("runnerd provider runtime wiring", () => {
     const execute = vi.fn(async (request: { args: string[] }) => ({ exitCode: request.args[2] === "paperclip-runner-recovery-check" && !alive ? 45 : 0,
       timedOut: false, stderr: "", stdout: request.args[0] === "--build-metadata" ? JSON.stringify({
         schema: "paperclip-runner/runnerd-build-metadata/v1", binaryName: "paperclip-runnerd",
-        packageName: "@paperclipai/paperclip-runner", binaryContractVersion: 2,
+        packageName: "@letslego/octopus-runner", binaryContractVersion: 2,
         durableSessionCapabilities: ["unlimited_runtime", "connection_lease_renewal"], prpTransportModes: ["listen_ws"],
       }) : request.args[0] === "--version" ? "codex-cli 0.160.0" : request.args[1]?.includes("base64")
         ? Buffer.from(JSON.stringify({ ...identity, lifecycle: "ready", outbox: [], pendingTerminalDelivery: null })).toString("base64")
@@ -15445,7 +15445,7 @@ describe("runnerd provider runtime wiring", () => {
       if (command.args?.[0] === "--build-metadata") return {
         exitCode: 0, timedOut: false, stdout: JSON.stringify({
           schema: "paperclip-runner/runnerd-build-metadata/v1", binaryName: "paperclip-runnerd",
-          packageName: "@paperclipai/paperclip-runner", binaryContractVersion: 2,
+          packageName: "@letslego/octopus-runner", binaryContractVersion: 2,
           durableSessionCapabilities: ["unlimited_runtime", "connection_lease_renewal"],
           prpTransportModes: ["listen_ws"],
         }), stderr: "",
@@ -15527,7 +15527,7 @@ describe("runnerd provider runtime wiring", () => {
       if (command.args?.[0] === "--build-metadata") return {
         exitCode: 0, timedOut: false, stdout: JSON.stringify({
           schema: "paperclip-runner/runnerd-build-metadata/v1", binaryName: "paperclip-runnerd",
-          packageName: "@paperclipai/paperclip-runner", binaryContractVersion: 2,
+          packageName: "@letslego/octopus-runner", binaryContractVersion: 2,
           durableSessionCapabilities: ["unlimited_runtime", "connection_lease_renewal"],
           prpTransportModes: ["listen_ws"],
         }), stderr: "",
@@ -15720,7 +15720,7 @@ describe("runnerd provider runtime wiring", () => {
           stdout = JSON.stringify({
             schema: "paperclip-runner/runnerd-build-metadata/v1",
             binaryName: "paperclip-runnerd",
-            packageName: "@paperclipai/paperclip-runner",
+            packageName: "@letslego/octopus-runner",
             binaryContractVersion: 2,
             durableSessionCapabilities: (image === "stale" || retained) && command.command === "/usr/local/bin/paperclip-runnerd"
               ? undefined
@@ -15853,7 +15853,7 @@ describe("runnerd provider runtime wiring", () => {
           stdout = JSON.stringify({
             schema: "paperclip-runner/runnerd-build-metadata/v1",
             binaryName: "paperclip-runnerd",
-            packageName: "@paperclipai/paperclip-runner",
+            packageName: "@letslego/octopus-runner",
             binaryContractVersion: 2,
             durableSessionCapabilities: ["unlimited_runtime", "connection_lease_renewal"],
             prpTransportModes: ["listen_ws"],
@@ -16153,8 +16153,8 @@ it("keeps an ACPX missing runtime package failure actionable and stops automatic
 });
 describe("HTTP Stop during remote runner staging", () => {
   it("does not dispatch after Stop and bounded bootstrap cleanup", async () => {
-    const { createCapabilityRunnerdCodexTransport } = await import("@paperclipai/paperclip-runner/live");
-    const { createNativeSessionBackend } = await import("@paperclipai/paperclip-runner");
+    const { createCapabilityRunnerdCodexTransport } = await import("@letslego/octopus-runner/live");
+    const { createNativeSessionBackend } = await import("@letslego/octopus-runner");
 
     vi.spyOn(runEventWriter, "appendHeartbeatRunEvent").mockResolvedValue({ row: { seq: 1 }, disposition: "committed", highestContiguousSourceSeq: 1 } as never);
     const root = await mkdtemp(join(tmpdir(), "remote-startup-stop-"));

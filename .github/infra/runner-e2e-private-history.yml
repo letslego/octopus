@@ -5,7 +5,7 @@ Parameters:
     Type: String
   GitHubRepository:
     Type: String
-    Default: paperclipai/paperclip
+    Default: letslego/octopus
   GitHubOidcProviderArn:
     Type: String
 Resources:

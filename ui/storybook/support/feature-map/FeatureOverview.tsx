@@ -15,7 +15,7 @@ type Capability = {
   verification?: { scope: string; storybook: string; production: string; sources: string };
 };
 type Feature = { id: string; title: string; description: string; capabilities: Capability[] };
-const recipeRoot = "https://github.com/paperclipai/paperclip/blob/master/maps/feature-map/";
+const recipeRoot = "https://github.com/letslego/octopus/blob/master/maps/feature-map/";
 const allFeatures: Feature[] = featureIndex.sections.flatMap(section => section.features);
 const examples = entries.filter(entry => entry.implementation !== "guide");
 const featureHref = (id: string) => `./?path=/story/feature-map-${id}--overview`;

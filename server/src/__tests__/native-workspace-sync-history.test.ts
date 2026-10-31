@@ -123,7 +123,7 @@ describe("native warm workspace Git history", () => {
           lease.metadata = {};
         }
       } else if (change === "host_origin") {
-        await git(host, "remote", "add", "origin", "https://github.com/paperclipai/new-source.git");
+        await git(host, "remote", "add", "origin", "https://github.com/letslego/new-source.git");
       } else if (change === "host_bytes_cache_refused") {
         await writeFile(path.join(host, "file.txt"), "updated host content\n");
         await writeFile(path.join(host, "extra.txt"), "new host file\n");
@@ -182,7 +182,7 @@ describe("native warm workspace Git history", () => {
         if (change === "host_bytes_cache_refused") expect(await readFile(path.join(remote, "extra.txt"), "utf8")).toBe("new host file\n");
         expect(await git(remoteRepo, "rev-parse", "HEAD")).toBe(expectedHead);
         expect(await git(remoteRepo, "symbolic-ref", "--short", "HEAD")).toBe(expectedBranch);
-        if (change === "host_origin") expect(await git(remote, "remote", "get-url", "origin")).toBe("https://github.com/paperclipai/new-source.git");
+        if (change === "host_origin") expect(await git(remote, "remote", "get-url", "origin")).toBe("https://github.com/letslego/new-source.git");
         await second.restoreWorkspace();
         expect(await readFile(path.join(hostRepo, "file.txt"), "utf8")).toBe(expectedContents);
         expect(await git(hostRepo, "rev-parse", "HEAD")).toBe(expectedHead);

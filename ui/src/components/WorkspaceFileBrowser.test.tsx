@@ -124,7 +124,7 @@ function createWorkspace(overrides: Partial<ProjectWorkspace> = {}): ProjectWork
     projectId: "project-content",
     name: "Paperclip Content",
     sourceType: "local_path",
-    cwd: "/srv/paperclip/home/paperclipai/paperclip-content",
+    cwd: "/srv/paperclip/home/letslego/octopus-content",
     repoUrl: null,
     repoRef: null,
     defaultRef: null,

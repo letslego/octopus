@@ -219,7 +219,7 @@ describe("project workspace skill discovery", () => {
         "metadata:",
         "  sources:",
         "    - kind: github-dir",
-        "      repo: paperclipai/paperclip",
+        "      repo: letslego/octopus",
         "      path: skills/paperclip",
         "---",
         "",
@@ -240,7 +240,7 @@ describe("project workspace skill discovery", () => {
       sources: [
         {
           kind: "github-dir",
-          repo: "paperclipai/paperclip",
+          repo: "letslego/octopus",
           path: "skills/paperclip",
         },
       ],

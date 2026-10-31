@@ -1,7 +1,7 @@
 # Accepted native result commits: sleep audit
 
 Date: 2026-10-26. Slice 53 starts at `d5c540b1c0df9aba35262ba121c651806bbca161`,
-parent [#17734](https://github.com/paperclipai/paperclip/pull/17734). The branch is
+parent [#17734](https://github.com/letslego/octopus/pull/17734). The branch is
 `codex/sleep-53-native-result-commit`. This is one duty from the
 [recurring-server inventory](2026-10-24-recurring-server-sleep-stack.md).
 

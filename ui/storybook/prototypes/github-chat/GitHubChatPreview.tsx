@@ -991,7 +991,7 @@ export function GitHubChatPreview({
                         </p>
                         <a
                           className="mt-2 inline-block underline"
-                          href="https://paperclip.ing/docs"
+                          href="https://github.com/letslego/octopus/docs"
                           target="_blank"
                           rel="noreferrer"
                         >

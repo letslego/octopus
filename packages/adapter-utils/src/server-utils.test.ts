@@ -432,7 +432,7 @@ describe("materializePaperclipSkillCopy", () => {
 
 describe("adapter skill snapshots", () => {
   const requiredEntry = {
-    key: "paperclipai/paperclip/paperclip",
+    key: "letslego/octopus/paperclip",
     runtimeName: "paperclip",
     source: "/runtime/paperclip",
   };
@@ -3450,7 +3450,7 @@ describe("applyPaperclipWorkspaceEnv", () => {
         workspaceSource: "project_primary",
         workspaceStrategy: "git_worktree",
         workspaceId: "workspace-1",
-        workspaceRepoUrl: "https://github.com/paperclipai/paperclip.git",
+        workspaceRepoUrl: "https://github.com/letslego/octopus.git",
         workspaceRepoRef: "main",
         workspaceBranch: "feature/test",
         workspaceWorktreePath: "/tmp/worktree",
@@ -3464,7 +3464,7 @@ describe("applyPaperclipWorkspaceEnv", () => {
       PAPERCLIP_WORKSPACE_STRATEGY: "git_worktree",
       PAPERCLIP_WORKSPACE_ID: "workspace-1",
       PAPERCLIP_WORKSPACE_REPO_URL:
-        "https://github.com/paperclipai/paperclip.git",
+        "https://github.com/letslego/octopus.git",
       PAPERCLIP_WORKSPACE_REPO_REF: "main",
       PAPERCLIP_WORKSPACE_BRANCH: "feature/test",
       PAPERCLIP_WORKSPACE_WORKTREE_PATH: "/tmp/worktree",
@@ -3502,16 +3502,16 @@ describe("shapePaperclipWorkspaceEnvForExecution", () => {
         {
           workspaceId: "workspace-1",
           cwd: "/tmp/workspace",
-          repoUrl: "https://github.com/paperclipai/paperclip.git",
+          repoUrl: "https://github.com/letslego/octopus.git",
         },
         {
           workspaceId: "workspace-2",
           cwd: "/tmp/other-workspace",
-          repoUrl: "https://github.com/paperclipai/paperclip.git",
+          repoUrl: "https://github.com/letslego/octopus.git",
         },
         {
           workspaceId: "workspace-3",
-          repoUrl: "https://github.com/paperclipai/paperclip.git",
+          repoUrl: "https://github.com/letslego/octopus.git",
         },
       ],
       executionTargetIsRemote: true,
@@ -3525,15 +3525,15 @@ describe("shapePaperclipWorkspaceEnvForExecution", () => {
         {
           workspaceId: "workspace-1",
           cwd: "/remote/workspace",
-          repoUrl: "https://github.com/paperclipai/paperclip.git",
+          repoUrl: "https://github.com/letslego/octopus.git",
         },
         {
           workspaceId: "workspace-2",
-          repoUrl: "https://github.com/paperclipai/paperclip.git",
+          repoUrl: "https://github.com/letslego/octopus.git",
         },
         {
           workspaceId: "workspace-3",
-          repoUrl: "https://github.com/paperclipai/paperclip.git",
+          repoUrl: "https://github.com/letslego/octopus.git",
         },
       ],
     });

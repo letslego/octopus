@@ -65,13 +65,13 @@ describe("E2E history organization", () => {
     const { campaign } = fixture(); const measured = JSON.stringify(campaign);
     await writeFile(path.join(root, "history.json"), original); await writeFile(path.join(root, "campaign.json"), measured);
     const output = path.join(root, "output");
-    const history = await refreshHistoryIndex({ history: path.join(root, "history.json"), output, publicCampaign: path.join(root, "campaign.json"), publicUrl: "https://pages.paperclip.ing/evals-qa-basics/", preset: "qa-smoke" });
+    const history = await refreshHistoryIndex({ history: path.join(root, "history.json"), output, publicCampaign: path.join(root, "campaign.json"), publicUrl: "https://pages.github.com/letslego/octopus/evals-qa-basics/", preset: "qa-smoke" });
     expect(history.campaigns[0]).toMatchObject({ campaignId: campaign.campaignId, generatedAt: campaign.generatedAt, source: campaign.source,
       suites: campaign.suites, selected: campaign.selected, passed: campaign.passed, preset: "qa-smoke" });
     expect(await readFile(path.join(root, "history.json"), "utf8")).toBe(original);
     expect(await readFile(path.join(root, "campaign.json"), "utf8")).toBe(measured);
     expect(await readFile(path.join(output, "index.html"), "utf8")).toContain('data-index-preset-link="qa-smoke"');
-    await expect(refreshHistoryIndex({ history: path.join(output, "history.json"), output, publicCampaign: path.join(root, "campaign.json"), publicUrl: "https://pages.paperclip.ing/evals-qa-basics/" })).rejects.toThrow("already exists");
+    await expect(refreshHistoryIndex({ history: path.join(output, "history.json"), output, publicCampaign: path.join(root, "campaign.json"), publicUrl: "https://pages.github.com/letslego/octopus/evals-qa-basics/" })).rejects.toThrow("already exists");
   });
 
   it("refuses private Cloud bundles before creating a public history", async () => {
@@ -81,6 +81,6 @@ describe("E2E history organization", () => {
     await writeFile(path.join(root, "history.json"), JSON.stringify(emptyRunnerHistory()));
     await writeFile(path.join(root, "private.json"), JSON.stringify(campaign));
     await expect(refreshHistoryIndex({ history: path.join(root, "history.json"), output: path.join(root, "output"),
-      publicCampaign: path.join(root, "private.json"), publicUrl: "https://pages.paperclip.ing/private/" })).rejects.toThrow("Private Product E2E campaigns");
+      publicCampaign: path.join(root, "private.json"), publicUrl: "https://pages.github.com/letslego/octopus/private/" })).rejects.toThrow("Private Product E2E campaigns");
   });
 });

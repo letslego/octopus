@@ -12,7 +12,7 @@ import type { CredentialName, MatrixExecution, RunnerTaskFixture } from "./types
 
 type Row = Record<string, any>;
 export { nativeCompletionProfile as repositorySkillsProfile };
-export const POTETO_REPOSITORY = "https://github.com/paperclipai/poteto-stack";
+export const POTETO_REPOSITORY = "https://github.com/letslego/poteto-stack";
 const SKILLS = ["architect", "bro"];
 export const repositorySkillsTask: RunnerTaskFixture = {
   id: "poteto-package", label: "Private Poteto repository package", flow: "repository_skills",

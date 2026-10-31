@@ -611,7 +611,7 @@ describePostgres("heartbeat execution configuration through adapter dispatch", (
     } finally { release(); await holder; }
     const result = await pending;
     expect(result.prepared).toBe(true);
-    if (result.prepared) expect(result.runtimeSkillEntries.some(entry => entry.key === (kind === "selected native" ? selected.key : "paperclipai/paperclip/paperclip"))).toBe(true);
+    if (result.prepared) expect(result.runtimeSkillEntries.some(entry => entry.key === (kind === "selected native" ? selected.key : "letslego/octopus/paperclip"))).toBe(true);
   });
 
   it("applies project environment and issue overrides and replaces caller-supplied runtime fields", async () => {

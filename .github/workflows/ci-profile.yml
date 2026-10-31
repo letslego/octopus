@@ -13,7 +13,7 @@ permissions:
 jobs:
   export:
     if: >-
-      github.repository == 'paperclipai/paperclip' &&
+      github.repository == 'letslego/octopus' &&
       github.event.workflow_run.event == 'pull_request' &&
       startsWith(github.event.workflow_run.display_title, 'CI profile · PR #')
     runs-on: ubuntu-latest

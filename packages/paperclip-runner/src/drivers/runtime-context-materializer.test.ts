@@ -190,7 +190,7 @@ command = "untrusted-command"
     expect(config).toContain('model_provider = "paperclip"');
     expect(config).toContain('base_url = "https://openrouter.ai/api/v1"');
     expect(config).toContain('env_key = "PAPERCLIP_AI_PROVIDER_KEY"');
-    expect(config).toContain('"HTTP-Referer" = "https://paperclip.ing"');
+    expect(config).toContain('"HTTP-Referer" = "https://github.com/letslego/octopus"');
     expect(config).toContain('"X-OpenRouter-Title" = "Paperclip"');
     expect(config).toContain("shell_snapshot = false");
     expect(config).not.toMatch(/unrelated|untrusted|unassigned/);

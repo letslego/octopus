@@ -3,11 +3,11 @@
 ## Current qualification and repair checkpoint — 2026-10-13
 
 Canonical branch: `codex/codex-runner-default`. Delivery:
-[#15683](https://github.com/paperclipai/paperclip/pull/15683).
+[#15683](https://github.com/letslego/octopus/pull/15683).
 The published baseline `ea6c8eb5e16d61111968f633a66748b397b64a3e` has
 53 successful hosted checks, two conditional Storybook skips, required verify
 and E2E passes, fresh 5/5 review and 30 resolved threads. Its
-[package qualification](https://github.com/paperclipai/paperclip/actions/runs/38478290686)
+[package qualification](https://github.com/letslego/octopus/actions/runs/38478290686)
 passes all four native producers and clean Apple Silicon, Intel Mac and Linux
 ARM64 consumers. All 18 package source manifests and binary hashes match; no
 Codex payload is bundled. The isolated Apple Silicon install and zero-turn native
@@ -17,7 +17,7 @@ of the new repairs. Linux remains GNU libc 2.39 or newer on x64/AArch64; Windows
 Alpine and 32-bit ARM stay deferred. No warm-cache speedup or paid ARM task is
 claimed. Docker, Cargo and native builds remain remote.
 
-The [single baseline managed attempt](https://github.com/paperclipai/paperclip/actions/runs/38478333712)
+The [single baseline managed attempt](https://github.com/letslego/octopus/actions/runs/38478333712)
 fails completion reporting and the physical child-file assertion; its
 [existing report](https://d1p6rlowie26tp.cloudfront.net/runner-e2e/campaigns/gha-38478333712-1/index.html)
 remains red. Two runs execute provider turns. A third callback is falsely marked
@@ -133,7 +133,7 @@ turn its failed oracle green. All paid work remains bounded by the new $100
 allowance, 180-second runs and single-provider concurrency, with prior holds kept.
 
 Canonical branch: `codex/codex-runner-default`. Delivery PR:
-[#15683](https://github.com/paperclipai/paperclip/pull/15683).
+[#15683](https://github.com/letslego/octopus/pull/15683).
 The runtime/install prerequisite #16028 and release repair #16149 are merged.
 The finish line remains ordinary native Codex onboarding, checked task/follow-up,
 saved-agent preservation, exact-candidate installation and required checks, then
@@ -197,8 +197,8 @@ onboarding, credentials, workspace, DB, CLI or packaging source relative to 578.
 The isolated GitHub review-heading change and Storybook build preparation retain
 their incoming master source. Fresh published-head CI/review is still required.
 
-Literal 578 [remote package qualification](https://github.com/paperclipai/paperclip/actions/runs/38464237723)
-has completed successfully. The [single managed onboarding attempt](https://github.com/paperclipai/paperclip/actions/runs/38464212481)
+Literal 578 [remote package qualification](https://github.com/letslego/octopus/actions/runs/38464237723)
+has completed successfully. The [single managed onboarding attempt](https://github.com/letslego/octopus/actions/runs/38464212481)
 passes automatic selection, saved environment qualification, native authentication,
 hire and reload, then completes two successful native runs with session continuity.
 It fails the accepted-child assertion: the model puts its document/file on the
@@ -218,13 +218,13 @@ and no production deployment, default promotion or timer is authorized here.
 Published `e301c68d645eabd9fa7ae3a9450a460f6d2d0439` passes required CI with
 52 successes and two conditional skips. Its fresh review finds one linked-login
 setup defect. Literal executable source `6c0eca871616a110954553d6ff971e7655c85f93`
-passes [remote package qualification](https://github.com/paperclipai/paperclip/actions/runs/38445419339),
+passes [remote package qualification](https://github.com/letslego/octopus/actions/runs/38445419339),
 including all four producers and clean Apple Silicon, Intel Mac and Linux ARM64
 consumers. Fresh installed JavaScript initializes migration0339. The existing
 Mac app upgrades while preserving three full agent configurations, eight
 historical runs and saved account summaries, with no provider work during upgrade.
 
-The [managed6c attempt](https://github.com/paperclipai/paperclip/actions/runs/38448001365)
+The [managed6c attempt](https://github.com/letslego/octopus/actions/runs/38448001365)
 passes the saved environment probe, native account/model hello, native hire and
 campaign bounds. A legitimate reload then returns onboarding to step one before
 Get started. Both setup leases and fixture cleanup pass; no task/artifact/follow-up
@@ -282,7 +282,7 @@ controls, server no-emit and independent source review. The first93-control run'
 91 passes and two import-deadline/follow-on failures remain recorded; the unchanged
 standalone run passes without extending a deadline or weakening an assertion.
 
-The [1d CI run](https://github.com/paperclipai/paperclip/actions/runs/38459704117)
+The [1d CI run](https://github.com/letslego/octopus/actions/runs/38459704117)
 passes build, typecheck and native verification but has two independent blockers.
 The onboarding browser case expects the obsolete return to the Agent step. Its
 captured screen correctly restores Connect, Ada and the original authorization
@@ -303,15 +303,15 @@ checkpoints are retained history, not the current merge state.
 
 ## Production preparation checkpoint — 2026-10-13
 
-The runtime prerequisite [#16028](https://github.com/paperclipai/paperclip/pull/16028)
+The runtime prerequisite [#16028](https://github.com/letslego/octopus/pull/16028)
 is ready for review at `271d434c170e74bdedde65d0b13059a55419c943`.
-[CI attempt 2](https://github.com/paperclipai/paperclip/actions/runs/38346601686)
+[CI attempt 2](https://github.com/letslego/octopus/actions/runs/38346601686)
 passes 54 checks with four conditional skips; fresh Greptile is 5/5 and all four
 threads are resolved. The first attempt's bounded Pi Node archive timeout is
 retained. The unchanged-source retry passed without relaxing source or deadlines;
 its underlying network/host cause remains unknown. The passing CI installation
 records merge source `7a82a37438e6e448abc7cc5caa60dc2519a97be0`, distinct from the
-PR head. The [final literal-source package campaign](https://github.com/paperclipai/paperclip/actions/runs/38347027535)
+PR head. The [final literal-source package campaign](https://github.com/letslego/octopus/actions/runs/38347027535)
 passes all four daemon producers, public Linux assembly and Apple Silicon,
 Intel Mac and Linux ARM64 clean consumers. The Linux ACPX component probe uses
 explicit installed authority; normal Mac/ARM native lookup rejects authority
@@ -323,7 +323,7 @@ GitHub's normal ready-PR gate still requires a code-owner review. On 2026-10-13,
 normal protected squash auto-merge was enabled for exact `271d434c`; approval
 remains pending and no slice was merged. The user authorizes normal protected sequential merges,
 not admin bypasses, production deployment or provisioning-default promotion.
-[Codex #15683](https://github.com/paperclipai/paperclip/pull/15683) remains clean
+[Codex #15683](https://github.com/letslego/octopus/pull/15683) remains clean
 at `1a0ca66242121e39d88455aa2b52a07acc4a07d9`, based on the historical `5a9ce11`.
 The parent has advanced and GitHub reports conflicts. Reconcile with the actual
 merged parent before publishing prepared fixes or claiming final checks. The
@@ -462,7 +462,7 @@ is clear. Receipts:
 `/private/tmp/pr2-dae808-held-authorization-independent-review.json`.
 
 The already-running package campaign
-https://github.com/paperclipai/paperclip/actions/runs/38342104102
+https://github.com/letslego/octopus/actions/runs/38342104102
 is immutable to literal `dae808` throughout: daemon, assembly and installed
 consumer checkouts use its explicit 40-character SHA, while the tooling checkout
 uses the captured workflow SHA. Publishing this test-only correction cannot
@@ -520,7 +520,7 @@ unchanged. The catalog check passes 223 files/2,210 stories. No new live or
 visual coverage is claimed for the inherited backend requirements.
 
 The exact `16a532` remote package campaign is
-https://github.com/paperclipai/paperclip/actions/runs/38338806076.
+https://github.com/letslego/octopus/actions/runs/38338806076.
 The campaign completed successfully. All four native producers, public Linux
 package assembly and the Apple Silicon, Intel Mac and Linux ARM64 installed
 consumers pass. The earlier Intel timeout remains a separate failed receipt;
@@ -550,7 +550,7 @@ limitation at that literal source. Full workspace checks, Linux DB controls,
 Rust suites, isolated native compilation and all eight browser shards pass.
 Receipt: `/private/tmp/pr2-64c074-full-ci-review-0144-receipt.json`.
 
-The [existing final package campaign](https://github.com/paperclipai/paperclip/actions/runs/38332921463)
+The [existing final package campaign](https://github.com/letslego/octopus/actions/runs/38332921463)
 completed on literal `64c074`. All four native producers, public Linux package
 assembly, Apple Silicon and Linux ARM64 installed consumers pass. Intel Mac
 fails during initial `npm install --ignore-scripts --omit=dev`, with `ETIMEDOUT`
@@ -618,7 +618,7 @@ deployed, and the stack is not production-ready.
 
 Runtime prerequisite behavior is `ce23716503a2c9158b5a7ab74ab61571ff4ee7a3`
 on `codex/runner-native-platform-prerequisites`, in
-[#16028](https://github.com/paperclipai/paperclip/pull/16028). Final qualification
+[#16028](https://github.com/letslego/octopus/pull/16028). Final qualification
 reproduced close returning before credential preparation drained, followed by
 registration and launch. Both direct close and real driver cancellation failed
 on literal `5a9ce11`. The initial shared repair from Claude commit `463ebb` is
@@ -644,7 +644,7 @@ records source-only scope, bringing the prerequisite review to 63 files after th
 catalog review below.
 
 Codex remains `1a0ca66242121e39d88455aa2b52a07acc4a07d9` in
-[#15683](https://github.com/paperclipai/paperclip/pull/15683), based on the previous
+[#15683](https://github.com/letslego/octopus/pull/15683), based on the previous
 prerequisite. The Claude owner retains its branches, cached guided-setup fix,
 verification and separate $50 allowance. Coordinate reconciliation of the common
 repair before rewriting those branches; don't duplicate it in a leaf slice.
@@ -739,7 +739,7 @@ deployment has occurred. Managed onboarding/task/follow-up remain pending.
 
 ## Codex configuration review closure checkpoint
 
-Runtime prerequisite [#16028](https://github.com/paperclipai/paperclip/pull/16028)
+Runtime prerequisite [#16028](https://github.com/letslego/octopus/pull/16028)
 advances to `d16eccf109b524778ceb896f79ccb3881bc61a9b`, with 57 files. Its small
 shared builder correction preserves saved or selected Codex reasoning effort
 without adding Codex settings to other providers. All 52 existing builder tests
@@ -747,7 +747,7 @@ pass in the actual prerequisite checkout. The earlier `cae179` fresh 5/5 review
 is retained historical evidence; this new source requires fresh checks/review.
 
 Codex behavior source is `b63b779fe141ffe8db6d200580335de84ee78651`, on
-`codex/codex-runner-default`; [#15683](https://github.com/paperclipai/paperclip/pull/15683)
+`codex/codex-runner-default`; [#15683](https://github.com/letslego/octopus/pull/15683)
 retains 99 changed files. Review reproduced eight selection failures and six
 import/builder failures before correction. All six actual ACP aliases now follow
 Legacy precedence before native compatibility checks. Unsupported settings name
@@ -852,8 +852,8 @@ or production deployment has occurred at this checkpoint.
 ## Final review checkpoint: shared fixes and sandbox qualification
 
 The user authorizes normal sequential merges after the applicable gates pass.
-Runtime prerequisite [#16028](https://github.com/paperclipai/paperclip/pull/16028)
-and Codex defaults [#15683](https://github.com/paperclipai/paperclip/pull/15683)
+Runtime prerequisite [#16028](https://github.com/letslego/octopus/pull/16028)
+and Codex defaults [#15683](https://github.com/letslego/octopus/pull/15683)
 remain draft. Their pre-fix sources are `00ac509b0a` and `8de43be4cd`.
 The shared SSH argv and verified cold-resume corrections are already composed.
 Six argv controls, fourteen recovery controls, and actual SSH subprocess checks
@@ -895,9 +895,9 @@ and discovery must not provision resources or accept client-authored evidence.
 Unknown targets retain automatic Legacy with an actionable explicit-native error.
 No new product API or database migration is planned.
 
-Preview runs [38303434211](https://github.com/paperclipai/paperclip/actions/runs/38303434211),
-[38304889308](https://github.com/paperclipai/paperclip/actions/runs/38304889308), and
-[38306885592](https://github.com/paperclipai/paperclip/actions/runs/38306885592)
+Preview runs [38303434211](https://github.com/letslego/octopus/actions/runs/38303434211),
+[38304889308](https://github.com/letslego/octopus/actions/runs/38304889308), and
+[38306885592](https://github.com/letslego/octopus/actions/runs/38306885592)
 were cancelled as shared source defects changed their candidates. They are
 excluded from final qualification. Preserve historical evidence and all cost
 and cleanup holds. The next action is to finish the four fixes, run affected
@@ -922,7 +922,7 @@ runtime, installed-package and hosted-build changes onto
 `7d9b93aee2b79b2f035c5838741ce0b94168ec83`. This prerequisite contains 39 source
 files and this record. Creation policy and experimental gates remain identical
 to that master. README activation text and eight existing default-selection
-controls stay in the dependent [Codex PR #15683](https://github.com/paperclipai/paperclip/pull/15683),
+controls stay in the dependent [Codex PR #15683](https://github.com/letslego/octopus/pull/15683),
 whose expected review is 98 files. Preserve all work and both branches.
 
 The isolated extraction passes 276 existing focused controls. Runner no-emit
@@ -936,21 +936,21 @@ Do not count the diagnostic as a passing standard command.
 Retained qualification keeps literal identities: four producers and Linux x64
 and both Mac consumers pass at `a200495`; installed ARM native startup passes
 with scoped stock Ubuntu prerequisites in
-[38291535914](https://github.com/paperclipai/paperclip/actions/runs/38291535914).
+[38291535914](https://github.com/letslego/octopus/actions/runs/38291535914).
 Those artifacts are not relabeled as the extracted source. The Linux baseline
 is GNU libc 2.39+, on x64/AArch64. Windows and Alpine remain deferred.
 Cargo caches and overlapping JavaScript/native preparation use existing hosted
 workflows. No local Docker/Rust builds or bundled Codex payloads are introduced.
 
 Merge order is runtime prerequisite, Codex defaults, then the existing Claude
-[protocol #15994](https://github.com/paperclipai/paperclip/pull/15994),
-[default #15993](https://github.com/paperclipai/paperclip/pull/15993), and
-[platform #15997](https://github.com/paperclipai/paperclip/pull/15997) PRs.
+[protocol #15994](https://github.com/letslego/octopus/pull/15994),
+[default #15993](https://github.com/letslego/octopus/pull/15993), and
+[platform #15997](https://github.com/letslego/octopus/pull/15997) PRs.
 The authorized Claude chat owns its verification and fixes; this task coordinates
 normal squash merges after applicable gates. The older Grok Cloud PR is an
 independent lane, with its own missing snapshot-cleanup access and live proof.
 
-The extracted [runtime prerequisite #16028](https://github.com/paperclipai/paperclip/pull/16028)
+The extracted [runtime prerequisite #16028](https://github.com/letslego/octopus/pull/16028)
 is open at `ddcd746eb6a01f2bbe9b4adeec238ba35bde5adb`. The default branch is
 composed on it with all 134 owned implementation/test files identical to
 `bb7591dfd0`; this record retains every historical checkpoint.
@@ -971,7 +971,7 @@ installation, and both Mac installed startup/cleanup consumers pass. The origina
 unprepared ARM failure remains recorded; qualified ARM startup passes with stock
 scoped OS prerequisites and no global restriction change.
 
-The [committed-helper consumer](https://github.com/paperclipai/paperclip/actions/runs/38290234153)
+The [committed-helper consumer](https://github.com/letslego/octopus/actions/runs/38290234153)
 passes using tooling `0690801` and literal `a200495` packages. Receipt:
 `/private/tmp/ci-final-0690801-integrated-arm-receipt.json`.
 Fresh review at `a5b1683` is 5/5, with all 16 threads resolved. That correction
@@ -981,7 +981,7 @@ uses `job.workflow_repository`/`job.workflow_sha`; both source identities and
 the helper digest enter the existing report. No mutable branch or caller-source
 fallback is used. The original product consumer and archive guards stay intact.
 
-The [actual final workflow wiring](https://github.com/paperclipai/paperclip/actions/runs/38291535914)
+The [actual final workflow wiring](https://github.com/letslego/octopus/actions/runs/38291535914)
 also passes: immutable helper checkout, stock prerequisite preparation, native
 session, default daemon, read-only model context, and joined cleanup. Its three
 critical steps are byte-preserved from the delivery workflow. Literal product
@@ -1077,7 +1077,7 @@ the final hosted run. Receipt:
 `/private/tmp/pr2-native-cache-parallel-owned-receipt.json`.
 
 The exact `dcdf09a0f33536fa2b6daaf6e731d921d5711282` four-target qualifier
-[38268767165](https://github.com/paperclipai/paperclip/actions/runs/38268767165)
+[38268767165](https://github.com/letslego/octopus/actions/runs/38268767165)
 has built all four actual daemons. Linux package installation passes, as does
 the clean Apple Silicon consumer. ARM64 installs successfully but native session
 startup fails; cleanup masked the original cause. Ordinary CI passes at that
@@ -1131,7 +1131,7 @@ experimental flag false. Normal staging selects the verified Mac target and
 reports `needsBuild: false`; there is no binary override or local Cargo build.
 Receipt: `/private/tmp/pr2-final-preservation-after.json`.
 
-The hosted [ARM diagnostic](https://github.com/paperclipai/paperclip/actions/runs/38273898742)
+The hosted [ARM diagnostic](https://github.com/letslego/octopus/actions/runs/38273898742)
 used tooling `695506ad` and the literal `dcdf09a` package archives. It recovered
 the primary failure: Codex's bubblewrap cannot create a namespace inside the
 restricted Docker fixture. Daemon/CLI installation and ABI were not the cause.
@@ -1154,7 +1154,7 @@ Next action: freeze this corrected tooling and run one remote ARM host treatment
 against the same verified archives. Require actual host startup before the final
 four-target qualification; retain literal product/tool source identities.
 
-The [host treatment](https://github.com/paperclipai/paperclip/actions/runs/38276826878)
+The [host treatment](https://github.com/letslego/octopus/actions/runs/38276826878)
 at tooling `123a18837478d8cd0e2aff23f7e7aa86c9107de3` also fails native startup.
 The actual ARM host reaches the installed daemon and Codex, then bubblewrap
 fails loopback `RTM_NEWADDR` with `Operation not permitted`. No successful
@@ -1191,7 +1191,7 @@ on a compatible target; package installation and direct execution alone do not
 qualify the native runner. All Docker/native builds remain remote.
 
 Checkpoint `598e190cb308f4d7f8f43c188c2e7d88c3fc90d1` passes
-[ordinary CI](https://github.com/paperclipai/paperclip/actions/runs/38279960223):
+[ordinary CI](https://github.com/letslego/octopus/actions/runs/38279960223):
 both required gates, 54 successful checks/statuses, and four conditional skips.
 Fresh review is 5/5; all 15 review threads are resolved. Human code-owner approval
 is still absent. The test-drive serves `2026.1005.0+350.git.598e190cb3`; all four
@@ -1201,7 +1201,7 @@ no binary override, native compilation, Docker build, or provider turn locally.
 Receipts: `/private/tmp/ci-final-598e190-ci-review-receipt.json` and
 `/private/tmp/pr2-final-preservation-after.json`.
 
-The [direct/native ARM diagnostic](https://github.com/paperclipai/paperclip/actions/runs/38280515437)
+The [direct/native ARM diagnostic](https://github.com/letslego/octopus/actions/runs/38280515437)
 records GNU libc 2.39, AppArmor enabled with restricted unprivileged user
 namespaces, an unconfined current profile, zero effective capabilities, and no
 seccomp filter. Native startup still fails at bubblewrap loopback `RTM_NEWADDR`.
@@ -1219,7 +1219,7 @@ real 1.9.1 treatment repairs five valid configurations and keeps two invalid
 configurations unchanged. Runner/server typechecks pass. Receipt:
 `/private/tmp/codex-default-startup-trust-fix-receipt.json`.
 
-The [four-target performance qualifier](https://github.com/paperclipai/paperclip/actions/runs/38281631416)
+The [four-target performance qualifier](https://github.com/letslego/octopus/actions/runs/38281631416)
 uses literal `598e190` product/workflow source. Observed Linux x64/ARM64 and Apple
 Silicon builds pass with actual concurrent JavaScript/native preparation.
 Cache restore is exercised; observed results are cold misses, not measured
@@ -1237,14 +1237,14 @@ Require fresh CI/review after the correction. ARM startup and managed staging
 remain unresolved; no merge or production recommendation is made.
 
 The frozen production checkpoint `a200495cc7488f4d59da570407e516cf702e5af8`
-passes [CI](https://github.com/paperclipai/paperclip/actions/runs/38283122068)
+passes [CI](https://github.com/letslego/octopus/actions/runs/38283122068)
 (54 successful checks/statuses, four conditional skips) and fresh 5/5 review;
 all 15 review threads are resolved. It serves the test-drive at
 `2026.1005.0+351.git.a200495cc7`, with four complete agent configurations and two
 historical native runs unchanged after restart. No local native/Docker build
 or additional provider turn ran.
 
-Its [exact-source qualifier](https://github.com/paperclipai/paperclip/actions/runs/38283695248)
+Its [exact-source qualifier](https://github.com/letslego/octopus/actions/runs/38283695248)
 builds and verifies all four daemons. Linux clean installation and both actual
 Mac native startup/cleanup consumers pass. Cache restores are real cold misses;
 JavaScript/native preparation overlaps on all four producers. The unchanged
@@ -1253,7 +1253,7 @@ original run remains failed. Public artifact `11763536756` contains the verified
 18-package graph. Receipts: `/private/tmp/ci-final-a200495-hosted-qualification-receipt.json`
 and `/private/tmp/ci-final-a200495-cached-producer-observations.json`.
 
-The separate [stock-prerequisite ARM treatment](https://github.com/paperclipai/paperclip/actions/runs/38287918968)
+The separate [stock-prerequisite ARM treatment](https://github.com/letslego/octopus/actions/runs/38287918968)
 passes actual native startup, default daemon resolution, model selection,
 read-only context, and joined cleanup on the exact same packages. Lock, daemon,
 official Codex launcher, and native payload hashes match before/after. GNU libc
@@ -1305,7 +1305,7 @@ provider pack distinct from the local ARM64 daemon.
 No local Rust/Docker builds or new paid Linux campaign. Apple Silicon task and
 follow-up acceptance remains valid at the explicitly recorded source; Linux
 ARM64 build/install/startup must acquire its own evidence. The existing
-[three-target qualifier](https://github.com/paperclipai/paperclip/actions/runs/38259364638)
+[three-target qualifier](https://github.com/letslego/octopus/actions/runs/38259364638)
 completed successfully at `d522822`, including both clean Mac consumers. It does
 not qualify ARM64. Candidate `058af8f1b69c5fa3d9bc974b9eab73c141b52823` passed
 ordinary CI and fresh 5/5 review. Its remaining import display finding is fixed
@@ -1357,10 +1357,10 @@ acceptance is required on this Apple Silicon Mac. Intel builds must be attempted
 an attended Intel provider journey is not required. Reuse the healthy test drive
 and the existing Product E2E helpers rather than create another test system.
 
-Keep the current PR and branch: [#15683](https://github.com/paperclipai/paperclip/pull/15683),
+Keep the current PR and branch: [#15683](https://github.com/letslego/octopus/pull/15683),
 `codex/codex-runner-default`. The Mac qualification source is
 `d522822a5daeb72d124360b576b82a8bb52b43f4`; its
-[ordinary CI](https://github.com/paperclipai/paperclip/actions/runs/38259205327)
+[ordinary CI](https://github.com/letslego/octopus/actions/runs/38259205327)
 is green. Fresh automated review is 5/5. The development release-manifest
 finding is fixed with focused tests and awaits fresh final-head review.
 Earlier Linux-only source `6ca302426b768791b499d2d563bbca4276f2c908` had fresh
@@ -1469,7 +1469,7 @@ agent. Exactly two paused imports were submitted, with no third Apply. The
 combined receipt is `/private/tmp/codex-default-dc-import-live/receipt.json`;
 it separates `d522822` persistence proof from the corrected UI's content hashes.
 
-[Three-target qualification](https://github.com/paperclipai/paperclip/actions/runs/38252137381)
+[Three-target qualification](https://github.com/letslego/octopus/actions/runs/38252137381)
 built all three daemons, including actual Intel Mac. Its clean Linux consumer
 passed the 18-package installation and Codex ownership controls, then a Pi probe
 failed because it expected the old flat daemon path. Both Mac consumers reached
@@ -1479,7 +1479,7 @@ and use the host SDK. These failed attempts remain evidence; installed-package
 qualification still requires a passing corrected run.
 
 Test-only head `dc7304d7c4db1c9c9ee2ed80a98d004371372771` is production-byte
-identical to `f4abdc2`. Its [ordinary CI](https://github.com/paperclipai/paperclip/actions/runs/38253941991)
+identical to `f4abdc2`. Its [ordinary CI](https://github.com/letslego/octopus/actions/runs/38253941991)
 passes the required checks. Two fixture repairs enabled Dot only in its intended
 experiment cases and restored owner directory permissions only inside each test
 worker's scratch home for teardown. The actual asset producer/symlink control
@@ -1497,7 +1497,7 @@ unknown or cleanup hold was released, no automatic retry ran, and no additional
 paid Linux campaign started. The aggregate ceiling remains $250.
 
 The import, dev-stager and installation-probe fixes are pushed at `d522822`.
-The [corrected three-target qualifier](https://github.com/paperclipai/paperclip/actions/runs/38259364638)
+The [corrected three-target qualifier](https://github.com/letslego/octopus/actions/runs/38259364638)
 has passed all three daemon producers and the real Linux clean installation,
 including the corrected Pi probe. Both Mac consumers are checking the same
 18 tarballs. Ordinary CI reports 53 successful check runs, Snyk success and four
@@ -1527,8 +1527,8 @@ qualification links above retain their literal tested source rather than claim
 that an earlier workflow ran on a later development/UI commit.
 Managed staging execution/access renewal, code-owner approval and actual
 post-merge Cloud composition remain unverified. Prior staging preflight evidence
-is retained at [37962635959](https://github.com/paperclipai/paperclip/actions/runs/37962635959)
-and [37965658123](https://github.com/paperclipai/paperclip-cloud/actions/runs/37965658123).
+is retained at [37962635959](https://github.com/letslego/octopus/actions/runs/37962635959)
+and [37965658123](https://github.com/letslego/octopus-cloud/actions/runs/37965658123).
 
 ## Outcome and ownership
 
@@ -1539,7 +1539,7 @@ Merging and deployment require separate authorization.
 
 The original implementation is preserved on `codex/default-agent-runner` at
 `171d841295808ca185a258aaeb10b3dee68bb2b9`. Its public review is
-[PR #15422](https://github.com/paperclipai/paperclip/pull/15422).
+[PR #15422](https://github.com/letslego/octopus/pull/15422).
 The user approved splitting that work into four useful steps:
 
 1. Packaged runtime reliability and Codex prerequisites, without changing defaults.
@@ -1549,12 +1549,12 @@ The user approved splitting that work into four useful steps:
 
 ## Completed prerequisite
 
-[PR #15555](https://github.com/paperclipai/paperclip/pull/15555) merged at
+[PR #15555](https://github.com/letslego/octopus/pull/15555) merged at
 `6f9d0a56ba3c2f0059a723b7de434320eed7eb22`. Its final candidate `dde37d7`
 passed 47 ordinary CI jobs and fresh 5/5 automated review. The actual clean Linux
 npm consumer checked all 17 tarballs for absent Codex native payloads and official
 npm host dependencies. Actual Codex 0.156.1 startup passed on macOS ARM64.
-[Bot lockfile refresh #15673](https://github.com/paperclipai/paperclip/pull/15673)
+[Bot lockfile refresh #15673](https://github.com/letslego/octopus/pull/15673)
 is merged. These checks did not qualify onboarding or cloud rollout.
 
 Removed prerequisite work remains on `codex/runner-packaging-full-snapshot` at
@@ -1565,7 +1565,7 @@ Docker materialization, Git installer, or extra login isolation wholesale.
 
 Authorized 2026-10-09. Canonical branch: `codex/codex-runner-default`.
 Integration base: master `2dd9811e8be1dab59cccd86cdb25e8953b02fe07`.
-Canonical PR: [draft #15683](https://github.com/paperclipai/paperclip/pull/15683).
+Canonical PR: [draft #15683](https://github.com/letslego/octopus/pull/15683).
 Last pushed candidate: `ad5d8826ad18f72d672fcafbdd9fec24ef8c9fef`.
 It integrates the current agent lifecycle boundary. The next narrow follow-up
 restores the native Codex sign-in action and settles an existing chat test's
@@ -1719,7 +1719,7 @@ compilation, and the clean public npm consumer pass. The consumer checks all
 18 packed packages contain no Codex payload and acquires host Codex from official
 npm. The merge and generated-lock CI stamps are recorded separately from source.
 
-The existing Linux Product E2E campaign [37950165589](https://github.com/paperclipai/paperclip/actions/runs/37950165589)
+The existing Linux Product E2E campaign [37950165589](https://github.com/letslego/octopus/actions/runs/37950165589)
 passed its only selected case on attempt one, without a retry. The ordinary
 onboarding picker saved `paperclip_runner` / `codex`. All 13 assertions passed,
 including an independently checked nonce-bearing document and follow-up with
@@ -1790,7 +1790,7 @@ deployment remain outside authorization.
 
 ### 2026-10-09 Current-master lifecycle integration
 
-Master merged [#15631](https://github.com/paperclipai/paperclip/pull/15631) during
+Master merged [#15631](https://github.com/letslego/octopus/pull/15631) during
 qualification. GitHub blocked the new candidate on nine real merge conflicts.
 The integration preserves master's agent lifecycle ownership. Common runner
 resolution now runs in `prepareAgentHire`; approval activation retains the frozen
@@ -1853,7 +1853,7 @@ The ordinary first-task interaction is open; task, artifact and follow-up are
 not yet proven. No task provider call was made during these corrections.
 
 The dedicated staging tenant's old release remains unchanged. Read-only
-immutable preparation [37959487896](https://github.com/paperclipai/paperclip-cloud/actions/runs/37959487896)
+immutable preparation [37959487896](https://github.com/letslego/octopus-cloud/actions/runs/37959487896)
 matched the intended QA target and reported a matching DB package/migrations
 artifact gap. Rollout and serving verification were skipped. Build the frozen
 candidate's isolated preview image and packages through the existing trusted
@@ -1921,7 +1921,7 @@ The human approved a separate $25 ceiling: $15 for one owned QA stack/sandbox in
 
 Ordinary authenticated staging signup created `stack-pool-7998e841ace7` at https://runner-canary-d67-qa-oct-13.staging.paperclip.app. It reached fresh first-agent onboarding with zero agents or provider turns. Its user-managed pin is verified. Initial distribution `cloud-38355190192-1` is old source and has observed schema drift; it is baseline only. Exact d67 signed standard image, source gate and signed migrator have passed. Matching private composition is building through the existing canonical workflow, without a duplicate dispatch.
 
-The public d67 release38389963483 ended successfully but skipped native production, publication and canary onboarding. Registry canary.5 provenance binds it to old4a641d, so local acceptance remains blocked. The focused repair [PR #16149](https://github.com/paperclipai/paperclip/pull/16149), exact `ab99d3f7604cb2ac8d8a45c81276797af834e325`, adds explicit cancellation/source-result guards to the existing producer and canary smoke. Its existing contract cases reproduce two missing guards before treatment. All70 release controls and20 source-verification neighbors pass after treatment; independent source review is clear. All required hosted gates passed with fresh5/5 and actual code-owner approval. PR #16149 merged at `60bc0d5fee9a6e48db08fc016521fee3d9f57d67`; its new master-push release38395574681 is running. Concurrent master changes include Storybook indexing and verification-skill docs; npm and staging source identities remain separate. Source predicate tests support the diagnosis but do not establish actual GitHub scheduling or publication.
+The public d67 release38389963483 ended successfully but skipped native production, publication and canary onboarding. Registry canary.5 provenance binds it to old4a641d, so local acceptance remains blocked. The focused repair [PR #16149](https://github.com/letslego/octopus/pull/16149), exact `ab99d3f7604cb2ac8d8a45c81276797af834e325`, adds explicit cancellation/source-result guards to the existing producer and canary smoke. Its existing contract cases reproduce two missing guards before treatment. All70 release controls and20 source-verification neighbors pass after treatment; independent source review is clear. All required hosted gates passed with fresh5/5 and actual code-owner approval. PR #16149 merged at `60bc0d5fee9a6e48db08fc016521fee3d9f57d67`; its new master-push release38395574681 is running. Concurrent master changes include Storybook indexing and verification-skill docs; npm and staging source identities remain separate. Source predicate tests support the diagnosis but do not establish actual GitHub scheduling or publication.
 
 The native-runner QA override is applied and converged through one-target feature campaign1791869766576, with zero failed targets. Literal d67 private distribution `cloud:38392212140:1` is qualified. Supported one-target deployment request `f7cb6751-91f8-49a4-9ab8-6092ecb27e7c` passed exact-source/private-artifact preflight38395788220; deployment38395855695 succeeded with authenticated serving verification and `set_default=false`. The pin and current private distribution remain verified.
 
@@ -2033,7 +2033,7 @@ Before merge, actual master advances to875943ac83e730fd4cfbe1e1860b3f4d7bf0ac78 
 
 The resolved composition passes226 cases across the five existing runtime/display/mounted/selection/heartbeat suites. Direct server and UI no-emit checks pass after JavaScript-only Runner SDK declaration preparation and isolated installation of the exact declared Speko0.0.13 dependency with lifecycle scripts disabled. Initial missing-dependency/stale-declaration diagnostics remain setup limitations; no production workaround or dependency/lockfile change is made. All three existing token checks and staged diff checks pass. Fresh hosted full checks/review and remote native/package qualification remain required.
 
-Current inspectable QA results remain on local3136/3137 with preserved data. The normal board context publishes the sanitized qualification checklist as an attachment-backed primary work product on NPM-3; Done/unassigned status remains and no agent is woken. Canonical PR: https://github.com/paperclipai/paperclip/pull/15683; branch codex/codex-runner-default. Test login/owned target, refreshed reconciled-head gates/artifacts and real Test onboarding/task/file/manual follow-up remain the next action. No timer, merge, production deployment or provisioning-default promotion is performed in this checkpoint.
+Current inspectable QA results remain on local3136/3137 with preserved data. The normal board context publishes the sanitized qualification checklist as an attachment-backed primary work product on NPM-3; Done/unassigned status remains and no agent is woken. Canonical PR: https://github.com/letslego/octopus/pull/15683; branch codex/codex-runner-default. Test login/owned target, refreshed reconciled-head gates/artifacts and real Test onboarding/task/file/manual follow-up remain the next action. No timer, merge, production deployment or provisioning-default promotion is performed in this checkpoint.
 
 #### 2026-10-14 current Test deployment and native cleanup failure
 

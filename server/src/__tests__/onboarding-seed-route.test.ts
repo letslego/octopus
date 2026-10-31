@@ -96,10 +96,10 @@ describeEmbeddedPostgres("POST /api/companies/:companyId/onboarding-seed", () =>
     expect(companyAgents[0]?.adapterConfig).toMatchObject({
       paperclipSkillSync: {
         desiredSkills: expect.arrayContaining([
-          "paperclipai/paperclip/paperclip-board",
-          "paperclipai/paperclip/paperclip-converting-plans-to-tasks",
-          "paperclipai/paperclip/paperclip-create-agent",
-          "paperclipai/paperclip/para-memory-files",
+          "letslego/octopus/paperclip-board",
+          "letslego/octopus/paperclip-converting-plans-to-tasks",
+          "letslego/octopus/paperclip-create-agent",
+          "letslego/octopus/para-memory-files",
         ]),
       },
     });
@@ -156,7 +156,7 @@ describeEmbeddedPostgres("POST /api/companies/:companyId/onboarding-seed", () =>
       expect(response.status).toBe(200);
       const [agent] = await ctx.db.select().from(agents).where(eq(agents.companyId, companyId));
       expect(agent).toMatchObject({ adapterType: "paperclip_runner", adapterConfig: { provider: "codex" } });
-      expect(agent?.adapterConfig).toMatchObject({ paperclipSkillSync: { desiredSkills: expect.arrayContaining(["paperclipai/paperclip/paperclip-create-agent"]) } });
+      expect(agent?.adapterConfig).toMatchObject({ paperclipSkillSync: { desiredSkills: expect.arrayContaining(["letslego/octopus/paperclip-create-agent"]) } });
       expect((await post(app, companyId, SEED)).body.changed).toBe(false);
       const [replayed] = await ctx.db.select().from(agents).where(eq(agents.companyId, companyId));
       expect(replayed?.adapterConfig).toEqual(agent?.adapterConfig);

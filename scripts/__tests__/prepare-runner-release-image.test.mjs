@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 import { validateReleaseRun, selectReleaseArtifacts, validateReleaseImageBase, validateImageBindings, decodeReleaseJson, decodeReleaseKimiClosures } from '../prepare-runner-release-image.mjs';
 
 const source = 'a'.repeat(40);
-const run = { head_sha: source, conclusion: 'success', path: '.github/workflows/release-smoke.yml', repository: { full_name: 'paperclipai/paperclip' } };
+const run = { head_sha: source, conclusion: 'success', path: '.github/workflows/release-smoke.yml', repository: { full_name: 'letslego/octopus' } };
 const artifacts = ['runner-provider-packs-123-2-linux-x64', 'runner-release-123-2-linux-x64', 'claude-qualification-public-packages']
   .map((name, index) => ({ id: index + 1, name, expired: false, digest: 'sha256:' + 'b'.repeat(64), size_in_bytes: 100 }));
 
@@ -35,8 +35,8 @@ for (const [name, values] of [
 ]) test('rejects ' + name, () => assert.throws(() => selectReleaseArtifacts(values, '123', 2)));
 
 test('base image must be immutable and repository-owned', () => {
-  assert.equal(validateReleaseImageBase('ghcr.io/paperclipai/paperclip-daytona-runner@sha256:' + source + 'b'.repeat(24)), 'ghcr.io/paperclipai/paperclip-daytona-runner@sha256:' + source + 'b'.repeat(24));
-  for (const base of ['ghcr.io/paperclipai/paperclip-daytona-runner:latest', 'ghcr.io/fork/paperclip-daytona-runner@sha256:' + 'a'.repeat(64), 'ubuntu:latest']) {
+  assert.equal(validateReleaseImageBase('ghcr.io/letslego/octopus-daytona-runner@sha256:' + source + 'b'.repeat(24)), 'ghcr.io/letslego/octopus-daytona-runner@sha256:' + source + 'b'.repeat(24));
+  for (const base of ['ghcr.io/letslego/octopus-daytona-runner:latest', 'ghcr.io/fork/paperclip-daytona-runner@sha256:' + 'a'.repeat(64), 'ubuntu:latest']) {
     assert.throws(() => validateReleaseImageBase(base));
   }
 });

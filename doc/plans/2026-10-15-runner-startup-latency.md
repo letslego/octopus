@@ -19,7 +19,7 @@ older GNU tar, and missing sha256sum; unsupported hosts retain directory staging
 The first cloud policy job used the old stacked base from its push event and
 incorrectly counted master's lockfile changes; a new push after retargeting uses
 the current master base. Fresh source
-verification is recorded in [PR #16493](https://github.com/paperclipai/paperclip/pull/16493).
+verification is recorded in [PR #16493](https://github.com/letslego/octopus/pull/16493).
 Docker and Rust builds remain in cloud CI. No new paid provider runs, deployment,
 or fleet image changes are part of this merge request.
 
@@ -63,10 +63,10 @@ secret-store login. The user questioned that need; this work proceeds without it
 Existing native startup spans remain the before/after acceptance authority.
 
 The matching image build passed all 22 CLI/runtime identity checks in cloud run
-[38803382803](https://github.com/paperclipai/paperclip-cloud/actions/runs/38803382803).
+[38803382803](https://github.com/letslego/octopus-cloud/actions/runs/38803382803).
 Candidate `fleet-sandbox-image-1791979001546`, snapshot
 `fleet-sbx-040bf1ccbc2a-c19a1bc17412`, uses exact app image
-`ghcr.io/paperclipai/paperclip@sha256:733f5cafb09c3d743b86fc2bdecf38077bde7db5cc55eb35ce017c1cd720e7ca`.
+`ghcr.io/letslego/octopus@sha256:733f5cafb09c3d743b86fc2bdecf38077bde7db5cc55eb35ce017c1cd720e7ca`.
 It remains unpromoted: current sandbox-image campaigns require fleet-wide default
 promotion before targeting a stack. Avoid widening this task's rollout. Instead,
 the runtime fix precompresses the app-owned pack at build time and uses its
@@ -94,7 +94,7 @@ Eleven archive contract tests pass. The focused native selection/transport suite
 passes 56 selected tests. Local full server typecheck has fourteen pre-existing
 missing/stale dependency errors; broad verification runs in a clean cloud job.
 
-Performance PR: [16493](https://github.com/paperclipai/paperclip/pull/16493),
+Performance PR: [16493](https://github.com/letslego/octopus/pull/16493),
 stacked on the existing platform PR. Review identified redundant compression in
 the shared Daytona file mapper and a missing zstd test-host gate. The mapper now
 recognizes gzip/zstd content headers without relying on filenames. Thirty real
@@ -107,10 +107,10 @@ or production setting was changed.
 ### First startup optimization deployed; follow-up threshold not met — 2026-10-15
 
 Serving source `0215a521fd17ed18ff159f2f13da1e1d98647df2`, image
-`ghcr.io/paperclipai/paperclip@sha256:e73177f4cb4158efb97678452041eae4506ad2a1e956eb6a1752fa9bbe5264f9`,
+`ghcr.io/letslego/octopus@sha256:e73177f4cb4158efb97678452041eae4506ad2a1e956eb6a1752fa9bbe5264f9`,
 was deployed only to the dedicated QA tenant by
-[38811327131](https://github.com/paperclipai/paperclip-cloud/actions/runs/38811327131).
-Image build [38807675425](https://github.com/paperclipai/paperclip/actions/runs/38807675425)
+[38811327131](https://github.com/letslego/octopus-cloud/actions/runs/38811327131).
+Image build [38807675425](https://github.com/letslego/octopus/actions/runs/38807675425)
 ran in the cloud; the retained image artifact is 4,372,269,316 bytes.
 
 The strict 48-step user journey on [CLA-3](https://claude-runner-default-qa-oct-15.test.paperclip.app/CLA/issues/CLA-3)
@@ -170,10 +170,10 @@ changed. The next cloud image will qualify the integrated source on the QA tenan
 
 Serving source `81235a33604ccf9744077924bdef3db75b80e22d` is verified on the
 dedicated QA workspace. The immutable image is
-`ghcr.io/paperclipai/paperclip@sha256:85dbeb3ba1dc241a5772f416e1f0f9b9964d6f567157a90fbd1ddc97591c090a`.
-[Cloud image build](https://github.com/paperclipai/paperclip/actions/runs/38814943155)
+`ghcr.io/letslego/octopus@sha256:85dbeb3ba1dc241a5772f416e1f0f9b9964d6f567157a90fbd1ddc97591c090a`.
+[Cloud image build](https://github.com/letslego/octopus/actions/runs/38814943155)
 retained a 4,544,726,788-byte image artifact.
-[Single-workspace deployment](https://github.com/paperclipai/paperclip-cloud/actions/runs/38817414740)
+[Single-workspace deployment](https://github.com/letslego/octopus-cloud/actions/runs/38817414740)
 verified that source at 22:33:54 UTC, request
 `d47ba355-9f90-4499-92cb-9bd5ce350c93`. No local Docker or Rust build was used.
 
@@ -227,7 +227,7 @@ requires a scoped image-canary capability; neither a fleet-wide promotion nor a
 managed-config bypass was performed. That image rollout is the next path to
 removing transfer entirely, and it still needs fresh task/follow-up acceptance.
 
-[Main CI](https://github.com/paperclipai/paperclip/actions/runs/38814748461)
+[Main CI](https://github.com/letslego/octopus/actions/runs/38814748461)
 passed all 56 checks on the deployed source, including typecheck, sharded tests,
 build, and token gates. Greptile reviewed that source at 5/5 with no unresolved
 threads. Paperclip Review's separate task is blocked by its chat connection;

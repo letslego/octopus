@@ -1,4 +1,4 @@
-# Paperclip maps
+# Octopus maps
 
 The maps describe the same capabilities from two perspectives:
 
@@ -163,7 +163,7 @@ does not certify endpoint authorization, production bindings, operation
 completeness, or live behavior. Source audits must check those against the
 existing API and tool contracts; avoid a second schema catalog or runtime.
 
-For live access proof, use Paperclip's existing API/runner/MCP fixtures or an owned
+For live access proof, use Octopus's existing API/runner/MCP fixtures or an owned
 isolated instance. Use the actual agent identity, target and work mode. Assert the
 allowed result and relevant denial (another company/private resource, wrong
 owner, missing grant, invalid run, restricted mode or resolver). Mutations also

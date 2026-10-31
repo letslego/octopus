@@ -7,7 +7,7 @@
  * tree so published server packages have no workspace runtime dependency.
  * Keep server imports pointed at this relative boundary.
  */
-type RunnerModule = typeof import("@paperclipai/paperclip-runner");
+type RunnerModule = typeof import("@letslego/octopus-runner");
 
 export type {
   AcpxCandidateAdmission,
@@ -75,11 +75,11 @@ export type {
   RunnerProcessLaunchSpec,
   StrictCompletionContractInput,
   TransportCloseReason,
-} from "@paperclipai/paperclip-runner";
+} from "@letslego/octopus-runner";
 export type DurablePrpControlPlane =
-  import("@paperclipai/paperclip-runner").DurablePrpControlPlane;
+  import("@letslego/octopus-runner").DurablePrpControlPlane;
 export type PaperclipSemanticDispatcher =
-  import("@paperclipai/paperclip-runner").PaperclipSemanticDispatcher;
+  import("@letslego/octopus-runner").PaperclipSemanticDispatcher;
 
 const sourceUrl = new URL(
   "../../../../packages/paperclip-runner/src/index.ts",
@@ -96,7 +96,7 @@ export const runnerCodexDynamicToolsFit = runner.runnerCodexDynamicToolsFit;
 export const inspectWarmRunTransition = runner.inspectWarmRunTransition;
 export const inspectStagedRunAttachment = runner.inspectStagedRunAttachment;
 export const inspectStagedRunAttachmentHeader = runner.inspectStagedRunAttachmentHeader;
-export type StagedRunAttachment = import("@paperclipai/paperclip-runner").StagedRunAttachment;
+export type StagedRunAttachment = import("@letslego/octopus-runner").StagedRunAttachment;
 export const readRunnerdArtifactBinding = runner.readRunnerdArtifactBinding;
 export const readLinuxProcessStartedAt = runner.readLinuxProcessStartedAt;
 export const NativeSessionCloseUnrecoverableError =
@@ -131,8 +131,8 @@ export const describeRunnerdNativeSessionBackend = runner.describeRunnerdNativeS
 export const createPaperclipRunnerAuthorizedToolSet =
   runner.createPaperclipRunnerAuthorizedToolSet;
 export const createRunnerdCodexTransport: (
-  options?: import("@paperclipai/paperclip-runner").RunnerdCodexTransportOptions,
-) => import("@paperclipai/paperclip-runner").RunnerdCodexTransport =
+  options?: import("@letslego/octopus-runner").RunnerdCodexTransportOptions,
+) => import("@letslego/octopus-runner").RunnerdCodexTransport =
   runner.createRunnerdCodexTransport;
 export const defaultCapabilityRunnerdBinary =
   runner.defaultCapabilityRunnerdBinary;

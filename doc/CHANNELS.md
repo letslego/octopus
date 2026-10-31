@@ -6,10 +6,10 @@ install.
 
 | Channel | What it is | Updates | npm | Docker |
 | --- | --- | --- | --- | --- |
-| `stable` | The recommended release | every week or two | `paperclipai@latest` | `ghcr.io/paperclipai/paperclip:latest` |
-| `beta` | Release candidates soaking before stable | when promoted | `paperclipai@beta` | `ghcr.io/paperclipai/paperclip:beta` |
-| `nightly` | Yesterday's merges, smoke-tested as a unit | once a night | `paperclipai@nightly` | `ghcr.io/paperclipai/paperclip:nightly` |
-| `canary` | Every merge to `master`, as it happens | many times a day | `paperclipai@canary` | `ghcr.io/paperclipai/paperclip:canary` |
+| `stable` | The recommended release | every week or two | `paperclipai@latest` | `ghcr.io/letslego/octopus:latest` |
+| `beta` | Release candidates soaking before stable | when promoted | `paperclipai@beta` | `ghcr.io/letslego/octopus:beta` |
+| `nightly` | Yesterday's merges, smoke-tested as a unit | once a night | `paperclipai@nightly` | `ghcr.io/letslego/octopus:nightly` |
+| `canary` | Every merge to `master`, as it happens | many times a day | `paperclipai@canary` | `ghcr.io/letslego/octopus:canary` |
 
 ## Choosing a channel
 
@@ -47,10 +47,10 @@ npx paperclipai@canary onboard
 Docker:
 
 ```bash
-docker pull ghcr.io/paperclipai/paperclip:latest    # stable
-docker pull ghcr.io/paperclipai/paperclip:beta
-docker pull ghcr.io/paperclipai/paperclip:nightly
-docker pull ghcr.io/paperclipai/paperclip:canary
+docker pull ghcr.io/letslego/octopus:latest    # stable
+docker pull ghcr.io/letslego/octopus:beta
+docker pull ghcr.io/letslego/octopus:nightly
+docker pull ghcr.io/letslego/octopus:canary
 ```
 
 Every image is also published as `:sha-<short-sha>` for exact pinning, and

@@ -70,7 +70,7 @@ export async function exportTestOpsChat(reportRoot: string, output: string, bind
   }
   const result: RunnerE2EResult = {
     schema: original.schema, executionId: TESTOPS_CHAT_EXECUTION, suiteId: "chat-features", suiteDefinitionHash: original.suiteDefinitionHash,
-    source: { sha: binding.targetSha, ref: null, workflowRunUrl: `https://github.com/paperclipai/paperclip/actions/runs/${binding.runId}` },
+    source: { sha: binding.targetSha, ref: null, workflowRunUrl: `https://github.com/letslego/octopus/actions/runs/${binding.runId}` },
     attempt: 1, status: original.status, ...(original.failureClass ? { failureClass: original.failureClass } : {}),
     ...(original.status === "failed" ? { error: "Retained chat feature evaluation failed; private originals preserve diagnostics" } : {}),
     profileId: "runner-opencode-deepseek-1017", environmentId: "local", caseId: "create-backlog", provider: "opencode", model, runtimeMode: "native",

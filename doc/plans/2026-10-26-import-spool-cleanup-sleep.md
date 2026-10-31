@@ -147,7 +147,7 @@ failure until explicitly released: a single transient read failure can recover
 on the first per-entry check, so it did not represent an outage through drain.
 The assertion that files survive a persistent outage remains unchanged.
 
-PR: [#17835](https://github.com/paperclipai/paperclip/pull/17835).
+PR: [#17835](https://github.com/letslego/octopus/pull/17835).
 Remote acceptance and workspace checks remain tracked in that PR; these repairs
 do not resolve other stack findings.
 

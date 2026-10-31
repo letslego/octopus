@@ -114,15 +114,15 @@ test('unknown exception text is never copied into closed diagnostics', () => {
 
 
 import { validateChatSelection } from './chat-feature-testops-api.mjs';
-const publicEnv = { GITHUB_REPOSITORY: 'paperclipai/paperclip', GITHUB_REF: 'refs/heads/master',
+const publicEnv = { GITHUB_REPOSITORY: 'letslego/octopus', GITHUB_REF: 'refs/heads/master',
   GITHUB_EVENT_NAME: 'workflow_dispatch', GITHUB_RUN_ATTEMPT: '1', GITHUB_SHA: 'a'.repeat(40), GITHUB_RUN_ID: '123',
-  GITHUB_WORKFLOW_REF: 'paperclipai/paperclip/.github/workflows/chat-feature-testops.yml@refs/heads/master',
+  GITHUB_WORKFLOW_REF: 'letslego/octopus/.github/workflows/chat-feature-testops.yml@refs/heads/master',
   ALLURE_JOB_RUN_ID: '9', CHAT_TESTOPS_CASE_ID: '91', CHAT_TESTOPS_PLAN_ID: '8', CHAT_TESTOPS_JOB_ID: '7' };
 const selectedApi = replacements => async route => {
   const values = { '/api/testcase/91': caseRow, '/api/testplan/8': plan,
     '/api/testplan/8/job': [{ job: { id: 7 }, testCasesCount: 1 }],
-    '/api/job/7': { id: 7, type: 'github', url: 'https://github.com/paperclipai/paperclip/actions/workflows/chat-feature-testops.yml' },
-    '/api/jobrun/9': { id: 9, job: { id: 7, type: 'github' }, stage: 'scheduled', launchId: 10, url: 'https://github.com/paperclipai/paperclip/actions/runs/123' },
+    '/api/job/7': { id: 7, type: 'github', url: 'https://github.com/letslego/octopus/actions/workflows/chat-feature-testops.yml' },
+    '/api/jobrun/9': { id: 9, job: { id: 7, type: 'github' }, stage: 'scheduled', launchId: 10, url: 'https://github.com/letslego/octopus/actions/runs/123' },
     '/api/launch/10': { id: 10, projectId: 1, closed: false },
     '/api/jobrun/9/plan?expected=true': [{ id: 91, selector: fullName }] };
   assert.ok(Object.hasOwn(values, route));
@@ -142,10 +142,10 @@ test('selection refuses missing correlation, a different case, broad plan, forei
   for (const [route, value] of [
     ['/api/testcase/91', { ...caseRow, projectId: 2 }],
     ['/api/testplan/8', { ...plan, testCasesCount: 2 }],
-    ['/api/job/7', { id: 7, type: 'github', url: 'https://github.com/paperclipai/paperclip-cloud/actions/workflows/qa-staging-smoke.yml' }],
+    ['/api/job/7', { id: 7, type: 'github', url: 'https://github.com/letslego/octopus-cloud/actions/workflows/qa-staging-smoke.yml' }],
     ['/api/testplan/8/job', [{ job: { id: 70 }, testCasesCount: 1 }]],
     ['/api/jobrun/9', { id: 9, job: { id: 70, type: 'github' }, stage: 'scheduled', launchId: 10 }],
-    ['/api/jobrun/9', { id: 9, job: { id: 7, type: 'github' }, stage: 'scheduled', launchId: 10, url: 'https://github.com/paperclipai/paperclip/actions/runs/456' }],
+    ['/api/jobrun/9', { id: 9, job: { id: 7, type: 'github' }, stage: 'scheduled', launchId: 10, url: 'https://github.com/letslego/octopus/actions/runs/456' }],
     ['/api/launch/10', { id: 10, projectId: 1, closed: true }],
     ['/api/jobrun/9/plan?expected=true', [{ id: 92, selector: fullName }]],
   ]) await assert.rejects(validateChatSelection(selectedApi({ [route]: value }), publicEnv), /mismatch/);
@@ -162,13 +162,13 @@ import { launchChatPlan, bootstrapJobMetadata, admitLaunchPlan } from './chat-fe
 const launchEnv = { ...publicEnv, ALLURE_JOB_RUN_ID: '', CHAT_TESTOPS_OPERATION_PARAMETER_ID: '17', CHAT_TESTOPS_INTEGRATION_ID: '2', CHAT_TESTOPS_LAUNCH_NONCE: '1'.repeat(32), CHAT_TESTOPS_LAUNCH_RUN_NUMBER: '2', GITHUB_RUN_NUMBER: '2',
   CHAT_TESTOPS_GITHUB_WORKFLOW_ID: '99', GITHUB_ACTOR_ID: '34892728', TESTOPS_TRIGGERING_ACTOR_ID: '34892728', TESTOPS_ALLOWED_ACTOR_IDS: '[34892728]', GH_TOKEN: 'SYNTHETIC_GH_TOKEN' };
 const ownRun = { id: 123, workflow_id: 99, run_attempt: 1, run_number: 2, head_sha: 'a'.repeat(40), head_branch: 'master', event: 'workflow_dispatch',
-  repository: { full_name: 'paperclipai/paperclip', private: false }, actor: { id: 34892728 }, triggering_actor: { id: 34892728 } };
+  repository: { full_name: 'letslego/octopus', private: false }, actor: { id: 34892728 }, triggering_actor: { id: 34892728 } };
 async function fence(env = launchEnv, changes = {}, workflowChanges = {}, repoChanges = {}) {
-  return admitLaunchPlan(env, async url => ({ ok: true, text: async () => JSON.stringify(url.endsWith('/repos/paperclipai/paperclip') ? { full_name: 'paperclipai/paperclip', private: false, default_branch: 'master', ...repoChanges }
+  return admitLaunchPlan(env, async url => ({ ok: true, text: async () => JSON.stringify(url.endsWith('/repos/letslego/octopus') ? { full_name: 'letslego/octopus', private: false, default_branch: 'master', ...repoChanges }
     : url.includes('/actions/runs/') ? { ...ownRun, ...changes }
     : { id: 99, path: '.github/workflows/chat-feature-testops.yml', state: 'active', ...workflowChanges }) }));
 }
-function launchServer({ wrongAssignment = false, uncertainRun = false, integrationChange = {}, initialParameters = [{ id: 17, value: 'bootstrap' }], expectedParameters = [{ id: 17, value: 'evaluate' }], jobUrl = 'https://github.com/paperclipai/paperclip/actions/workflows/chat-feature-testops.yml' } = {}) {
+function launchServer({ wrongAssignment = false, uncertainRun = false, integrationChange = {}, initialParameters = [{ id: 17, value: 'bootstrap' }], expectedParameters = [{ id: 17, value: 'evaluate' }], jobUrl = 'https://github.com/letslego/octopus/actions/workflows/chat-feature-testops.yml' } = {}) {
   const calls = [], parameters = structuredClone(initialParameters); let assigned = false, launched = false, requests = 0;
   const api = async (route, method, body) => {
     calls.push({ route, method, body });
@@ -219,8 +219,8 @@ test('uncertain plan-run transport is sent once and never followed by another mu
 
 test('official bootstrap job metadata leaves opaque parameter labels unresolved and private values unprojected', async () => {
   const job = await bootstrapJobMetadata(async route => {
-    if (route === '/api/jobrun/9') return { id: 9, job: { id: 7 }, launchId: 10, url: 'https://github.com/paperclipai/paperclip/actions/runs/123' };
-    if (route === '/api/job/7') return { id: 7, type: 'github', url: 'https://github.com/paperclipai/paperclip/actions/workflows/chat-feature-testops.yml', parameters: [{ id: 17, value: 'bootstrap' }, { id: 18, value: 'SYNTHETIC_PRIVATE_VALUE' }] };
+    if (route === '/api/jobrun/9') return { id: 9, job: { id: 7 }, launchId: 10, url: 'https://github.com/letslego/octopus/actions/runs/123' };
+    if (route === '/api/job/7') return { id: 7, type: 'github', url: 'https://github.com/letslego/octopus/actions/workflows/chat-feature-testops.yml', parameters: [{ id: 17, value: 'bootstrap' }, { id: 18, value: 'SYNTHETIC_PRIVATE_VALUE' }] };
     assert.fail('no namespace lookup or unrelated request');
   }, publicEnv);
   assert.equal(job.publicWorkflowMatches, true); assert.deepEqual(job.parameters[0], { id: 17, kind: 'UNRESOLVED', value: 'NOT_PROJECTED' });
@@ -311,9 +311,9 @@ test('new job receives only the reviewed enabled GitHub integration; disabled/fo
   }
 });
 
-const uploadContext = { GITHUB_REPOSITORY: 'paperclipai/paperclip', GITHUB_REF: 'refs/heads/master', GITHUB_EVENT_NAME: 'workflow_dispatch',
+const uploadContext = { GITHUB_REPOSITORY: 'letslego/octopus', GITHUB_REF: 'refs/heads/master', GITHUB_EVENT_NAME: 'workflow_dispatch',
   GITHUB_RUN_ATTEMPT: '1', GITHUB_SHA: 'a'.repeat(40), GITHUB_RUN_ID: '123', ALLURE_JOB_RUN_ID: '9',
-  GITHUB_WORKFLOW_REF: 'paperclipai/paperclip/.github/workflows/chat-feature-testops.yml@refs/heads/master' };
+  GITHUB_WORKFLOW_REF: 'letslego/octopus/.github/workflows/chat-feature-testops.yml@refs/heads/master' };
 const uploadSelection = { runId: '123', attempt: '1', workflowSha: 'a'.repeat(40), targetSha: 'a'.repeat(40), allureJobRunId: '9',
   executionId: 'chat-features.runner-opencode-deepseek-1017.local.create-backlog', canonicalScenario: 'tasks.create-backlog', projectId: 1,
   planId: 8, jobId: 7, caseId: 91, fullName, launchId: 10 };
@@ -321,7 +321,7 @@ const uploadReceipt = { status: 'passed', cleanup: 'passed', caseId: 91, campaig
   attachmentMetadata: [{ name: 'Synthetic task and source conversation', contentType: 'image/png', contentLength: 400 },
     { name: 'Execution provenance and checks', contentType: 'application/json', contentLength: 300 },
     { name: 'Sanitized Product E2E record and accounting', contentType: 'application/json', contentLength: 800 }] };
-const uploadRun = { id: 9, job: { id: 7, type: 'github' }, launchId: 10, url: 'https://github.com/paperclipai/paperclip/actions/runs/123', stage: 'finished' };
+const uploadRun = { id: 9, job: { id: 7, type: 'github' }, launchId: 10, url: 'https://github.com/letslego/octopus/actions/runs/123', stage: 'finished' };
 function uploadApi(change = {}, absent = 0) {
   let polls = 0;
   return async (route, method) => {
@@ -330,7 +330,7 @@ function uploadApi(change = {}, absent = 0) {
     if (route === '/api/launch/10') return { id: 10, projectId: 1 };
     if (route.startsWith('/api/testresult?')) { polls++; return { content: polls <= absent ? [] : [{ id: 45, testCaseId: 91 }], totalElements: polls <= absent ? 0 : 1, totalPages: polls <= absent ? 0 : 1 }; }
     if (route === '/api/testresult/45') return { id: 45, projectId: 1, launchId: 10, testCaseId: 91, fullName, jobRun: uploadRun, status: 'passed',
-      links: [{ url: uploadRun.url }, { url: `https://github.com/paperclipai/paperclip/commit/${'a'.repeat(40)}` }],
+      links: [{ url: uploadRun.url }, { url: `https://github.com/letslego/octopus/commit/${'a'.repeat(40)}` }],
       get trace() { assert.fail('must not inspect trace'); }, ...change };
     if (route.startsWith('/api/testresult/attachment?')) return { content: uploadReceipt.attachmentMetadata.map((row, i) => ({ ...row, id: i + 1, missed: false, fromTestCase: false })), totalElements: 3, totalPages: 1 };
     assert.fail(route);
@@ -390,9 +390,9 @@ test('readback stops immediately after a late GET and gives each client only the
 });
 
 function strictBootstrapApi(patch = {}) {
-  const run = { id: 9, job: { id: 7, type: 'github' }, launchId: 10, url: 'https://github.com/paperclipai/paperclip/actions/runs/123', ...patch.run };
+  const run = { id: 9, job: { id: 7, type: 'github' }, launchId: 10, url: 'https://github.com/letslego/octopus/actions/runs/123', ...patch.run };
   const launch = { id: 10, projectId: 1, ...patch.launch };
-  const job = { id: 7, type: 'github', url: 'https://github.com/paperclipai/paperclip/actions/workflows/chat-feature-testops.yml',
+  const job = { id: 7, type: 'github', url: 'https://github.com/letslego/octopus/actions/workflows/chat-feature-testops.yml',
     parameters: [{ id: 17, value: 'bootstrap' }, { id: 18, get value() { assert.fail('unrelated parameter value must stay unopened'); } }], ...patch.job };
   return async (route, method) => {
     assert.equal(method, undefined);
@@ -413,7 +413,7 @@ test('post-watch reader binds actual current run source project launch and publi
 });
 
 test('post-watch reader rejects stale foreign project launch source and job identity', async () => {
-  for (const patch of [{ run: { id: 99 } }, { run: { url: 'https://github.com/paperclipai/paperclip/actions/runs/999' } },
+  for (const patch of [{ run: { id: 99 } }, { run: { url: 'https://github.com/letslego/octopus/actions/runs/999' } },
     { run: { launchId: 20 } }, { run: { job: { id: 7, type: 'foreign' } } }, { launch: { projectId: 2 } },
     { launch: { id: 20 } }, { job: { url: 'https://github.com/other/repo/actions/workflows/chat-feature-testops.yml' } },
     { job: { type: 'foreign' } }, { job: { parameters: [{ id: 0 }] } }]) {
@@ -430,11 +430,11 @@ test('post-watch reader caps opaque parameters and refuses duplicate IDs', async
 });
 
 
-const observedLegacyJobUrl = 'https://github.com/paperclipai/paperclip/actions?query=workflow%3A%22Chat+feature+TestOps%22';
+const observedLegacyJobUrl = 'https://github.com/letslego/octopus/actions?query=workflow%3A%22Chat+feature+TestOps%22';
 
 test('official observed legacy and existing workflow URLs pass all three actual job consumers', async () => {
-  for (const url of [observedLegacyJobUrl, 'https://github.com/paperclipai/paperclip/actions/workflows/chat-feature-testops.yml',
-    'https://github.com/paperclipai/paperclip/actions/workflows/99']) {
+  for (const url of [observedLegacyJobUrl, 'https://github.com/letslego/octopus/actions/workflows/chat-feature-testops.yml',
+    'https://github.com/letslego/octopus/actions/workflows/99']) {
     const env = { ...publicEnv, CHAT_TESTOPS_GITHUB_WORKFLOW_ID: '99' };
     const selected = await validateChatSelection(selectedApi({ '/api/job/7': { id: 7, type: 'github', url } }), env);
     assert.equal(selected.caseId, 91);

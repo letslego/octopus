@@ -31,8 +31,8 @@ async function createCustomSkill(root: string, skillName: string) {
 }
 
 describe("codex local adapter skill injection", () => {
-  const paperclipKey = "paperclipai/paperclip/paperclip";
-  const createAgentKey = "paperclipai/paperclip/paperclip-create-agent";
+  const paperclipKey = "letslego/octopus/paperclip";
+  const createAgentKey = "letslego/octopus/paperclip-create-agent";
   const cleanupDirs = new Set<string>();
 
   afterEach(async () => {

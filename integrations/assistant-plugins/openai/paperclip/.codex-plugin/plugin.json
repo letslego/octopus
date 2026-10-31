@@ -4,10 +4,10 @@
   "description": "Review your team, delegate work and retrieve durable results in Paperclip.",
   "author": {
     "name": "Paperclip",
-    "url": "https://paperclip.ing"
+    "url": "https://github.com/letslego/octopus"
   },
-  "homepage": "https://paperclip.ing",
-  "repository": "https://github.com/paperclipai/paperclip",
+  "homepage": "https://github.com/letslego/octopus",
+  "repository": "https://github.com/letslego/octopus",
   "license": "MIT",
   "skills": "./skills/",
   "mcpServers": "./.mcp.json",

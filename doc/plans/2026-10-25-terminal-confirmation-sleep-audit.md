@@ -1,7 +1,7 @@
 # Terminal confirmation recovery migration
 
 Date: 2026-10-25. Branch: `codex/sleep-32-terminal-confirmations`.
-Parent: [#17649](https://github.com/paperclipai/paperclip/pull/17649) at
+Parent: [#17649](https://github.com/letslego/octopus/pull/17649) at
 `2384384eeec4f32d073242ebf597b81df2df1ccb`.
 Status: implemented; focused lifecycle acceptance passes. Full acceptance and remote gates are pending.
 
@@ -214,7 +214,7 @@ these two test failures. Earlier databases and logs are retained.
 The initial implementation received Greptile 5/5 with no inline findings. The
 corrected head still requires a fresh full chat/startup run, final typecheck,
 and new remote checks/review. No unchanged-job retry was used. The PR is
-[#17651](https://github.com/paperclipai/paperclip/pull/17651), still draft.
+[#17651](https://github.com/letslego/octopus/pull/17651), still draft.
 
 
 ## Parked confirmations: complete the interaction producer contract

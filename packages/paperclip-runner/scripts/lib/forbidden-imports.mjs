@@ -10,7 +10,7 @@ const RUST_IMPORT_PATTERNS = [
   /\b(?:include|include_str|include_bytes)!\s*\(\s*["']([^"']+)["']\s*\)/g,
   /#\[path\s*=\s*["']([^"']+)["']\]/g,
 ];
-const REVIEWED_EVAL_KERNEL = "@paperclipai/paperclip-eval-kernel";
+const REVIEWED_EVAL_KERNEL = "@letslego/octopus-eval-kernel";
 const REVIEWED_EVAL_HARNESS = "src/eval/workflow-harness.ts";
 
 const libraryDirectory = dirname(fileURLToPath(import.meta.url));
@@ -103,7 +103,7 @@ export function findSpecifiers(source, file = "source.ts") {
 function declaredPublicImports(manifest) {
   return new Set(Object.entries(manifest.exports ?? {})
     .filter(([key, target]) => key.startsWith("./") && !key.includes("*") && target !== null)
-    .map(([key]) => `@paperclipai/paperclip-runner/${key.slice(2)}`));
+    .map(([key]) => `@letslego/octopus-runner/${key.slice(2)}`));
 }
 
 function publicSourceGraph(packageRoot, manifest, specifiers) {
@@ -131,8 +131,8 @@ function publicSourceGraph(packageRoot, manifest, specifiers) {
     reachable.add(file);
     for (const { specifier } of specifiers.get(file) ?? []) {
       if (specifier.startsWith(".")) queue.push(...sourceCandidates(resolve(dirname(file), specifier)));
-      else if (specifier.startsWith("@paperclipai/paperclip-runner/")) {
-        queue.push(...exportSources(manifest.exports?.[`./${specifier.slice("@paperclipai/paperclip-runner/".length)}`]));
+      else if (specifier.startsWith("@letslego/octopus-runner/")) {
+        queue.push(...exportSources(manifest.exports?.[`./${specifier.slice("@letslego/octopus-runner/".length)}`]));
       }
     }
   }
@@ -167,17 +167,17 @@ function violationReason({ file, packageRoot, specifier, publicRunnerImports, re
   const relativeFile = relative(packageRoot, file).split(/[\\/]/).join("/");
   const isExampleConsumer = relativeFile.startsWith("examples/");
   if (
-    specifier.startsWith("@paperclipai/paperclip-runner/") &&
+    specifier.startsWith("@letslego/octopus-runner/") &&
     !publicRunnerImports.has(specifier)
   ) {
     return "runner consumers may import only declared public subpaths";
   }
-  if (isExampleConsumer && specifier === "@paperclipai/paperclip-runner") {
+  if (isExampleConsumer && specifier === "@letslego/octopus-runner") {
     return "runner consumers may import only declared public subpaths";
   }
   if (
     specifier.startsWith("@paperclipai/") &&
-    specifier !== "@paperclipai/paperclip-runner" &&
+    specifier !== "@letslego/octopus-runner" &&
     !publicRunnerImports.has(specifier) &&
     !(specifier === REVIEWED_EVAL_KERNEL && reviewedEvalHarness && relativeFile === REVIEWED_EVAL_HARNESS)
   ) {
@@ -234,7 +234,7 @@ async function manifestViolations(packageRoot) {
   );
   return [...runtimeDependencies, ...unreviewedDevelopmentDependencies]
     .filter(
-      (name) => name.startsWith("@paperclipai/") && name !== "@paperclipai/paperclip-runner",
+      (name) => name.startsWith("@paperclipai/") && name !== "@letslego/octopus-runner",
     )
     .map((specifier) => ({
       file: manifestPath,

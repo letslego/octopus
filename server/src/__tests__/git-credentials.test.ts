@@ -409,7 +409,7 @@ describe("DEFAULT_GITHUB_TOKEN_SECRET_NAMES", () => {
 });
 
 describe("createIssueGitRemoteAuthProvider", () => {
-  const githubUrl = "https://github.com/paperclipai/private-repo.git";
+  const githubUrl = "https://github.com/letslego/private-repo.git";
   function issueDb(rows: unknown[]) {
     const where = vi.fn(async () => rows);
     return { db: { select: vi.fn(() => ({ from: () => ({ where }) })) } as unknown as Db, where };

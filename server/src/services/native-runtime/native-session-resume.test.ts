@@ -29,7 +29,7 @@ import {
   HarnessDriverBackend,
   createCodexTaskEnvelope,
   createRunnerdCodexTransport as createCapabilityRunnerdCodexTransport,
-} from "@paperclipai/paperclip-runner";
+} from "@letslego/octopus-runner";
 import {
   getEmbeddedPostgresTestSupport,
   startEmbeddedPostgresTestDatabase as startEmbeddedDatabase,

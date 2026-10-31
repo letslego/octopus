@@ -193,7 +193,7 @@ pnpm run check:token-gates
   1,000-line rule through `rules/pull-request-review.mdc:22-25`. PR #17213 merged with doc comments, which
   are still in the lab's stories, `tokens.css` files and Vite config; the Artifacts V1 feature (PR #17228)
   needed a follow-up commit (`e1433f508`) to strip its own: scaffold comment-free.
-- Public references only: `#NNN`, `Fixes #NNN`, `github.com/paperclipai/paperclip` URLs; no `PAP-123`
+- Public references only: `#NNN`, `Fixes #NNN`, `github.com/letslego/octopus` URLs; no `PAP-123`
   ids, instance or localhost links (`CONTRIBUTING.md:68-80`).
 - Descriptive kebab-case branch name before pushing (`CONTRIBUTING.md:82-98`). No screenshots in the
   repo; put them in the PR (`CONTRIBUTING.md:100-106`).
@@ -222,7 +222,7 @@ Empty content, `_No response_` or content starting with `<!--` fails (line 56). 
 Skipped for `docs`, `chore`, `build`, `ci`, `style`, `test`, `revert` (line 21). A `feat:` PR passes by
 path A or B:
 
-- A: `(fixes|closes|resolves|refs) #N`, a `github.com/paperclipai/paperclip/issues/N` URL, or a bare `#N`
+- A: `(fixes|closes|resolves|refs) #N`, a `github.com/letslego/octopus/issues/N` URL, or a bare `#N`
   (lines 14-18); HTML comments are stripped first (145-147, 178).
 - B: at least 3 filled fields from ONE template's field set (line 25; loop 153-157); labels from different
   templates do not add up. A label stands alone on its line as `## Label`, `**Label**` or `Label:`; the

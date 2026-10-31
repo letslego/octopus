@@ -15,7 +15,7 @@ repository, not an exhaustive review or a complete default-suite run.
 
 ## PR delivery verification
 
-The cleanup is published in [PR #15978](https://github.com/paperclipai/paperclip/pull/15978).
+The cleanup is published in [PR #15978](https://github.com/letslego/octopus/pull/15978).
 The three cleanup commits rebased onto `914b70572c` without changing their
 patches. At code revision `454e3a91ff`, fresh `pnpm -r typecheck` and
 `pnpm build` pass.

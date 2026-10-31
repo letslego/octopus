@@ -3,7 +3,7 @@ import { dirname, isAbsolute, join, relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
 type NativeProvider = "cursor" | "copilot" | "pi" | "kimi" | "antigravity";
-const RUNNER_PACKAGE_NAME = "@paperclipai/paperclip-runner";
+const RUNNER_PACKAGE_NAME = "@letslego/octopus-runner";
 const SERVER_PACKAGE_NAME = "@paperclipai/server";
 function assertServerVendorLayout(root: string): void {
   const sidecar = join(root, "dist/vendor/paperclip-runner/cli/acpx-runtime-sidecar.cjs");

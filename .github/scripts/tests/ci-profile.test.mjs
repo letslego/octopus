@@ -12,10 +12,10 @@ import { associatedProfilePr, ciOwners, trustedOwnerIds } from "../../../scripts
 const at = (seconds) => new Date(1_800_000_000_000 + seconds * 1000).toISOString();
 const run = {
   id: 42, run_attempt: 1, run_number: 7, status: "completed", conclusion: "failure",
-  repository: { id: 1170821064, full_name: "paperclipai/paperclip" }, head_repository: { id: 99 },
+  repository: { id: 1170821064, full_name: "letslego/octopus" }, head_repository: { id: 99 },
   actor: { id: 123, type: "User" }, triggering_actor: { id: 123, type: "User" },
   head_sha: "abc", head_branch: "branch", created_at: at(0), run_started_at: at(0),
-  html_url: "https://github.com/paperclipai/paperclip/actions/runs/42",
+  html_url: "https://github.com/letslego/octopus/actions/runs/42",
 };
 const job = (id, name, start, end) => ({
   id, run_id: 42, run_attempt: 1, name: `ci / ${name}`, status: "completed",
@@ -201,8 +201,8 @@ test("profiling uses only infrastructure CODEOWNERS resolved at trusted master",
     return { id: endpoint === '/users/owner' ? 123 : 456, type: 'User' };
   }), [123, 456]);
   assert.deepEqual(endpoints, [
-    '/repos/paperclipai/paperclip/git/ref/heads/master',
-    `/repos/paperclipai/paperclip/contents/.github/CODEOWNERS?ref=${sha}`, '/users/owner', '/users/second',
+    '/repos/letslego/octopus/git/ref/heads/master',
+    `/repos/letslego/octopus/contents/.github/CODEOWNERS?ref=${sha}`, '/users/owner', '/users/second',
   ]);
 });
 

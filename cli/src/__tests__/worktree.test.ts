@@ -136,7 +136,7 @@ async function seedValidWorktreeSource(
     VALUES (
       ${userId},
       ${userId === "local-board" ? "Board" : "Existing User"},
-      ${userId === "local-board" ? "local@paperclip.local" : "existing@paperclip.ing"},
+      ${userId === "local-board" ? "local@paperclip.local" : "existing@github.com/letslego/octopus"},
       true, ${now.toISOString()}, ${now.toISOString()}
     )
   `;
@@ -145,7 +145,7 @@ async function seedValidWorktreeSource(
       id: "credential-existing",
       // The issuer Better Auth stamps on an email/password account.
       issuer: "local:credential",
-      accountId: "existing@paperclip.ing",
+      accountId: "existing@github.com/letslego/octopus",
       providerId: "credential",
       userId,
       password: "fixture-password-hash",
@@ -1821,7 +1821,7 @@ describe("worktree helpers", () => {
         `postgres://paperclip:paperclip@127.0.0.1:${targetConfig.database.embeddedPostgresPort}/paperclip`,
       );
       const seededUsers = await targetDb.select().from(authUsers);
-      expect(seededUsers.some((row) => row.email === "existing@paperclip.ing")).toBe(true);
+      expect(seededUsers.some((row) => row.email === "existing@github.com/letslego/octopus")).toBe(true);
       const restoredEvents = await targetDb.$client`
         SELECT id, action FROM resource_lifecycle_events WHERE resource_id = ${legacyAgentId} AND resource_type = 'agent' ORDER BY id
       `;

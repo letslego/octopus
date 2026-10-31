@@ -1,8 +1,8 @@
 import * as React from "react";
 import { createRoot } from "react-dom/client";
 
-import { RunnerConsoleApp } from "@paperclipai/paperclip-runner/react";
-import "@paperclipai/paperclip-runner/styles.css";
+import { RunnerConsoleApp } from "@letslego/octopus-runner/react";
+import "@letslego/octopus-runner/styles.css";
 
 const root = document.getElementById("root");
 if (root === null) throw new Error("Reference console root is missing.");

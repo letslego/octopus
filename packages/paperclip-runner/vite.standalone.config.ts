@@ -12,7 +12,7 @@ export default defineConfig({
   resolve: {
     alias: [
       {
-        find: "@paperclipai/paperclip-runner/standalone",
+        find: "@letslego/octopus-runner/standalone",
         replacement: resolve(packageRoot, "src/standalone/index.ts"),
       },
     ],

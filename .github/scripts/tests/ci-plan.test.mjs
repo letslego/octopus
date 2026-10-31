@@ -210,7 +210,7 @@ test("the real routing step uses pinned trusted definitions and defaults to full
     writeFileSync(path.join(directory, "git"), `#!/usr/bin/env node
 const {spawnSync}=require('node:child_process');
 if(process.env.TEST_GIT_FAILURE==='true')process.exit(1);
-const args=process.argv.slice(2).map(a=>a==='https://github.com/paperclipai/paperclip.git'?process.env.TEST_GIT_REPOSITORY:a);
+const args=process.argv.slice(2).map(a=>a==='https://github.com/letslego/octopus.git'?process.env.TEST_GIT_REPOSITORY:a);
 const r=spawnSync(${JSON.stringify(gitBin)},args,{stdio:'inherit'});process.exit(r.status??1);
 `);
     chmodSync(path.join(directory, "git"), 0o755);

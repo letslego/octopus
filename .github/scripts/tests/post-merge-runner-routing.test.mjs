@@ -6,7 +6,7 @@ import { runInNewContext } from "node:vm";
 const fleet = "runs-on/fleet=paperclip-post-merge-x64/env=public-ci";
 const sha = "a".repeat(40);
 const base = {
-  repository: "paperclipai/paperclip", repository_id: "1170821064",
+  repository: "letslego/octopus", repository_id: "1170821064",
   ref: "refs/heads/master", event_name: "push", sha,
 };
 const expectedJobs = {

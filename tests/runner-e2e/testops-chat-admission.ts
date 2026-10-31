@@ -6,7 +6,7 @@ import type { MatrixExecution } from "./types.js";
 
 const executionId = "chat-features.runner-opencode-deepseek-1017.local.create-backlog";
 const authority = "paperclip.shipped-chat-testops/v1";
-const repository = "paperclipai/paperclip";
+const repository = "letslego/octopus";
 const workflow = ".github/workflows/chat-feature-testops.yml";
 
 export function authorizeShippedChat(env: NodeJS.ProcessEnv, event: unknown, selected: MatrixExecution, launchSha256: string) {

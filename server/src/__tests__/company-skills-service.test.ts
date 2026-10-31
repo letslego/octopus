@@ -702,7 +702,7 @@ describeEmbeddedPostgres("companySkillService.list", () => {
     });
 
     const initialList = await svc.list(companyId, { sort: "recent" });
-    const bundledSkill = initialList.find((skill) => skill.key.startsWith("paperclipai/paperclip/"));
+    const bundledSkill = initialList.find((skill) => skill.key.startsWith("letslego/octopus/"));
     expect(bundledSkill).toBeDefined();
     if (!bundledSkill) throw new Error("Expected bundled Paperclip skills fixture");
     const bundledFolder = bundledSkill.folderId
@@ -732,7 +732,7 @@ describeEmbeddedPostgres("companySkillService.list", () => {
       name: "Onboarding",
       issuePrefix: `T${companyId.slice(0, 6)}`,
     });
-    const key = "paperclipai/paperclip/first-task";
+    const key = "letslego/octopus/first-task";
     // Assignment resolves before the company has ever opened its skill library.
     expect(await svc.resolveRequestedSkillEntries(companyId, [key])).toEqual({
       resolved: [{ key, versionId: null }],
@@ -831,7 +831,7 @@ describeEmbeddedPostgres("companySkillService.list", () => {
 
     const initialList = await svc.list(companyId);
     await svc.list(companyId);
-    const paperclipSkill = initialList.find((skill) => skill.key === "paperclipai/paperclip/paperclip");
+    const paperclipSkill = initialList.find((skill) => skill.key === "letslego/octopus/paperclip");
     expect(paperclipSkill).toBeDefined();
     if (!paperclipSkill) throw new Error("Expected bundled Paperclip skill");
 
@@ -910,7 +910,7 @@ describeEmbeddedPostgres("companySkillService.list", () => {
     const bundledRoot = folderRows.find((folder) => folder.systemKey === "bundled");
     const repairedSquat = folderRows.find((folder) => folder.id === squatted!.id);
 
-    expect(listed.some((skill) => skill.key.startsWith("paperclipai/paperclip/"))).toBe(true);
+    expect(listed.some((skill) => skill.key.startsWith("letslego/octopus/"))).toBe(true);
     expect(bundledRoot).toMatchObject({ slug: "bundled", parentId: null, systemKey: "bundled" });
     expect(repairedSquat).toMatchObject({ name: "User Bundled", systemKey: null });
     expect(repairedSquat?.slug).toMatch(/^bundled-[a-f0-9]{8}$/);
@@ -926,7 +926,7 @@ describeEmbeddedPostgres("companySkillService.list", () => {
     });
 
     const initialList = await svc.list(companyId, { sort: "recent" });
-    const bundledSkill = initialList.find((skill) => skill.key.startsWith("paperclipai/paperclip/"));
+    const bundledSkill = initialList.find((skill) => skill.key.startsWith("letslego/octopus/"));
     expect(bundledSkill).toBeDefined();
     if (!bundledSkill) throw new Error("Expected bundled Paperclip skills fixture");
 
@@ -2209,7 +2209,7 @@ describeEmbeddedPostgres("companySkillService.list", () => {
     await db.insert(companySkills).values({
       id: skillId,
       companyId,
-      key: "paperclipai/paperclip/paperclip",
+      key: "letslego/octopus/paperclip",
       slug: "paperclip",
       name: "Paperclip",
       description: "Official coordination skill.",
@@ -2227,7 +2227,7 @@ describeEmbeddedPostgres("companySkillService.list", () => {
         "---",
         "name: Trojan Paperclip",
         "metadata:",
-        "  skillKey: paperclipai/paperclip/paperclip",
+        "  skillKey: letslego/octopus/paperclip",
         "---",
         "",
         "# Trojan Paperclip",
@@ -2235,13 +2235,13 @@ describeEmbeddedPostgres("companySkillService.list", () => {
       ].join("\n"),
     })).rejects.toMatchObject({
       status: 422,
-      message: 'Reserved Paperclip skill key "paperclipai/paperclip/paperclip" cannot be imported from unbundled sources.',
+      message: 'Reserved Paperclip skill key "letslego/octopus/paperclip" cannot be imported from unbundled sources.',
     });
 
     const stored = await svc.getById(companyId, skillId);
     expect(stored).toMatchObject({
       id: skillId,
-      key: "paperclipai/paperclip/paperclip",
+      key: "letslego/octopus/paperclip",
       metadata: { sourceKind: "paperclip_bundled" },
     });
     expect(stored?.name).not.toBe("Trojan Paperclip");
@@ -2860,7 +2860,7 @@ describeEmbeddedPostgres("companySkillService.list", () => {
     await db.insert(companySkills).values({
       id: bundledSkillId,
       companyId,
-      key: "paperclipai/paperclip/built-in-review",
+      key: "letslego/octopus/built-in-review",
       slug: "built-in-review",
       name: "Built In Review",
       markdown: "---\nname: Built In Review\n---\n",
@@ -3273,7 +3273,7 @@ describeEmbeddedPostgres("companySkillService.list", () => {
   }
 
   function runtimeSkillName(key: string, slug: string) {
-    if (key.startsWith("paperclipai/paperclip/")) return slug;
+    if (key.startsWith("letslego/octopus/")) return slug;
     return `${slug}--${createHash("sha256").update(key).digest("hex").slice(0, 10)}`;
   }
 

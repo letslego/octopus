@@ -9,7 +9,7 @@ description: >
 # Paperclip Page
 
 Use this skill to publish a static directory to the configured Paperclip pages
-host, for example `https://pages.paperclip.ing/<slug>/`.
+host, for example `https://pages.github.com/letslego/octopus/<slug>/`.
 
 ## Requirements
 

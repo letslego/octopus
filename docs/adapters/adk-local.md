@@ -3,11 +3,11 @@ title: Google ADK
 summary: Run Google ADK Python 2.x agents locally or on Google Agent Runtime
 ---
 
-The `adk_local` adapter wakes Google Agent Development Kit agents from Paperclip heartbeats. It supports two **ADK runtimes**:
+The `adk_local` adapter wakes Google Agent Development Kit agents from Octopus heartbeats. It supports two **ADK runtimes**:
 
 | `runtime` | What runs | When to use |
 |-----------|-----------|-------------|
-| `local` (default) | Host `adk run <agentDir> --jsonl` | ADK package on the Paperclip machine |
+| `local` (default) | Host `adk run <agentDir> --jsonl` | ADK package on the Octopus machine |
 | `agent_runtime` | Google Agent Runtime / Reasoning Engine HTTP API | Agent already deployed with `adk deploy agent_engine` |
 
 Both paths require **Google ADK Python 2.x** semantics (local installs must be `google-adk>=2`).
@@ -19,7 +19,7 @@ Both paths require **Google ADK Python 2.x** semantics (local installs must be `
 - Python 3.11+
 - `pip install "google-adk>=2"`
 - An ADK agent package exporting `root_agent`
-- `GOOGLE_API_KEY` or `GEMINI_API_KEY` (Paperclip mirrors either name into the other for ADK)
+- `GOOGLE_API_KEY` or `GEMINI_API_KEY` (Octopus mirrors either name into the other for ADK)
 
 ### Agent Runtime
 
@@ -35,7 +35,7 @@ Both paths require **Google ADK Python 2.x** semantics (local installs must be `
 | `agentDir` | local | Absolute ADK package path |
 | `resourceName` | agent_runtime | `projects/.../reasoningEngines/...` or Express engine id |
 | `project` / `location` / `agentEngineId` | agent_runtime | Alternative to `resourceName` |
-| `userId` | agent_runtime | Session user id (defaults to Paperclip agent id) |
+| `userId` | agent_runtime | Session user id (defaults to Octopus agent id) |
 | `promptTemplate` / `instructionsFilePath` | both | Wake prompt inputs |
 | `model` | local | `--default_llm_model` |
 | `env` | both | Env / secret refs |
@@ -47,7 +47,7 @@ Both paths require **Google ADK Python 2.x** semantics (local installs must be `
 adk run <agentDir> "<prompt>" --jsonl --session_id <id> [--default_llm_model <model>]
 ```
 
-Paperclip parses ADK 2.x JSONL (`nodeInfo`, `output`, usage).  
+Octopus parses ADK 2.x JSONL (`nodeInfo`, `output`, usage).  
 If the CLI exits `0` but emits `errorMessage` / `errorCode` (common for missing API keys), the run is still marked failed.
 
 ## Agent Runtime flow

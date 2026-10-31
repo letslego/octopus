@@ -31,7 +31,7 @@ recorded in [ADR 0001](adr/0001-runner-testing-eval-package-boundaries.md).
 - `./evals` exposes the stable native-attempt/build-metadata join and explicit
   digest-verified runnerd artifact resolution.
 - `./testing` contains deterministic mocks and conformance kits.
-- The workspace-private `@paperclipai/paperclip-eval-kernel` contains generic
+- The workspace-private `@letslego/octopus-eval-kernel` contains generic
   structural matrix orchestration and is a development-only dependency.
   Runner-specific cases, scorers, and reports remain package-local; paid
   campaigns remain external.
@@ -114,9 +114,9 @@ must fail the checker.
 ## Enforcement
 
 ```sh
-pnpm --filter @paperclipai/paperclip-runner check:forbidden-imports
-pnpm --filter @paperclipai/paperclip-runner test
-pnpm --filter @paperclipai/paperclip-runner check:replay-parity
+pnpm --filter @letslego/octopus-runner check:forbidden-imports
+pnpm --filter @letslego/octopus-runner test
+pnpm --filter @letslego/octopus-runner check:replay-parity
 ```
 
 The first command scans the package source, scripts, and manifest. The test

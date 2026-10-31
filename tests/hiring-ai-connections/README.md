@@ -59,7 +59,7 @@ image digest. See `tests/runner-e2e/README.md` for the image publication workflo
 pnpm -C packages/plugins/sandbox-providers/daytona build
 HIRING_AI_LIVE=1 HIRING_AI_ENVIRONMENT=daytona \
   HIRING_AI_TEST_URL=http://127.0.0.1:3100 \
-  HIRING_AI_DAYTONA_IMAGE=ghcr.io/paperclipai/paperclip-daytona-runner@sha256:YOUR_DIGEST \
+  HIRING_AI_DAYTONA_IMAGE=ghcr.io/letslego/octopus-daytona-runner@sha256:YOUR_DIGEST \
   pnpm exec playwright test --config tests/hiring-ai-connections/playwright.config.ts --grep 'daytona:'
 ```
 

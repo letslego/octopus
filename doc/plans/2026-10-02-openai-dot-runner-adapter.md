@@ -82,7 +82,7 @@ the added migration replay check. Full workspace typecheck/build and token
 gates passed. Runner recovery verification passed 123 tests and the Rust
 workspace passed 318 library tests. The local full repository attempt was
 stopped after 2 hours 47 minutes when review fixes made it stale. Final branch
-CI and review are tracked in [PR #15402](https://github.com/paperclipai/paperclip/pull/15402);
+CI and review are tracked in [PR #15402](https://github.com/letslego/octopus/pull/15402);
 the adapter runbook records verification limits.
 
 The other gateway chat's subsequent assistant-tool expansion is still separate
@@ -869,7 +869,7 @@ pnpm -r typecheck
 pnpm test:run
 pnpm build
 pnpm check:token-gates # when UI changes are present
-pnpm --filter @paperclipai/paperclip-runner verify
+pnpm --filter @letslego/octopus-runner verify
 ```
 
 Browser/product suites are opt-in and required for the onboarding/live acceptance

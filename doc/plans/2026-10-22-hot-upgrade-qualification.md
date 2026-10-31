@@ -51,10 +51,10 @@ exist; HTTP readiness or a replacement task is insufficient evidence of continui
 
 ## Current execution evidence (2026-10-24)
 
-The review stack is [Runner #17097](https://github.com/paperclipai/paperclip/pull/17097)
-→ [Server #17439](https://github.com/paperclipai/paperclip/pull/17439)
-→ [Qualification #17455](https://github.com/paperclipai/paperclip/pull/17455)
-→ [Transcript delivery #17456](https://github.com/paperclipai/paperclip/pull/17456).
+The review stack is [Runner #17097](https://github.com/letslego/octopus/pull/17097)
+→ [Server #17439](https://github.com/letslego/octopus/pull/17439)
+→ [Qualification #17455](https://github.com/letslego/octopus/pull/17455)
+→ [Transcript delivery #17456](https://github.com/letslego/octopus/pull/17456).
 None is deployed. The remaining acceptance gates below are not waived.
 
 The final security review found that cache-independent adoption skipped a
@@ -232,7 +232,7 @@ recovery, renewal and plugin-adoption tests passed (five optional profiles skipp
 Master already fixed the stale stylesheet-preload browser fixture. Runner, server
 and qualification CI pass at the revisions above. The older broad Linux source
 verification of `c7bdc72416c98b6781b11452eba878036a9f862a`,
-[run 40127795703](https://github.com/paperclipai/paperclip/actions/runs/40127795703),
+[run 40127795703](https://github.com/letslego/octopus/actions/runs/40127795703),
 was cancelled after the missing embedded-database tests passed directly in Linux.
 It is not a full-source pass. Current revision CI remains required.
 

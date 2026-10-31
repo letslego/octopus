@@ -3799,7 +3799,7 @@ export async function listPaperclipSkillEntries(
     const entries = await fs.readdir(root, { withFileTypes: true });
     const dirs = entries.filter((entry) => entry.isDirectory());
     return dirs.map((entry) => ({
-      key: `paperclipai/paperclip/${entry.name}`,
+      key: `letslego/octopus/${entry.name}`,
       runtimeName: entry.name,
       source: path.join(root, entry.name),
     }));
@@ -4248,11 +4248,11 @@ export function resolvePaperclipDesiredSkillNames(
  * resolver above.
  */
 export const PAPERCLIP_OPERATIONAL_SKILL_KEY =
-  "paperclipai/paperclip/paperclip";
+  "letslego/octopus/paperclip";
 
 export const PAPERCLIP_FEEDBACK_SKILL_KEYS = [
-  "paperclipai/paperclip/complain",
-  "paperclipai/paperclip/suggestion-box",
+  "letslego/octopus/complain",
+  "letslego/octopus/suggestion-box",
 ] as const;
 
 /**

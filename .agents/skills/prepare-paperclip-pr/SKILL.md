@@ -5,7 +5,7 @@ description: Prepare a Paperclip branch for PR with commits, template body, and 
 # Prepare Paperclip PR
 
 The standard Paperclip procedure for turning branch work into a reviewed,
-green pull request against `paperclipai/paperclip` master. Apply it once per
+green pull request against `letslego/octopus` master. Apply it once per
 PR (if a task splits a branch into several PRs, run the whole procedure for
 each one).
 
@@ -18,7 +18,7 @@ each one).
 * If the main checkout is unexpectedly off `master`, fix that first without
   losing work (usually: move that branch's work into a worktree).
 * Confirm which remote/ref you are targeting (normally `master` on the
-  `paperclipai/paperclip` repo; the task may name a specific remote such as
+  `letslego/octopus` repo; the task may name a specific remote such as
   `origin` or `public-gh`).
 
 ## 1. Commit everything — lose no work
@@ -27,7 +27,7 @@ each one).
   Do not stash and forget; do not leave files behind. If commits are missing,
   make them.
 * Commit messages must end with exactly:
-  `Co-Authored-By: Paperclip <noreply@paperclip.ing>`
+  `Co-Authored-By: Paperclip <noreply@github.com/letslego/octopus>`
 
 ## 2. Get changes cleanly on top of master
 
@@ -53,7 +53,7 @@ each one).
 ## 4. Open the PR
 
 * Follow `CONTRIBUTING.md` (repo root,
-  https://github.com/paperclipai/paperclip/blob/master/CONTRIBUTING.md) for
+  https://github.com/letslego/octopus/blob/master/CONTRIBUTING.md) for
   the PR title, message format, and issue description.
 * Push the branch and open the PR with `gh`.
 * Record the PR URL immediately — every report must include URLs to every PR.

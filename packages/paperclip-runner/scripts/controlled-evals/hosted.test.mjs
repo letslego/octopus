@@ -37,7 +37,7 @@ async function campaign(t) {
     pricingVerifiedAt: f.manifest.pricingVerifiedAt, pricingExpiresAt: f.manifest.pricingExpiresAt,
     route: 'direct', models: f.manifest.models, overhead: f.manifest.overhead, observability, allocations: [allocation] };
   policy.capacityBound = { version: 1, scope: 'full_lifecycle', evidenceSha256: f.manifest.overhead.components.find(component => component.component === 'observability').provisionalBound.evidenceSha256, configurationSha256: sha256(canonical(hostedPolicyConfiguration(policy))) };
-  const environment = { ...f.environment, GITHUB_ACTIONS: 'true', GITHUB_REPOSITORY: 'paperclipai/paperclip', GITHUB_RUN_ID: runId,
+  const environment = { ...f.environment, GITHUB_ACTIONS: 'true', GITHUB_REPOSITORY: 'letslego/octopus', GITHUB_RUN_ID: runId,
     GITHUB_RUN_ATTEMPT: '1', GITHUB_SHA: f.manifest.sourceRevision, PAPERCLIP_PROTOCOL_EVAL_SOURCE_SHA: prepared.sourceRevision, PAPERCLIP_PROTOCOL_EVALS_SHA: prepared.definitionsRevision };
   const input = { catalog, catalogSha256, prepared, policy, artifacts, environment };
   const build = () => prepareHostedManifest(input);

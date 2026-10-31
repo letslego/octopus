@@ -74,7 +74,7 @@ guarded at the pack boundary by the provider pack's `contractDigest`, so the
 controller reuses an installed pack only when that digest matches and stages its
 current verified pack otherwise. Earlier profile versions decode for recovery,
 but they do not authorize a fresh launch. After changing the launcher, run
-`pnpm --filter @paperclipai/paperclip-runner generate:acpx-profiles`; the
+`pnpm --filter @letslego/octopus-runner generate:acpx-profiles`; the
 `check:acpx-profiles` build gate refuses a stale digest.
 
 Provision Grok Build 1.0.13 at

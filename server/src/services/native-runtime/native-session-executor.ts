@@ -10898,7 +10898,7 @@ export function assertRemoteRunnerBuildMetadata(
   if (
     metadata.schema !== RUNNERD_BUILD_METADATA_SCHEMA ||
     metadata.binaryName !== "paperclip-runnerd" ||
-    metadata.packageName !== "@paperclipai/paperclip-runner" ||
+    metadata.packageName !== "@letslego/octopus-runner" ||
     metadata.binaryContractVersion !== RUNNERD_BINARY_CONTRACT_VERSION
   ) {
     throw new Error("runner_remote_artifact_contract_incompatible");

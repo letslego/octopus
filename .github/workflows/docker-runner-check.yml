@@ -70,7 +70,7 @@ jobs:
       # Compile the real target, then change source in a disposable context.
       # A fresh builder must import dependencies and produce changed binary metadata.
       # The baseline build anonymously seeds from the public BuildKit cache at
-      # ghcr.io/paperclipai/paperclip:buildcache-{amd64,arm64}; the verification
+      # ghcr.io/letslego/octopus:buildcache-{amd64,arm64}; the verification
       # build imports only this run's locally exported cache on a fresh builder.
       # No registry credentials or image publication.
       - name: Verify native build and dependency cache reuse
@@ -103,7 +103,7 @@ jobs:
           BUILD_EVAL_VIEWER: ${{ inputs.build_eval_viewer }}
         run: |
           set -euo pipefail
-          test "$REPOSITORY" = paperclipai/paperclip
+          test "$REPOSITORY" = letslego/octopus
           test "$REPOSITORY_ID" = 1170821064
           jq -e 'type == "array" and length > 0 and all(.[]; type == "number")' <<< "$ALLOWED_IDS" >/dev/null
           triggering_id="$(gh api "users/$TRIGGERING_ACTOR" --jq .id)"
@@ -146,7 +146,7 @@ jobs:
           ALLOWED_IDS: ${{ vars.AWS_CI_TRUSTED_USER_IDS }}
         run: |
           set -euo pipefail
-          test "$REPOSITORY" = paperclipai/paperclip
+          test "$REPOSITORY" = letslego/octopus
           test "$REPOSITORY_ID" = 1170821064
           jq -e 'type == "array" and length > 0 and all(.[]; type == "number")' <<< "$ALLOWED_IDS" >/dev/null
           triggering_id="$(gh api "users/$TRIGGERING_ACTOR" --jq .id)"
@@ -205,7 +205,7 @@ jobs:
           SOURCE_SHA: ${{ needs.authorize_manual.outputs.target_sha }}
         run: |
           set -euo pipefail
-          image="ghcr.io/paperclipai/paperclip-daytona-runner:qualification-${SOURCE_SHA}-${GITHUB_RUN_ID}"
+          image="ghcr.io/letslego/octopus-daytona-runner:qualification-${SOURCE_SHA}-${GITHUB_RUN_ID}"
           lock_sha="$(sha256sum pnpm-lock.yaml | cut -d ' ' -f 1)"
           content_id="$(node cli/node_modules/tsx/dist/cli.mjs tests/runner-e2e/daytona-image-content.ts)"
           [[ "$content_id" =~ ^[0-9a-f]{64}$ ]]
@@ -219,7 +219,7 @@ jobs:
             --build-arg "PAPERCLIP_RUNNER_SOURCE_REVISION=$SOURCE_SHA" \
             --build-arg "PAPERCLIP_RUNNER_CONTENT_ID=$content_id" \
             --build-arg "PAPERCLIP_RUNNER_LOCK_SHA256=$lock_sha" \
-            --cache-from type=registry,ref=ghcr.io/paperclipai/paperclip-daytona-runner:e2e-buildcache-amd64 \
+            --cache-from type=registry,ref=ghcr.io/letslego/octopus-daytona-runner:e2e-buildcache-amd64 \
             --tag "$image" --metadata-file remote-verification/image.json "${output_args[@]}" .
           digest="$(jq -r '."containerimage.digest"' remote-verification/image.json)"
           [[ "$digest" =~ ^sha256:[0-9a-f]{64}$ ]]
@@ -248,7 +248,7 @@ jobs:
           git rev-parse HEAD > remote-verification/tooling-source.txt
           printf '%s\n' "$SOURCE_SHA" > remote-verification/source.txt
           node scripts/prepare-runner-release-image.mjs remote-verification/release-context
-          image="ghcr.io/paperclipai/paperclip-daytona-runner:qualification-${SOURCE_SHA}-${GITHUB_RUN_ID}"
+          image="ghcr.io/letslego/octopus-daytona-runner:qualification-${SOURCE_SHA}-${GITHUB_RUN_ID}"
           docker buildx build --platform linux/amd64 \
             --build-arg "BASE_IMAGE=$RELEASE_BASE_IMAGE" \
             --build-arg "SOURCE_REVISION=$SOURCE_SHA" \
@@ -305,8 +305,8 @@ jobs:
         if: always() && (inputs.verify_source || inputs.build_eval_viewer)
         run: |
           set -euo pipefail
-          pnpm install --frozen-lockfile --ignore-scripts --filter '@paperclipai/paperclip-runner...'
-          pnpm --filter @paperclipai/paperclip-runner build:issue-thread > remote-verification/viewer-build.log 2>&1
+          pnpm install --frozen-lockfile --ignore-scripts --filter '@letslego/octopus-runner...'
+          pnpm --filter @letslego/octopus-runner build:issue-thread > remote-verification/viewer-build.log 2>&1
           tar -czf remote-verification/eval-viewer.tar.gz -C packages/paperclip-runner dist-issue-thread
           sha256sum remote-verification/eval-viewer.tar.gz > remote-verification/eval-viewer.sha256
       - name: Retain source, image and verification evidence

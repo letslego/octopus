@@ -123,7 +123,7 @@ Daytona campaigns (39613279281 and 39616972414) stopped before sandbox launch
 because the trusted image builder exhausted disk. That live acceptance gap
 remains; this boundary revision does not change fleet settings or image workflows.
 
-Implementation is in draft PR https://github.com/paperclipai/paperclip/pull/17097.
+Implementation is in draft PR https://github.com/letslego/octopus/pull/17097.
 No production deployment has been performed.
 
 Verified locally with real PostgreSQL and the Rust runner, using a scripted Codex
@@ -192,8 +192,8 @@ Boundary revision verification:
 
 Current-head CI and review must run after the boundary commit. Full hosted Daytona
 acceptance remains blocked by image-builder disk exhaustion in both campaigns:
-https://github.com/paperclipai/paperclip/actions/runs/39613279281 and
-https://github.com/paperclipai/paperclip/actions/runs/39616972414.
+https://github.com/letslego/octopus/actions/runs/39613279281 and
+https://github.com/letslego/octopus/actions/runs/39616972414.
 Neither launched a sandbox. After supplying sufficient disk in the trusted image
 builder, rerun only `everyday-workflows.runner-codex.daytona.recover-controller`.
 Keep its empty-controller-cache fault and acknowledgement enabled. No third

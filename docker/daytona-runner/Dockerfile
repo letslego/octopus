@@ -40,20 +40,20 @@ ARG PAPERCLIP_RUNNER_LOCK_SHA256=342a01e487a68d0ad9cb8d8852a0ffed4dd7b0fa58e2e04
 RUN export PNPM_WORKERS="$(node -p 'require("node:os").availableParallelism()')" \
     && printf '%s  pnpm-lock.yaml\n' "${PAPERCLIP_RUNNER_LOCK_SHA256}" > /tmp/provider-lock.sha256 \
     && sha256sum -c /tmp/provider-lock.sha256 \
-    && pnpm install --frozen-lockfile --filter '@paperclipai/paperclip-runner...'
+    && pnpm install --frozen-lockfile --filter '@letslego/octopus-runner...'
 ARG PAPERCLIP_RUNNER_SOURCE_REVISION
 # Optional qualification assets; this never promotes candidate profiles.
 ARG PAPERCLIP_RUNNER_CANDIDATE_PROVIDERS=
 RUN test -n "${PAPERCLIP_RUNNER_SOURCE_REVISION}"
 RUN export PNPM_WORKERS="$(node -p 'require("node:os").availableParallelism()')" \
-    && pnpm --filter @paperclipai/paperclip-runner build:typescript \
+    && pnpm --filter @letslego/octopus-runner build:typescript \
     && PAPERCLIP_RUNNER_SOURCE_REVISION="${PAPERCLIP_RUNNER_SOURCE_REVISION}" \
       node packages/paperclip-runner/scripts/build-provider-pack.mjs /provider-pack \
         "--candidate-providers=${PAPERCLIP_RUNNER_CANDIDATE_PROVIDERS}" \
     && chmod -R a+rX /provider-pack
 
 # Fleet sandbox base image. Keep this section aligned with
-# paperclipai/paperclip-cloud/fleet-sandbox-image/Dockerfile. The only Paperclip
+# letslego/octopus-cloud/fleet-sandbox-image/Dockerfile. The only Paperclip
 # runner-specific addition is /usr/local/bin/paperclip-runnerd below.
 FROM daytonaio/sandbox:0.8.0@sha256:eadf88e4391072b7ad4bed27d9cadfc9fe9d8ed375d9219d34c2ccb518f213e3
 

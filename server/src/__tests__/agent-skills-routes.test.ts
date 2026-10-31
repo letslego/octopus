@@ -265,7 +265,7 @@ function skillSnapshot(adapterType = "claude_local", mode = "ephemeral") {
     adapterType: adapterType,
     supported: true,
     mode: mode,
-    desiredSkills: ["paperclipai/paperclip/paperclip"],
+    desiredSkills: ["letslego/octopus/paperclip"],
     entries: [],
     warnings: [],
   };
@@ -315,7 +315,7 @@ describe("agent skill routes", () => {
     mockSecretService.syncEnvBindingsForTarget.mockResolvedValue(undefined);
     mockCompanySkillService.listRuntimeSkillEntries.mockResolvedValue([
       {
-        key: "paperclipai/paperclip/paperclip",
+        key: "letslego/octopus/paperclip",
         runtimeName: "paperclip",
         source: "/tmp/paperclip",
       },
@@ -324,14 +324,14 @@ describe("agent skill routes", () => {
       async (_companyId: string, requested: string[]) =>
         requested.map((value) =>
           value === "paperclip"
-            ? "paperclipai/paperclip/paperclip"
+            ? "letslego/octopus/paperclip"
             : value,
         ),
     );
     mockCompanySkillService.resolveRequestedSkillEntries.mockImplementation(
       async (_companyId: string, requested: Array<{ key: string; versionId?: string | null }>) => ({
         resolved: requested.map((entry) => ({
-          key: entry.key === "paperclip" ? "paperclipai/paperclip/paperclip" : entry.key,
+          key: entry.key === "paperclip" ? "letslego/octopus/paperclip" : entry.key,
           versionId: entry.versionId ?? null,
         })),
         unresolved: [],
@@ -580,7 +580,7 @@ describe("agent skill routes", () => {
       config: {
         agent: "codex",
         paperclipSkillSync: {
-          desiredSkills: ["paperclipai/paperclip/paperclip"],
+          desiredSkills: ["letslego/octopus/paperclip"],
         },
       },
     });
@@ -597,7 +597,7 @@ describe("agent skill routes", () => {
         adapterConfig: expect.objectContaining({
           agent: "codex",
           paperclipSkillSync: expect.objectContaining({
-            desiredSkills: ["paperclipai/paperclip/paperclip"],
+            desiredSkills: ["letslego/octopus/paperclip"],
           }),
         }),
       }),
@@ -611,7 +611,7 @@ describe("agent skill routes", () => {
           paperclipRuntimeSkills: expect.any(Array),
         }),
       }),
-      ["paperclipai/paperclip/paperclip"],
+      ["letslego/octopus/paperclip"],
     );
   });
 
@@ -644,7 +644,7 @@ describe("agent skill routes", () => {
       expect.objectContaining({
         adapterConfig: expect.objectContaining({
           paperclipSkillSync: {
-            desiredSkills: ["company-1/keep", "paperclipai/paperclip/paperclip"],
+            desiredSkills: ["company-1/keep", "letslego/octopus/paperclip"],
           },
         }),
       }),
@@ -657,7 +657,7 @@ describe("agent skill routes", () => {
       ...makeAgent("claude_local"),
       adapterConfig: {
         paperclipSkillSync: {
-          desiredSkills: ["company-1/keep", "paperclipai/paperclip/paperclip"],
+          desiredSkills: ["company-1/keep", "letslego/octopus/paperclip"],
         },
       },
     });
@@ -696,7 +696,7 @@ describe("agent skill routes", () => {
       expect.objectContaining({
         adapterConfig: expect.objectContaining({
           paperclipSkillSync: {
-            desiredSkills: ["paperclipai/paperclip/paperclip"],
+            desiredSkills: ["letslego/octopus/paperclip"],
           },
         }),
       }),
@@ -712,7 +712,7 @@ describe("agent skill routes", () => {
       .send({
         mode: "replace",
         desiredSkills: [{
-          key: "paperclipai/paperclip/paperclip",
+          key: "letslego/octopus/paperclip",
           versionId: "22222222-2222-4222-8222-222222222222",
         }],
       }));
@@ -731,7 +731,7 @@ describe("agent skill routes", () => {
       .post("/api/agents/11111111-1111-4111-8111-111111111111/skills/sync?companyId=company-1")
       .send({
         mode: "replace",
-        desiredSkills: [{ key: "paperclipai/paperclip/paperclip", versionId }],
+        desiredSkills: [{ key: "letslego/octopus/paperclip", versionId }],
       }));
 
     expect(res.status, JSON.stringify(res.body)).toBe(200);
@@ -740,7 +740,7 @@ describe("agent skill routes", () => {
       expect.objectContaining({
         adapterConfig: expect.objectContaining({
           paperclipSkillSync: expect.objectContaining({
-            desiredSkills: [{ key: "paperclipai/paperclip/paperclip", versionId }],
+            desiredSkills: [{ key: "letslego/octopus/paperclip", versionId }],
           }),
         }),
       }),
@@ -767,7 +767,7 @@ describe("agent skill routes", () => {
             unresolved.push(entry.key);
           } else {
             resolved.push({
-              key: entry.key === "paperclip" ? "paperclipai/paperclip/paperclip" : entry.key,
+              key: entry.key === "paperclip" ? "letslego/octopus/paperclip" : entry.key,
               versionId: entry.versionId ?? null,
             });
           }
@@ -787,7 +787,7 @@ describe("agent skill routes", () => {
       expect.objectContaining({
         adapterConfig: expect.objectContaining({
           paperclipSkillSync: expect.objectContaining({
-            desiredSkills: ["paperclipai/paperclip/paperclip", "stale/removed/skill"],
+            desiredSkills: ["letslego/octopus/paperclip", "stale/removed/skill"],
           }),
         }),
       }),
@@ -825,7 +825,7 @@ describe("agent skill routes", () => {
 
     const res = await requestApp(await createApp(), (baseUrl) => request(baseUrl)
       .post("/api/agents/11111111-1111-4111-8111-111111111111/skills/sync?companyId=company-1")
-      .send({ desiredSkills: ["paperclipai/paperclip/paperclip"], mode: "replace" }));
+      .send({ desiredSkills: ["letslego/octopus/paperclip"], mode: "replace" }));
 
     expect(res.status, JSON.stringify(res.body)).toBe(200);
     expect(mockAdapter.syncSkills).toHaveBeenCalled();
@@ -836,7 +836,7 @@ describe("agent skill routes", () => {
 
     const res = await requestApp(await createApp(), (baseUrl) => request(baseUrl)
       .post("/api/agents/11111111-1111-4111-8111-111111111111/skills/sync?companyId=company-1")
-      .send({ desiredSkills: ["paperclipai/paperclip/paperclip"], mode: "replace" }));
+      .send({ desiredSkills: ["letslego/octopus/paperclip"], mode: "replace" }));
 
     expect(res.status, JSON.stringify(res.body)).toBe(200);
     expect(mockAgentService.update).toHaveBeenCalledWith(
@@ -859,14 +859,14 @@ describe("agent skill routes", () => {
       ...makeAgent("paperclip_runner"),
       adapterConfig: {
         paperclipSkillSync: {
-          desiredSkills: ["company-1/keep", "paperclipai/paperclip/paperclip"],
+          desiredSkills: ["company-1/keep", "letslego/octopus/paperclip"],
         },
       },
     });
 
     const res = await requestApp(await createApp(), (baseUrl) => request(baseUrl)
       .post("/api/agents/11111111-1111-4111-8111-111111111111/skills/sync?companyId=company-1")
-      .send({ desiredSkills: ["paperclipai/paperclip/paperclip"], mode: "remove" }));
+      .send({ desiredSkills: ["letslego/octopus/paperclip"], mode: "remove" }));
 
     expect(res.status, JSON.stringify(res.body)).toBe(200);
     expect(mockAgentService.update).toHaveBeenCalledWith(
@@ -929,7 +929,7 @@ describe("agent skill routes", () => {
 
     const res = await requestApp(await createApp(), (baseUrl) => request(baseUrl)
       .post("/api/agents/11111111-1111-4111-8111-111111111111/skills/sync?companyId=company-1")
-      .send({ desiredSkills: ["paperclipai/paperclip/paperclip"], mode: "replace" }));
+      .send({ desiredSkills: ["letslego/octopus/paperclip"], mode: "replace" }));
 
     expect(res.status, JSON.stringify(res.body)).toBe(200);
     expect(mockAdapter.syncSkills).toHaveBeenCalledWith(
@@ -940,7 +940,7 @@ describe("agent skill routes", () => {
           paperclipRuntimeSkills: expect.any(Array),
         }),
       }),
-      ["paperclipai/paperclip/paperclip"],
+      ["letslego/octopus/paperclip"],
     );
   });
 
@@ -963,7 +963,7 @@ describe("agent skill routes", () => {
       expect.objectContaining({
         adapterConfig: expect.objectContaining({
           paperclipSkillSync: expect.objectContaining({
-            desiredSkills: ["paperclipai/paperclip/paperclip"],
+            desiredSkills: ["letslego/octopus/paperclip"],
           }),
         }),
       }),
@@ -987,7 +987,7 @@ describe("agent skill routes", () => {
         adapterType: "claude_local",
         runner: "legacy",
         desiredSkills: [{
-          key: "paperclipai/paperclip/paperclip",
+          key: "letslego/octopus/paperclip",
           versionId: "22222222-2222-4222-8222-222222222222",
         }],
         adapterConfig: {},
@@ -1209,7 +1209,7 @@ describe("agent skill routes", () => {
     expect(entrySeed?.["AGENTS.md"]).toContain("chief of staff");
     // The normal onboarding flow has beta skill version selection disabled.
     expect(mockAgentService.create.mock.calls[0][1].adapterConfig.paperclipSkillSync.desiredSkills)
-      .toContain("paperclipai/paperclip/first-task");
+      .toContain("letslego/octopus/first-task");
   });
 
   const codexRunnerCases = [
@@ -1226,12 +1226,12 @@ describe("agent skill routes", () => {
     { adapterType: "claude_local", runner: "legacy", platform: "darwin", expectedType: "claude_local" },
   ];
   it.each(creationRunnerCases.flatMap((runnerCase) => [
-    ["agents", "paperclipai/paperclip/paperclip-create-agent"],
-    ["agent-hires", "paperclipai/paperclip/paperclip-create-agent"],
+    ["agents", "letslego/octopus/paperclip-create-agent"],
+    ["agent-hires", "letslego/octopus/paperclip-create-agent"],
     ["agents", "paperclip"],
     ["agent-hires", "paperclip"],
-    ["agents", "paperclipai/paperclip/first-task"],
-    ["agent-hires", "paperclipai/paperclip/first-task"],
+    ["agents", "letslego/octopus/first-task"],
+    ["agent-hires", "letslego/octopus/first-task"],
   ].map(([route, skill]) => ({ ...runnerCase, route, skill }))))("assigns onboarding skills via $route for $adapterType/$runner on $platform with $skill pins", async ({ adapterType, runner, platform, expectedType, route, skill }) => {
     runnerTarget.platform = platform;
     runnerTarget.architecture = platform === "darwin" ? "arm64" : "x64";
@@ -1250,10 +1250,10 @@ describe("agent skill routes", () => {
     expect(input.adapterType).toBe(expectedType);
     const native = expectedType === "paperclip_runner";
     if (native) expect(input.adapterConfig).toMatchObject(adapterType === "claude_local" ? { provider: "acpx", acpxAgent: "claude", model: "claude-opus-5-5" } : { provider: "codex" });
-    const canonicalKey = skill === "paperclip" ? "paperclipai/paperclip/paperclip" : skill;
+    const canonicalKey = skill === "paperclip" ? "letslego/octopus/paperclip" : skill;
     const expected = ["paperclip", "paperclip-board", "paperclip-converting-plans-to-tasks", "paperclip-create-agent", "para-memory-files", "first-task"]
       .filter((name) => !native || name !== "paperclip")
-      .map((name) => ({ key: `paperclipai/paperclip/${name}`, versionId: `paperclipai/paperclip/${name}` === canonicalKey ? versionId : null }));
+      .map((name) => ({ key: `letslego/octopus/${name}`, versionId: `letslego/octopus/${name}` === canonicalKey ? versionId : null }));
     const desiredSkills = input.adapterConfig.paperclipSkillSync.desiredSkills.map((entry: string | { key: string; versionId: string | null }) =>
       typeof entry === "string" ? { key: entry, versionId: null } : entry);
     expect(desiredSkills).toEqual(expect.arrayContaining(expected));
@@ -1282,10 +1282,10 @@ describe("agent skill routes", () => {
     const desiredSkills = input.adapterConfig.paperclipSkillSync.desiredSkills;
     const expected = ["paperclip", "paperclip-board", "paperclip-converting-plans-to-tasks", "paperclip-create-agent", "para-memory-files"]
       .filter((name) => !native || name !== "paperclip")
-      .map((name) => `paperclipai/paperclip/${name}`);
+      .map((name) => `letslego/octopus/${name}`);
     expect(desiredSkills).toEqual(expect.arrayContaining(expected));
     expect(desiredSkills).toHaveLength(expected.length);
-    expect(desiredSkills).not.toContain("paperclipai/paperclip/first-task");
+    expect(desiredSkills).not.toContain("letslego/octopus/first-task");
   });
 
   it("does not trust an agent-supplied onboarding marker to select chief-of-staff defaults", async () => {
@@ -1341,11 +1341,11 @@ describe("agent skill routes", () => {
         adapterConfig: expect.objectContaining({
           paperclipSkillSync: expect.objectContaining({
             desiredSkills: expect.arrayContaining([
-              "paperclipai/paperclip/paperclip",
-              "paperclipai/paperclip/paperclip-board",
-              "paperclipai/paperclip/paperclip-converting-plans-to-tasks",
-              "paperclipai/paperclip/paperclip-create-agent",
-              "paperclipai/paperclip/para-memory-files",
+              "letslego/octopus/paperclip",
+              "letslego/octopus/paperclip-board",
+              "letslego/octopus/paperclip-converting-plans-to-tasks",
+              "letslego/octopus/paperclip-create-agent",
+              "letslego/octopus/para-memory-files",
             ]),
           }),
         }),
@@ -1374,10 +1374,10 @@ describe("agent skill routes", () => {
       adapterConfig: { paperclipSkillSync: { desiredSkills: string[] } };
     };
     expect(createInput.adapterConfig.paperclipSkillSync.desiredSkills).not.toContain(
-      "paperclipai/paperclip/paperclip",
+      "letslego/octopus/paperclip",
     );
     expect(createInput.adapterConfig.paperclipSkillSync.desiredSkills).toContain(
-      "paperclipai/paperclip/paperclip-board",
+      "letslego/octopus/paperclip-board",
     );
   });
 
@@ -1400,7 +1400,7 @@ describe("agent skill routes", () => {
     const desired = createInput.adapterConfig.paperclipSkillSync.desiredSkills;
     // "paperclip" resolves to its canonical key and dedupes with the default.
     expect(desired).toHaveLength(5);
-    expect(desired).toContain("paperclipai/paperclip/paperclip");
+    expect(desired).toContain("letslego/octopus/paperclip");
   });
 
   it("does not add default skills to non-CEO hires", async () => {
@@ -1430,7 +1430,7 @@ describe("agent skill routes", () => {
         adapterType: "claude_local",
         runner: "legacy",
         desiredSkills: [{
-          key: "paperclipai/paperclip/paperclip",
+          key: "letslego/octopus/paperclip",
           versionId: "22222222-2222-4222-8222-222222222222",
         }],
         adapterConfig: {},
@@ -1466,7 +1466,7 @@ describe("agent skill routes", () => {
         icon: "crown",
         adapterConfig: expect.objectContaining({
           paperclipSkillSync: expect.objectContaining({
-            desiredSkills: ["paperclipai/paperclip/paperclip"],
+            desiredSkills: ["letslego/octopus/paperclip"],
           }),
         }),
       }),
@@ -1487,9 +1487,9 @@ describe("agent skill routes", () => {
       expect.objectContaining({
         payload: expect.objectContaining({
           icon: "crown",
-          desiredSkills: ["paperclipai/paperclip/paperclip"],
+          desiredSkills: ["letslego/octopus/paperclip"],
           requestedConfigurationSnapshot: expect.objectContaining({
-            desiredSkills: ["paperclipai/paperclip/paperclip"],
+            desiredSkills: ["letslego/octopus/paperclip"],
           }),
         }),
       }),

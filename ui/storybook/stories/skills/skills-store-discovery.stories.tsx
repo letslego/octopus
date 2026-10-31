@@ -12,7 +12,7 @@ const STORY_NOW = new Date("2026-08-31T12:00:00Z").getTime();
 
 const MOCK_CARDS: DiscoveryCard[] = [
   {
-    key: "paperclipai/paperclip/paperclip-dev",
+    key: "letslego/octopus/paperclip-dev",
     skillId: "s-dev",
     catalogRef: null,
     name: "paperclip-dev",
@@ -56,7 +56,7 @@ const MOCK_CARDS: DiscoveryCard[] = [
     sourceBadge: "skills_sh",
   },
   {
-    key: "paperclipai/paperclip/verify",
+    key: "letslego/octopus/verify",
     skillId: "s-verify",
     catalogRef: null,
     name: "verify",
@@ -122,7 +122,7 @@ const MOCK_CARDS: DiscoveryCard[] = [
     sourceBadge: "url",
   },
   {
-    key: "paperclipai/paperclip/security-review",
+    key: "letslego/octopus/security-review",
     skillId: "s-sec",
     catalogRef: null,
     name: "security-review",
@@ -188,7 +188,7 @@ const MOCK_CARDS: DiscoveryCard[] = [
     sourceBadge: "local",
   },
   {
-    key: "paperclipai/paperclip/paperclip",
+    key: "letslego/octopus/paperclip",
     skillId: "s-core",
     catalogRef: "c-core",
     name: "paperclip",
@@ -210,7 +210,7 @@ const MOCK_CARDS: DiscoveryCard[] = [
     sourceBadge: "paperclip",
   },
   {
-    key: "paperclipai/paperclip/diagnose-why-work-stopped",
+    key: "letslego/octopus/diagnose-why-work-stopped",
     skillId: "s-diag",
     catalogRef: "c-diag",
     name: "diagnose-why-work-stopped",

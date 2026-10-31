@@ -1,14 +1,14 @@
-# Paperclip Page Skill
+# Octopus Page Skill
 
-`paperclip-page` publishes static page directories to a Paperclip-controlled S3
-bucket served through CloudFront. It is the durable Paperclip-owned replacement
+`paperclip-page` publishes static page directories to a Octopus-controlled S3
+bucket served through CloudFront. It is the durable Octopus-owned replacement
 for quick `here.now`-style page sharing.
 
 The v1 security posture is:
 
 - CloudFront + ACM + Origin Access Control in front of a private S3 REST origin.
 - Public content only.
-- Dedicated uploader IAM identity, separate from Paperclip attachment storage.
+- Dedicated uploader IAM identity, separate from Octopus attachment storage.
 - No `s3:DeleteObject`, no `aws s3 sync --delete`, and no bucket/IAM/DNS changes
   from the publish helper.
 - Symlinks, hidden files, unsafe slugs, and accidental overwrites are rejected.
@@ -72,7 +72,7 @@ Required for live publishes:
 ```bash
 export AWS_REGION=us-east-1
 export PAPERCLIP_PAGE_BUCKET=paperclip-pages-prod
-export PAPERCLIP_PAGE_BASE_URL=https://pages.paperclip.ing
+export PAPERCLIP_PAGE_BASE_URL=https://pages.github.com/letslego/octopus
 export PAPERCLIP_PAGE_AWS_ACCESS_KEY_ID=...
 export PAPERCLIP_PAGE_AWS_SECRET_ACCESS_KEY=...
 ```
@@ -99,7 +99,7 @@ Credential resolution order inside `publish.sh`:
 Setting both the namespaced key pair and `PAPERCLIP_PAGE_AWS_PROFILE` is an
 error.
 
-Recommended Paperclip secret names:
+Recommended Octopus secret names:
 
 - `paperclip-page-aws-access-key-id`
 - `paperclip-page-aws-secret-access-key`
@@ -110,7 +110,7 @@ and `PAPERCLIP_PAGE_AWS_SECRET_ACCESS_KEY`. Never bind them as the global
 `AWS_PROFILE` in the AWS CLI and every SDK, so global names silently switch the
 whole agent run — and every subprocess — to the page-uploader identity and
 break access to anything the uploader cannot reach (Secrets Manager, STS role
-use, other buckets). Do not reuse Paperclip's internal S3 attachment/object
+use, other buckets). Do not reuse Octopus's internal S3 attachment/object
 storage credentials.
 
 ## AWS Setup
@@ -122,9 +122,9 @@ create buckets, mutate IAM, change DNS, or manage CloudFront.
 export AWS_PROFILE=paperclip-admin
 export AWS_REGION=us-east-1
 export BUCKET=paperclip-pages-prod
-export DOMAIN=pages.paperclip.ing
+export DOMAIN=pages.github.com/letslego/octopus
 export UPLOADER_USER=paperclip-page-uploader
-export CLOUDFRONT_COMMENT="Paperclip pages"
+export CLOUDFRONT_COMMENT="Octopus pages"
 
 aws sts get-caller-identity --profile "$AWS_PROFILE"
 ```
@@ -457,7 +457,7 @@ endpoint.
 
 Cloudflare UI:
 
-- Open the `paperclip.ing` zone.
+- Open the `github.com/letslego/octopus` zone.
 - Add `CNAME`:
   - Name: `pages`
   - Target: the CloudFront domain, for example `d111111abcdef8.cloudfront.net`
@@ -467,7 +467,7 @@ Cloudflare UI:
 API equivalent:
 
 ```bash
-export CF_ZONE_ID=<paperclip.ing-zone-id>
+export CF_ZONE_ID=<github.com/letslego/octopus-zone-id>
 export CF_API_TOKEN=<token-with-zone-dns-edit>
 
 curl -sS -X POST "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/dns_records" \
@@ -485,7 +485,7 @@ Smoke check:
 curl -I "https://$DOMAIN/404.html"
 ```
 
-## Paperclip Secrets
+## Octopus Secrets
 
 Create secrets from environment variables so values do not land in shell history:
 
@@ -493,12 +493,12 @@ Create secrets from environment variables so values do not land in shell history
 export PAPERCLIP_PAGE_AWS_ACCESS_KEY_ID="$(jq -r '.AccessKey.AccessKeyId' /tmp/paperclip-page-uploader-key.json)"
 export PAPERCLIP_PAGE_AWS_SECRET_ACCESS_KEY="$(jq -r '.AccessKey.SecretAccessKey' /tmp/paperclip-page-uploader-key.json)"
 
-npx paperclipai secrets create \
+npx octopus secrets create \
   --company-id <company-id> \
   --name paperclip-page-aws-access-key-id \
   --value-env PAPERCLIP_PAGE_AWS_ACCESS_KEY_ID
 
-npx paperclipai secrets create \
+npx octopus secrets create \
   --company-id <company-id> \
   --name paperclip-page-aws-secret-access-key \
   --value-env PAPERCLIP_PAGE_AWS_SECRET_ACCESS_KEY
@@ -522,7 +522,7 @@ host `AWS_PROFILE` identity for the entire agent run:
   },
   "AWS_REGION": { "type": "plain", "value": "us-east-1" },
   "PAPERCLIP_PAGE_BUCKET": { "type": "plain", "value": "paperclip-pages-prod" },
-  "PAPERCLIP_PAGE_BASE_URL": { "type": "plain", "value": "https://pages.paperclip.ing" },
+  "PAPERCLIP_PAGE_BASE_URL": { "type": "plain", "value": "https://pages.github.com/letslego/octopus" },
   "PAPERCLIP_PAGE_DEFAULT_PREFIX": { "type": "plain", "value": "" }
 }
 ```
@@ -532,18 +532,18 @@ host `AWS_PROFILE` identity for the entire agent run:
 Create or update the company skill from this package:
 
 ```bash
-npx paperclipai skills create \
+npx octopus skills create \
   --company-id <company-id> \
-  --name "Paperclip Page" \
+  --name "Octopus Page" \
   --slug paperclip-page \
-  --description "Publish static pages to the Paperclip pages host" \
+  --description "Publish static pages to the Octopus pages host" \
   --body-file .agents/skills/paperclip-page/SKILL.md
 ```
 
 Attach it to an agent:
 
 ```bash
-npx paperclipai skills agent sync <agent-id-or-shortname> \
+npx octopus skills agent sync <agent-id-or-shortname> \
   --company-id <company-id> \
   --skill paperclip-page
 ```
@@ -563,7 +563,7 @@ aws iam create-access-key \
 chmod 600 /tmp/paperclip-page-uploader-key-rotation.json
 ```
 
-2. Store new secret versions in Paperclip Secrets.
+2. Store new secret versions in Octopus Secrets.
 3. Update agent env bindings to the new versions or `latest`.
 4. Run a dry-run and a small publish smoke.
 5. Disable the old key:

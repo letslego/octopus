@@ -246,7 +246,7 @@ describePostgres("immutable skill version cache", () => {
     const f = await fixture();
     const old = await f.resolve(f.versions[0]!.id);
     await touchSkillVersionCache(f.companyId, f.skillId, f.versions[0]!.id, Date.now() - 7_200_000);
-    const { run } = await legacyNativeRun(f.companyId, bundled ? [{ key: "paperclipai/paperclip/slack", versionId: null }] : []);
+    const { run } = await legacyNativeRun(f.companyId, bundled ? [{ key: "letslego/octopus/slack", versionId: null }] : []);
     const result = await sweepSkillVersionCache(db, { companyId: f.companyId });
     expect(result.evicted).toBe(bundled ? 0 : 1);
     if (bundled) expect(result.skipped.unknown_run_pins).toBe(1);

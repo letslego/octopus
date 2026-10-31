@@ -929,12 +929,12 @@ describe("IssueThreadInteractionCard", () => {
   });
 
   describe("custom request confirmation targets", () => {
-    const prKey = (pull: number) => `github:paperclipai/paperclip-desktop:pull:${pull}`;
+    const prKey = (pull: number) => `github:letslego/octopus-desktop:pull:${pull}`;
     const unlabeled = (pull: number) => ({ type: "custom" as const, key: prKey(pull) });
     const labeled = (pull: number) => ({
       ...unlabeled(pull),
       label: `PR #${pull}`,
-      href: `https://github.com/paperclipai/paperclip-desktop/pull/${pull}`,
+      href: `https://github.com/letslego/octopus-desktop/pull/${pull}`,
     });
     const staleTargetChange = (
       staleTarget: ReturnType<typeof unlabeled>,
@@ -963,7 +963,7 @@ describe("IssueThreadInteractionCard", () => {
         },
       });
       const link = host.querySelector(
-        'a[href="https://github.com/paperclipai/paperclip-desktop/pull/16"]',
+        'a[href="https://github.com/letslego/octopus-desktop/pull/16"]',
       );
       expect(link?.textContent).toContain("PR #16");
       expect(host.textContent).not.toContain("github:paperclipai");

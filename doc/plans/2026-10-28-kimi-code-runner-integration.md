@@ -315,7 +315,7 @@ actual browser generation and a fresh native turn still require the final Dayton
 case. No blocker, timeout, grading, schema or polling change is included.
 
 The six shared Core source/test changes are a separate prerequisite,
-[#18245](https://github.com/paperclipai/paperclip/pull/18245), based on the frozen
+[#18245](https://github.com/letslego/octopus/pull/18245), based on the frozen
 Runner foundation. Product retains its Kimi plan, UI, fixtures and provider files.
 Product contains the real prerequisite ancestry, including queued-input repair
 `5c964f5d3cfd65e493b92c53cfe0c80b0d21f54d`. The final compiled Core must
@@ -505,7 +505,7 @@ The following records describe earlier candidate states and their original
 evidence. The current state above supersedes their next-step and blocker text.
 
 The next shipping prerequisite is now frozen at the existing lock-refresh PR
-[#18185](https://github.com/paperclipai/paperclip/pull/18185), head
+[#18185](https://github.com/letslego/octopus/pull/18185), head
 `9600623783d118a79f8008deb9ab05d80715a15a`. Reconciliation is in progress;
 the earlier master freeze below remains historical. The trusted repository
 policy permits lock changes only through its maintained refresh branch or
@@ -899,8 +899,8 @@ focused HTTP tests hit import/hook timeouts while host load was 63/120 with 92%
 CPU use; their original failures remain retained, without committed deadline
 increases. CI for the corrected source will provide an independent Linux check.
 
-Review branches are published as draft PRs [Runner foundation #18028](https://github.com/paperclipai/paperclip/pull/18028)
-and [product setup #18029](https://github.com/paperclipai/paperclip/pull/18029).
+Review branches are published as draft PRs [Runner foundation #18028](https://github.com/letslego/octopus/pull/18028)
+and [product setup #18029](https://github.com/letslego/octopus/pull/18029).
 The first foundation review was 5/5 with no comments on its exact prior head;
 the corrected final head requires a fresh review. Neither PR is ready for merge
 until required product acceptance and checks pass.

@@ -318,7 +318,7 @@ test("aggregates retained attempts and synthesizes missing cells as infrastructu
     campaignOut: join(root, "campaign.json"),
     source: {
       paperclip: { sha: "a".repeat(40), ref: "refs/heads/master" },
-      evals: { repository: "paperclipai/paperclip-evals", sha: "b".repeat(40) },
+      evals: { repository: "letslego/octopus-evals", sha: "b".repeat(40) },
       workflowRunUrl: "https://example.test/actions/runs/42",
     },
   });

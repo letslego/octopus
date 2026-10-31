@@ -143,7 +143,7 @@ function withCanaryGitFixture(check) {
     git("checkout", "--detach", pinned);
     const env = {
       ...process.env, REPO_ROOT: cwd, SOURCE_SHA: pinned,
-      GITHUB_ACTIONS: "true", GITHUB_REPOSITORY: "paperclipai/paperclip",
+      GITHUB_ACTIONS: "true", GITHUB_REPOSITORY: "letslego/octopus",
       GITHUB_EVENT_NAME: "push", GITHUB_REF: "refs/heads/master",
     };
     const attach = (overrides = {}) => spawnSync("bash", ["--noprofile", "--norc", "-c", canaryAttachmentScript()], {
@@ -789,7 +789,7 @@ test("direct Grok qualification installs the pinned binary and scopes the select
   const workflow = readWorkflow("runner-protocol-live-evals.yml");
   assert.ok(workflow.includes("XAI_API_KEY: ${{ matrix.credentialName == 'XAI_API_KEY' && secrets.XAI_API_KEY || '' }}"));
   assert.ok(workflow.includes("if [ -f packages/paperclip-runner/scripts/provision-grok.mjs ]; then"));
-  assert.ok(workflow.indexOf("sudo node packages/paperclip-runner/scripts/provision-grok.mjs /opt/paperclip/providers/grok/1.0.13/grok") < workflow.indexOf("pnpm --filter @paperclipai/paperclip-runner deploy --prod"));
+  assert.ok(workflow.indexOf("sudo node packages/paperclip-runner/scripts/provision-grok.mjs /opt/paperclip/providers/grok/1.0.13/grok") < workflow.indexOf("pnpm --filter @letslego/octopus-runner deploy --prod"));
   assert.ok(workflow.includes("PAPERCLIP_ACPX_GROK_AUTH_JSON_SECRET: ${{ matrix.credentialName == 'PAPERCLIP_ACPX_GROK_AUTH_JSON_SECRET' && secrets.GROK_AUTH_JSON || '' }}"));
   assert.equal((workflow.match(/secrets\.GROK_AUTH_JSON/gu) ?? []).length, 1);
 });
@@ -897,7 +897,7 @@ test('native dependency caches are target-bound and unmerged master callers cann
   const expression = cache.match(/save-if: \$\{\{ (.+) \}\}/)?.[1];
   assert.ok(expression, 'cache writes need a separate source trust gate');
   const canSave = new Function('github', 'inputs', `return (${expression});`);
-  const github = { repository: 'paperclipai/paperclip', repository_id: '1170821064', event_name: 'push', ref: 'refs/heads/master', sha: 'a'.repeat(40) };
+  const github = { repository: 'letslego/octopus', repository_id: '1170821064', event_name: 'push', ref: 'refs/heads/master', sha: 'a'.repeat(40) };
   assert.equal(canSave(github, { ref: github.sha }), true);
   for (const [overrides, input] of [
     [{}, 'b'.repeat(40)], [{}, ''],
@@ -1006,7 +1006,7 @@ test('native preparation overlaps independent outputs and joins both before reco
     for (const name of ['native', 'typescript']) assert.equal(readFileSync(path.join(root, name + '.finished'), 'utf8'), 'joined');
     assert.equal(JSON.parse(readFileSync(path.join(root, 'native.started'), 'utf8')).cwd, path.join(root, 'packages/paperclip-runner'));
     assert.deepEqual(JSON.parse(readFileSync(path.join(root, 'native.started'), 'utf8')).args, ['build:binary']);
-    assert.deepEqual(JSON.parse(readFileSync(path.join(root, 'typescript.started'), 'utf8')).args, ['--filter', '@paperclipai/paperclip-runner', 'build:typescript']);
+    assert.deepEqual(JSON.parse(readFileSync(path.join(root, 'typescript.started'), 'utf8')).args, ['--filter', '@letslego/octopus-runner', 'build:typescript']);
     const results = result.stdout.split('\n').filter(line => line.startsWith('{')).map(line => JSON.parse(line));
     assert.deepEqual(results.map(item => [item.build, item.status, item.exitCode]), [['typescript', 'fulfilled', 0], ['native', 'fulfilled', 0]]);
   });
@@ -1097,8 +1097,8 @@ test("ARM qualification binds separate product and reusable-workflow revisions e
       const prepared = path.join(root, "prepared");
       const result = spawnSync("/bin/bash", ["-c", script], { cwd: root, encoding: "utf8", env: {
         PATH: `${tools}:${path.dirname(process.execPath)}:/usr/bin:/bin`, RUNNER_TEMP: report,
-        SOURCE_SHA: productSha, TOOLING_SHA: toolingSha, TOOLING_REPOSITORY: "paperclipai/paperclip",
-        TOOLING_WORKFLOW_REF: "paperclipai/paperclip/.github/workflows/release-smoke.yml@refs/heads/qualification",
+        SOURCE_SHA: productSha, TOOLING_SHA: toolingSha, TOOLING_REPOSITORY: "letslego/octopus",
+        TOOLING_WORKFLOW_REF: "letslego/octopus/.github/workflows/release-smoke.yml@refs/heads/qualification",
         TOOLING_WORKFLOW_PATH: ".github/workflows/release-smoke.yml",
         FIXTURE_PRODUCT_HEAD: productHead, FIXTURE_TOOLING_HEAD: toolingHead, FIXTURE_PREPARED: prepared,
         GITHUB_REPOSITORY: "different/caller", GITHUB_SHA: "d".repeat(40),
@@ -1111,7 +1111,7 @@ test("ARM qualification binds separate product and reusable-workflow revisions e
         const identity = JSON.parse(readFileSync(path.join(report, "paperclip-arm-bwrap-prerequisite", "qualification-identity.json"), "utf8"));
         assert.equal(identity.productSourceSha, productSha);
         assert.equal(identity.toolingSourceSha, toolingSha);
-        assert.equal(identity.toolingRepository, "paperclipai/paperclip");
+        assert.equal(identity.toolingRepository, "letslego/octopus");
         assert.equal(identity.toolingWorkflowPath, ".github/workflows/release-smoke.yml");
         assert.equal(identity.helperSha256, createHash("sha256").update(helper).digest("hex"));
       }

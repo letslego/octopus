@@ -125,8 +125,8 @@ export async function exportChatAllure({ root, output, expected, selected }) {
       { name: 'suite', value: 'chat-features' }, { name: 'area', value: 'Chat and collaboration' },
       { name: 'framework', value: 'Paperclip Evals' }, { name: 'tag', value: 'chat-feature-testops' }],
     parameters: [{ name: 'canonicalScenario', value: 'tasks.create-backlog' }, { name: 'model', value: model }, { name: 'environment', value: 'GitHub Actions / AWS' }],
-    links: [{ name: 'GitHub Actions run', type: 'custom', url: `https://github.com/paperclipai/paperclip/actions/runs/${expected.runId}` },
-      { name: 'Evaluated source', type: 'custom', url: `https://github.com/paperclipai/paperclip/commit/${expected.targetSha}` }],
+    links: [{ name: 'GitHub Actions run', type: 'custom', url: `https://github.com/letslego/octopus/actions/runs/${expected.runId}` },
+      { name: 'Evaluated source', type: 'custom', url: `https://github.com/letslego/octopus/commit/${expected.targetSha}` }],
     steps: result.matcherResults.map(check => ({ name: check.matcher.path, status: check.passed ? 'passed' : 'failed', stage: 'finished' })), attachments };
   for (const [key, time] of [['start', result.startedAt], ['stop', result.finishedAt]]) if (Number.isFinite(Date.parse(time))) value[key] = Date.parse(time);
   await writeFile(path.join(output, `${value.uuid}-result.json`), JSON.stringify(value), { flag: 'wx', mode: 0o600 });

@@ -789,17 +789,17 @@ describe("runner E2E catalog", () => {
   it("accepts only complete immutable Daytona digests", () => {
     expect(
       isImmutableDaytonaImage(
-        `ghcr.io/paperclipai/paperclip-daytona-runner@sha256:${"a".repeat(64)}`,
+        `ghcr.io/letslego/octopus-daytona-runner@sha256:${"a".repeat(64)}`,
       ),
     ).toBe(true);
     expect(
       isImmutableDaytonaImage(
-        "ghcr.io/paperclipai/paperclip-daytona-runner@sha256:REPLACE_ME",
+        "ghcr.io/letslego/octopus-daytona-runner@sha256:REPLACE_ME",
       ),
     ).toBe(false);
     expect(
       isImmutableDaytonaImage(
-        "ghcr.io/paperclipai/paperclip-daytona-runner:e2e-latest",
+        "ghcr.io/letslego/octopus-daytona-runner:e2e-latest",
       ),
     ).toBe(false);
   });

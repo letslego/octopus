@@ -2,7 +2,7 @@
 
 Status: worker, producers, and startup/periodic integration implemented; full local and remote acceptance pending.
 Branch: `codex/sleep-48-native-response-presentation`.
-Parent: [#17690](https://github.com/paperclipai/paperclip/pull/17690),
+Parent: [#17690](https://github.com/letslego/octopus/pull/17690),
 `56c3601ea605b333141e86e0a810ed790fb6ce48`.
 
 ## Reason for work

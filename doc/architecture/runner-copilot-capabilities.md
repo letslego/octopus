@@ -165,7 +165,7 @@ or native USD/accounting capability is implied.
 
 Historical v8 qualification checkpoint (2026-09-30): **Copilot profile v8 remains unqualified.** The a8df warm attempt passed all nine Product matchers and daemon invariants, but the supervisor failed final-pack cleanup on an extra executable; the exact orphan was later retired safely and the original failure remains. The earlier 5c69 warm-PID failure is a separate unchanged historical grade. Sidecar rotation per `attach_run` is ACPX authority rotation, separate from daemon continuity. The Daytona denial observed no write but failed its original cancellation fixture after receiving normal provider completion; later checks were not graded. Its database timestamp does not establish that completion was durably observable before Stop, so the earlier ordering inference is withdrawn.
 
-Shutdown ownership [#14730](https://github.com/paperclipai/paperclip/pull/14730), head `d09ed62b6`, has Apex 5/5 and all 52 checks green. Denial settlement [#14733](https://github.com/paperclipai/paperclip/pull/14733), head `1b47b30be`, passes 220 focused tests and E2E typecheck; fresh review and CI are pending. Suite v4 requires a retained pre-dispatch API observation for the normal-completion branch. Neither accepted branch proves Stop reached active work. Neither change has a live qualification pass; final-source verification remains pending. V8 binds the shared ACPX patch under a new digest, rejects v7 sessions, and adds no usage/cost capability. Native per-run USD is unknown.
+Shutdown ownership [#14730](https://github.com/letslego/octopus/pull/14730), head `d09ed62b6`, has Apex 5/5 and all 52 checks green. Denial settlement [#14733](https://github.com/letslego/octopus/pull/14733), head `1b47b30be`, passes 220 focused tests and E2E typecheck; fresh review and CI are pending. Suite v4 requires a retained pre-dispatch API observation for the normal-completion branch. Neither accepted branch proves Stop reached active work. Neither change has a live qualification pass; final-source verification remains pending. V8 binds the shared ACPX patch under a new digest, rejects v7 sessions, and adds no usage/cost capability. Native per-run USD is unknown.
 
 Exact attempt references: warm result `effadec7b6b134e3b31148cf7eea3c2b24d37ee0fc6ce36dbc90ec420b171560`, reconciliation `1ad1788161e34abf7ddcda15e08134a4c80d1f0af176d7b5397ea6dd810dace0`; Daytona denial result `050a239b6d86754d0f0045979b7c343c007729528546b49f069e7396cd167b38`, reconciliation `2ef9834cd53345c03c04bbfec1ad0bba24a2de1d7096d9225acdfa185241b82a`.
 
@@ -414,7 +414,7 @@ Primary external references: [ACP server documentation](https://docs.github.com/
 [denial bypass report #4537](https://github.com/github/copilot-cli/issues/4537),
 and [background completion report #4743](https://github.com/github/copilot-cli/issues/4743).
 The exact pinned implementation takes precedence over moving documentation.
-The [harness priorities report](https://pages.paperclip.ing/2026-09-25-harness-priorities/)
+The [harness priorities report](https://pages.github.com/letslego/octopus/2026-09-25-harness-priorities/)
 defines the requested product outcome. Existing Codex app-server contracts and
 conformance tests are the comparison baseline, especially `turn/steer`,
 `turn/interrupt`, `thread/read`, file changes, user input, and scoped approvals.
@@ -600,8 +600,8 @@ does not verify any GitHub model's availability.
 python3 packages/paperclip-runner/scripts/probe-copilot-acp.py --package-root /path/to/copilot-darwin-arm64/package --scenario deny-write
 python3 packages/paperclip-runner/scripts/probe-copilot-acp.py --package-root /path/to/copilot-darwin-arm64/package --scenario attached-shell
 node --test packages/paperclip-runner/scripts/materialize-copilot-binary.test.mjs packages/paperclip-runner/scripts/build-copilot-distribution.test.mjs
-pnpm --filter @paperclipai/paperclip-runner exec vitest run src/drivers/acpx/copilot-events.test.ts src/drivers/acpx/copilot-profile.test.ts src/drivers/acpx/copilot-evidence.test.ts
-pnpm --filter @paperclipai/paperclip-runner exec vitest run src/drivers/acpx/copilot-extension-adapter.test.ts src/drivers/acpx/copilot-registry.test.ts
+pnpm --filter @letslego/octopus-runner exec vitest run src/drivers/acpx/copilot-events.test.ts src/drivers/acpx/copilot-profile.test.ts src/drivers/acpx/copilot-evidence.test.ts
+pnpm --filter @letslego/octopus-runner exec vitest run src/drivers/acpx/copilot-extension-adapter.test.ts src/drivers/acpx/copilot-registry.test.ts
 ```
 
 Retained real-binary evidence:
@@ -949,7 +949,7 @@ script digests. No additional provider prompt was sent.
 ## Linux image initialize-only proof
 
 The [Linux x64 pack proof](../../packages/paperclip-runner/test/fixtures/copilot-provider-pack-linux-x64-2026-09-28.json)
-uses image `ghcr.io/paperclipai/paperclip-daytona-runner@sha256:5457769683fd310223d3b0d4f1ed9a6cf341bdb16514746b3aaeabca2e888fee`
+uses image `ghcr.io/letslego/octopus-daytona-runner@sha256:5457769683fd310223d3b0d4f1ed9a6cf341bdb16514746b3aaeabca2e888fee`
 from the same source `8aa867b64d5fc2fd62cff110bd000addf5dc54de`. Its platform-specific
 pack digest is `sha256:b11984fe02bd5d5a36b01ed559d2f4c765663df09a46117d3092b1183be08ba4`.
 The verified executable matches the Linux pin, initializes Copilot 1.0.88/ACP 1

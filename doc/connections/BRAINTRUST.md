@@ -6,7 +6,7 @@ qualification. The remaining qualification gaps are listed below.
 
 Braintrust is a P2 resource connection using Paperclip's existing remote MCP
 transport, vault, catalog, access profiles, policy evaluation, run-scoped gateway,
-and audit. Sign-in tokens are never reused as resource tokens; id.paperclip.ing
+and audit. Sign-in tokens are never reused as resource tokens; id.github.com/letslego/octopus
 never stores resource tokens; no connections hub on the ID service.
 
 ## Methods and setup

@@ -234,7 +234,7 @@ comparison axis.
 
 Runner Evals are owned by the Runner/evals maintainers. Definitions, rosters,
 case prompts, and the report program live in the sibling private repository
-`paperclipai/paperclip-evals`; Runner integration, viewer, aggregation, and
+`letslego/octopus-evals`; Runner integration, viewer, aggregation, and
 publication code live under `packages/paperclip-runner` and the
 `runner-protocol-live-evals.yml` workflow. The public-facing report uses the
 same Evalbook renderer and Runner Lab viewer as the trusted report after
@@ -423,7 +423,7 @@ Existing public histories are available at
 [Runner protocol history](https://d1p6rlowie26tp.cloudfront.net/runner-protocol-evals/index.html)
 and [Runner Product E2E history](https://d1p6rlowie26tp.cloudfront.net/runner-e2e/).
 The consolidated eval hub is at
-[pages.paperclip.ing/evals](https://pages.paperclip.ing/evals/).
+[pages.github.com/letslego/octopus/evals](https://pages.github.com/letslego/octopus/evals/).
 
 For a repeatable workflow, use the matching skill: [paperclip-evals](../.agents/skills/paperclip-evals/SKILL.md),
 [add-runner-eval](../.agents/skills/add-runner-eval/SKILL.md), or
@@ -546,8 +546,8 @@ system Bash 3 cannot run this helper. On macOS with Homebrew Bash installed,
 put `$(brew --prefix bash)/bin` first in `PATH` before these commands:
 
 ```sh
-export PAPERCLIP_PAGE_BUCKET=pages.paperclip.ing
-export PAPERCLIP_PAGE_BASE_URL=https://pages.paperclip.ing
+export PAPERCLIP_PAGE_BUCKET=pages.github.com/letslego/octopus
+export PAPERCLIP_PAGE_BASE_URL=https://pages.github.com/letslego/octopus
 export AWS_REGION=us-east-1
 bash .agents/skills/paperclip-page/scripts/publish.sh .paperclip/evals-hub --slug evals --dry-run
 bash .agents/skills/paperclip-page/scripts/publish.sh .paperclip/evals-hub --slug evals

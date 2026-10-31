@@ -653,9 +653,9 @@ test('cancellation during root export stops forwarding and cannot close the atte
 test('hosted workers reject reruns and identity drift before requests, while retained evidence replays offline', async t => {
   const f = await fixture(t);
   f.manifest.campaignId = 'gha-12345-1';
-  f.manifest.hosted = { repository: 'paperclipai/paperclip', runId: '12345', runAttempt: 1, workflowRevision: 'c'.repeat(40) };
+  f.manifest.hosted = { repository: 'letslego/octopus', runId: '12345', runAttempt: 1, workflowRevision: 'c'.repeat(40) };
   await f.save();
-  const context = { GITHUB_ACTIONS: 'true', GITHUB_REPOSITORY: 'paperclipai/paperclip', GITHUB_RUN_ID: '12345',
+  const context = { GITHUB_ACTIONS: 'true', GITHUB_REPOSITORY: 'letslego/octopus', GITHUB_RUN_ID: '12345',
     GITHUB_RUN_ATTEMPT: '1', GITHUB_SHA: 'c'.repeat(40), PAPERCLIP_RUNNER_EVAL_EXECUTION_ID: 'execution-0' };
   let calls = 0;
   const transport = async () => { calls++; return success(); };
@@ -693,7 +693,7 @@ test('hosted context requires a manifest identity and rejects invalid or later-a
     await assert.rejects(f.run(0, transport), /requires a hosted controller identity/);
     delete f.environment[key];
   }
-  const hosted = { repository: 'paperclipai/paperclip', runId: '12345', runAttempt: 1, workflowRevision: 'c'.repeat(40) };
+  const hosted = { repository: 'letslego/octopus', runId: '12345', runAttempt: 1, workflowRevision: 'c'.repeat(40) };
   f.manifest.campaignId = 'gha-12345-1';
   for (const change of [{ repository: '' }, { repository: 'paperclip' }, { runId: 12345 }, { runId: '012345' },
     { runAttempt: 2 }, { workflowRevision: 'master' }, { workflowRevision: ['c'.repeat(40)] }, { unexpected: true }]) {

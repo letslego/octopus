@@ -54,7 +54,7 @@ describe("prepareCodexRuntimeConfig", () => {
       } }) }, codexHome: home,
     });
     const content = await readConfigToml(home);
-    expect(content).toContain('HTTP-Referer = "https://paperclip.ing"');
+    expect(content).toContain('HTTP-Referer = "https://github.com/letslego/octopus"');
     expect(content).toContain('env_key = "ROUTER_KEY"');
     expect(content).toContain('X-Route = "selected"');
     expect(content).toContain('X-Tenant = "TENANT"');

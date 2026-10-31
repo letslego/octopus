@@ -76,7 +76,7 @@ async function main() {
   const hostPrefix = process.env.PAPERCLIP_PAGE_DEFAULT_PREFIX;
   const prepared = await prepareAnnouncementPublish(sourceDirectory, staging, hostPrefix);
   const bucket = process.env.PAPERCLIP_PAGE_BUCKET;
-  const baseUrl = process.env.PAPERCLIP_PAGE_BASE_URL?.replace(/\/+$/, "") ?? "https://pages.paperclip.ing";
+  const baseUrl = process.env.PAPERCLIP_PAGE_BASE_URL?.replace(/\/+$/, "") ?? "https://pages.github.com/letslego/octopus";
   const url = `${baseUrl}/${announcementPublishPrefix(staging, hostPrefix)}/current.json`;
   const parsed = new URL(url);
   if (parsed.protocol !== "https:" || parsed.username || parsed.password || parsed.search || parsed.hash) throw new Error("Invalid public base URL");

@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 import { buildTrace, traceUrl } from "./trace.mjs";
 import { associatedProfilePr, authorizedActors, trustedOwnerIds } from "./authorize.mjs";
 
-const repository = "paperclipai/paperclip";
+const repository = "letslego/octopus";
 const repoPath = `/repos/${repository}`;
 const maxBytes = 32 * 1024 * 1024;
 const gh = (args) => execFileSync("gh", ["api", ...args], { maxBuffer: maxBytes, timeout: 60_000 });

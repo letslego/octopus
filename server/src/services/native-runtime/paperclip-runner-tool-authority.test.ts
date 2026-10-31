@@ -103,7 +103,7 @@ describe("PaperclipRunnerToolAuthority", () => {
 
   it("registers pinned connector definitions without discovery and rejects revoked assignments at use", async () => {
     const connectorAssignments = connectorRuntime.connectorToolDefinitionsForSkills(new Set([
-      "paperclipai/paperclip/slack", "paperclipai/paperclip/browser-use-cloud", "custom/agentmail",
+      "letslego/octopus/slack", "letslego/octopus/browser-use-cloud", "custom/agentmail",
     ]));
     expect(connectorAssignments).toHaveLength(1);
     const authority = new PaperclipRunnerToolAuthority(db, { companyId, agentId, issueId, runId, connectorAssignments });
@@ -313,7 +313,7 @@ describe("PaperclipRunnerToolAuthority", () => {
   });
 
   it("checks the current full wake before mail actions while ordinary tools omit its payload", async () => {
-    const connectorAssignments = connectorRuntime.connectorToolDefinitionsForSkills(new Set(["paperclipai/paperclip/agentmail"]));
+    const connectorAssignments = connectorRuntime.connectorToolDefinitionsForSkills(new Set(["letslego/octopus/agentmail"]));
     const name = connectorAssignments.flatMap(assignment => assignment.tools).find(tool => tool.name.startsWith("agentmail_"))!.name;
     const authority = new PaperclipRunnerToolAuthority(db, { companyId, agentId, issueId, runId, connectorAssignments });
     const [original] = await db.select().from(heartbeatRuns).where(eq(heartbeatRuns.id, runId));

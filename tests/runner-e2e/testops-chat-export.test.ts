@@ -18,7 +18,7 @@ async function fixture() {
   await writeFile(path.join(report, screenshot), png);
   const result = {
     schema: "paperclip.runner-e2e.result/v2", executionId: TESTOPS_CHAT_EXECUTION, suiteId: "chat-features", suiteDefinitionHash: "c".repeat(64),
-    source: { sha: binding.targetSha, ref: "refs/heads/master", workflowRunUrl: `https://github.com/paperclipai/paperclip/actions/runs/${binding.runId}` },
+    source: { sha: binding.targetSha, ref: "refs/heads/master", workflowRunUrl: `https://github.com/letslego/octopus/actions/runs/${binding.runId}` },
     attempt: 1, status: "passed", cleanup: "passed", evidenceValid: true, runIds: ["synthetic-run"],
     profileId: "runner-opencode-deepseek-1017", environmentId: "local", caseId: "create-backlog", provider: "opencode", model: "openrouter/deepseek/deepseek-v4.1-flash-1017", runtimeMode: "native",
     startedAt: "2026-10-30T00:00:00.000Z", finishedAt: "2026-10-30T00:00:01.000Z", durationMs: 1000,

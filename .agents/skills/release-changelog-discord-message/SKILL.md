@@ -70,7 +70,7 @@ Unicode emoji. Discord renders the shortcodes; the changelog file uses prose.
 ```
 :paperclip: :paperclip: :paperclip: CLIPPERS!!! v{VERSION} IS OUT :paperclip: :paperclip: :paperclip:
 
-OFFICIAL TWITTER: https://x.com/papercliping - follow it, report any others
+OFFICIAL TWITTER: https://github.com/letslego/octopus - follow it, report any others
 
 ## Highlights
 
@@ -97,7 +97,7 @@ OFFICIAL TWITTER: https://x.com/papercliping - follow it, report any others
 
 ## WHAT I NEED FROM YOU               (optional — only if there's a real ask)
 
-FOLLOW THE TWITTER: https://x.com/papercliping - that's the only official one
+FOLLOW THE TWITTER: https://github.com/letslego/octopus - that's the only official one
 TELL ME if you're using Paperclip in your business - I want to meet you
 
 ## Community
@@ -119,7 +119,7 @@ ITS TIME TO CLIP :paperclip: :paperclip: :paperclip:
 
 FULL RELEASE NOTES
 
-https://github.com/paperclipai/paperclip/blob/master/releases/v{VERSION}.md
+https://github.com/letslego/octopus/blob/master/releases/v{VERSION}.md
 
 ||@everyone||
 ```
@@ -234,8 +234,8 @@ POST /api/companies/:companyId/cases
     "post_count": 1,
     "target_audience": ["operators", "contributors", "agent-company builders"],
     "links": {
-      "release_notes": "https://github.com/paperclipai/paperclip/blob/master/releases/vYYYY.MDD.P.md",
-      "official_account": "https://x.com/papercliping"
+      "release_notes": "https://github.com/letslego/octopus/blob/master/releases/vYYYY.MDD.P.md",
+      "official_account": "https://github.com/letslego/octopus"
     },
     "review": {
       "needs_human_copy_paste": true,
@@ -334,7 +334,7 @@ and I think we're moving at a pretty good clip :paperclip: :paperclip: :papercli
 
 FULL RELEASE NOTES HERE
 
-https://github.com/paperclipai/paperclip/releases/tag/v2026.403.0
+https://github.com/letslego/octopus/releases/tag/v2026.403.0
 
 ||@everyone||
 ```
@@ -353,7 +353,7 @@ This release has *tons* of quality of life improvements around speed, performanc
 :no_smoking: Blocker dependencies - first-class "wake on blocker resolved" which means now you can have "task graphs" that depend on one another and it's enforced by Paperclip
 :woman_feeding_baby: Parent-child tasks - better support for sub-tasks all around, which makes it much easier to organize your work
 
-And then a million fixes around ux, details, keyboard shortcuts, bug fixes, security fixes, etc. Really you should read the [full release notes here](https://github.com/paperclipai/paperclip/releases/tag/v2026.416.0)
+And then a million fixes around ux, details, keyboard shortcuts, bug fixes, security fixes, etc. Really you should read the [full release notes here](https://github.com/letslego/octopus/releases/tag/v2026.416.0)
 
 ## COMMUNITY
 
@@ -392,7 +392,7 @@ ITS TIME TO CLIP :paperclip: :paperclip: :paperclip:
 
 FULL RELEASE NOTES
 
-https://github.com/paperclipai/paperclip/releases/tag/v2026.416.0
+https://github.com/letslego/octopus/releases/tag/v2026.416.0
 
 ||@everyone||
 ```
@@ -402,7 +402,7 @@ https://github.com/paperclipai/paperclip/releases/tag/v2026.416.0
 ```
 :paperclip: :paperclip: :paperclip: CLIPPERS!!! v2026.427.0 IS OUT :paperclip: :paperclip: :paperclip:
 
-THIS IS THE OFFICIAL TWITTER FOLLOW IT: https://x.com/papercliping
+THIS IS THE OFFICIAL TWITTER FOLLOW IT: https://github.com/letslego/octopus
 
 ## Highlights
 
@@ -441,7 +441,7 @@ I met with the [Wisemen about Paperclip](https://x.com/dotta/status/204514653953
 
 ## WHAT I NEED FROM YOU
 
-FOLLOW THIS TWITTER ACCOUNT: https://x.com/papercliping - that's the only official one, report any others
+FOLLOW THIS TWITTER ACCOUNT: https://github.com/letslego/octopus - that's the only official one, report any others
 
 ## In Summary
 
@@ -453,7 +453,7 @@ ITS TIME TO CLIP :paperclip: :paperclip: :paperclip:
 
 FULL RELEASE NOTES
 
-https://github.com/paperclipai/paperclip/blob/master/releases/v2026.427.0.md
+https://github.com/letslego/octopus/blob/master/releases/v2026.427.0.md
 
 ||@everyone||
 ```

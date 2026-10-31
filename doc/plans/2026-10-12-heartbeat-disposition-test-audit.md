@@ -59,7 +59,7 @@ has identical bytes in both revisions.
 ```sh
 base=ef04ba1592a5932d2d971e09b09467f878572d7a
 candidate=1daaa7496b67c9d38eb7ee4f3eec9e1a3e27cd86
-git fetch https://github.com/paperclipai/paperclip.git "$base" "$candidate"
+git fetch https://github.com/letslego/octopus.git "$base" "$candidate"
 git diff --check "$base" "$candidate"
 git diff --numstat "$base" "$candidate" -- server/src/__tests__/heartbeat-process-recovery.test.ts
 git show "$base":server/src/__tests__/heartbeat-process-recovery.test.ts | shasum -a 256

@@ -35,7 +35,7 @@ Both executable count guards use the shared helper: the hiring scorer and the hi
 
 ## Preserved measurement
 
-The immutable [original and bounded sidecar report](https://github.com/paperclipai/paperclip/blob/8eb517ca1497687237163bdef4dfc4d3332ea916/doc/plans/2026-10-02-hiring-template-live-comparison.md) retains candidate `9f5404ad3aacbe76777952759414d34fd381e674` and historical `296a4df85e8bcc97a160fc78c291b17adb828196`, the identical original fixture digest, 28 actual successful runs, eight automatic completion turns, four successful cleanups and unknown actual charges. It calibrates sidecar v1 with 69 passing tests and records exact original input/grader hashes. The executable repair is a new source/grader revision; it cannot rewrite those measurements or prove performance equivalence.
+The immutable [original and bounded sidecar report](https://github.com/letslego/octopus/blob/8eb517ca1497687237163bdef4dfc4d3332ea916/doc/plans/2026-10-02-hiring-template-live-comparison.md) retains candidate `9f5404ad3aacbe76777952759414d34fd381e674` and historical `296a4df85e8bcc97a160fc78c291b17adb828196`, the identical original fixture digest, 28 actual successful runs, eight automatic completion turns, four successful cleanups and unknown actual charges. It calibrates sidecar v1 with 69 passing tests and records exact original input/grader hashes. The executable repair is a new source/grader revision; it cannot rewrite those measurements or prove performance equivalence.
 
 ## Provider-free verification
 

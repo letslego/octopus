@@ -371,10 +371,10 @@ const actor = { actorType: "user" as const, actorId: "browser-reviewer" };
       const skills = await listPaperclipSkillEntries(fileURLToPath(new URL("../", import.meta.url)), [fileURLToPath(new URL("../../../skills", import.meta.url))]);
       expect(skills.some(skill => skill.runtimeName === "paperclip")).toBe(true);
       expect(skills.some(skill => ["browser-use", "browser-use-cloud"].includes(skill.runtimeName))).toBe(false);
-      const base = { paperclipSkillSync: { desiredSkills: ["paperclipai/paperclip/browser-use", "paperclipai/paperclip/browser-use-cloud"] } };
+      const base = { paperclipSkillSync: { desiredSkills: ["letslego/octopus/browser-use", "letslego/octopus/browser-use-cloud"] } };
       const unassigned = await applyConnectorSkills(base, [
-        { key: "paperclipai/paperclip/browser-use", runtimeName: "browser-use", source: "/retired-browser-skill" },
-        { key: "paperclipai/paperclip/browser-use-cloud", runtimeName: "browser-use-cloud", source: "/unassigned-cloud-skill" },
+        { key: "letslego/octopus/browser-use", runtimeName: "browser-use", source: "/retired-browser-skill" },
+        { key: "letslego/octopus/browser-use-cloud", runtimeName: "browser-use-cloud", source: "/unassigned-cloud-skill" },
         { key: "custom/browser-use", runtimeName: "browser-use", source: "/another-browser-skill" },
       ], []);
       expect(unassigned.paperclipRuntimeSkills).toEqual([{ key: "custom/browser-use", runtimeName: "browser-use", source: "/another-browser-skill" }]);
@@ -394,7 +394,7 @@ const actor = { actorType: "user" as const, actorId: "browser-reviewer" };
       expect(await resolveConnectorAssignments(db, { ...f.binding, agentId: unassignedAgent.id })).toEqual([]);
       expect(await resolveConnectorAssignments(db, { ...f.binding, companyId: randomUUID() })).toEqual([]);
       const assignments = await resolveConnectorAssignments(db, f.binding);
-      expect(assignments).toMatchObject([{ key: "browser-use-cloud", skillKey: "paperclipai/paperclip/browser-use-cloud", resources: [{ connectionId: f.connection.connectionId }] }]);
+      expect(assignments).toMatchObject([{ key: "browser-use-cloud", skillKey: "letslego/octopus/browser-use-cloud", resources: [{ connectionId: f.connection.connectionId }] }]);
       const config = await applyConnectorSkills({}, [], assignments);
       const skill = config.paperclipRuntimeSkills[0];
       expect(skill.runtimeName).toBe("browser-use-cloud");

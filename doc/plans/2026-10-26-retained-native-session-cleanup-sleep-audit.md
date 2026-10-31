@@ -477,7 +477,7 @@ Nothing in this stack is merged or authorized for merge.
 
 ## Published PR and CI repair checkpoint
 
-Draft [#17717](https://github.com/paperclipai/paperclip/pull/17717) was published
+Draft [#17717](https://github.com/letslego/octopus/pull/17717) was published
 at `8c62a6b0c0c381326ab94fd5c75c78e0dd426e1a`, based on #17709. Workspace
 typecheck and build passed there. Greptile reviewed that exact head at 5/5 with
 no actionable findings. CI run `40323191795` found three failures:

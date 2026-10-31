@@ -201,7 +201,7 @@ account setup; their subsequent local proof appears above. This is a manual
 Product E2E attempt, not a full eval campaign.
 
 The immutable sandbox image is
-`ghcr.io/paperclipai/paperclip-daytona-runner@sha256:b782947dc9738038570308686858dfb37fd731aba2f82944b6bb665a419e2f24`.
+`ghcr.io/letslego/octopus-daytona-runner@sha256:b782947dc9738038570308686858dfb37fd731aba2f82944b6bb665a419e2f24`.
 The remote runner binary was extracted from that image (SHA-256
 `5067194e4a4eff0946e312b162e78a46184dae49c29f5699be81fec6cfd0b9d7`).
 The first attempt failed before provider startup because a macOS host needs

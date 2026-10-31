@@ -42,11 +42,11 @@ export const Commit: Story = {
     author: "Codie",
     updatedAt: "Sep 26, 2026",
     sha: "1c3c9ddfddc755a4c45b3644d3d4b21abcdde43c",
-    repository: "paperclipai/paperclip",
+    repository: "letslego/octopus",
     branch: "fix/personal-keyboard-shortcut-preference",
     additions: 12,
     deletions: 8,
     filesChanged: 1,
-    url: "https://github.com/paperclipai/paperclip/commit/1c3c9ddfddc755a4c45b3644d3d4b21abcdde43c",
+    url: "https://github.com/letslego/octopus/commit/1c3c9ddfddc755a4c45b3644d3d4b21abcdde43c",
   },
 };

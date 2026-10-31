@@ -116,7 +116,7 @@ describe("gemini execute", () => {
           cwd: workspace,
           env: { HOME: configuredHome },
           paperclipRuntimeSkills: [{
-            key: "paperclipai/paperclip/paperclip",
+            key: "letslego/octopus/paperclip",
             runtimeName: "paperclip",
             source: skillSource,
           }],

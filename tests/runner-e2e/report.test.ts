@@ -389,7 +389,7 @@ describe("runner E2E report aggregation", () => {
           GITHUB_SHA: "trusted-default-workflow-sha",
           GITHUB_REF: "refs/heads/master",
           GITHUB_SERVER_URL: "https://github.com",
-          GITHUB_REPOSITORY: "paperclipai/paperclip",
+          GITHUB_REPOSITORY: "letslego/octopus",
           GITHUB_RUN_ID: "123456",
           PAPERCLIP_RUNNER_E2E_HISTORY_PUBLIC_BASE_URL:
             "https://reports.example.test/",
@@ -412,7 +412,7 @@ describe("runner E2E report aggregation", () => {
         sha: "0123456789abcdef0123456789abcdef01234567",
         ref: "refs/heads/fix/runner-paid-source-attribution",
         workflowRunUrl:
-          "https://github.com/paperclipai/paperclip/actions/runs/123456",
+          "https://github.com/letslego/octopus/actions/runs/123456",
       },
     });
     expect(normalized.billing).toMatchObject({
@@ -431,7 +431,7 @@ describe("runner E2E report aggregation", () => {
         sha: "0123456789abcdef0123456789abcdef01234567",
         ref: "refs/heads/fix/runner-paid-source-attribution",
         workflowRunUrl:
-          "https://github.com/paperclipai/paperclip/actions/runs/123456",
+          "https://github.com/letslego/octopus/actions/runs/123456",
       },
     });
     const dashboard = await readFile(
@@ -524,10 +524,10 @@ describe("runner E2E report aggregation", () => {
       "[Open the exact interactive campaign report](https://reports.example.test/runner-e2e/campaigns/gha-123456-1/index.html)",
     );
     expect(summary).toContain(
-      "[Open the workflow run and per-cell job logs](https://github.com/paperclipai/paperclip/actions/runs/123456)",
+      "[Open the workflow run and per-cell job logs](https://github.com/letslego/octopus/actions/runs/123456)",
     );
     expect(summary).toContain(
-      "[Download the merged report and per-cell evidence](https://github.com/paperclipai/paperclip/actions/runs/123456#artifacts)",
+      "[Download the merged report and per-cell evidence](https://github.com/letslego/octopus/actions/runs/123456#artifacts)",
     );
     expect(summary).toContain(
       `[core-compatibility.${executionId}](https://reports.example.test/runner-e2e/campaigns/gha-123456-1/index.html#execution-core-compatibility.${executionId})`,
@@ -765,7 +765,7 @@ it("retains selector-approved successes and their spending when only failed work
   cleanupDirectories.push(root);
   const artifactRoot = path.join(root, "downloaded"), selectedRoot = path.join(root, "selected");
   const executions = ["core-compatibility.runner-codex.local.message-marker", "core-compatibility.runner-claude.local.message-marker"];
-  const source = { sha: "a".repeat(40), ref: "master", workflowRunUrl: "https://github.com/paperclipai/paperclip/actions/runs/12345" };
+  const source = { sha: "a".repeat(40), ref: "master", workflowRunUrl: "https://github.com/letslego/octopus/actions/runs/12345" };
   for (const [index, executionId] of executions.entries()) {
     const workflowAttempt = index + 1;
     const artifactName = `runner-e2e-12345-${workflowAttempt}-${executionId}`;

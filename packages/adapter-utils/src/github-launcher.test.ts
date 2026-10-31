@@ -114,7 +114,7 @@ process.exit(result.status ?? 98);
     await exec(path.join(bin, "git"), ["add", "work.txt"], { cwd: root, env });
     await exec(path.join(bin, "git"), ["commit", "-m", "Save local work"], { cwd: root, env });
     expect((await exec("git", ["-C", root, "log", "-1", "--format=%an <%ae>|%cn <%ce>"])).stdout.trim())
-      .toBe("Paperclip <noreply@paperclip.ing>|Paperclip <noreply@paperclip.ing>");
+      .toBe("Paperclip <noreply@github.com/letslego/octopus>|Paperclip <noreply@github.com/letslego/octopus>");
     expect((await exec("git", ["-C", root, "show", "HEAD:work.txt"])).stdout).toBe("saved work\n");
     await expect(exec("git", ["-C", root, "config", "--local", "--get", "user.name"])).rejects.toThrow();
     await expect(exec("git", ["-C", root, "config", "--local", "--get", "user.email"])).rejects.toThrow();
@@ -130,8 +130,8 @@ process.exit(result.status ?? 98);
       GH_TOKEN: "host-token", GIT_AUTHOR_NAME: "Host", GIT_COMMITTER_NAME: "Host",
     }, { url: "", token: "" }), PATH: `${bin}:${process.env.PATH}` };
     const git = async (...args: string[]) => (await exec(path.join(bin, "git"), args, { cwd: root, env })).stdout.trim();
-    expect(await git("var", "GIT_AUTHOR_IDENT")).toMatch(/^Paperclip <noreply@paperclip.ing>/);
-    expect(await git("var", "GIT_COMMITTER_IDENT")).toMatch(/^Paperclip <noreply@paperclip.ing>/);
+    expect(await git("var", "GIT_AUTHOR_IDENT")).toMatch(/^Paperclip <noreply@github.com/letslego/octopus>/);
+    expect(await git("var", "GIT_COMMITTER_IDENT")).toMatch(/^Paperclip <noreply@github.com/letslego/octopus>/);
     if (identitySource === "repository") {
       await git("config", "user.name", "Local Author");
       await git("config", "user.email", "local@example.test");
@@ -324,7 +324,7 @@ process.stdout.write(JSON.stringify({identity, token:process.env.GH_TOKEN ?? nul
     await git("config", "--unset", "user.email");
     await git("commit", "--allow-empty", "-m", "Default identity after revocation");
     expect(await git("log", "-1", "--format=%an <%ae>|%cn <%ce>"))
-      .toBe("Paperclip <noreply@paperclip.ing>|Paperclip <noreply@paperclip.ing>");
+      .toBe("Paperclip <noreply@github.com/letslego/octopus>|Paperclip <noreply@github.com/letslego/octopus>");
     expect(await git("status", "--porcelain")).toBe(""); // unrelated public/local Git still works
     expect(env.GH_TOKEN).toBe("");
     expect(env.GIT_AUTHOR_NAME).toBe("");

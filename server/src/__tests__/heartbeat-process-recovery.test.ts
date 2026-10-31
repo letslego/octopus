@@ -118,7 +118,7 @@ import { NativeRunnerOwnershipUnverifiedError } from "../services/native-runtime
 import { nativeCompletionSource } from "../services/native-runtime/completion-contracts.js";
 import { nativeCompletionFeedback } from "../services/native-runtime/native-completion-feedback.js";
 import type { PrpStructuredRunResult } from "../vendor/paperclip-runner/index.js";
-import { buildNativeModelEnvelope } from "@paperclipai/paperclip-runner";
+import { buildNativeModelEnvelope } from "@letslego/octopus-runner";
 import {
   CHAT_CONTROL_RECOVERY_ADMISSION_KEY,
   CHAT_CONTROL_RECOVERY_STOP_CODE,

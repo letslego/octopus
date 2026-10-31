@@ -1,15 +1,15 @@
 {
   "name": "@paperclipai/plugin-boxd",
   "version": "0.1.0",
-  "description": "boxd sandbox provider plugin for Paperclip environments",
+  "description": "boxd sandbox provider plugin for Octopus environments",
   "license": "MIT",
-  "homepage": "https://github.com/paperclipai/paperclip",
+  "homepage": "https://github.com/letslego/octopus",
   "bugs": {
-    "url": "https://github.com/paperclipai/paperclip/issues"
+    "url": "https://github.com/letslego/octopus/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/paperclipai/paperclip",
+    "url": "https://github.com/letslego/octopus",
     "directory": "packages/plugins/sandbox-providers/boxd"
   },
   "type": "module",

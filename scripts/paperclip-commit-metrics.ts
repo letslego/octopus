@@ -7,7 +7,7 @@ import { promisify } from "node:util";
 
 const execFileAsync = promisify(execFile);
 
-const DEFAULT_QUERY = "\"Co-Authored-By: Paperclip <noreply@paperclip.ing>\"";
+const DEFAULT_QUERY = "\"Co-Authored-By: Paperclip <noreply@github.com/letslego/octopus>\"";
 const DEFAULT_CACHE_FILE = path.resolve("data/paperclip-commit-metrics-cache.json");
 const DEFAULT_SEARCH_START = "2008-01-01T00:00:00Z";
 const SEARCH_WINDOW_LIMIT = 900;
@@ -15,7 +15,7 @@ const MIN_WINDOW_MS = 60_000;
 const DEFAULT_STATS_FETCH_LIMIT = 250;
 const DEFAULT_STATS_CONCURRENCY = 4;
 const DEFAULT_SEARCH_FIELD = "committer-date";
-const PAPERCLIP_EMAIL = "noreply@paperclip.ing";
+const PAPERCLIP_EMAIL = "noreply@github.com/letslego/octopus";
 const PAPERCLIP_NAME = "paperclip";
 
 interface CliOptions {

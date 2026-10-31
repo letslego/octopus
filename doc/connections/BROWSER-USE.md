@@ -57,7 +57,7 @@ revoked access means no skill. The run-scoped bundle exposes its short descripti
 for discovery and contains the detailed `SKILL.md` for using this connection.
 Adapters that cannot isolate skill files receive the same authorized instructions
 in their run context. Nothing is added to an agent's saved skill preferences.
-Retired `paperclipai/paperclip/browser-use` selections are stripped from runtime
+Retired `letslego/octopus/browser-use` selections are stripped from runtime
 overlays; unrelated browser skills keep their own names and behavior.
 The idempotent migration updates pre-release app/connection and financial keys
 to `browser-use-cloud` without replacing credentials, grants, or browser records.
@@ -177,7 +177,7 @@ The live test-drive used a fresh
 database with one company, one agent and one task; it contains no cloned inbox or
 task history. The connection was configured through the normal setup wizard and
 given a $1 per-run limit with fresh browsers. Browser Use completed a real v4 run
-that explored `paperclip.ing`, visited About and returned to the homepage. The
+that explored `github.com/letslego/octopus`, visited About and returned to the homepage. The
 recorded run cost was $0.01. The completed browser was visible in Paperclip's
 Browser tab, and manual address-bar navigation and Back worked inside the iframe.
 Keep open renewed the idle countdown. The initial blank viewer recovered after a
@@ -344,7 +344,7 @@ browser** if another live session exists, without starting another paid run.
 On 2026-09-29 the same provider iframe rendered successfully in Chrome, while
 Codex's embedded browser left both the provider and a plain example.com iframe
 at about:blank. After reconnecting to the updated test-drive, the embedded viewer
-also loaded and displayed paperclip.ing. The new-session selection and automatic
+also loaded and displayed github.com/letslego/octopus. The new-session selection and automatic
 presence renewal were verified there with the same hosted session; no replacement
 paid run was needed.
 
@@ -355,7 +355,7 @@ renewed the deadline automatically. Closing/reopening the tab selected and rende
 that same session. Proof was captured in the isolated test-drive.
 
 Second hands-on pass reproduced a stale closed tab and a viewer that required
-manual reconnect. A fresh composer request then opened paperclip.ing automatically
+manual reconnect. A fresh composer request then opened github.com/letslego/octopus automatically
 and stayed visible after completion, switching tabs and reloading the task. The
 original stalled-navigation cause remains unproven; the bounded automatic retry
 and closed-tab recovery cover those observed failure paths. Recovery was exercised

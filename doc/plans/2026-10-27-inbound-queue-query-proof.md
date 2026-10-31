@@ -165,4 +165,4 @@ explicit follower deadline. The final quiet comparison passes.
 The first CI head failed e2e shard 3 in `agent-chat-projects` cleanup: cancelling
 a heartbeat run timed out on a row lock and returned HTTP 500. This is outside
 the changed queue selector. The final head must still pass that check. The
-original log remains at https://github.com/paperclipai/paperclip/actions/runs/40624302918/job/122605509182.
+original log remains at https://github.com/letslego/octopus/actions/runs/40624302918/job/122605509182.

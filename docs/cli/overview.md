@@ -3,12 +3,12 @@ title: CLI Overview
 summary: CLI installation and setup
 ---
 
-The Paperclip CLI handles instance setup, diagnostics, and control-plane operations.
+The Octopus CLI handles instance setup, diagnostics, and control-plane operations.
 
 ## Usage
 
 ```sh
-pnpm paperclipai --help
+pnpm octopus --help
 ```
 
 ## Global Options
@@ -17,7 +17,7 @@ All commands support:
 
 | Flag | Description |
 |------|-------------|
-| `--data-dir <path>` | Local Paperclip data root (isolates from `~/.paperclip`) |
+| `--data-dir <path>` | Local Octopus data root (isolates from `~/.paperclip`) |
 | `--api-base <url>` | API base URL |
 | `--api-key <token>` | API authentication token |
 | `--context <path>` | Context file path |
@@ -29,7 +29,7 @@ Company-scoped commands also accept `--company-id <id>`.
 For clean local instances, pass `--data-dir` on the command you run:
 
 ```sh
-npx paperclipai run --data-dir ./tmp/paperclip-dev
+npx octopus run --data-dir ./tmp/paperclip-dev
 ```
 
 ## Context Profiles
@@ -38,33 +38,33 @@ Store defaults to avoid repeating flags:
 
 ```sh
 # Set defaults
-npx paperclipai context set --api-base http://localhost:3100 --company-id <id>
+npx octopus context set --api-base http://localhost:3100 --company-id <id>
 
 # View current context
-pnpm paperclipai context show
+pnpm octopus context show
 
 # List profiles
-pnpm paperclipai context list
+pnpm octopus context list
 
 # Switch profile
-npx paperclipai context use default
+npx octopus context use default
 ```
 
 To avoid storing secrets in context, use an env var:
 
 ```sh
-npx paperclipai context set --api-key-env-var-name PAPERCLIP_API_KEY
+npx octopus context set --api-key-env-var-name PAPERCLIP_API_KEY
 export PAPERCLIP_API_KEY=...
 ```
 
-Secret operations are available under `paperclipai secrets`:
+Secret operations are available under `octopus secrets`:
 
 ```sh
-npx paperclipai secrets declarations --company-id <company-id> --kind secret
-npx paperclipai secrets create --company-id <company-id> --name anthropic-api-key --value-env ANTHROPIC_API_KEY
-npx paperclipai secrets link --company-id <company-id> --name prod-stripe-key --provider aws_secrets_manager --external-ref <provider-ref>
-npx paperclipai secrets doctor --company-id <company-id>
-npx paperclipai secrets migrate-inline-env --company-id <company-id> --apply
+npx octopus secrets declarations --company-id <company-id> --kind secret
+npx octopus secrets create --company-id <company-id> --name anthropic-api-key --value-env ANTHROPIC_API_KEY
+npx octopus secrets link --company-id <company-id> --name prod-stripe-key --provider aws_secrets_manager --external-ref <provider-ref>
+npx octopus secrets doctor --company-id <company-id>
+npx octopus secrets migrate-inline-env --company-id <company-id> --apply
 ```
 
 Context is stored at `~/.paperclip/context.json`.

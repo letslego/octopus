@@ -5,9 +5,9 @@ import { validateChatTestOpsDispatch } from "./testops-chat-dispatch.js";
 
 const workflow = parse(readFileSync(new URL("../../.github/workflows/chat-feature-testops.yml", import.meta.url), "utf8"));
 function context() {
-  return { env: { GITHUB_ACTIONS: "true", GITHUB_EVENT_NAME: "workflow_dispatch", GITHUB_REPOSITORY: "paperclipai/paperclip", GITHUB_REF: "refs/heads/master",
-    GITHUB_WORKFLOW_REF: "paperclipai/paperclip/.github/workflows/chat-feature-testops.yml@refs/heads/master", GITHUB_SHA: "a".repeat(40), GITHUB_RUN_ID: "12345", GITHUB_RUN_ATTEMPT: "1", GITHUB_ACTOR_ID: "123", TESTOPS_ALLOWED_ACTOR_IDS: "[123]" },
-    event: { repository: { full_name: "paperclipai/paperclip", private: false, default_branch: "master" }, ref: "refs/heads/master", sender: { id: 123 }, inputs: { ALLURE_JOB_RUN_ID: "456" } as Record<string, string> } };
+  return { env: { GITHUB_ACTIONS: "true", GITHUB_EVENT_NAME: "workflow_dispatch", GITHUB_REPOSITORY: "letslego/octopus", GITHUB_REF: "refs/heads/master",
+    GITHUB_WORKFLOW_REF: "letslego/octopus/.github/workflows/chat-feature-testops.yml@refs/heads/master", GITHUB_SHA: "a".repeat(40), GITHUB_RUN_ID: "12345", GITHUB_RUN_ATTEMPT: "1", GITHUB_ACTOR_ID: "123", TESTOPS_ALLOWED_ACTOR_IDS: "[123]" },
+    event: { repository: { full_name: "letslego/octopus", private: false, default_branch: "master" }, ref: "refs/heads/master", sender: { id: 123 }, inputs: { ALLURE_JOB_RUN_ID: "456" } as Record<string, string> } };
 }
 it("admits the actual TestOps service input and only the closed metadata bootstrap alternative", () => {
   const f = context(); expect(validateChatTestOpsDispatch(f.env, f.event, 123).operation).toBe("evaluate");

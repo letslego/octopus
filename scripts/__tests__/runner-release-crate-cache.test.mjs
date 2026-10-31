@@ -47,12 +47,12 @@ const RUST_RESTORE_STEP = "Restore Runner Rust dependencies (read only)";
 // one runs cargo through. The crate must be restored and marked before it.
 const READERS = [
   ["typecheck_release_registry", "run: pnpm run typecheck:build-gaps"],
-  ["verify_paperclip_runner", "run: pnpm --filter @paperclipai/paperclip-runner ${{ matrix.command }}"],
+  ["verify_paperclip_runner", "run: pnpm --filter @letslego/octopus-runner ${{ matrix.command }}"],
   ["build", "run: pnpm build"],
   ["canary_dry_run", "- name: Release canary dry run via release.sh internal build"],
 ];
 
-const WRITER_GATE = "matrix.lane == 'rust' && github.repository == 'paperclipai/paperclip' && github.event_name == 'push' && github.ref == 'refs/heads/master' && inputs.ref == github.sha";
+const WRITER_GATE = "matrix.lane == 'rust' && github.repository == 'letslego/octopus' && github.event_name == 'push' && github.ref == 'refs/heads/master' && inputs.ref == github.sha";
 
 const expectedPathBlock = `          path: |\n${CACHED_PATHS.map((entry) => `            ${entry}\n`).join("")}`;
 const expectedKey = `key: runner-release-crate-v1-\${{ steps.runner_release_crate_key.outputs.scope }}-\${{ hashFiles(${HASHED_INPUTS.map((entry) => `'${entry}'`).join(", ")}) }}`;

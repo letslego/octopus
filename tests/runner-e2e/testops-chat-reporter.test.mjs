@@ -6,9 +6,9 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { verifySelectionFile, reporter, parseOfficialBootstrapContext } from './testops-chat-reporter.mjs';
 import { executionId, scenario, fullName } from './chat-feature-testops-api.mjs';
-const context = { GITHUB_REPOSITORY: 'paperclipai/paperclip', GITHUB_REF: 'refs/heads/master', GITHUB_EVENT_NAME: 'workflow_dispatch',
+const context = { GITHUB_REPOSITORY: 'letslego/octopus', GITHUB_REF: 'refs/heads/master', GITHUB_EVENT_NAME: 'workflow_dispatch',
   GITHUB_RUN_ATTEMPT: '1', GITHUB_SHA: 'a'.repeat(40), GITHUB_RUN_ID: '123', ALLURE_JOB_RUN_ID: '9',
-  GITHUB_WORKFLOW_REF: 'paperclipai/paperclip/.github/workflows/chat-feature-testops.yml@refs/heads/master' };
+  GITHUB_WORKFLOW_REF: 'letslego/octopus/.github/workflows/chat-feature-testops.yml@refs/heads/master' };
 async function fixture(t, change = {}) {
   const root = await realpath(await mkdtemp(path.join(tmpdir(), 'testops-selection-')));
   t.after(() => rm(root, { recursive: true }));
@@ -56,7 +56,7 @@ test('actual upload facade copies authenticated workspace bytes to owned temp be
   assert.equal(await reporter('upload', root, { ...f.env, RUNNER_TEMP: temporary }), 0);
   assert.deepEqual(await readFile(path.join(temporary, 'chat-testops-authenticated-selection.json')), await readFile(f.file));
   const exported = JSON.parse(await readFile(path.join(temporary, 'chat-testops-upload-state', 'export.json')));
-  const jobRun = { id: 9, job: { id: 7, type: 'github' }, launchId: 10, stage: 'finished', url: 'https://github.com/paperclipai/paperclip/actions/runs/123' };
+  const jobRun = { id: 9, job: { id: 7, type: 'github' }, launchId: 10, stage: 'finished', url: 'https://github.com/letslego/octopus/actions/runs/123' };
   const fetchImpl = async (url, options) => {
     const parsed = new URL(url), route = parsed.pathname;
     let value;
@@ -67,7 +67,7 @@ test('actual upload facade copies authenticated workspace bytes to owned temp be
       else if (route === '/api/launch/10') value = { id: 10, projectId: 1 };
       else if (route === '/api/testresult') value = { content: [{ id: 45, testCaseId: 91 }], totalElements: 1, totalPages: 1 };
       else if (route === '/api/testresult/45') value = { id: 45, projectId: 1, launchId: 10, testCaseId: 91, fullName, jobRun, status: 'passed',
-        links: [{ url: jobRun.url }, { url: `https://github.com/paperclipai/paperclip/commit/${context.GITHUB_SHA}` }] };
+        links: [{ url: jobRun.url }, { url: `https://github.com/letslego/octopus/commit/${context.GITHUB_SHA}` }] };
       else if (route === '/api/testresult/attachment') value = { content: exported.attachmentMetadata.map((row, i) => ({ ...row, id: i + 1 })), totalElements: exported.attachmentMetadata.length, totalPages: 1 };
       else assert.fail(route);
     }
@@ -87,13 +87,13 @@ test('actual launch-plan facade performs metadata-only plan launch once and exit
   const fetchImpl = async (url, options) => {
     const route = new URL(url).pathname, method = options.method; calls.push({ route, method });
     const response = value => ({ ok: true, status: 200, json: async () => value, text: async () => JSON.stringify(value) });
-    if (route === '/repos/paperclipai/paperclip') return response({ full_name: 'paperclipai/paperclip', private: false, default_branch: 'master' });
-    if (route === '/repos/paperclipai/paperclip/actions/workflows/chat-feature-testops.yml') return response({ id: 99, path: '.github/workflows/chat-feature-testops.yml', state: 'active' });
-    if (route === '/repos/paperclipai/paperclip/actions/runs/123') return response({ id: 123, workflow_id: 99, run_attempt: 1, run_number: 2, head_sha: context.GITHUB_SHA, head_branch: 'master', event: 'workflow_dispatch', repository: { full_name: 'paperclipai/paperclip', private: false, default_branch: 'master' }, actor: { id: 34892728 }, triggering_actor: { id: 34892728 } });
+    if (route === '/repos/letslego/octopus') return response({ full_name: 'letslego/octopus', private: false, default_branch: 'master' });
+    if (route === '/repos/letslego/octopus/actions/workflows/chat-feature-testops.yml') return response({ id: 99, path: '.github/workflows/chat-feature-testops.yml', state: 'active' });
+    if (route === '/repos/letslego/octopus/actions/runs/123') return response({ id: 123, workflow_id: 99, run_attempt: 1, run_number: 2, head_sha: context.GITHUB_SHA, head_branch: 'master', event: 'workflow_dispatch', repository: { full_name: 'letslego/octopus', private: false, default_branch: 'master' }, actor: { id: 34892728 }, triggering_actor: { id: 34892728 } });
     if (route === '/api/uaa/oauth/token') return response({ access_token: 'SYNTHETIC_TOKEN' });
     if (route === '/api/testcase/91') return response({ id: 91, projectId: 1, fullName, automated: true });
     if (route === '/api/testplan/8') return response({ id: 8, projectId: 1, name: 'Chat feature evals', testCasesCount: 1, treeSelection: { leafsInclude: [91] } });
-    if (route === '/api/job/7') return response({ id: 7, type: 'github', url: 'https://github.com/paperclipai/paperclip/actions/workflows/chat-feature-testops.yml', parameters: [{ id: 17, value: 'evaluate' }] });
+    if (route === '/api/job/7') return response({ id: 7, type: 'github', url: 'https://github.com/letslego/octopus/actions/workflows/chat-feature-testops.yml', parameters: [{ id: 17, value: 'evaluate' }] });
     if (route === '/api/integration/2/project/1') return response({ id: 2, projectId: 1, info: { type: 'github' }, disabled: false });
     if (route === '/api/environment/17') return response({ id: 17, name: 'operation' });
     if (route === '/api/testplan/8/job') return response([{ job: { id: 7, parameters: [{ id: 17, value: 'evaluate' }] }, testCasesCount: 1 }]);
@@ -122,9 +122,9 @@ test('actual launch caller rejects five own-run contradictions before TestOps au
       let testopsCalls = 0;
       const fetchImpl = async url => {
         if (new URL(url).hostname !== 'api.github.com') { testopsCalls++; throw new Error('must not reach TestOps'); }
-        const value = url.endsWith('/repos/paperclipai/paperclip') ? { full_name: 'paperclipai/paperclip', private: false, default_branch: 'master' } : url.includes('/actions/workflows/') ? { id: 99, path: '.github/workflows/chat-feature-testops.yml', state: 'active' }
+        const value = url.endsWith('/repos/letslego/octopus') ? { full_name: 'letslego/octopus', private: false, default_branch: 'master' } : url.includes('/actions/workflows/') ? { id: 99, path: '.github/workflows/chat-feature-testops.yml', state: 'active' }
           : { id: 123, workflow_id: 99, run_attempt: 1, run_number: 2, head_sha: context.GITHUB_SHA, head_branch: 'master', event: 'workflow_dispatch',
-            repository: { full_name: 'paperclipai/paperclip', private: false, default_branch: 'master' }, actor: { id: 34892728 }, triggering_actor: { id: 34892728 }, ...changes };
+            repository: { full_name: 'letslego/octopus', private: false, default_branch: 'master' }, actor: { id: 34892728 }, triggering_actor: { id: 34892728 }, ...changes };
         return { ok: true, text: async () => JSON.stringify(value) };
       };
       assert.equal(await reporter('launch-plan', undefined, { ...f.env, RUNNER_TEMP: temporary, GITHUB_EVENT_PATH: eventPath,
@@ -156,9 +156,9 @@ function bootstrapContextFetch(change = {}) {
     else {
       assert.equal(options.method, 'GET');
       if (route === '/api/jobrun/9') value = { id: 9, job: { id: 7, type: 'github' }, launchId: 10,
-        url: 'https://github.com/paperclipai/paperclip/actions/runs/123', ...change };
+        url: 'https://github.com/letslego/octopus/actions/runs/123', ...change };
       else if (route === '/api/launch/10') value = { id: 10, projectId: 1 };
-      else if (route === '/api/job/7') value = { id: 7, type: 'github', url: 'https://github.com/paperclipai/paperclip/actions/workflows/99',
+      else if (route === '/api/job/7') value = { id: 7, type: 'github', url: 'https://github.com/letslego/octopus/actions/workflows/99',
         parameters: [{ id: 17, value: 'bootstrap' }] };
       else if (route === '/api/environment/17') value = { id: 17, name: 'operation' };
       else assert.fail(route);
@@ -237,7 +237,7 @@ test('post-watch wrong original operation or extra source input stops before off
 });
 
 test('post-watch foreign backend binding returns safe nonzero and preserves original job evidence', async t => {
-  const f = await bootstrapContextFixture(t), server = bootstrapContextFetch({ url: 'https://github.com/paperclipai/paperclip/actions/runs/999' });
+  const f = await bootstrapContextFixture(t), server = bootstrapContextFetch({ url: 'https://github.com/letslego/octopus/actions/runs/999' });
   const result = await captureSafeErrors(() => reporter('bootstrap-context', undefined, f.env, server.fetchImpl,
     async () => ({ stdout: 'ALLURE_JOB_RUN_ID=9\nALLURE_LAUNCH_ID=10\n' })));
   assert.equal(result.value, 1); assert.equal(JSON.parse(await readFile(path.join(f.state, 'registration-failure.json'))).code, 'chat_testops_jobrun_mismatch');

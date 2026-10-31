@@ -79,7 +79,7 @@ test("Hermes keeps the operational Paperclip skill linked after an empty replace
       config: {
         env: { HOME: home },
         paperclipRuntimeSkills: [{
-          key: "paperclipai/paperclip/paperclip",
+          key: "letslego/octopus/paperclip",
           runtimeName: "paperclip",
           source,
         }],
@@ -87,7 +87,7 @@ test("Hermes keeps the operational Paperclip skill linked after an empty replace
       },
     }, []);
 
-    expect(snapshot?.desiredSkills).toContain("paperclipai/paperclip/paperclip");
+    expect(snapshot?.desiredSkills).toContain("letslego/octopus/paperclip");
     expect((await fs.lstat(path.join(home, ".hermes", "skills", "paperclip"))).isSymbolicLink()).toBe(true);
   } finally {
     await fs.rm(home, { recursive: true, force: true });
@@ -112,7 +112,7 @@ test("Hermes rejects a conflicting operational skill target", async () => {
       config: {
         env: { HOME: home },
         paperclipRuntimeSkills: [{
-          key: "paperclipai/paperclip/paperclip",
+          key: "letslego/octopus/paperclip",
           runtimeName: "paperclip",
           source,
         }],
@@ -144,7 +144,7 @@ test("Hermes rejects a live symlink owned by another operational skill", async (
       config: {
         env: { HOME: home },
         paperclipRuntimeSkills: [{
-          key: "paperclipai/paperclip/paperclip",
+          key: "letslego/octopus/paperclip",
           runtimeName: "paperclip",
           source,
         }],

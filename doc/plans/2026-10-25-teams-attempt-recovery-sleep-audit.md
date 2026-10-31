@@ -93,7 +93,7 @@ Older #17490 E2E and #17580 deletion-policy findings and final master reconcilia
 remain open. No stack PR is merged or the full objective complete.
 
 
-Publication: [#17592](https://github.com/paperclipai/paperclip/pull/17592), initial
+Publication: [#17592](https://github.com/letslego/octopus/pull/17592), initial
 head 6f2f3951ca. Parent voice-report findings are repaired at 94c60683b8 and both
 review threads resolved. The partial index and precise pagination are propagated
 through consent parent e501d6c99d. Thirty report-worker/startup cases pass on each

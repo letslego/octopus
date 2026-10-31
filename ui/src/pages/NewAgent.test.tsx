@@ -969,18 +969,18 @@ describe("New agent setup", () => {
     await render("cursor_cloud");
     expect(container.querySelector('[aria-label="Model"]')).toBeNull();
     expect(container.querySelector('[aria-label="Thinking effort"]')).toBeNull();
-    await fill("GitHub repository", "https://github.com/paperclipai/paperclip");
+    await fill("GitHub repository", "https://github.com/letslego/octopus");
     await fill("Branch", "master");
     await fill("CURSOR_API_KEY", "cursor-test-key");
     await click("Run test");
     expect(api.testEnvironment.mock.calls[0][2]).toMatchObject({
-      adapterConfig: { repoUrl: "https://github.com/paperclipai/paperclip", repoStartingRef: "master" },
+      adapterConfig: { repoUrl: "https://github.com/letslego/octopus", repoStartingRef: "master" },
       testCredentials: { CURSOR_API_KEY: "cursor-test-key" },
     });
     expect(secrets.create).not.toHaveBeenCalled();
     await click("Finish setup");
     const config = api.hire.mock.calls[0][1].adapterConfig;
-    expect(config).toMatchObject({ repoUrl: "https://github.com/paperclipai/paperclip", repoStartingRef: "master", env: {
+    expect(config).toMatchObject({ repoUrl: "https://github.com/letslego/octopus", repoStartingRef: "master", env: {
       CURSOR_API_KEY: { type: "secret_ref", secretId: "org-secret-1", version: "latest" },
     } });
     expect(config).not.toHaveProperty("repository");

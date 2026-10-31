@@ -5,35 +5,35 @@ summary: Onboard, run, doctor, and configure
 
 Instance setup and diagnostics commands.
 
-## `paperclipai run`
+## `octopus run`
 
 One-command bootstrap and start:
 
 ```sh
-pnpm paperclipai run
+pnpm octopus run
 ```
 
 Does:
 
 1. Auto-onboards if config is missing
-2. Runs `paperclipai doctor` with repair enabled
+2. Runs `octopus doctor` with repair enabled
 3. Starts the server when checks pass
 
 Choose a specific instance:
 
 ```sh
-npx paperclipai run --instance dev
+npx octopus run --instance dev
 ```
 
-## `paperclipai onboard`
+## `octopus onboard`
 
 Interactive first-time setup:
 
 ```sh
-pnpm paperclipai onboard
+pnpm octopus onboard
 ```
 
-If Paperclip is already configured, rerunning `onboard` keeps the existing config in place. Use `paperclipai configure` to change settings on an existing install.
+If Octopus is already configured, rerunning `onboard` keeps the existing config in place. Use `octopus configure` to change settings on an existing install.
 
 First prompt:
 
@@ -43,34 +43,34 @@ First prompt:
 Start immediately after onboarding:
 
 ```sh
-pnpm paperclipai onboard --run
+pnpm octopus onboard --run
 ```
 
 Quickstart defaults + immediate start:
 
 ```sh
-pnpm paperclipai onboard --yes
+pnpm octopus onboard --yes
 ```
 
-When onboarding starts Paperclip from an interactive terminal, it opens the
+When onboarding starts Octopus from an interactive terminal, it opens the
 onboarding page in your browser once. Non-interactive terminals stay silent.
 Suppress browser opening explicitly for headless or automated runs with either
 environment variable:
 
 ```sh
-PAPERCLIP_NO_BROWSER=1 pnpm paperclipai onboard --yes
-PAPERCLIP_OPEN_ON_LISTEN=false pnpm paperclipai onboard --yes
+PAPERCLIP_NO_BROWSER=1 pnpm octopus onboard --yes
+PAPERCLIP_OPEN_ON_LISTEN=false pnpm octopus onboard --yes
 ```
 
-On an existing install, `--yes` now preserves the current config and just starts Paperclip with that setup.
+On an existing install, `--yes` now preserves the current config and just starts Octopus with that setup.
 
-## `paperclipai doctor`
+## `octopus doctor`
 
 Health checks with optional auto-repair:
 
 ```sh
-pnpm paperclipai doctor
-pnpm paperclipai doctor --repair
+pnpm octopus doctor
+pnpm octopus doctor --repair
 ```
 
 Validates:
@@ -82,14 +82,14 @@ Validates:
 - Storage configuration
 - Missing key files
 
-## `paperclipai configure`
+## `octopus configure`
 
 Update configuration sections:
 
 ```sh
-pnpm paperclipai configure --section server
-pnpm paperclipai configure --section secrets
-pnpm paperclipai configure --section storage
+pnpm octopus configure --section server
+pnpm octopus configure --section secrets
+pnpm octopus configure --section storage
 ```
 
 `--section secrets` updates the deployment-level provider used as the fallback
@@ -99,22 +99,22 @@ coming-soon GCP/Vault) live in the board UI under
 `Company Settings → Secrets → Provider vaults` and the
 `/api/companies/{companyId}/secret-provider-configs` API.
 
-## `paperclipai env`
+## `octopus env`
 
 Show resolved environment configuration:
 
 ```sh
-pnpm paperclipai env
+pnpm octopus env
 ```
 
 This now includes bind-oriented deployment settings such as `PAPERCLIP_BIND` and `PAPERCLIP_BIND_HOST` when configured.
 
-## `paperclipai allowed-hostname`
+## `octopus allowed-hostname`
 
 Allow a private hostname for authenticated/private mode:
 
 ```sh
-npx paperclipai allowed-hostname my-tailscale-host
+npx octopus allowed-hostname my-tailscale-host
 ```
 
 ## Local Storage Paths
@@ -130,12 +130,12 @@ npx paperclipai allowed-hostname my-tailscale-host
 Override with:
 
 ```sh
-PAPERCLIP_HOME=/custom/home PAPERCLIP_INSTANCE_ID=dev pnpm paperclipai run
+PAPERCLIP_HOME=/custom/home PAPERCLIP_INSTANCE_ID=dev pnpm octopus run
 ```
 
 Or pass `--data-dir` directly on any command:
 
 ```sh
-npx paperclipai run --data-dir ./tmp/paperclip-dev
-npx paperclipai doctor --data-dir ./tmp/paperclip-dev
+npx octopus run --data-dir ./tmp/paperclip-dev
+npx octopus doctor --data-dir ./tmp/paperclip-dev
 ```

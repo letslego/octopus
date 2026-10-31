@@ -19,7 +19,7 @@ async function createSkillDir(root: string, name: string) {
 }
 
 describe("cursor local skill sync", () => {
-  const paperclipKey = "paperclipai/paperclip/paperclip";
+  const paperclipKey = "letslego/octopus/paperclip";
   const cleanupDirs = new Set<string>();
 
   afterEach(async () => {
@@ -66,7 +66,7 @@ describe("cursor local skill sync", () => {
       },
     }, []);
 
-    expect(snapshot.desiredSkills).toEqual([paperclipKey, "paperclipai/paperclip/complain", "paperclipai/paperclip/suggestion-box"]);
+    expect(snapshot.desiredSkills).toEqual([paperclipKey, "letslego/octopus/complain", "letslego/octopus/suggestion-box"]);
     expect(snapshot.entries.find((entry) => entry.key === paperclipKey)?.state).toBe("installed");
     expect((await fs.lstat(path.join(home, ".cursor", "skills", "paperclip"))).isSymbolicLink()).toBe(true);
   });

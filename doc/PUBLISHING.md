@@ -239,7 +239,7 @@ After the placeholder publish succeeds:
 
 1. open `https://www.npmjs.com/package/@paperclipai/new-package`
 2. go to `Settings` → `Trusted publishing`
-3. add repository `paperclipai/paperclip`
+3. add repository `letslego/octopus`
 4. set workflow filename to `release.yml`
 5. optionally go to `Settings` → `Publishing access` and enable `Require two-factor authentication and disallow tokens`
 6. only then set `"publishFromCi": true` in [`scripts/release-package-manifest.json`](../scripts/release-package-manifest.json)

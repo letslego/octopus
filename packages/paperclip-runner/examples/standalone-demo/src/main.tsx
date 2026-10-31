@@ -4,7 +4,7 @@ import { createRoot } from "react-dom/client";
 import {
   runStandaloneStandaloneDemo,
   type StandaloneStandaloneDemoResult,
-} from "@paperclipai/paperclip-runner/standalone";
+} from "@letslego/octopus-runner/standalone";
 
 import "./styles.css";
 

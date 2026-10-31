@@ -1,7 +1,7 @@
 # PRP v1/v2 Contract
 
 The JSON Schema files in `schemas/` are the language-neutral source of truth for
-Paperclip Runner Protocol versions 1 and 2. The fixtures in `fixtures/` define
+Octopus Runner Protocol versions 1 and 2. The fixtures in `fixtures/` define
 accepted and rejected compatibility cases.
 
 ## Compatibility
@@ -25,7 +25,7 @@ The `unknown-optional-fields.json` fixture must be accepted. The
 
 PRP v2 adds a provider-neutral durable session-goal lifecycle. Every v2
 capability snapshot includes `sessionGoals`, even when its availability is
-`unsupported` or `policy_disabled`. Paperclip sends controls only when the
+`unsupported` or `policy_disabled`. Octopus sends controls only when the
 negotiated capability advertises the corresponding action.
 
 Commands:
@@ -41,7 +41,7 @@ Events:
 - `session.goal.updated`
 - `session.goal.cleared`
 
-Goal state is separate from Paperclip's company/business goal hierarchy. The
+Goal state is separate from Octopus's company/business goal hierarchy. The
 snapshot distinguishes the durable status from `workingNow`, because an active
 goal can be idle between autonomous turns. A runner emits the full capability
 and authoritative snapshot after every session open or resume. Missing v1
@@ -89,7 +89,7 @@ It awaits the callback before ACK, including during warm idle, attachment, and
 provider cleanup. Callback failures leave delivery unacknowledged for retry;
 callbacks must therefore deduplicate by the original source event identity.
 When configured, credential updates bypass the turn notification queue.
-Paperclip commits them directly to the run log in a separate credential source
+Octopus commits them directly to the run log in a separate credential source
 namespace, preserving the original PRP envelope and avoiding collisions with
 the driver's normalized event sequence. A turn-only notification consumer
 cannot reliably handle idle or cleanup updates; use this callback instead.
@@ -107,7 +107,7 @@ retains its terminal recovery fence if that delivery fails.
 
 The event authorizes no credential access or write on its own. A host that
 needs rotated token values must use a separately authorized handoff with its
-existing account-identity and freshness safeguards. The default Paperclip
+existing account-identity and freshness safeguards. The default Octopus
 credential copy-back behavior remains in place.
 
 ## Scope

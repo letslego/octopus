@@ -518,7 +518,7 @@
     "runnerPackageSha256": "sha256:4ba7a1436afa7a4efb59dfe0a79237861e8fccc337238873dbd7e4932df24c34"
   },
   "daytonaImage": {
-    "imageTag": "ghcr.io/paperclipai/paperclip-daytona-runner:copilot-qualification-7842dba3e92257219da8",
+    "imageTag": "ghcr.io/letslego/octopus-daytona-runner:copilot-qualification-7842dba3e92257219da8",
     "expectedIndexDigest": "sha256:d228ee6bd84717410e2fcc79a62cc781f92b787a9d09781786b7ac19aae45899",
     "status": "Built and Linux installed smoke passed. Public upload not executed; exact upload approval is pending after two automatic approval review rejections."
   },

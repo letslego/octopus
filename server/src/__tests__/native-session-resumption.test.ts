@@ -39,7 +39,7 @@ import {
   type NativeSessionBackend,
   type PersistedNativeSession,
   type PrpEvent,
-} from "@paperclipai/paperclip-runner";
+} from "@letslego/octopus-runner";
 import {
   CONTROL_PLANE_CONFORMANCE_RESULT,
   CONTROL_PLANE_CONFORMANCE_TERMINAL,

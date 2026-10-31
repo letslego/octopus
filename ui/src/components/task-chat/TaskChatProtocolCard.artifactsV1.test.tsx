@@ -88,10 +88,10 @@ describe("TaskChatProtocolCard resources with Artifacts V1 on", () => {
   });
 
   it("renders a pull request as a link row that opens in a new tab with its state", () => {
-    const pr = { ...deckPdf, id: "wp-pr", type: "pull_request", provider: "github", title: "Ship rich cards", url: "https://github.com/paperclipai/paperclip/pull/42", status: "merged", metadata: { number: 42 } } as unknown as IssueWorkProduct;
+    const pr = { ...deckPdf, id: "wp-pr", type: "pull_request", provider: "github", title: "Ship rich cards", url: "https://github.com/letslego/octopus/pull/42", status: "merged", metadata: { number: 42 } } as unknown as IssueWorkProduct;
     render({ id: "resource:deliverable:wp-pr", kind: "protocol", surface: "resource", resourceKind: "deliverable", title: pr.title, subtitle: "pull request · merged", href: pr.url, workProduct: pr });
     const open = container.querySelector<HTMLAnchorElement>('a[data-testid="task-chat-resource-deliverable-open"]');
-    expect(open?.getAttribute("href")).toBe("https://github.com/paperclipai/paperclip/pull/42");
+    expect(open?.getAttribute("href")).toBe("https://github.com/letslego/octopus/pull/42");
     expect(open?.getAttribute("target")).toBe("_blank");
   });
 

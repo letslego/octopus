@@ -5,7 +5,7 @@ import { antigravityProvisionerDestination, antigravityProvisionerPackageRoot, a
 test("both published setup layouts share the OS-user cache", () => {
   const distribution = { platform: "darwin", architecture: "arm64", closureSha256: "a".repeat(64) };
   for (const root of ["/usr/local/lib/node_modules", "/Users/operator/project/node_modules"]) {
-    for (const suffix of ["@paperclipai/server/dist/vendor/paperclip-runner/cli/provision-antigravity.cjs", "@paperclipai/paperclip-runner/dist/cli/provision-antigravity.cjs"]) {
+    for (const suffix of ["@paperclipai/server/dist/vendor/paperclip-runner/cli/provision-antigravity.cjs", "@letslego/octopus-runner/dist/cli/provision-antigravity.cjs"]) {
       const url = `file://${root}/${suffix}`;
       assert.equal(antigravityProvisionerDestination(url, distribution, "/Users/operator"), `/Users/operator/.paperclip/runtimes/antigravity/darwin-arm64/${distribution.closureSha256}`);
       assert.match(antigravityProvisionerPackageRoot(url), /paperclip-runner$/);

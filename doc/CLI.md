@@ -160,8 +160,8 @@ pnpm paperclipai --help
 Recommended installation and interactive onboarding:
 
 ```sh
-curl -fsSLO https://paperclip.ing/install.sh
-curl -fsSLO https://paperclip.ing/install.sh.sha256
+curl -fsSLO https://github.com/letslego/octopus/install.sh
+curl -fsSLO https://github.com/letslego/octopus/install.sh.sha256
 if command -v sha256sum >/dev/null 2>&1; then
   sha256sum -c install.sh.sha256
 else

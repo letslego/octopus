@@ -289,7 +289,7 @@
     ]
   },
   "image": {
-    "tag": "ghcr.io/paperclipai/paperclip-daytona-runner:copilot-qualification-22fd2a8ae3414eee317e",
+    "tag": "ghcr.io/letslego/octopus-daytona-runner:copilot-qualification-22fd2a8ae3414eee317e",
     "indexDigest": "sha256:65fc4f30c15b3d744534ce3d7240dfbf3d3ff081da6d51180bd89f2802bd6e56",
     "knownCredentialMatches": 0,
     "filesScanned": 225852,
@@ -349,7 +349,7 @@
       "finalResponseCount": 1,
       "qualificationOverrides": [],
       "nativeUsd": null,
-      "image": "ghcr.io/paperclipai/paperclip-daytona-runner@sha256:9606c290372884ee74438408e8115088320979c8614a3dbd9d77be2b548a896e",
+      "image": "ghcr.io/letslego/octopus-daytona-runner@sha256:9606c290372884ee74438408e8115088320979c8614a3dbd9d77be2b548a896e",
       "cleanup": {
         "allOwnedSandboxesAbsent": true,
         "ownedTaskSandboxAbsent": true,

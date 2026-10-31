@@ -33,12 +33,12 @@ $$;
 CREATE OR REPLACE FUNCTION paperclip_agent_selects_runtime_skill(config jsonb, adapter text, skill_key text, skill_slug text) RETURNS boolean
 LANGUAGE sql IMMUTABLE SET search_path = public, pg_temp AS $$
   SELECT (adapter <> 'paperclip_runner' AND skill_key IN
-    ('paperclipai/paperclip/paperclip', 'paperclipai/paperclip/complain', 'paperclipai/paperclip/suggestion-box')) OR
+    ('letslego/octopus/paperclip', 'letslego/octopus/complain', 'letslego/octopus/suggestion-box')) OR
     EXISTS (SELECT 1 FROM jsonb_array_elements(CASE WHEN jsonb_typeof(config#>'{paperclipSkillSync,desiredSkills}') = 'array'
       THEN config#>'{paperclipSkillSync,desiredSkills}' ELSE '[]'::jsonb END) choice
       WHERE lower(trim(CASE WHEN jsonb_typeof(choice) = 'string' THEN choice#>>'{}' ELSE choice->>'key' END)) = ANY(ARRAY[
         lower(skill_key), lower(regexp_replace(skill_key, '.*/', '')),
-        lower(CASE WHEN skill_key LIKE 'paperclipai/paperclip/%' THEN skill_slug
+        lower(CASE WHEN skill_key LIKE 'letslego/octopus/%' THEN skill_slug
           ELSE skill_slug || '--' || left(encode(sha256(convert_to(skill_key, 'UTF8')), 'hex'), 10) END)]));
 $$;
 --> statement-breakpoint
@@ -104,13 +104,13 @@ BEGIN
   SELECT array_agg(DISTINCT lower(reference)) INTO keys FROM (
     SELECT row->>'key' AS reference FROM unnest(ARRAY[previous, current]) row
     UNION ALL SELECT regexp_replace(row->>'key', '.*/', '') FROM unnest(ARRAY[previous, current]) row
-    UNION ALL SELECT CASE WHEN row->>'key' LIKE 'paperclipai/paperclip/%' THEN row->>'slug'
+    UNION ALL SELECT CASE WHEN row->>'key' LIKE 'letslego/octopus/%' THEN row->>'slug'
       ELSE (row->>'slug') || '--' || left(encode(sha256(convert_to(row->>'key', 'UTF8')), 'hex'), 10) END
       FROM unnest(ARRAY[previous, current]) row
   ) refs WHERE reference IS NOT NULL;
   FOR candidate IN SELECT a.id FROM agents a WHERE a.company_id = company
     AND a.status NOT IN ('pending_approval', 'terminated') AND (
-      (a.adapter_type <> 'paperclip_runner' AND keys && ARRAY['paperclipai/paperclip/paperclip', 'paperclipai/paperclip/complain', 'paperclipai/paperclip/suggestion-box']) OR
+      (a.adapter_type <> 'paperclip_runner' AND keys && ARRAY['letslego/octopus/paperclip', 'letslego/octopus/complain', 'letslego/octopus/suggestion-box']) OR
       EXISTS (SELECT 1 FROM jsonb_array_elements(CASE WHEN jsonb_typeof(a.adapter_config#>'{paperclipSkillSync,desiredSkills}') = 'array'
         THEN a.adapter_config#>'{paperclipSkillSync,desiredSkills}' ELSE '[]'::jsonb END) choice
         WHERE lower(trim(CASE WHEN jsonb_typeof(choice) = 'string' THEN choice#>>'{}' ELSE choice->>'key' END)) = ANY(keys)))

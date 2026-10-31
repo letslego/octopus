@@ -12,7 +12,7 @@
     "secondaryLink": {
       "kind": "external",
       "label": "Learn more",
-      "url": "https://paperclip.ing"
+      "url": "https://github.com/letslego/octopus"
     },
     "primaryAction": {
       "kind": "route",

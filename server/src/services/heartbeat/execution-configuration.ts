@@ -39,7 +39,7 @@ import { buildExecutionWorkspaceConfigSnapshot, stripWorkspaceRuntimeFromExecuti
 import type { HeartbeatWorkspacePreparationInput } from "./workspace-preparation.js";
 
 const ACCEPTED_PLAN_CONVERSION_SKILL_KEY =
-  "paperclipai/paperclip/paperclip-converting-plans-to-tasks";
+  "letslego/octopus/paperclip-converting-plans-to-tasks";
 
 type ManagedAiRuntime = Awaited<ReturnType<typeof prepareManagedAiRuntime>>;
 type EnvironmentSelection = Awaited<ReturnType<typeof selectHeartbeatEnvironment>>;

@@ -826,7 +826,7 @@ Accept the card above and I write it. This task stays in review until then.`;
       const original = {
         id: "agent", companyId: "company", adapterType: "paperclip_runner",
         adapterConfig: { provider: "codex", timeoutSec: 0, model: "gpt-5.6-sol", modelReasoningEffort: "high", codexPermissionMode: "readOnly",
-          env: { OPENAI_API_KEY: { type: "secret_ref", secretId: "encrypted-key", version: "latest" } }, paperclipSkillSync: { desiredSkills: ["paperclipai/paperclip/first-task"] } },
+          env: { OPENAI_API_KEY: { type: "secret_ref", secretId: "encrypted-key", version: "latest" } }, paperclipSkillSync: { desiredSkills: ["letslego/octopus/first-task"] } },
         runtimeConfig: { aiConnection: { provider: "openai", method: "api_key", mode: "responsible_user" },
           heartbeat: { maxConcurrentRuns: 20, enabled: false, intervalSec: 0, wakeOnAssignment: true, customHeartbeatSetting: "retained" }, customSetting: "retained" },
         permissions: { canCreateAgents: true }, defaultEnvironmentId: environment, budgetMonthlyCents: 500, metadata: { ownerUserId: "qa-user" },
@@ -966,8 +966,8 @@ Accept the card above and I write it. This task stays in review until then.`;
         adapterConfig: {
           paperclipSkillSync: {
             desiredSkills: [
-              "paperclipai/paperclip/paperclip",
-              "paperclipai/paperclip/first-task",
+              "letslego/octopus/paperclip",
+              "letslego/octopus/first-task",
             ],
           },
         },
@@ -978,7 +978,7 @@ Accept the card above and I write it. This task stays in review until then.`;
             desiredSkills: string[];
           }
         ).desiredSkills,
-      ).toEqual(["paperclipai/paperclip/first-task"]);
+      ).toEqual(["letslego/octopus/first-task"]);
       expect(patch).not.toHaveProperty("instructionsBundle");
       expect(
         (patch.adapterConfig.env as Record<string, unknown>)[

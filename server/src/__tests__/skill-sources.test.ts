@@ -413,7 +413,7 @@ describe.skipIf(!support.supported)('skill source persistence', () => {
     await db.insert(companies).values({ id: legacyCompany, name: 'Legacy', issuePrefix: 'LEG' });
     const [legacy, bundled] = await db.insert(companySkills).values([
       { companyId: legacyCompany, key: 'legacy/custom', slug: 'original-slug', name: 'Original name', markdown: md('legacy'), sourceType: 'github', sourceRef: sha, metadata: { hostname: 'github.com', owner: 'acme', repo: 'skills', trackingRef: 'legacy', repoSkillDir: 'legacy' } },
-      { companyId: legacyCompany, key: 'paperclipai/paperclip/bundled', slug: 'bundled', name: 'Bundled', markdown: md('bundled'), sourceType: 'github', metadata: { hostname: 'github.com', owner: 'acme', repo: 'skills', sourceKind: 'paperclip_bundled' } },
+      { companyId: legacyCompany, key: 'letslego/octopus/bundled', slug: 'bundled', name: 'Bundled', markdown: md('bundled'), sourceType: 'github', metadata: { hostname: 'github.com', owner: 'acme', repo: 'skills', sourceKind: 'paperclip_bundled' } },
     ]).returning();
     // Production runs 0291 before 0341. This harness uses the latest schema,
     // whose repository/ref uniqueness is partial; retain the same backfill

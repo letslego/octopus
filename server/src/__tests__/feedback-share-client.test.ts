@@ -15,7 +15,7 @@ describe("feedback trace share client", () => {
     vi.unstubAllGlobals();
   });
 
-  it("defaults to telemetry.paperclip.ing when no backend url is configured", async () => {
+  it("defaults to telemetry.github.com/letslego/octopus when no backend url is configured", async () => {
     const client = createFeedbackTraceShareClientFromConfig({
       feedbackExportBackendUrl: undefined,
       feedbackExportBackendToken: undefined,
@@ -41,7 +41,7 @@ describe("feedback trace share client", () => {
     });
 
     expect(fetch).toHaveBeenCalledWith(
-      "https://telemetry.paperclip.ing/feedback-traces",
+      "https://telemetry.github.com/letslego/octopus/feedback-traces",
       expect.objectContaining({
         method: "POST",
       }),
@@ -50,7 +50,7 @@ describe("feedback trace share client", () => {
 
   it("wraps the feedback trace payload as gzip+base64 json before upload", async () => {
     const client = createFeedbackTraceShareClientFromConfig({
-      feedbackExportBackendUrl: "https://telemetry.paperclip.ing",
+      feedbackExportBackendUrl: "https://telemetry.github.com/letslego/octopus",
       feedbackExportBackendToken: "test-token",
     });
 
@@ -74,7 +74,7 @@ describe("feedback trace share client", () => {
     });
 
     const call = vi.mocked(fetch).mock.calls[0];
-    expect(call?.[0]).toBe("https://telemetry.paperclip.ing/feedback-traces");
+    expect(call?.[0]).toBe("https://telemetry.github.com/letslego/octopus/feedback-traces");
     expect(call?.[1]).toMatchObject({
       method: "POST",
       headers: {

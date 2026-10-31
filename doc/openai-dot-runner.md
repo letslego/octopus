@@ -302,7 +302,7 @@ fixes made it stale; it did not complete and is not a passing result. Fresh
 PR CI verifies the final branch. The review fixes cover reconnect wakeups,
 OAuth disconnect and refresh replay, binding-reference restoration, board-only
 OpenAPI coverage and prior protocol-version assumptions. Current results and
-remaining qualification are tracked in [PR #15402](https://github.com/paperclipai/paperclip/pull/15402).
+remaining qualification are tracked in [PR #15402](https://github.com/letslego/octopus/pull/15402).
 
 After those fixes, full workspace typecheck and token gates passed again.
 Focused verification passed 89 gateway, Dot, OpenAPI, connection-instruction

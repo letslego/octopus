@@ -1792,8 +1792,8 @@ describe("AppDetail", () => {
     expect(container.querySelectorAll('ul[aria-label="Accessible GitHub repositories"] li')).toHaveLength(2);
     expect(container.textContent).toContain("paperclipai/first");
     expect(container.textContent).toContain("paperclipai/second");
-    expect(container.querySelector('a[href="https://github.com/paperclipai/first"] [aria-label="Private repository"]')).toBeTruthy();
-    expect(container.querySelector('a[href="https://github.com/paperclipai/second"] [aria-label="Private repository"]')).toBeNull();
+    expect(container.querySelector('a[href="https://github.com/letslego/first"] [aria-label="Private repository"]')).toBeTruthy();
+    expect(container.querySelector('a[href="https://github.com/letslego/second"] [aria-label="Private repository"]')).toBeNull();
     const configureHint = [...container.querySelectorAll("p a")].find((link) => link.textContent === "Configure access on GitHub");
     expect(configureHint?.getAttribute("href")).toBe("https://github.com/apps/paperclip-test/installations/new");
   });
@@ -1873,7 +1873,7 @@ describe("AppDetail", () => {
     expect(container.textContent).toContain("Repositories");
     expect(container.textContent).toContain("1 selected repository");
     expect(container.querySelector('a[href="https://github.com/dottabot"]')?.textContent).toBe("@dottabot");
-    expect(container.querySelector('a[href="https://github.com/paperclipai/test-repo"]')?.textContent).toBe("paperclipai/test-repo");
+    expect(container.querySelector('a[href="https://github.com/letslego/test-repo"]')?.textContent).toBe("paperclipai/test-repo");
     expect(container.querySelector(
       'a[href="https://github.com/apps/paperclip-test/installations/new"]',
     )?.textContent).toBe("Add More Repos on GitHub");

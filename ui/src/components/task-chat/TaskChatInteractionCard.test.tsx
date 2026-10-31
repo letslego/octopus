@@ -397,7 +397,7 @@ describe("TaskChatInteractionCard", () => {
         );
       });
 
-    render({ type: "custom", key: "github:paperclipai/paperclip-desktop:pull:16" });
+    render({ type: "custom", key: "github:letslego/octopus-desktop:pull:16" });
     expect(container.textContent).not.toContain("github:paperclipai");
     const prompt = Array.from(container.querySelectorAll("p")).find((node) =>
       node.textContent?.startsWith("The change is open"),
@@ -408,12 +408,12 @@ describe("TaskChatInteractionCard", () => {
 
     render({
       type: "custom",
-      key: "github:paperclipai/paperclip-desktop:pull:16",
+      key: "github:letslego/octopus-desktop:pull:16",
       label: "PR #16",
-      href: "https://github.com/paperclipai/paperclip-desktop/pull/16",
+      href: "https://github.com/letslego/octopus-desktop/pull/16",
     });
     const link = container.querySelector(
-      'a[href="https://github.com/paperclipai/paperclip-desktop/pull/16"]',
+      'a[href="https://github.com/letslego/octopus-desktop/pull/16"]',
     );
     expect(link?.textContent).toBe("PR #16");
     expect(container.textContent).not.toContain("github:paperclipai");
@@ -441,7 +441,7 @@ describe("TaskChatInteractionCard", () => {
         );
       });
 
-    render({ type: "custom", key: "github:paperclipai/paperclip-desktop:pull:16" });
+    render({ type: "custom", key: "github:letslego/octopus-desktop:pull:16" });
     expect(container.textContent).not.toContain("github:paperclipai");
     const prompt = Array.from(container.querySelectorAll("p")).find((node) =>
       node.textContent?.startsWith("Pick the drafts"),
@@ -452,12 +452,12 @@ describe("TaskChatInteractionCard", () => {
 
     render({
       type: "custom",
-      key: "github:paperclipai/paperclip-desktop:pull:16",
+      key: "github:letslego/octopus-desktop:pull:16",
       label: "PR #16",
-      href: "https://github.com/paperclipai/paperclip-desktop/pull/16",
+      href: "https://github.com/letslego/octopus-desktop/pull/16",
     });
     const link = container.querySelector(
-      'a[href="https://github.com/paperclipai/paperclip-desktop/pull/16"]',
+      'a[href="https://github.com/letslego/octopus-desktop/pull/16"]',
     );
     expect(link?.textContent).toBe("PR #16");
     expect(container.textContent).not.toContain("github:paperclipai");

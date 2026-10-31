@@ -26,7 +26,7 @@ const comment = async (body) =>
 if (!task.conversationAgentId) {
   if (task.description?.includes("proactive-digest-fixture")) {
     await api("/agents/me/chat/messages", "POST", {
-      body: "## Morning PR digest\n\nPlease review [PR 123](https://github.com/paperclipai/paperclip/pull/123), [PR 456](https://github.com/paperclipai/paperclip/pull/456), and [PR 789](https://github.com/paperclipai/paperclip/pull/789).",
+      body: "## Morning PR digest\n\nPlease review [PR 123](https://github.com/letslego/octopus/pull/123), [PR 456](https://github.com/letslego/octopus/pull/456), and [PR 789](https://github.com/letslego/octopus/pull/789).",
       idempotencyKey: "morning-digest",
     });
     await api(`/issues/${task.id}`, "PATCH", { status: "done", comment: "Digest delivered." });

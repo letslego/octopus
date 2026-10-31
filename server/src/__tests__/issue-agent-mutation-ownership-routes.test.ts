@@ -1215,8 +1215,8 @@ describe("agent issue mutation checkout ownership", () => {
       type: "pull_request",
       provider: "github",
       title: "PR 42",
-      url: "https://github.com/paperclipai/paperclip/pull/42",
-      metadata: { repo: "paperclipai/paperclip", number: 42 },
+      url: "https://github.com/letslego/octopus/pull/42",
+      metadata: { repo: "letslego/octopus", number: 42 },
     }).expect(201);
 
     expect(mockWorkProductService.latestRunDiffSummary).toHaveBeenCalledWith(ownerRunId);
@@ -1246,8 +1246,8 @@ describe("agent issue mutation checkout ownership", () => {
       type: "commit",
       provider: "github",
       title: "Commit 9c12ae7",
-      url: "https://github.com/paperclipai/paperclip/commit/9c12ae7b41e5",
-      metadata: { repo: "paperclipai/paperclip", sha: "9c12ae7b41e5" },
+      url: "https://github.com/letslego/octopus/commit/9c12ae7b41e5",
+      metadata: { repo: "letslego/octopus", sha: "9c12ae7b41e5" },
     }).expect(201);
 
     expect(mockWorkProductService.resolveCommitDiffSummary).toHaveBeenCalledWith(

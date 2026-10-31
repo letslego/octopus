@@ -41,7 +41,7 @@ Ordinary Runner source changes, refactors and comments change none of these.
   under `protocol/` and generate the TypeScript, so the contract registry
   covers it.
 - **Regenerate instead of hand-editing.** After an upstream bump or a pin
-  change, run `pnpm --filter @paperclipai/paperclip-runner generate:acpx-profiles`.
+  change, run `pnpm --filter @letslego/octopus-runner generate:acpx-profiles`.
   `check:acpx-profiles` runs in the build and refuses a stale digest.
 - **Keep the profile version.** An upstream release changes the digest, not the
   version. A new provider starts at version 1. Bump a version only to reset

@@ -1,12 +1,12 @@
 # Failed-run retry notice migration
 
 Date: 2026-10-25. Branch: `codex/sleep-31-failed-retry-notices`.
-Parent: [#17647](https://github.com/paperclipai/paperclip/pull/17647),
+Parent: [#17647](https://github.com/letslego/octopus/pull/17647),
 `fee07f3fa8cbc489cb9bbf657a6065c6e00748c3`.
 This is slice 31 of the recurring-server-work stack. The branch now registers
 a scoped worker and removes retry notices from periodic publication maintenance.
 Producer audit and full acceptance remain in progress; this is not merge-ready.
-Draft PR: [#17649](https://github.com/paperclipai/paperclip/pull/17649).
+Draft PR: [#17649](https://github.com/letslego/octopus/pull/17649).
 
 ## Obligation and boundary
 

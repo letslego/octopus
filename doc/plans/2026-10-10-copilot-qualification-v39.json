@@ -330,7 +330,7 @@
   "cloudBuild": {
     "runId": 37986730659,
     "sourceRevision": "254926af530819fa3e5e27037c717761d2b2f76a",
-    "url": "https://github.com/paperclipai/paperclip/actions/runs/37986730659",
+    "url": "https://github.com/letslego/octopus/actions/runs/37986730659",
     "dockerBuildsLocal": 0,
     "publicationRequested": false
   },

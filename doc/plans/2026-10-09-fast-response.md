@@ -35,7 +35,7 @@ Isolated checkout `codex/fast-response`, app at `http://127.0.0.1:3109`, cloned 
 ## Verification still required
 
 - Live Slack bot creation and conversation; browser login completed. A narrow callback relay is prepared. Cloudflare tunneling was rejected by automatic approval review; explicit user authorization is pending.
-- Live GitHub test journey in `paperclipai/paperclip-permissions-smoke-20260926-pap57-fee7428e`.
+- Live GitHub test journey in `letslego/octopus-permissions-smoke-20260926-pap57-fee7428e`.
 - Latest-head CI and automated review. CI identified additional startup/route fixtures and exact guidance/wiring expectations that need to include fast responses; the corrected focused runs passed (12 closed-workspace routes, 5 native answer continuations, 36 startup tests, and 14 publication/reconciliation tests). Native continuation verification explicitly disables the ambient worktree suppression flag only in the test process. Copied historical run recovery failed during live testing; execution in the cloned workspace is now disarmed, and the app health endpoint reports startup ready.
 
 No credentials or prompt bodies belong in this record.

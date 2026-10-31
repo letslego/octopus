@@ -17,7 +17,7 @@
 # to mutate refs on GitHub while the test runs.
 #
 # Env knobs:
-#   E2E_REPO                  GitHub repo (default: paperclipai/paperclip)
+#   E2E_REPO                  GitHub repo (default: letslego/octopus)
 #   E2E_UPDATE_BASE_REF       ref to install first (required; e.g. test/e2e-update-base)
 #   E2E_UPDATE_NEXT_REF       ref to update to (required; BASE + one probe migration)
 #   E2E_BOOTSTRAP_CLI         path to an already-built bootstrap CLI entry point
@@ -25,7 +25,7 @@
 #   E2E_SERVICE_TIMEOUT_SECS  service active/health wait (default 300)
 set -uo pipefail
 
-E2E_REPO="${E2E_REPO:-paperclipai/paperclip}"
+E2E_REPO="${E2E_REPO:-letslego/octopus}"
 BASE_REF="${E2E_UPDATE_BASE_REF:?E2E_UPDATE_BASE_REF is required}"
 NEXT_REF="${E2E_UPDATE_NEXT_REF:?E2E_UPDATE_NEXT_REF is required}"
 E2E_SERVICE_TIMEOUT_SECS="${E2E_SERVICE_TIMEOUT_SECS:-300}"

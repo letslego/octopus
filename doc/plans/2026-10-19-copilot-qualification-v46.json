@@ -28,7 +28,7 @@
     "behaviorFailures": 0,
     "qualificationOverrides": false,
     "installation": "normal cloud-produced public CLI/server archives and separately installed packaged Daytona plugin",
-    "image": "ghcr.io/paperclipai/paperclip-daytona-runner@sha256:2dae5d07e522b4ea937f7681d8689a4e392feaa1a53f75bed9a8df53d7e6e927",
+    "image": "ghcr.io/letslego/octopus-daytona-runner@sha256:2dae5d07e522b4ea937f7681d8689a4e392feaa1a53f75bed9a8df53d7e6e927",
     "nativeUsd": null,
     "billingProvider": "github",
     "includedCreditsAreNotMeasuredUsd": true,
@@ -299,14 +299,14 @@
     "linux-x64": "actual normal-installed Daytona Product native startup, completion and cleanup"
   },
   "cloudBuilds": {
-    "image": "ghcr.io/paperclipai/paperclip-daytona-runner@sha256:2dae5d07e522b4ea937f7681d8689a4e392feaa1a53f75bed9a8df53d7e6e927",
-    "imagePublication": "https://github.com/paperclipai/paperclip/actions/runs/39289860734",
-    "normalPackages": "https://github.com/paperclipai/paperclip/actions/runs/39284194338",
+    "image": "ghcr.io/letslego/octopus-daytona-runner@sha256:2dae5d07e522b4ea937f7681d8689a4e392feaa1a53f75bed9a8df53d7e6e927",
+    "imagePublication": "https://github.com/letslego/octopus/actions/runs/39289860734",
+    "normalPackages": "https://github.com/letslego/octopus/actions/runs/39284194338",
     "selectedCredentialScanFindings": 0,
     "scanLayers": 42,
     "scanRegularFiles": 247824,
     "anonymousDigestVerified": true,
-    "imageBuild": "https://github.com/paperclipai/paperclip/actions/runs/39284189969"
+    "imageBuild": "https://github.com/letslego/octopus/actions/runs/39284189969"
   },
   "onboardingReconnectRepair": {
     "source": "ec68f27b33208ce34319f3299770abf45e772e1b",
@@ -343,12 +343,12 @@
     "Named shipped canary and verification before broader rollout"
   ],
   "pullRequests": [
-    "https://github.com/paperclipai/paperclip/pull/15701",
-    "https://github.com/paperclipai/paperclip/pull/15703",
-    "https://github.com/paperclipai/paperclip/pull/15705",
-    "https://github.com/paperclipai/paperclip/pull/15706"
+    "https://github.com/letslego/octopus/pull/15701",
+    "https://github.com/letslego/octopus/pull/15703",
+    "https://github.com/letslego/octopus/pull/15705",
+    "https://github.com/letslego/octopus/pull/15706"
   ],
-  "supersededWork": "https://github.com/paperclipai/paperclip/pull/14434",
+  "supersededWork": "https://github.com/letslego/octopus/pull/14434",
   "deferred": [
     "native steering",
     "native plan mode",

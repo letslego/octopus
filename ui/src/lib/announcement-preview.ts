@@ -8,7 +8,7 @@ export const announcementPreview: Announcement = {
   title: "Give your next idea a team",
   description: "Bring agents, projects, and work together. Set the direction, then follow your team’s progress in Paperclip.",
   image: { path: `assets/${"0".repeat(64)}.png`, alt: "Paperclip — ideas become work" },
-  secondaryLink: { kind: "external", label: "Learn more", url: "https://paperclip.ing" },
+  secondaryLink: { kind: "external", label: "Learn more", url: "https://github.com/letslego/octopus" },
   primaryAction: { kind: "route", label: "Explore your projects", path: "/projects" },
 };
 

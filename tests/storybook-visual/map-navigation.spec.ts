@@ -16,7 +16,7 @@ test("guide filters and opens an area without story examples", async ({ page }) 
   await expect(capability.getByText(/No cataloged example yet/)).toBeVisible();
   await capability.getByText("Verification scope", { exact: true }).click();
   await expect(capability.getByText("No authored story required for CLI profile/context selection.", { exact: true })).toBeVisible();
-  await expect(capability.getByRole("link", { name: "context.ts", exact: true })).toHaveAttribute("href", "https://github.com/paperclipai/paperclip/blob/master/cli/src/commands/client/context.ts");
+  await expect(capability.getByRole("link", { name: "context.ts", exact: true })).toHaveAttribute("href", "https://github.com/letslego/octopus/blob/master/cli/src/commands/client/context.ts");
   await expect(frame.getByRole("link", { name: "Agent access contract" })).toHaveAttribute("href", /agent-access-map\/cli-operations\.md$/);
   expect(errors).toEqual([]);
 });

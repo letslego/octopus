@@ -64,7 +64,7 @@ describeDatabase("skill runtime invalidation", () => {
     const legacy = await agent([]);
     const native = await agent([]);
     await db.update(agents).set({ adapterType: "process" }).where(eq(agents.id, legacy.id));
-    const [skill] = await db.insert(companySkills).values({ companyId, key: `paperclipai/paperclip/${slug}`, slug, name: slug, markdown: "implicit" }).returning();
+    const [skill] = await db.insert(companySkills).values({ companyId, key: `letslego/octopus/${slug}`, slug, name: slug, markdown: "implicit" }).returning();
     const before = (await events()).length;
     await db.update(companySkills).set({ markdown: "changed implicit" }).where(eq(companySkills.id, skill.id));
     expect((await events()).slice(before)).toEqual([expect.objectContaining({ resourceId: legacy.id })]);

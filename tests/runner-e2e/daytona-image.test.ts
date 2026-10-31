@@ -221,7 +221,7 @@ describe("runner E2E Daytona image contract", () => {
       ),
     );
     expect(workflow).toContain(
-      "IMAGE_CACHE: ghcr.io/paperclipai/paperclip-daytona-runner:e2e-buildcache-amd64",
+      "IMAGE_CACHE: ghcr.io/letslego/octopus-daytona-runner:e2e-buildcache-amd64",
     );
     expect(workflow).toContain(
       '--cache-from "type=registry,ref=${IMAGE_CACHE}"',
@@ -263,7 +263,7 @@ describe("runner E2E Daytona image contract", () => {
       workflow.indexOf(`--format '{{json .Image}}'`),
     );
     const providerInstall = dockerfile.indexOf(
-      "pnpm install --frozen-lockfile --filter '@paperclipai/paperclip-runner...'",
+      "pnpm install --frozen-lockfile --filter '@letslego/octopus-runner...'",
     );
     const runnerSourceCopy = dockerfile.indexOf(
       "COPY packages ./packages",
@@ -372,7 +372,7 @@ describe("runner E2E Daytona image contract", () => {
       );
       await writeFile(
         path.join(root, "packages/paperclip-runner/package.json"),
-        '{"name":"@paperclipai/paperclip-runner"}\n',
+        '{"name":"@letslego/octopus-runner"}\n',
       );
       await writeFile(
         path.join(root, "packages/paperclip-runner/src/runner.ts"),

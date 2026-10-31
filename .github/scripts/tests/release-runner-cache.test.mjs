@@ -28,7 +28,7 @@ test("the shared cache excludes workspace artifacts and only restores or saves t
   assert.match(runner, /cache-workspace-crates: false/);
   assert.match(runner, /cache-bin: false/);
   const saveIf = runner.match(/^\s*save-if: (.+)$/m)?.[1];
-  assert.equal(saveIf, "${{ matrix.lane == 'rust' && github.repository == 'paperclipai/paperclip' && github.event_name == 'push' && github.ref == 'refs/heads/master' && inputs.ref == github.sha }}");
+  assert.equal(saveIf, "${{ matrix.lane == 'rust' && github.repository == 'letslego/octopus' && github.event_name == 'push' && github.ref == 'refs/heads/master' && inputs.ref == github.sha }}");
   const cacheStep = runner.split("      - name: Cache Runner Rust dependencies")[1].split("      - name: Install dependencies")[0];
   assert.equal(cacheStep.match(/^\s*if: (.+)$/m)?.[1], saveIf.replace("matrix.lane == 'rust' && ", ""));
   assert.doesNotMatch(runner, /cache-on-failure: true|cache-all-crates: true/);
@@ -61,7 +61,7 @@ test("only the trusted Rust lane writes, and warms both build profiles before sa
   assert.equal(expr(cache, "save-if"), expr(warm, "if"));
   assert.match(warm, /run: pnpm --filter @paperclipai\/paperclip-runner build:rust/);
   const sha = "a".repeat(40);
-  const base = { repository: "paperclipai/paperclip", event_name: "push", ref: "refs/heads/master", sha };
+  const base = { repository: "letslego/octopus", event_name: "push", ref: "refs/heads/master", sha };
   for (const lane of ["protocol", "rust", "server-integration"]) {
     for (const [overrides, ref, trusted] of [
       [{}, sha, true],

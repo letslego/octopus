@@ -1,4 +1,4 @@
-# Paperclip Native Runner
+# Octopus Native Runner
 
 To add a harness/provider to native Runner, start with
 [create-runner-adapter](../../.agents/skills/create-runner-adapter/SKILL.md), the
@@ -7,7 +7,7 @@ To add a harness/provider to native Runner, start with
 They cover the new Runner integration path; legacy adapters are preserved as a
 compatibility boundary.
 
-This package is the standalone development boundary for Paperclip's native
+This package is the standalone development boundary for Octopus's native
 runner protocol, process supervision, durable transport, provider drivers, and
 normalized session backends. Rust owns the production runner under `runner/`;
 TypeScript provides the control-plane reference, browser SDK, scenario tools,
@@ -19,7 +19,7 @@ WebSocket delivery and recovery, qualified Codex, OpenCode, ACPX, Claude
 Managed, and AWS AgentCore drivers, live
 session and issue-thread surfaces, a public browser/React SDK, a standalone
 adapter demo, and a deterministic mock control plane. None of these surfaces
-imports or starts Paperclip's server, UI, CLI, or production database.
+imports or starts Octopus's server, UI, CLI, or production database.
 
 ## Execution environment lifecycle
 
@@ -90,7 +90,7 @@ authentication repairs retain their existing fresh-session recovery behavior.
 
 `acpx-profiles.json` owns the package versions, command/profile digests, and
 required execution policies used by TypeScript and Rust. It contains no models.
-After changing it, run `pnpm --filter @paperclipai/paperclip-runner generate:acpx-profiles`.
+After changing it, run `pnpm --filter @letslego/octopus-runner generate:acpx-profiles`.
 Normal build and typecheck reject stale generated declarations. Generation also
 checks installed dependency pins and agreement with Cursor's distribution manifest
 and immutable release attestation (`cursor-contract.json`). Cursor's per-platform
@@ -123,7 +123,7 @@ without granting access to enclosing npm directories or credential homes.
 This packaging does not change agent defaults or
 the selected runner of an existing agent.
 
-Every ACPX harness accepts an explicit caller-selected model without a Paperclip
+Every ACPX harness accepts an explicit caller-selected model without a Octopus
 model allowlist. The adapter sends that ID unchanged and verifies the provider's
 effective model before prompting. An incomplete discovery catalog does not block
 selection; a provider rejection or mismatch fails without choosing a fallback.
@@ -150,18 +150,18 @@ usage projection; the shared driver and sidecar consume those hooks.
 
 ## Public package surfaces
 
-- `@paperclipai/paperclip-runner` — production contracts, clients/backends,
+- `@letslego/octopus-runner` — production contracts, clients/backends,
   PRP validation/replay, canonical catalog/dispatcher, and compatibility check.
-- `@paperclipai/paperclip-runner/testing` — deterministic mocks plus PRP and
+- `@letslego/octopus-runner/testing` — deterministic mocks plus PRP and
   semantic conformance kits. Tests and external conformance consumers import
   this explicitly.
-- `@paperclipai/paperclip-runner/evals` — versioned native-attempt metadata,
+- `@letslego/octopus-runner/evals` — versioned native-attempt metadata,
   fail-closed package/binary compatibility checks, and explicit runnerd
   artifact resolution for eval consumers.
 
 The package root has no mock or scenario exports. Generic credential-free
 matrix orchestration lives in the workspace-private
-`@paperclipai/paperclip-eval-kernel`; scenario content and provider-backed eval
+`@letslego/octopus-eval-kernel`; scenario content and provider-backed eval
 campaigns remain outside the runtime package.
 See [ADR 0001](docs/adr/0001-runner-testing-eval-package-boundaries.md).
 
@@ -170,7 +170,7 @@ existing `runControlPlanePortConformance` suite checks narrow PRP run/event
 persistence. `CAPABILITY_HIGH_RISK_SEMANTIC_VECTORS` and
 `runSemanticConformanceKit` compare normalized tool authorization, state,
 effects, audit, retries, conflicts, redaction, continuation, and terminal
-decisions. The production adapter stays App-owned and invokes Paperclip's real
+decisions. The production adapter stays App-owned and invokes Octopus's real
 route/service authorities; it does not copy those rules into this package.
 
 ## Quick start
@@ -200,22 +200,22 @@ PRP tool delivery and supply the semantic tool bridge.
 PRP delivery keeps the controller's exact operation names, including compact MCP catalog tools.
 The selected permission and read-only policies still apply.
 
-Install Cursor explicitly with `paperclipai runtime setup cursor`; npm installation
-does not download it. Run setup as the OS user that runs Paperclip (the service
+Install Cursor explicitly with `octopus runtime setup cursor`; npm installation
+does not download it. Run setup as the OS user that runs Octopus (the service
 account for a managed service). Setup writes to that account's
 `~/.paperclip/runtimes/cursor/<platform>-<arch>/<closure-sha256>`, so a system-wide
 npm installation can remain read-only. Isolated provider HOME/XDG settings do not
 redirect this cache. Container images continue to use their packaged assets.
 Configure a company secret binding for `CURSOR_API_KEY` or
 `CURSOR_AUTH_TOKEN`, select Cursor in the Runner configuration, and select an exact
-model ID. Agent is the default; Plan and Ask are explicit modes. Paperclip semantic
+model ID. Agent is the default; Plan and Ask are explicit modes. Octopus semantic
 questions are supported. Native AskQuestion and authoritative per-run dollar usage
 are unavailable. Accepting a native plan ends the planning run successfully while
 the task waits for the next instruction. See the
 [Cursor release report](../../doc/plans/2026-10-03-cursor-production-readiness.md).
 
 Google Antigravity is an **unqualified, pending** native ACPX integration. The
-explicit `paperclipai runtime setup antigravity` command installs the verified
+explicit `octopus runtime setup antigravity` command installs the verified
 Antigravity ACP 1.4.3 distribution and its owned admission patch on macOS ARM64.
 It verifies both the official vendor closure and the separately pinned patched
 closure; npm installation downloads no Antigravity runtime. This setup installs
@@ -246,7 +246,7 @@ starts; install the matching package and image together.
 
 ### Native binary platform baseline
 
-Release packages contain Paperclip daemons for `linux-x64`, `linux-arm64`,
+Release packages contain Octopus daemons for `linux-x64`, `linux-arm64`,
 `darwin-arm64`, and `darwin-x64`. Codex native binaries are installed separately
 through the official optional npm platform dependencies described above.
 
@@ -338,7 +338,7 @@ remain unchanged.
 
 Cursor candidate configuration accepts `acpxSessionMode: "agent" | "plan" | "ask"`
 (default `agent`). This selects the native Cursor mode independently of
-`acpxPermissionMode` and Paperclip task planning or company approvals. The mode
+`acpxPermissionMode` and Octopus task planning or company approvals. The mode
 is validated at the API boundary and is bound to provider admission and recovery;
 changing it cannot reuse an incompatible warm session. Other providers reject
 this setting. Cursor configuration requires an explicit model. Pending providers retain
@@ -437,21 +437,21 @@ requests and the existing task interaction controls. Requests are persisted
 before presentation; answers are checked against the offered decisions and
 acknowledged by the sidecar before settlement. Unknown, stale and duplicate
 responses fail. Missing provider decision support remains a blocked disposition,
-not implicit approval. Company access checks still run for each Paperclip tool.
+not implicit approval. Company access checks still run for each Octopus tool.
 Provider death expires pending promises; approvals are never replayed into a
 replacement process.
 
-Automatic Paperclip/read allowances currently require the Claude SDK dispatch
+Automatic Octopus/read allowances currently require the Claude SDK dispatch
 boundary. Grok preserves these restricted settings, but its ACP requests lack
 independently bound tool authority. Those operations require a supported operator
 permission decision; a missing interactive responder stops with
 `approval_required`. An explicitly selected `approve-all` policy permits unattended
-Grok work in an assigned sandbox. Paperclip authorization and governed approvals
+Grok work in an assigned sandbox. Octopus authorization and governed approvals
 still apply.
 
 Runnerd selects only qualified provider profiles. Claude Managed and AWS
 AgentCore receive immutable company-profile snapshots with explicit retention,
-spend, and invocation limits. No provider process receives a Paperclip API
+spend, and invocation limits. No provider process receives a Octopus API
 credential or unrestricted server environment.
 
 Claude Managed resolves its API key from the company secret bound to the
@@ -546,8 +546,8 @@ prospective session configuration exactly.
 Run the complete contract gate with:
 
 ```sh
-pnpm install --filter @paperclipai/paperclip-runner --lockfile=false --offline --ignore-scripts --dev
-pnpm --filter @paperclipai/paperclip-runner verify
+pnpm install --filter @letslego/octopus-runner --lockfile=false --offline --ignore-scripts --dev
+pnpm --filter @letslego/octopus-runner verify
 ```
 
 The verification command requires a stable Rust toolchain with `cargo` on
@@ -565,7 +565,7 @@ Playwright browser libraries into a user-owned cache and run the same acceptance
 sequence with:
 
 ```sh
-pnpm --filter @paperclipai/paperclip-runner verify:rootless
+pnpm --filter @letslego/octopus-runner verify:rootless
 ```
 
 The tracer's final line is stable:
@@ -587,30 +587,30 @@ The tracer's final line is stable:
 Run only the tracer with:
 
 ```sh
-pnpm --filter @paperclipai/paperclip-runner trace:conformance
+pnpm --filter @letslego/octopus-runner trace:conformance
 ```
 
 Replay the Replay happy path, run a Local session, or open the browser
 devtool:
 
 ```sh
-pnpm --filter @paperclipai/paperclip-runner replay:fixture
-pnpm --filter @paperclipai/paperclip-runner trace:local-runner -- --scenario happy-path
-pnpm --filter @paperclipai/paperclip-runner trace:codex
-pnpm --filter @paperclipai/paperclip-runner demo:live-console -- --host 127.0.0.1 --port 4174
+pnpm --filter @letslego/octopus-runner replay:fixture
+pnpm --filter @letslego/octopus-runner trace:local-runner -- --scenario happy-path
+pnpm --filter @letslego/octopus-runner trace:codex
+pnpm --filter @letslego/octopus-runner demo:live-console -- --host 127.0.0.1 --port 4174
 
 # Live console: chat with a live session in the browser.
-pnpm --filter @paperclipai/paperclip-runner console:live-console
-pnpm --filter @paperclipai/paperclip-runner browser:dev --host 127.0.0.1 --port 4179
+pnpm --filter @letslego/octopus-runner console:live-console
+pnpm --filter @letslego/octopus-runner browser:dev --host 127.0.0.1 --port 4179
 
 # SDK: open the public-SDK reference console and mini consumer.
-pnpm --filter @paperclipai/paperclip-runner console:sdk
+pnpm --filter @letslego/octopus-runner console:sdk
 
 # Standalone: run the standalone legacy/native/kill-switch tracer and page.
-pnpm --filter @paperclipai/paperclip-runner trace:standalone
-pnpm --filter @paperclipai/paperclip-runner trace:standalone -- --feature-flag enabled
-pnpm --filter @paperclipai/paperclip-runner trace:standalone -- --feature-flag enabled --kill-switch enabled
-pnpm --filter @paperclipai/paperclip-runner demo:standalone
+pnpm --filter @letslego/octopus-runner trace:standalone
+pnpm --filter @letslego/octopus-runner trace:standalone -- --feature-flag enabled
+pnpm --filter @letslego/octopus-runner trace:standalone -- --feature-flag enabled --kill-switch enabled
+pnpm --filter @letslego/octopus-runner demo:standalone
 
 ```
 
@@ -658,8 +658,8 @@ The deterministic workflow scorer and the chaos schedule do not require
 provider credentials:
 
 ```sh
-pnpm --filter @paperclipai/paperclip-runner test:runner-workflow-evals
-pnpm --filter @paperclipai/paperclip-runner report:runner-chaos-evals
+pnpm --filter @letslego/octopus-runner test:runner-workflow-evals
+pnpm --filter @letslego/octopus-runner report:runner-chaos-evals
 ```
 
 `report:runner-live-evals` is a paid, provider-backed command. Native Codex
@@ -676,11 +676,11 @@ additional scheduling after the observed campaign total reaches that value:
 ```sh
 PAPERCLIP_EVAL_MAX_CAMPAIGN_COST_USD=12 \
   PAPERCLIP_EVALS_ROOT=/path/to/paperclip-evals \
-  pnpm --filter @paperclipai/paperclip-runner report:runner-live-evals
+  pnpm --filter @letslego/octopus-runner report:runner-live-evals
 
 # Run two scheduled native Codex executions only.
 PAPERCLIP_EVALS_ROOT=/path/to/paperclip-evals \
-  pnpm --filter @paperclipai/paperclip-runner report:runner-live-evals -- \
+  pnpm --filter @letslego/octopus-runner report:runner-live-evals -- \
   --candidate codex-luna --limit 2
 ```
 
@@ -700,13 +700,13 @@ clear them after use. Validate locally, provision or inspect the stack, run the
 bounded lab/smoke, and tear it down explicitly with:
 
 ```sh
-pnpm --filter @paperclipai/paperclip-runner test:aws-agentcore-provisioning
-pnpm --filter @paperclipai/paperclip-runner aws-agentcore:provision -- --dry-run
-pnpm --filter @paperclipai/paperclip-runner aws-agentcore:provision
-pnpm --filter @paperclipai/paperclip-runner aws-agentcore:probe
-pnpm --filter @paperclipai/paperclip-runner aws-agentcore:lab
-pnpm --filter @paperclipai/paperclip-runner smoke:capability:aws-agentcore
-pnpm --filter @paperclipai/paperclip-runner aws-agentcore:destroy -- --yes
+pnpm --filter @letslego/octopus-runner test:aws-agentcore-provisioning
+pnpm --filter @letslego/octopus-runner aws-agentcore:provision -- --dry-run
+pnpm --filter @letslego/octopus-runner aws-agentcore:provision
+pnpm --filter @letslego/octopus-runner aws-agentcore:probe
+pnpm --filter @letslego/octopus-runner aws-agentcore:lab
+pnpm --filter @letslego/octopus-runner smoke:capability:aws-agentcore
+pnpm --filter @letslego/octopus-runner aws-agentcore:destroy -- --yes
 ```
 
 To admit the hosted direct-eval workflow, provision with the account-local
@@ -714,19 +714,19 @@ GitHub Actions OIDC provider and keep the default exact repository and protected
 environment binding:
 
 ```sh
-pnpm --filter @paperclipai/paperclip-runner aws-agentcore:provision -- \
+pnpm --filter @letslego/octopus-runner aws-agentcore:provision -- \
   --aws-profile paperclip-dev \
   --github-oidc-provider-arn arn:aws:iam::<account-id>:oidc-provider/token.actions.githubusercontent.com
 ```
 
-This adds only `repo:paperclipai/paperclip:environment:runner-e2e-paid` as a
+This adds only `repo:octopus/paperclip:environment:runner-e2e-paid` as a
 web-identity subject on the scoped invocation role. The generated nonsecret
 profile records that role as both the local invocation role and the hosted
 execution role.
 
 Provisioning can incur Bedrock, AgentCore Runtime/Memory, storage, and private
 networking charges. Provisioning refuses to modify a colliding stack unless its
-Paperclip ownership tags and template description match. A verified
+Octopus ownership tags and template description match. A verified
 `ROLLBACK_COMPLETE` stack still requires `--replace-failed-stack` plus an
 interactive confirmation (or `--yes`) before it can be deleted and recreated.
 Destruction requires `--yes` and refuses to remove a stack with an active
@@ -739,7 +739,7 @@ recorded lab unless `--force` is also supplied.
 | `build`                                                 | Compile the TypeScript public surface, Rust workspace, and browser devtool.                                                                 |
 | `typecheck`                                             | Check TypeScript, Rust, generated schema sources, and browser types.                                                                        |
 | `test`                                                  | Run Rust/TypeScript fixture, supervisor, fake-driver, live/replay, and boundary tests.                                                      |
-| `check:forbidden-imports`                               | Reject TypeScript imports and Cargo path dependencies that cross into Paperclip core.                                                       |
+| `check:forbidden-imports`                               | Reject TypeScript imports and Cargo path dependencies that cross into Octopus core.                                                       |
 | `check:tracked-imports`                                 | Reject tracked imports and `package.json` entry points that only resolve against untracked files, so a clean checkout of any commit builds. |
 | `check:numbered-milestones`                             | Reject numbered construction-milestone names in tracked package paths and source.                                                           |
 | `check:package-boundaries`                              | Enforce the acyclic runtime/testing/eval dependency and manifest boundary.                                                                  |
@@ -772,7 +772,7 @@ recorded lab unless `--force` is also supplied.
 | `check:semantic-contracts`                              | Verify the provider-neutral semantic tool contract is current.                                                                              |
 | `trace:live-runner`                                     | Run the real runnerd/Codex semantic loop against the mock control plane.                                                                    |
 | `demo:scenarios`                                        | Start the Capability scenario explorer over the mock control plane on `127.0.0.1:4183`.                                                     |
-| `console:issue-thread`                                  | Start the Paperclip-style issue thread on `127.0.0.1:4184`.                                                                                 |
+| `console:issue-thread`                                  | Start the Octopus-style issue thread on `127.0.0.1:4184`.                                                                                 |
 | `test:scenarios`                                        | Run the scenario index, run-artifact, parity, explorer component, and route tests.                                                          |
 | `test:browser:scenarios`                                | Exercise both the scenario explorer and issue-thread browser contracts.                                                                     |
 | `browser:dev`                                           | Start the standalone live/replay browser devtool.                                                                                           |
@@ -809,7 +809,7 @@ recorded lab unless `--force` is also supplied.
 
 Codex adds the package-local real-model reference driver, Live console adds the
 package-local browser console, and SDK extracts a reusable public SDK plus
-two standalone consumers. Runtime production Paperclip integration remains
+two standalone consumers. Runtime production Octopus integration remains
 deferred; the App-owned production conformance adapter is test-only.
 
 The SDK reference console opens in direct chat mode. Enter a normal prompt,
@@ -989,7 +989,7 @@ require no candidate grant.
 The installation targets are macOS ARM64 and Linux x64. Platform startup,
 authenticated driver checks, and product acceptance are separate evidence levels.
 
-Run `paperclipai runtime setup kimi` on the execution host to install its complete
+Run `octopus runtime setup kimi` on the execution host to install its complete
 verified runtime. Setup downloads public pinned dependencies without model calls
 or provider credentials. An invalid existing installation fails without ambient
 Kimi fallback. Bind a company secret as `KIMI_API_KEY` and select an exact model.
@@ -1007,7 +1007,7 @@ configuration and public requests cannot supply that authority.
 Existing legacy Kimi agents retain their runtime and history. Managed Kimi connections,
 ambient login borrowing, other regions/platforms, steering, native child work,
 and per-run token/dollar accounting are outside this release. Read-only Kimi work
-uses scoped Paperclip tools; native filesystem and shell tools are denied.
+uses scoped Octopus tools; native filesystem and shell tools are denied.
 The provider-owned patch binds native instructions, preserves permission arguments,
 and removes provider auth from tool subprocesses. See the
 [protocol dossier](src/providers/kimi/README.md) and
@@ -1025,7 +1025,7 @@ It builds the debug Runner before execution and requires Cargo and a POSIX host.
 No model credentials, provider requests, application server or database are used.
 
 ```sh
-pnpm --filter @paperclipai/paperclip-runner exec vitest run \
+pnpm --filter @letslego/octopus-runner exec vitest run \
   src/control-plane/acpx-controller-recovery.test.ts --maxWorkers=1
 ```
 

@@ -227,7 +227,7 @@ PostgreSQL database. Both complete files pass all 24 cases with no skips on owne
 source based on `d2068f59a30f6f33b4543a79b539016294cbfe15`.
 
 The failed CI job is
-[server shard 12](https://github.com/paperclipai/paperclip/actions/runs/40470614670/job/122077293740).
+[server shard 12](https://github.com/letslego/octopus/actions/runs/40470614670/job/122077293740).
 Fresh remote CI is still required on the follow-up head. Other review findings
 on health scheduling remain separate; this fixture correction does not resolve
 them or claim deployed sleep.

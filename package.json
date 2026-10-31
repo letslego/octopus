@@ -1,5 +1,5 @@
 {
-  "name": "paperclip",
+  "name": "octopus",
   "private": true,
   "type": "module",
   "scripts": {
@@ -35,7 +35,7 @@
     "issue-references:backfill": "pnpm run preflight:workspace-links && tsx scripts/backfill-issue-reference-mentions.ts",
     "secrets:migrate-inline-env": "tsx scripts/migrate-inline-env-secrets.ts",
     "db:backup": "./scripts/backup-db.sh",
-    "paperclipai": "node cli/node_modules/tsx/dist/cli.mjs cli/src/index.ts",
+    "octopus": "node cli/node_modules/tsx/dist/cli.mjs cli/src/index.ts",
     "build:npm": "./scripts/build-npm.sh",
     "release": "./scripts/release.sh",
     "release:canary": "./scripts/release.sh canary",
@@ -80,7 +80,7 @@
     "test:e2e:runner:stock-harness": "node tests/runner-e2e/stock-harness-checks.mjs",
     "test:e2e:runner:typecheck": "tsc -p tests/runner-e2e/tsconfig.json",
     "test:e2e:runner:report": "node cli/node_modules/tsx/dist/cli.mjs tests/runner-e2e/report.ts",
-    "test:runner-workflow-evals": "pnpm --filter @paperclipai/paperclip-eval-kernel build && pnpm --filter @paperclipai/paperclip-runner test:runner-workflow-evals",
+    "test:runner-workflow-evals": "pnpm --filter @letslego/octopus-eval-kernel build && pnpm --filter @letslego/octopus-runner test:runner-workflow-evals",
     "test:e2e:mcp-user-stories": "node scripts/e2e-mcp-user-stories.mjs",
     "test:e2e:connection-intents": "npx playwright test --config tests/e2e/playwright.config.ts tests/e2e/connection-intents.spec.ts",
     "test:e2e:headed": "npx playwright test --config tests/e2e/playwright.config.ts --headed",

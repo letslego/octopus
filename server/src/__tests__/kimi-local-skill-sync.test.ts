@@ -12,7 +12,7 @@ async function makeTempDir(prefix: string): Promise<string> {
 }
 
 describe("kimi local skill sync", () => {
-  const paperclipKey = "paperclipai/paperclip/paperclip";
+  const paperclipKey = "letslego/octopus/paperclip";
   const cleanupDirs = new Set<string>();
 
   afterEach(async () => {

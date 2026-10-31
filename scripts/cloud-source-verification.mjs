@@ -1,7 +1,7 @@
 import { appendFile } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
 
-const repository = "paperclipai/paperclip";
+const repository = "letslego/octopus";
 const workflowPath = ".github/workflows/cloud-readiness.yml";
 export const sourceVerificationJob = "Cloud source verified v1";
 

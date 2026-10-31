@@ -11,8 +11,8 @@ import { verifyReleaseProviderPack } from '../packages/paperclip-runner/scripts/
 
 export function validateReleaseRun(run, source) {
   if (!/^[a-f0-9]{40}$/.test(source) || !/^[a-f0-9]{40}$/.test(run.head_sha ?? '') || run.conclusion !== 'success'
-    || run.path !== '.github/workflows/release-smoke.yml' || run.repository?.full_name !== 'paperclipai/paperclip') {
-    throw Error('Image inputs require a successful repository-owned Release Smoke run in paperclipai/paperclip');
+    || run.path !== '.github/workflows/release-smoke.yml' || run.repository?.full_name !== 'letslego/octopus') {
+    throw Error('Image inputs require a successful repository-owned Release Smoke run in letslego/octopus');
   }
 }
 
@@ -84,7 +84,7 @@ async function main() {
   validateReleaseImageBase(process.env.RELEASE_BASE_IMAGE);
   if (!/^[1-9][0-9]*$/.test(runId ?? '') || !token) throw Error('Release run ID and GitHub token required');
   const api = async endpoint => {
-    const response = await fetch(`https://api.github.com/repos/paperclipai/paperclip/${endpoint}`, {
+    const response = await fetch(`https://api.github.com/repos/letslego/octopus/${endpoint}`, {
       headers: { authorization: `Bearer ${token}`, accept: 'application/vnd.github+json' }, redirect: 'error',
       signal: AbortSignal.timeout(30_000),
     });
@@ -104,7 +104,7 @@ async function main() {
   await mkdir(output, { recursive: false });
   const dirs = [];
   for (const [index, artifact] of selected.entries()) {
-    const response = await fetch(`https://api.github.com/repos/paperclipai/paperclip/actions/artifacts/${artifact.id}/zip`, {
+    const response = await fetch(`https://api.github.com/repos/letslego/octopus/actions/artifacts/${artifact.id}/zip`, {
       headers: { authorization: `Bearer ${token}`, accept: 'application/vnd.github+json' }, redirect: 'manual',
       signal: AbortSignal.timeout(30_000),
     });

@@ -103,7 +103,7 @@ Tooling: lean on [/react-perf-optimizer](skill://skill-react-perf?s=react-perf-o
 const shouldRun = issue.status === "in_progress" && issue.companyId === company.id;
 \`\`\`
 
-See [the implementation notes](https://github.com/paperclipai/paperclip).`;
+See [the implementation notes](https://github.com/letslego/octopus).`;
 
 const editorMentions: MentionOption[] = [
   { id: "agent-codex", name: "CodexCoder", kind: "agent", agentId: "agent-codex", agentIcon: "code" },
@@ -259,7 +259,7 @@ const routineVariables: RoutineVariable[] = [
     name: "repo",
     label: "Repository",
     type: "text",
-    defaultValue: "paperclipai/paperclip",
+    defaultValue: "letslego/octopus",
     required: true,
     options: [],
   },
@@ -309,7 +309,7 @@ const storybookProject: Project = {
   executionWorkspacePolicy: null,
   codebase: {
     workspaceId: "workspace-board-ui",
-    repoUrl: "https://github.com/paperclipai/paperclip",
+    repoUrl: "https://github.com/letslego/octopus",
     repoRef: "master",
     defaultRef: "master",
     repoName: "paperclip",

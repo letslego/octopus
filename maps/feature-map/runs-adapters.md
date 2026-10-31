@@ -42,7 +42,7 @@ for future runs. The header shows Raw tracing on while that setting is enabled.
 
 Managed Git launchers let agents save local commits without a GitHub connection
 or manual author setup. Verify a fresh checkout and a second shell in the same
-workspace: both commits should use `Paperclip <noreply@paperclip.ing>` when no
+workspace: both commits should use `Paperclip <noreply@github.com/letslego/octopus>` when no
 identity is configured. Repository and command settings override this default;
 an eligible managed identity still takes precedence. Inspect stored commit
 metadata and confirm the default did not change repository or host configuration.

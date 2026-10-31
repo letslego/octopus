@@ -186,8 +186,8 @@ jobs:
           pnpm install --frozen-lockfile --ignore-scripts
       - name: Build the existing TypeScript and native runner owners
         run: |
-          pnpm --filter @paperclipai/paperclip-runner build:typescript
-          pnpm --filter @paperclipai/paperclip-runner build:runner-binaries
+          pnpm --filter @letslego/octopus-runner build:typescript
+          pnpm --filter @letslego/octopus-runner build:runner-binaries
       - name: Package source-bound outputs and resolved lock
         run: |
           set -euo pipefail

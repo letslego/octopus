@@ -1,4 +1,4 @@
-# Paperclip agent access map
+# Octopus agent access map
 
 This map accompanies the [feature map](../feature-map/README.md). It records APIs,
 agent entry points, permission boundaries and verification for the same capability IDs.

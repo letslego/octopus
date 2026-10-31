@@ -189,7 +189,7 @@ Sources checked 2026-09-11:
 - [Hosted session credentials and duration limits](https://docs.speko.ai/api-reference/sessions)
 - [Telephony and number requirements](https://docs.speko.ai/guides/phone-agents)
 - [Lifecycle webhook delivery behavior](https://docs.speko.ai/guides/webhooks)
-- [Original catalog PR #11418](https://github.com/paperclipai/paperclip/pull/11418)
+- [Original catalog PR #11418](https://github.com/letslego/octopus/pull/11418)
 
 PR #11418 describes the general-purpose Speko MCP catalog connection; it is
 research input, not the live voice runtime. Keep general MCP tools separate.

@@ -2,13 +2,13 @@
   "name": "@paperclipai/server",
   "version": "0.3.1",
   "license": "MIT",
-  "homepage": "https://github.com/paperclipai/paperclip",
+  "homepage": "https://github.com/letslego/octopus",
   "bugs": {
-    "url": "https://github.com/paperclipai/paperclip/issues"
+    "url": "https://github.com/letslego/octopus/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/paperclipai/paperclip",
+    "url": "https://github.com/letslego/octopus",
     "directory": "server"
   },
   "type": "module",
@@ -135,7 +135,7 @@
   "devDependencies": {
     "@opentelemetry/context-async-hooks": "2.10.0",
     "@opentelemetry/sdk-trace": "2.10.0",
-    "@paperclipai/paperclip-runner": "workspace:*",
+    "@letslego/octopus-runner": "workspace:*",
     "@types/compression": "^1.8.1",
     "@types/express": "^5.0.0",
     "@types/express-serve-static-core": "^5.1.3",

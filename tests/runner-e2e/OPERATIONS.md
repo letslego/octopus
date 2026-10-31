@@ -560,7 +560,7 @@ node --import tsx tests/runner-e2e/operating-receipts.ts github RUN_ID /private/
 ```
 
 The collector uses the existing `gh` authentication and only reads
-`paperclipai/paperclip`. It verifies the Product E2E workflow, first attempt,
+`letslego/octopus`. It verifies the Product E2E workflow, first attempt,
 revision and repository, reads every returned job/artifact page up to 1,000
 records per inventory, and rejects changed or incomplete inventories. It retains
 job identities, summed job seconds, run-start delay, artifact sizes and expiration

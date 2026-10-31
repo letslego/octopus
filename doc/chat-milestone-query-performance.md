@@ -10,7 +10,7 @@ The change preserves `boundRunIssueIdSql()` and all publication authorization,
 idempotency, ordering and pagination logic. It adds no migration or index. The
 one-second recovery cadence, startup reconciliation, commit signals, shutdown
 and native progress selector are unchanged. The separate lifecycle scheduling
-work in [PR #17606](https://github.com/paperclipai/paperclip/pull/17606) is outside
+work in [PR #17606](https://github.com/letslego/octopus/pull/17606) is outside
 this change.
 
 ## Reproduce the measurements

@@ -155,13 +155,13 @@ recurs across unrelated providers.
 
 Implementation/review trail:
 
-- [Paperclip #15402](https://github.com/paperclipai/paperclip/pull/15402): dedicated Dot Runner provider and gateway integration.
-- [Paperclip #15414](https://github.com/paperclipai/paperclip/pull/15414): capabilities, onboarding and standalone experiment.
-- [Paperclip #15581](https://github.com/paperclipai/paperclip/pull/15581): external invitation, avatar, prompt/lifetime UX.
-- [Paperclip #15691](https://github.com/paperclipai/paperclip/pull/15691): managed Runner and recovery.
+- [Paperclip #15402](https://github.com/letslego/octopus/pull/15402): dedicated Dot Runner provider and gateway integration.
+- [Paperclip #15414](https://github.com/letslego/octopus/pull/15414): capabilities, onboarding and standalone experiment.
+- [Paperclip #15581](https://github.com/letslego/octopus/pull/15581): external invitation, avatar, prompt/lifetime UX.
+- [Paperclip #15691](https://github.com/letslego/octopus/pull/15691): managed Runner and recovery.
 - A separate Cloud ingress change enabled tenant routing. Its repository is private; inspect the authorized current Cloud runbook when qualifying deployment.
-- [Paperclip #15722](https://github.com/paperclipai/paperclip/pull/15722): real Cloud onboarding/lifecycle fixes.
-- [Paperclip #15734](https://github.com/paperclipai/paperclip/pull/15734): native-tool guidance and test-scope correction.
+- [Paperclip #15722](https://github.com/letslego/octopus/pull/15722): real Cloud onboarding/lifecycle fixes.
+- [Paperclip #15734](https://github.com/letslego/octopus/pull/15734): native-tool guidance and test-scope correction.
 
 Historical documentation can be recovered from the Paperclip checkout:
 

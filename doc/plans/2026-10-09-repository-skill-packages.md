@@ -18,7 +18,7 @@ The location oracle recognizes both provider-home copies and the immutable bundl
 
 The first broad test attempt was stopped when PostgreSQL-dependent suites skipped on the exhausted host. The new full `pnpm test:run` was stopped after seven failures across six test files unchanged by this PR (native session recovery, agent conversations, workspace runtime exposure, workspace dispatch, connection removal, and skill utility locking), plus 21 skipped connection-intent database cases. The recovery assertion reproduces in isolation; the failing test files are unchanged from the starting commit and the recovery fixture omits skill runtime context. The broad suite remains incomplete and is not counted as passed. Live qualification verifies import, delivery and instruction access, not every Poteto workflow or adapter.
 
-Review: [PR #15731](https://github.com/paperclipai/paperclip/pull/15731). The branch is based on master and has no unrelated checkout changes.
+Review: [PR #15731](https://github.com/letslego/octopus/pull/15731). The branch is based on master and has no unrelated checkout changes.
 
 ## October 12: import warnings
 

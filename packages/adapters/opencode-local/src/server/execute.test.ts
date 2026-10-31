@@ -154,7 +154,7 @@ describe("OpenCode local skill injection", () => {
             OPENCODE_ALLOW_ALL_MODELS: "1",
           },
           paperclipRuntimeSkills: [{
-            key: "paperclipai/paperclip/paperclip",
+            key: "letslego/octopus/paperclip",
             runtimeName: "paperclip",
             source: skillSource,
           }],

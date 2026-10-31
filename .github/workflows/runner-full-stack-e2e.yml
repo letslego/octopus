@@ -13,7 +13,7 @@ on:
         options: [manual, daily, weekly]
         default: manual
       target_branch:
-        description: "Branch in paperclipai/paperclip to test; the trusted workflow still runs from master"
+        description: "Branch in letslego/octopus to test; the trusted workflow still runs from master"
         type: string
         required: false
       max_parallel:
@@ -538,8 +538,8 @@ jobs:
         env:
           NEEDS_DAYTONA: ${{ needs.catalog.outputs.needs_daytona }}
           IMAGE_CONTENT_ID: ${{ needs.catalog.outputs.daytona_image_content_id }}
-          IMAGE_TAG: ghcr.io/paperclipai/paperclip-daytona-runner:e2e-content-${{ needs.catalog.outputs.daytona_image_content_id }}
-          IMAGE_CACHE: ghcr.io/paperclipai/paperclip-daytona-runner:e2e-buildcache-amd64
+          IMAGE_TAG: ghcr.io/letslego/octopus-daytona-runner:e2e-content-${{ needs.catalog.outputs.daytona_image_content_id }}
+          IMAGE_CACHE: ghcr.io/letslego/octopus-daytona-runner:e2e-buildcache-amd64
           TARGET_SHA: ${{ needs.authorize.outputs.target_sha }}
           TARGET_LOCK_SHA256: ${{ needs.target_lock.outputs.lock_sha256 }}
           TARGET_REF: ${{ needs.authorize.outputs.target_ref }}
@@ -681,12 +681,12 @@ jobs:
         run: |
           set -euo pipefail
           if [ "$NEEDS_RUNNER_TYPESCRIPT" = true ]; then
-            pnpm --filter @paperclipai/paperclip-runner build:typescript
+            pnpm --filter @letslego/octopus-runner build:typescript
           else
-            pnpm --filter @paperclipai/paperclip-eval-kernel build
+            pnpm --filter @letslego/octopus-eval-kernel build
           fi
           if [ "$NEEDS_NATIVE_BINARIES" = true ]; then
-            pnpm --filter @paperclipai/paperclip-runner build:runner-binaries
+            pnpm --filter @letslego/octopus-runner build:runner-binaries
           fi
 
       - name: Package immutable campaign outputs

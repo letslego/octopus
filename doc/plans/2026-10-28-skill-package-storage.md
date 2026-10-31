@@ -125,15 +125,15 @@ for every slow request.
 
 ## Why this implementation arose
 
-- [#14713](https://github.com/paperclipai/paperclip/pull/14713), September 30, introduced
+- [#14713](https://github.com/letslego/octopus/pull/14713), September 30, introduced
   GitHub-synchronized skills on the existing immutable-version foundation.
-- [#15731](https://github.com/paperclipai/paperclip/pull/15731), October 12, fixed missing
+- [#15731](https://github.com/letslego/octopus/pull/15731), October 12, fixed missing
   shared scripts, policies, sibling skills and credits by preserving repository packages.
   It explicitly chose shared database snapshots and self-contained per-skill delivery.
-- [#16066](https://github.com/paperclipai/paperclip/pull/16066), October 13, extended that
+- [#16066](https://github.com/letslego/octopus/pull/16066), October 13, extended that
   behavior to automatic project imports and refresh.
-- [#16308](https://github.com/paperclipai/paperclip/pull/16308) preserved referenced files
-  for oversized repositories. [#16433](https://github.com/paperclipai/paperclip/pull/16433)
+- [#16308](https://github.com/letslego/octopus/pull/16308) preserved referenced files
+  for oversized repositories. [#16433](https://github.com/letslego/octopus/pull/16433)
   subsequently made old disk copies disposable, with database restoration as the guarantee.
 
 The #15731 description reports strong byte/mode, offline, pinning and real runtime proof,

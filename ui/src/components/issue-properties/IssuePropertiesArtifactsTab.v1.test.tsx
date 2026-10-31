@@ -83,9 +83,9 @@ const pullRequest = {
   provider: "github",
   externalId: "42",
   title: "Ship rich work-product cards",
-  url: "https://github.com/paperclipai/paperclip/pull/42",
+  url: "https://github.com/letslego/octopus/pull/42",
   status: "merged",
-  metadata: { repo: "paperclipai/paperclip", number: 42, state: "merged" },
+  metadata: { repo: "letslego/octopus", number: 42, state: "merged" },
   createdAt: new Date("2026-09-25T10:00:00Z"),
   updatedAt: new Date("2026-09-25T10:00:00Z"),
 } as unknown as IssueWorkProduct;
@@ -292,7 +292,7 @@ describe("IssuePropertiesArtifactsTab with Artifacts V1 on", () => {
       expect(container.querySelectorAll('[data-testid="artifact-v1-row"]')).toHaveLength(5);
     });
     const pr = container.querySelector<HTMLAnchorElement>('a[aria-label="Open Ship rich work-product cards"]');
-    expect(pr?.getAttribute("href")).toBe("https://github.com/paperclipai/paperclip/pull/42");
+    expect(pr?.getAttribute("href")).toBe("https://github.com/letslego/octopus/pull/42");
     expect(pr?.getAttribute("target")).toBe("_blank");
     const service = container.querySelector('a[aria-label="Open Preview server"]')?.closest('[data-testid="artifact-v1-row"]');
     expect(service?.textContent).toContain("Unhealthy");

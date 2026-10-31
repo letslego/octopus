@@ -686,7 +686,7 @@ package tests; do not preserve an old qualified command hash after changing byte
 
 Primary references reviewed:
 
-- [Harness priorities report](https://pages.paperclip.ing/2026-09-25-harness-priorities/report.md)
+- [Harness priorities report](https://pages.github.com/letslego/octopus/2026-09-25-harness-priorities/report.md)
 - [pi-acp source](https://github.com/svkozak/pi-acp)
 - [Pi RPC protocol](https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/docs/rpc.md)
 - [Pi extensions](https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/docs/extensions.md)
@@ -880,11 +880,11 @@ every field in Pi's native event stream. These are explicit follow-ups:
   retry success/failure/unknown and compaction usage; adapter tests cover bounded
   metadata and redaction. Extend field-by-field wrapper/canonical/browser parity
   without giving notices terminal authority or treating deterministic tests as
-  paid qualification. See the [wrapper patch](https://github.com/paperclipai/paperclip/blob/41503eb38f03c436b1569f9f0204625bb4d58782/patches/pi-acp%400.0.33.patch#L381),
-  [notice adapter](https://github.com/paperclipai/paperclip/blob/41503eb38f03c436b1569f9f0204625bb4d58782/packages/paperclip-runner/src/drivers/acpx/pi-extension-adapter.ts#L22),
-  [package regressions](https://github.com/paperclipai/paperclip/blob/41503eb38f03c436b1569f9f0204625bb4d58782/packages/paperclip-runner/test/pi-acp-package-contract.test.mjs#L225),
-  [adapter regressions](https://github.com/paperclipai/paperclip/blob/41503eb38f03c436b1569f9f0204625bb4d58782/packages/paperclip-runner/src/drivers/acpx/pi-extension-adapter.test.ts#L5),
-  and [UI details](https://github.com/paperclipai/paperclip/blob/41503eb38f03c436b1569f9f0204625bb4d58782/ui/src/components/task-chat/TaskChatProtocolActivityRow.tsx#L283).
+  paid qualification. See the [wrapper patch](https://github.com/letslego/octopus/blob/41503eb38f03c436b1569f9f0204625bb4d58782/patches/pi-acp%400.0.33.patch#L381),
+  [notice adapter](https://github.com/letslego/octopus/blob/41503eb38f03c436b1569f9f0204625bb4d58782/packages/paperclip-runner/src/drivers/acpx/pi-extension-adapter.ts#L22),
+  [package regressions](https://github.com/letslego/octopus/blob/41503eb38f03c436b1569f9f0204625bb4d58782/packages/paperclip-runner/test/pi-acp-package-contract.test.mjs#L225),
+  [adapter regressions](https://github.com/letslego/octopus/blob/41503eb38f03c436b1569f9f0204625bb4d58782/packages/paperclip-runner/src/drivers/acpx/pi-extension-adapter.test.ts#L5),
+  and [UI details](https://github.com/letslego/octopus/blob/41503eb38f03c436b1569f9f0204625bb4d58782/ui/src/components/task-chat/TaskChatProtocolActivityRow.tsx#L283).
 - **P1 — native queue state.** `queue_update` contains steering and follow-up queues. Extension calls
   acknowledge RPC acceptance, but the wrapper does not project that event into
   durable queued/delivered state. Do not treat `{accepted: true}` as proof that

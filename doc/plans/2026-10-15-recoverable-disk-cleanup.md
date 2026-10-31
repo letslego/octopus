@@ -47,7 +47,7 @@ The remaining implementation gap is exact nested commit and local settings recov
 Current work builds on master `1f27427ffdefaf5fb2760d1d53c0d78cb9683d4c`, branch
 `codex/worktree-nested-restoration`. Serving SHA observed before work:
 `27ab902d3db2770ada79c9f42a9c06e1d346f34b`. No deployment or real reclamation yet.
-Review: [PR #16691](https://github.com/paperclipai/paperclip/pull/16691).
+Review: [PR #16691](https://github.com/letslego/octopus/pull/16691).
 Its first head `4696ba2fd171ec3970b7e116bcb5f77fe9331785` passed CI. Greptile
 found historical project-selection and failed-provision retry gaps; both now have
 fixes and real lifecycle controls. The updated head still needs review and CI.
@@ -117,9 +117,9 @@ revisions and must not be treated as current deployment or access state.
 ## Historical state (2026-10-15, 19:27 UTC)
 
 
-- Skill [PR #16433](https://github.com/paperclipai/paperclip/pull/16433) merged as
+- Skill [PR #16433](https://github.com/letslego/octopus/pull/16433) merged as
   `86c965ce7ab1499864f74b8dd6ed0d2d8db15197`. Git
-  [PR #16457](https://github.com/paperclipai/paperclip/pull/16457) merged as
+  [PR #16457](https://github.com/letslego/octopus/pull/16457) merged as
   `59a70dc9e235d6df3d7db69b3ca170196d0c749f`. Both passed exact-head CI,
   security checks, and Greptile 5/5 with resolved findings. The user explicitly
   approved the administrator merge of #16457 after the self-approval gate.
@@ -153,7 +153,7 @@ revisions and must not be treated as current deployment or access state.
   saved result is `SAVED-SKILL-V3-20261015`, restored hash/mode and version pin
   match. Screenshot `skill-v3-user-proof.png`; evidence `ui-v3-restoration.jsonl`.
   The failed disposable Studio task was cancelled through the normal UI.
-- Follow-up [PR #16476](https://github.com/paperclipai/paperclip/pull/16476)
+- Follow-up [PR #16476](https://github.com/letslego/octopus/pull/16476)
   initially reached Greptile 5/5 after removing added comments. Before rollout,
   inspection found the Git expiration branch bypassed existing dependency/build
   compaction and replaced its startup deadline with a one-hour delay. A real Git

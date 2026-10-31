@@ -53,7 +53,7 @@ it("preserves dispositions on regeneration without changing failed grades or inc
     const html = await readFile(path.join(root, "dashboard.html"), "utf8");
     expect(html).toContain("1 actionable; 1 duplicate; 0 already fixed; 1 unsupported; 0 needs investigation");
     expect(html).toContain("1 attempts have incomplete collection");
-    expect(html).toContain("https://github.com/paperclipai/paperclip/issues/123");
+    expect(html).toContain("https://github.com/letslego/octopus/issues/123");
     const summary = await readFile(path.join(root, "summary.md"), "utf8");
     expect(summary).toBe(`${retainedHeader}${campaignFeedbackReviewText(campaign)}\n`);
     expect(summary).not.toContain("await review");

@@ -815,7 +815,7 @@ describe("OpenCodeServerDriver", () => {
         expect(received).toHaveLength(0);
       }
       expect((await fetch(url, { method: "POST", headers, body: JSON.stringify(payload) })).status).toBe(200);
-      expect(received).toEqual([{ authorization: `Bearer ${key}`, body: payload, referer: "https://paperclip.ing" }]);
+      expect(received).toEqual([{ authorization: `Bearer ${key}`, body: payload, referer: "https://github.com/letslego/octopus" }]);
       expect(upstreamTransport.urls).toEqual(["https://openrouter.ai/api/v1/chat/completions"]);
       redirect = true;
       expect((await fetch(url, { method: "POST", headers, body: JSON.stringify(payload) })).status).toBe(502);
@@ -2186,7 +2186,7 @@ describe("OpenCodeServerDriver", () => {
       });
       expect(config.autoupdate).toBe(false);
       expect(config.provider.openrouter.options.headers).toMatchObject({
-        "HTTP-Referer": "https://paperclip.ing", "X-Title": "Paperclip", "X-OpenRouter-Title": "Paperclip",
+        "HTTP-Referer": "https://github.com/letslego/octopus", "X-Title": "Paperclip", "X-OpenRouter-Title": "Paperclip",
       });
       expect(config.provider.openrouter.models).toHaveProperty(
         "deepseek/deepseek-v4-flash-0731",

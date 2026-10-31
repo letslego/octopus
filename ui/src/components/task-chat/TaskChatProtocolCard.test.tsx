@@ -31,7 +31,7 @@ function workProduct(overrides: Partial<IssueWorkProduct> = {}): IssueWorkProduc
     provider: "github",
     externalId: "42",
     title: "Ship rich work-product cards",
-    url: "https://github.com/paperclipai/paperclip/pull/42",
+    url: "https://github.com/letslego/octopus/pull/42",
     status: "merged",
     reviewState: "none",
     isPrimary: true,
@@ -122,7 +122,7 @@ describe("TaskChatProtocolCard", () => {
   it("renders a rich deliverable card without a completed chip", () => {
     const product = workProduct({
       metadata: {
-        repo: "paperclipai/paperclip",
+        repo: "letslego/octopus",
         number: 42,
         baseRef: "master",
         headRef: "feat/rich-cards",
@@ -146,7 +146,7 @@ describe("TaskChatProtocolCard", () => {
 
     expect(container.querySelector('[data-testid="task-chat-rich-work-product-pull_request"]')).not.toBeNull();
     expect(container.textContent).toContain("Open on GitHub");
-    expect(container.textContent).toContain("paperclipai/paperclip · #42 · master ← feat/rich-cards");
+    expect(container.textContent).toContain("letslego/octopus · #42 · master ← feat/rich-cards");
     expect(container.textContent).toContain("+17 −5 · 3 files");
     expect(container.textContent).toContain("Merged");
     expect(container.textContent).not.toContain("Completed");

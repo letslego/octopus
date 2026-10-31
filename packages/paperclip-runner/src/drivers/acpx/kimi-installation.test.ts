@@ -114,7 +114,7 @@ describe("Kimi installed runtime admission", () => {
 
   it("gives the normal setup command and never falls back to ambient kimi when assets are missing", async () => {
     const root = await realpath(await mkdtemp(join(tmpdir(), "paperclip-kimi-installation-test-"))); roots.push(root);
-    await writeFile(join(root, "package.json"), '{"name":"@paperclipai/paperclip-runner"}');
+    await writeFile(join(root, "package.json"), '{"name":"@letslego/octopus-runner"}');
     environment("PAPERCLIP_ACPX_PROVIDER_PACKAGE_ROOT", root);
     environment("PAPERCLIP_ACPX_PROVIDER_PACKAGE_MANIFEST", join(root, "package.json"));
     await expect(verifyKimiInstallation(QUALIFIED_ACPX_PROFILES.kimi)).rejects.toThrow(/paperclipai runtime setup kimi/);

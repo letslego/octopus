@@ -537,7 +537,7 @@ Longer polling intervals alone do not complete an item.
   [events.ts](../../server/src/services/public-mcp/events.ts).
 
 - [x] **JOB-06 — Execution-control reconciliation.** Implemented in
-  [PR #17094](https://github.com/paperclipai/paperclip/pull/17094): six independent
+  [PR #17094](https://github.com/letslego/octopus/pull/17094): six independent
   workers wake from committed writes, saved control/login deadlines, or concrete
   unfinished obligations. Empty queues and completed history no longer cause
   recurring SQL. Existing 15s retries remain for pending work; Cloud sleep

@@ -90,7 +90,7 @@ describe("parseFrontmatterMarkdown", () => {
       "metadata:",
       "  sources:",
       "    - kind: github-dir",
-      "      repo: paperclipai/paperclip",
+      "      repo: letslego/octopus",
       "      path: skills/paperclip",
       "---",
       "",
@@ -102,7 +102,7 @@ describe("parseFrontmatterMarkdown", () => {
         sources: [
           {
             kind: "github-dir",
-            repo: "paperclipai/paperclip",
+            repo: "letslego/octopus",
             path: "skills/paperclip",
           },
         ],
@@ -170,7 +170,7 @@ describe("stringifyFrontmatter", () => {
         metadata: {
           source: {
             kind: "github-dir",
-            repo: "paperclipai/paperclip",
+            repo: "letslego/octopus",
             path: "skills/paperclip",
           },
         },

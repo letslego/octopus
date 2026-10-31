@@ -72,7 +72,7 @@ ${options.brokerFile ? String.raw`
     fs.chmodSync(configDirectory, 0o700);
     configReady = true;
     process.once('exit', () => { try { fs.rmSync(configDirectory, { recursive: true, force: true }); } catch {} });
-    fs.writeFileSync(path.join(configDirectory, 'gitconfig'), '[user]\n\tname = Paperclip\n\temail = noreply@paperclip.ing\n', { mode: 0o600 });
+    fs.writeFileSync(path.join(configDirectory, 'gitconfig'), '[user]\n\tname = Paperclip\n\temail = noreply@github.com/letslego/octopus\n', { mode: 0o600 });
     authorReady = true;
   } catch { diagnostic('configuration_directory_unavailable'); }
   {

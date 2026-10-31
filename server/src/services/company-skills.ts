@@ -326,7 +326,7 @@ function assertImportedSkillSourceAllowed(skill: ImportedSkill) {
 }
 
 function assertImportedSkillKeyAllowed(skill: ImportedSkill) {
-  if (!skill.key.startsWith("paperclipai/paperclip/")) return;
+  if (!skill.key.startsWith("letslego/octopus/")) return;
   const metadata = isPlainRecord(skill.metadata) ? skill.metadata : null;
   const sourceKind = asString(metadata?.sourceKind);
   if (sourceKind === "paperclip_bundled") return;
@@ -627,7 +627,7 @@ function uniqueImportedSkillKey(companyId: string, baseSlug: string, usedKeys: S
 }
 
 export function buildSkillRuntimeName(key: string, slug: string) {
-  if (key.startsWith("paperclipai/paperclip/")) return slug;
+  if (key.startsWith("letslego/octopus/")) return slug;
   return `${slug}--${hashSkillValue(key)}`;
 }
 
@@ -677,14 +677,14 @@ function readCanonicalSkillKey(frontmatter: Record<string, unknown>, metadata: R
  * `ensureSkillInventoryCurrent` imports into every company library.
  */
 export const PAPERCLIP_CORE_SKILL_KEYS = [
-  "paperclipai/paperclip/paperclip",
-  "paperclipai/paperclip/paperclip-board",
-  "paperclipai/paperclip/paperclip-converting-plans-to-tasks",
-  "paperclipai/paperclip/paperclip-create-agent",
-  "paperclipai/paperclip/para-memory-files",
+  "letslego/octopus/paperclip",
+  "letslego/octopus/paperclip-board",
+  "letslego/octopus/paperclip-converting-plans-to-tasks",
+  "letslego/octopus/paperclip-create-agent",
+  "letslego/octopus/para-memory-files",
 ] as const;
 
-export const ONBOARDING_FIRST_TASK_SKILL_KEY = "paperclipai/paperclip/first-task";
+export const ONBOARDING_FIRST_TASK_SKILL_KEY = "letslego/octopus/first-task";
 
 function deriveCanonicalSkillKey(
   companyId: string,
@@ -697,7 +697,7 @@ function deriveCanonicalSkillKey(
 
   const sourceKind = asString(metadata?.sourceKind);
   if (sourceKind === "paperclip_bundled") {
-    return `paperclipai/paperclip/${slug}`;
+    return `letslego/octopus/${slug}`;
   }
 
   const owner = normalizeSkillSlug(asString(metadata?.owner));
@@ -1053,7 +1053,7 @@ function deriveImportedSkillSource(
     if (repo && owner && repoName) {
       const sourceKind = owner === "paperclipai"
         && repoName === "paperclip"
-        && canonicalKey?.startsWith("paperclipai/paperclip/")
+        && canonicalKey?.startsWith("letslego/octopus/")
         ? "paperclip_bundled"
         : "github";
       return {
@@ -1355,7 +1355,7 @@ function stableJsonEqual(left: unknown, right: unknown) {
 }
 
 function isPaperclipBundledSkillKey(key: string) {
-  return key.startsWith("paperclipai/paperclip/");
+  return key.startsWith("letslego/octopus/");
 }
 
 function paperclipBundledFolderCategory(key: string, metadata?: unknown) {
@@ -3126,7 +3126,7 @@ export function companySkillService(db: Db, options: { actor?: AuthorizationActo
   }
 
   async function ensureBundledSkillReleases(companyId: string, bundledSkills: CompanySkill[]) {
-    const paperclipSkill = bundledSkills.find((skill) => skill.key === "paperclipai/paperclip/paperclip");
+    const paperclipSkill = bundledSkills.find((skill) => skill.key === "letslego/octopus/paperclip");
     if (!paperclipSkill) return;
     for (const release of await readBundledSkillReleaseRegistry()) {
       const fileInventory = serializeVersionFileInventory(

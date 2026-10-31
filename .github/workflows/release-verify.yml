@@ -34,7 +34,7 @@ jobs:
   typecheck:
     if: ${{ !inputs.runner_binaries_only }}
     name: Typecheck
-    runs-on: ${{ vars.AWS_POST_MERGE_CI_ENABLED == 'true' && github.repository == 'paperclipai/paperclip' && github.repository_id == '1170821064' && github.ref == 'refs/heads/master' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.sha != '' && inputs.ref == github.sha && 'runs-on/fleet=paperclip-post-merge-x64/env=public-ci' || 'ubuntu-latest' }}
+    runs-on: ${{ vars.AWS_POST_MERGE_CI_ENABLED == 'true' && github.repository == 'letslego/octopus' && github.repository_id == '1170821064' && github.ref == 'refs/heads/master' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.sha != '' && inputs.ref == github.sha && 'runs-on/fleet=paperclip-post-merge-x64/env=public-ci' || 'ubuntu-latest' }}
     timeout-minutes: 20
     permissions:
       contents: read
@@ -88,7 +88,7 @@ jobs:
       - name: Cache typecheck Rust dependencies
         # Restore and save only within trusted master-push verification. GitHub
         # isolates branch/PR caches from master; other callers compile afresh.
-        if: ${{ github.repository == 'paperclipai/paperclip' && github.event_name == 'push' && github.ref == 'refs/heads/master' && inputs.ref == github.sha }}
+        if: ${{ github.repository == 'letslego/octopus' && github.event_name == 'push' && github.ref == 'refs/heads/master' && inputs.ref == github.sha }}
         uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6 # v2.9.2
         with:
           workspaces: ${{ steps.runner_rust_workspace.outputs.path }} -> target
@@ -99,7 +99,7 @@ jobs:
           cache-bin: false
           # The step guard also restricts restores. Save only after a successful
           # master-push verification of that push's exact commit.
-          save-if: ${{ github.repository == 'paperclipai/paperclip' && github.event_name == 'push' && github.ref == 'refs/heads/master' && inputs.ref == github.sha }}
+          save-if: ${{ github.repository == 'letslego/octopus' && github.event_name == 'push' && github.ref == 'refs/heads/master' && inputs.ref == github.sha }}
 
       - name: Validate release package manifest
         run: node ./scripts/release-package-map.mjs check
@@ -108,7 +108,7 @@ jobs:
         if: hashFiles('.github/actions/setup-ci-dependencies/action.yml') != ''
         uses: ./.github/actions/setup-ci-dependencies
         with:
-          save-cache: ${{ github.repository == 'paperclipai/paperclip' && github.event_name == 'push' && github.ref == 'refs/heads/master' && inputs.ref == github.sha }}
+          save-cache: ${{ github.repository == 'letslego/octopus' && github.event_name == 'push' && github.ref == 'refs/heads/master' && inputs.ref == github.sha }}
 
       - name: Install dependencies
         if: hashFiles('.github/actions/setup-ci-dependencies/action.yml') == ''
@@ -120,7 +120,7 @@ jobs:
   general_tests:
     if: ${{ !inputs.runner_binaries_only }}
     name: General tests (${{ matrix.group_label }})
-    runs-on: ${{ vars.AWS_POST_MERGE_CI_ENABLED == 'true' && github.repository == 'paperclipai/paperclip' && github.repository_id == '1170821064' && github.ref == 'refs/heads/master' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.sha != '' && inputs.ref == github.sha && 'runs-on/fleet=paperclip-post-merge-x64/env=public-ci' || 'ubuntu-latest' }}
+    runs-on: ${{ vars.AWS_POST_MERGE_CI_ENABLED == 'true' && github.repository == 'letslego/octopus' && github.repository_id == '1170821064' && github.ref == 'refs/heads/master' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.sha != '' && inputs.ref == github.sha && 'runs-on/fleet=paperclip-post-merge-x64/env=public-ci' || 'ubuntu-latest' }}
     timeout-minutes: 20
     permissions:
       contents: read
@@ -232,7 +232,7 @@ jobs:
   serialized_tests:
     if: ${{ !inputs.runner_binaries_only }}
     name: Serialized tests (${{ matrix.shard_label }})
-    runs-on: ${{ vars.AWS_POST_MERGE_CI_ENABLED == 'true' && github.repository == 'paperclipai/paperclip' && github.repository_id == '1170821064' && github.ref == 'refs/heads/master' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.sha != '' && inputs.ref == github.sha && 'runs-on/fleet=paperclip-post-merge-x64/env=public-ci' || 'ubuntu-latest' }}
+    runs-on: ${{ vars.AWS_POST_MERGE_CI_ENABLED == 'true' && github.repository == 'letslego/octopus' && github.repository_id == '1170821064' && github.ref == 'refs/heads/master' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.sha != '' && inputs.ref == github.sha && 'runs-on/fleet=paperclip-post-merge-x64/env=public-ci' || 'ubuntu-latest' }}
     timeout-minutes: 20
     permissions:
       contents: read
@@ -282,7 +282,7 @@ jobs:
   runner_workflow_evals:
     if: ${{ !inputs.runner_binaries_only }}
     name: Runner workflow eval scorer contract
-    runs-on: ${{ vars.AWS_POST_MERGE_CI_ENABLED == 'true' && github.repository == 'paperclipai/paperclip' && github.repository_id == '1170821064' && github.ref == 'refs/heads/master' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.sha != '' && inputs.ref == github.sha && 'runs-on/fleet=paperclip-post-merge-x64/env=public-ci' || 'ubuntu-latest' }}
+    runs-on: ${{ vars.AWS_POST_MERGE_CI_ENABLED == 'true' && github.repository == 'letslego/octopus' && github.repository_id == '1170821064' && github.ref == 'refs/heads/master' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.sha != '' && inputs.ref == github.sha && 'runs-on/fleet=paperclip-post-merge-x64/env=public-ci' || 'ubuntu-latest' }}
     timeout-minutes: 10
     permissions:
       contents: read
@@ -313,7 +313,7 @@ jobs:
   verify_paperclip_runner:
     if: ${{ !inputs.runner_binaries_only }}
     name: Verify Paperclip Runner (${{ matrix.lane }})
-    runs-on: ${{ vars.AWS_POST_MERGE_CI_ENABLED == 'true' && github.repository == 'paperclipai/paperclip' && github.repository_id == '1170821064' && github.ref == 'refs/heads/master' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.sha != '' && inputs.ref == github.sha && 'runs-on/fleet=paperclip-post-merge-x64/env=public-ci' || 'ubuntu-latest' }}
+    runs-on: ${{ vars.AWS_POST_MERGE_CI_ENABLED == 'true' && github.repository == 'letslego/octopus' && github.repository_id == '1170821064' && github.ref == 'refs/heads/master' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.sha != '' && inputs.ref == github.sha && 'runs-on/fleet=paperclip-post-merge-x64/env=public-ci' || 'ubuntu-latest' }}
     timeout-minutes: 20
     permissions:
       contents: read
@@ -394,7 +394,7 @@ jobs:
       - name: Cache Runner Rust dependencies
         # Restore and save only within trusted master-push verification. GitHub
         # isolates branch/PR caches from master; other callers compile afresh.
-        if: ${{ github.repository == 'paperclipai/paperclip' && github.event_name == 'push' && github.ref == 'refs/heads/master' && inputs.ref == github.sha }}
+        if: ${{ github.repository == 'letslego/octopus' && github.event_name == 'push' && github.ref == 'refs/heads/master' && inputs.ref == github.sha }}
         uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6 # v2.9.2
         with:
           workspaces: ${{ steps.runner_rust_workspace.outputs.path }} -> target
@@ -405,7 +405,7 @@ jobs:
           cache-bin: false
           # All lanes restore the existing dependency cache. Only the Rust
           # lane saves it, after warming both release and debug dependencies.
-          save-if: ${{ matrix.lane == 'rust' && github.repository == 'paperclipai/paperclip' && github.event_name == 'push' && github.ref == 'refs/heads/master' && inputs.ref == github.sha }}
+          save-if: ${{ matrix.lane == 'rust' && github.repository == 'letslego/octopus' && github.event_name == 'push' && github.ref == 'refs/heads/master' && inputs.ref == github.sha }}
 
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
@@ -430,14 +430,14 @@ jobs:
         run: |
           set -euo pipefail
           for check in $RUNNER_CHECKS; do
-            pnpm --filter @paperclipai/paperclip-runner "$check"
+            pnpm --filter @letslego/octopus-runner "$check"
           done
 
       - name: Warm debug dependencies for the shared Runner cache
         # Protocol tests need debug binaries. Populate their dependencies in
         # the sole cache writer, so a cold save also serves the protocol lane.
-        if: ${{ matrix.lane == 'rust' && github.repository == 'paperclipai/paperclip' && github.event_name == 'push' && github.ref == 'refs/heads/master' && inputs.ref == github.sha }}
-        run: pnpm --filter @paperclipai/paperclip-runner build:rust
+        if: ${{ matrix.lane == 'rust' && github.repository == 'letslego/octopus' && github.event_name == 'push' && github.ref == 'refs/heads/master' && inputs.ref == github.sha }}
+        run: pnpm --filter @letslego/octopus-runner build:rust
 
       # The dependency cache above deliberately leaves the Runner's own crate
       # out, so every pull request build compiled paperclip-runner-core in
@@ -455,12 +455,12 @@ jobs:
       # and must match the readers'; a guard test holds them together.
       - name: Compute the Runner release crate cache key
         id: runner_release_crate_key
-        if: ${{ matrix.lane == 'rust' && github.repository == 'paperclipai/paperclip' && github.event_name == 'push' && github.ref == 'refs/heads/master' && inputs.ref == github.sha }}
+        if: ${{ matrix.lane == 'rust' && github.repository == 'letslego/octopus' && github.event_name == 'push' && github.ref == 'refs/heads/master' && inputs.ref == github.sha }}
         run: echo "scope=$(node scripts/runner-release-crate-cache.mjs scope)" >> "$GITHUB_OUTPUT"
 
       - name: Check for this push's Runner release crate
         id: runner_release_crate
-        if: ${{ matrix.lane == 'rust' && github.repository == 'paperclipai/paperclip' && github.event_name == 'push' && github.ref == 'refs/heads/master' && inputs.ref == github.sha }}
+        if: ${{ matrix.lane == 'rust' && github.repository == 'letslego/octopus' && github.event_name == 'push' && github.ref == 'refs/heads/master' && inputs.ref == github.sha }}
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           lookup-only: true
@@ -474,7 +474,7 @@ jobs:
           key: runner-release-crate-v1-${{ steps.runner_release_crate_key.outputs.scope }}-${{ hashFiles('packages/paperclip-runner/rust-toolchain.toml', 'packages/paperclip-runner/acpx-profiles.json', 'packages/paperclip-runner/antigravity-distributions.json', 'packages/paperclip-runner/runner/Cargo.toml', 'packages/paperclip-runner/runner/Cargo.lock', 'packages/paperclip-runner/runner/crates/**', 'packages/paperclip-runner/protocol/**', 'packages/paperclip-runner/test-fixtures/**', 'packages/paperclip-runner/test/fixtures/**', 'tests/runner-e2e/fixtures/**') }}
 
       - name: Build the Runner release crate for its cache
-        if: ${{ matrix.lane == 'rust' && github.repository == 'paperclipai/paperclip' && github.event_name == 'push' && github.ref == 'refs/heads/master' && inputs.ref == github.sha && steps.runner_release_crate.outputs.cache-hit != 'true' }}
+        if: ${{ matrix.lane == 'rust' && github.repository == 'letslego/octopus' && github.event_name == 'push' && github.ref == 'refs/heads/master' && inputs.ref == github.sha && steps.runner_release_crate.outputs.cache-hit != 'true' }}
         working-directory: packages/paperclip-runner
         run: |
           set -euo pipefail
@@ -482,7 +482,7 @@ jobs:
           pnpm build:binary
 
       - name: Save the Runner release crate
-        if: ${{ matrix.lane == 'rust' && github.repository == 'paperclipai/paperclip' && github.event_name == 'push' && github.ref == 'refs/heads/master' && inputs.ref == github.sha && steps.runner_release_crate.outputs.cache-hit != 'true' }}
+        if: ${{ matrix.lane == 'rust' && github.repository == 'letslego/octopus' && github.event_name == 'push' && github.ref == 'refs/heads/master' && inputs.ref == github.sha && steps.runner_release_crate.outputs.cache-hit != 'true' }}
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: |
@@ -497,7 +497,7 @@ jobs:
   build:
     if: ${{ !inputs.runner_binaries_only }}
     name: Build
-    runs-on: ${{ vars.AWS_POST_MERGE_CI_ENABLED == 'true' && github.repository == 'paperclipai/paperclip' && github.repository_id == '1170821064' && github.ref == 'refs/heads/master' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.sha != '' && inputs.ref == github.sha && 'runs-on/fleet=paperclip-post-merge-x64/env=public-ci' || 'ubuntu-latest' }}
+    runs-on: ${{ vars.AWS_POST_MERGE_CI_ENABLED == 'true' && github.repository == 'letslego/octopus' && github.repository_id == '1170821064' && github.ref == 'refs/heads/master' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.sha != '' && inputs.ref == github.sha && 'runs-on/fleet=paperclip-post-merge-x64/env=public-ci' || 'ubuntu-latest' }}
     timeout-minutes: 20
     permissions:
       contents: read
@@ -658,7 +658,7 @@ jobs:
           cache-workspace-crates: false
           cache-bin: false
           cache-on-failure: false
-          save-if: ${{ github.repository == 'paperclipai/paperclip' && github.repository_id == '1170821064' && github.event_name == 'push' && github.ref == 'refs/heads/master' && inputs.ref == github.sha }}
+          save-if: ${{ github.repository == 'letslego/octopus' && github.repository_id == '1170821064' && github.event_name == 'push' && github.ref == 'refs/heads/master' && inputs.ref == github.sha }}
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
       - name: Build TypeScript contract and host daemon concurrently
@@ -673,7 +673,7 @@ jobs:
           let failure;
           try {
             for (const [name, args, cwd] of [
-              ['typescript', ['--filter', '@paperclipai/paperclip-runner', 'build:typescript'], root],
+              ['typescript', ['--filter', '@letslego/octopus-runner', 'build:typescript'], root],
               ['native', ['build:binary'], join(root, 'packages/paperclip-runner')],
             ]) {
               builds.push(startPrefetch({ name, cmd: 'pnpm', args, cwd, env: process.env, logPath: join(logs, name + '.log') }));

@@ -22,7 +22,7 @@ import type {
   PrpEvent,
   PrpStructuredRunResult,
   PrpTerminalState,
-} from "@paperclipai/paperclip-runner";
+} from "@letslego/octopus-runner";
 import { NativeSessionProtocolIntegrityError } from "../../vendor/paperclip-runner/index.js";
 
 import {

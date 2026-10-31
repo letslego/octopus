@@ -46,7 +46,7 @@
     "productTypecheck": true
   },
   "dependencyPrerequisite": {
-    "pullRequest": "https://github.com/paperclipai/paperclip/pull/15572",
+    "pullRequest": "https://github.com/letslego/octopus/pull/15572",
     "mergedRevision": "941a3fa991aeb97eb1ac390c65b7973b5f6de1ad",
     "generatedLockSha256": "sha256:13ea85cd23a3772889a083020918646ff68231eeace607ab50d2093bc33e3201",
     "currentHeadCiPassed": true,

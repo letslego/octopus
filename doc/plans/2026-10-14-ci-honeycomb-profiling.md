@@ -27,7 +27,7 @@ No sampling inside a selected run.
 ## State
 
 - Branch: `codex/ci-honeycomb-profiling` in the existing `76aa` worktree.
-- PR: https://github.com/paperclipai/paperclip/pull/16378
+- PR: https://github.com/letslego/octopus/pull/16378
 - Baseline: GitHub run `38671274294`, 48 jobs, 479 seconds from creation to last
   job completion. Raw GitHub evidence is in `/tmp/paperclip-ci-profile-evidence`.
 - Honeycomb: existing `paperclip` team / `test` environment; dedicated `paperclip-ci`

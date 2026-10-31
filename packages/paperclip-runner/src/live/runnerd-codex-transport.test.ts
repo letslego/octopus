@@ -2053,10 +2053,10 @@ it.each((["copilot", "pi", "antigravity"] as const).flatMap(agent =>
     const runnerRoot = layout === "source"
       ? join(directory, "packages/paperclip-runner")
       : layout === "scoped-npm"
-        ? join(directory, "node_modules/@paperclipai/paperclip-runner")
+        ? join(directory, "node_modules/@letslego/octopus-runner")
         : directory;
     await mkdir(join(runnerRoot, "dist/cli"), { recursive: true });
-    await writeFile(join(runnerRoot, "package.json"), JSON.stringify({ name: "@paperclipai/paperclip-runner" }));
+    await writeFile(join(runnerRoot, "package.json"), JSON.stringify({ name: "@letslego/octopus-runner" }));
     try {
       const authority = runnerdLaunchProfileInternals.acpxProviderPackageAuthority(
         join(runnerRoot, "dist/cli/acpx-runtime-sidecar.cjs"), runnerRoot, agent,

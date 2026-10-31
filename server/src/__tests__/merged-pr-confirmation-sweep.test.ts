@@ -39,7 +39,7 @@ describe("merged pull-request confirmation extraction", () => {
   it("extracts and deduplicates full GitHub URLs and owner/repo#N shorthand", () => {
     expect(extractGitHubPullRequestReferences([
       "Merge https://github.com/PaperclipAI/paperclip/pull/39.",
-      "Also paperclipai/paperclip#40 and PAPERCLIPAI/paperclip#40.",
+      "Also letslego/octopus#40 and PAPERCLIPAI/paperclip#40.",
     ])).toEqual([
       { host: "github.com", owner: "PaperclipAI", repo: "paperclip", number: 39 },
       { host: "github.com", owner: "paperclipai", repo: "paperclip", number: 40 },
@@ -76,11 +76,11 @@ describe("merged pull-request confirmation extraction", () => {
       payload: {
         version: 1,
         prompt: "Merge the linked pull request?",
-        detailsMarkdown: "Primary: paperclipai/paperclip#39",
+        detailsMarkdown: "Primary: letslego/octopus#39",
         target: {
           type: "custom",
           key: "github-pr-40",
-          href: "https://github.com/paperclipai/paperclip/pull/40",
+          href: "https://github.com/letslego/octopus/pull/40",
         },
       },
     })).toEqual([
@@ -100,7 +100,7 @@ describe("merged pull-request confirmation extraction", () => {
       payload: {
         version: 1,
         prompt: "Merge the linked pull request?",
-        detailsMarkdown: "Deploy to production after paperclipai/paperclip#39 merges.",
+        detailsMarkdown: "Deploy to production after letslego/octopus#39 merges.",
       },
     })).toEqual([]);
     expect(getMergeConfirmationPullRequestReferences({
@@ -111,7 +111,7 @@ describe("merged pull-request confirmation extraction", () => {
         target: {
           type: "custom",
           label: "Release to production",
-          href: "https://github.com/paperclipai/paperclip/pull/39",
+          href: "https://github.com/letslego/octopus/pull/39",
         },
       },
     })).toEqual([]);
@@ -124,8 +124,8 @@ describe("merged pull-request confirmation extraction", () => {
       summary: null,
       payload: {
         version: 1,
-        prompt: "Merge paperclipai/paperclip#39?",
-        detailsMarkdown: "Erase all customer records after paperclipai/paperclip#39 merges.",
+        prompt: "Merge letslego/octopus#39?",
+        detailsMarkdown: "Erase all customer records after letslego/octopus#39 merges.",
       },
     })).toEqual([]);
   });
@@ -216,13 +216,13 @@ describeEmbeddedPostgres("merged pull-request confirmation sweep", () => {
       {
         ...common,
         id: interactionIds.merged,
-        title: "Merge https://github.com/paperclipai/paperclip/pull/39?",
+        title: "Merge https://github.com/letslego/octopus/pull/39?",
         payload: { version: 1, prompt: "Merge the PR?" },
       },
       {
         ...common,
         id: interactionIds.boardOrAgents,
-        title: "Merge paperclipai/paperclip#39?",
+        title: "Merge letslego/octopus#39?",
         requestedResolverPolicy: "board_or_agents",
         effectiveResolverPolicy: "board_or_agents",
         payload: { version: 1, prompt: "Merge the PR?" },
@@ -230,7 +230,7 @@ describeEmbeddedPostgres("merged pull-request confirmation sweep", () => {
       {
         ...common,
         id: interactionIds.someOpen,
-        title: "Ready to merge paperclipai/paperclip#39 and paperclipai/paperclip#41?",
+        title: "Ready to merge letslego/octopus#39 and letslego/octopus#41?",
         payload: { version: 1, prompt: "Ready to merge both PRs?" },
       },
       {
@@ -242,7 +242,7 @@ describeEmbeddedPostgres("merged pull-request confirmation sweep", () => {
       {
         ...common,
         id: interactionIds.toolAction,
-        title: "Merge paperclipai/paperclip#42?",
+        title: "Merge letslego/octopus#42?",
         payload: {
           version: 1,
           prompt: "Merge the PR?",
@@ -255,8 +255,8 @@ describeEmbeddedPostgres("merged pull-request confirmation sweep", () => {
         title: "Merge the linked PR?",
         payload: {
           version: 1,
-          prompt: "Merge paperclipai/paperclip#39?",
-          detailsMarkdown: "Erase all customer records after paperclipai/paperclip#39 merges.",
+          prompt: "Merge letslego/octopus#39?",
+          detailsMarkdown: "Erase all customer records after letslego/octopus#39 merges.",
         },
       },
     ]);
@@ -318,7 +318,7 @@ describeEmbeddedPostgres("merged pull-request confirmation sweep", () => {
         details: expect.objectContaining({
           interactionId: interactionIds.merged,
           resolutionActorKind: "system",
-          pullRequests: ["paperclipai/paperclip#39"],
+          pullRequests: ["letslego/octopus#39"],
         }),
       }),
     ]));

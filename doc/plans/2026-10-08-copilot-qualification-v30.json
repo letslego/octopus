@@ -54,7 +54,7 @@
       "acceptedCompletionEvidence": true
     }
   },
-  "publicImage": "ghcr.io/paperclipai/paperclip-daytona-runner@sha256:2ccfe999e7794ea1577e581840743a466663143c4303a518e06b3f1e0faa58fb",
+  "publicImage": "ghcr.io/letslego/octopus-daytona-runner@sha256:2ccfe999e7794ea1577e581840743a466663143c4303a518e06b3f1e0faa58fb",
   "billingEntity": "github",
   "nativeUsd": null,
   "retainedFailures": [

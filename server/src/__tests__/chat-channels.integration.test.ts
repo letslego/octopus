@@ -2201,8 +2201,8 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     let repositories = [
       {
         id: 97531,
-        full_name: "paperclipai/paperclip",
-        html_url: "https://github.com/paperclipai/paperclip",
+        full_name: "letslego/octopus",
+        html_url: "https://github.com/letslego/octopus",
         owner: { id: 1357, login: "paperclipai" },
         private: false,
       },
@@ -2270,7 +2270,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
         const id = ++nextResponseId;
         const thread = list ? `${list[1]}:${list[2]}` : `pulls:${reply![1]}`;
         const body = JSON.parse(String(init.body)).body;
-        const comment = { id, body, thread, html_url: `https://github.com/paperclipai/paperclip/issues/${list?.[2] ?? reply![1]}#issuecomment-${id}`,
+        const comment = { id, body, thread, html_url: `https://github.com/letslego/octopus/issues/${list?.[2] ?? reply![1]}#issuecomment-${id}`,
           user: { login: `maya-${fixture.companyId.slice(0, 8)}[bot]` } };
         responseComments.set(id, comment);
         responseWrites.push({ method: "POST", id, body });
@@ -2533,9 +2533,9 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       );
       return { ...fixture, ...context, endpoint, principal, management };
     }
-    async function subscribedGitHubFixture(threadId = "github:paperclipai/paperclip:issue:419") {
+    async function subscribedGitHubFixture(threadId = "github:letslego/octopus:issue:419") {
       const f = await reviewBotFixture();
-      const thread = makeThread({ channelId: "paperclipai/paperclip", id: threadId }).thread;
+      const thread = makeThread({ channelId: "letslego/octopus", id: threadId }).thread;
       await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread,
         trigger: "mention", message: makeMessage({ id: "41901", text: `@${f.endpoint.botUsername} start this thread`, userId: "42", userName: "octocat", mentioned: true }) });
       const [conversation] = await readChatConversationsByEndpointId(f.endpoint.id);
@@ -2550,7 +2550,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       "reconsiders the same GitHub reply after stopped native workspace cleanup (%s)", async scenario => {
         const snapshotScenario = scenario.startsWith("snapshot_");
         const safetyScenario = snapshotScenario ? scenario.slice("snapshot_".length) : scenario;
-        const f = await subscribedGitHubFixture("github:paperclipai/paperclip:419");
+        const f = await subscribedGitHubFixture("github:letslego/octopus:419");
         const issueId = f.conversation.issueId!;
         const heartbeat = heartbeatService(db);
         const sourceRunId = randomUUID(), leaseId = randomUUID(), providerLeaseId = randomUUID();
@@ -2634,7 +2634,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
         let nextReceipt: typeof receipt | undefined;
         let nextCommentId: string | undefined;
         if (safetyScenario === "revoked_before_valid") {
-          const thread = makeThread({ channelId: "paperclipai/paperclip", id: "github:paperclipai/paperclip:419:rc:4332012267" }).thread;
+          const thread = makeThread({ channelId: "letslego/octopus", id: "github:letslego/octopus:419:rc:4332012267" }).thread;
           const { id: _id, ...conversation } = f.conversation;
           await db.insert(chatConversations).values({ ...conversation, externalThreadId: thread.id });
           await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread,
@@ -2724,7 +2724,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
           prompts: { ...saved.configuration.defaults.prompts, mention: `Use ${ref(mention)}.`, opened: ref(injected) },
         },
       } }, "owner-user");
-      const thread = makeThread({ channelId: "paperclipai/paperclip", id: "github:paperclipai/paperclip:issue:419" }).thread;
+      const thread = makeThread({ channelId: "letslego/octopus", id: "github:letslego/octopus:issue:419" }).thread;
       await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread,
         trigger: "mention", message: makeMessage({ id: "41901", text: `@${f.endpoint.botUsername} ${ref(injected)}`, userId: "42", userName: "octocat", mentioned: true }) });
       const [conversation] = await readChatConversationsByEndpointId(f.endpoint.id);
@@ -2761,9 +2761,9 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       await expect(resolveRunScopedMentionedSkillKeys({ ...args, commentIds: [] })).rejects.toThrow("referenced skill is unavailable");
     });
     it.each([
-      "github:paperclipai/paperclip:issue:419",
-      "github:paperclipai/paperclip:419",
-      "github:paperclipai/paperclip:419:rc:41899",
+      "github:letslego/octopus:issue:419",
+      "github:letslego/octopus:419",
+      "github:letslego/octopus:419:rc:41899",
     ])("suppresses subscribed GitHub comments for another connected bot in %s", async threadId => {
       const f = await subscribedGitHubFixture(threadId);
       await addPeerGitHubBot(f);
@@ -2834,7 +2834,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       expect(f.wakeup).toHaveBeenCalledTimes(wakeCount);
       expect(await readIssueCommentsByIssueId(f.conversation.issueId!)).toHaveLength(1);
     });
-    async function toolReplyFixture(threadId = "github:paperclipai/paperclip:issue:418", reportOnly = false) {
+    async function toolReplyFixture(threadId = "github:letslego/octopus:issue:418", reportOnly = false) {
       const f = await reviewBotFixture();
       if (reportOnly) {
         const config = await f.management.configuration(f.endpoint.id, "owner-user");
@@ -2842,7 +2842,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
           configuration: { ...config.configuration, defaults: { ...config.configuration.defaults, ratingThreshold: null } },
         }, "owner-user");
       }
-      const thread = makeThread({ channelId: "paperclipai/paperclip", id: threadId }).thread;
+      const thread = makeThread({ channelId: "letslego/octopus", id: threadId }).thread;
       await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread,
         trigger: "mention", message: makeMessage({ id: "41801", text: "Are you there?", userId: "42", userName: "octocat", mentioned: true }) });
       const [conversation] = await readChatConversationsByEndpointId(f.endpoint.id);
@@ -2946,7 +2946,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     });
 
     async function publicationRetryFixture() {
-      const f = await toolReplyFixture("github:paperclipai/paperclip:418", true);
+      const f = await toolReplyFixture("github:letslego/octopus:418", true);
       const head = "b".repeat(40);
       const inline: Array<{ id: number; body: string; html_url: string; user: { login: string } }> = [];
       const checks: Array<{ id: number; external_id: string; app: { id: number }; html_url: string }> = [];
@@ -3014,7 +3014,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       const originalBody = f.responseComments.get(originalId)!.body;
       const writesBefore = f.responseWrites.length;
       const responses = githubResponseCommentService(db, f.providerFetch);
-      const thread = makeThread({ channelId: "paperclipai/paperclip", id: f.conversation.externalThreadId }).thread;
+      const thread = makeThread({ channelId: "letslego/octopus", id: f.conversation.externalThreadId }).thread;
       await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread,
         trigger: "subscribed_message", message: makeMessage({ id: "41802", text: "No fix pushed; keep the existing review unchanged and wait for my reply.", userId: "42", userName: "octocat" }) });
       await responses.processPending();
@@ -3062,7 +3062,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       await db.update(heartbeatRuns).set({ status: "succeeded" }).where(eq(heartbeatRuns.id, f.run.id));
       const originalId = [...f.responseComments.keys()][0];
       const originalBody = f.responseComments.get(originalId)!.body;
-      const thread = makeThread({ channelId: "paperclipai/paperclip", id: f.conversation.externalThreadId }).thread;
+      const thread = makeThread({ channelId: "letslego/octopus", id: f.conversation.externalThreadId }).thread;
       await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread,
         trigger: "subscribed_message", message: makeMessage({ id: "41802", text: "Please handle this new request", userId: "42", userName: "octocat" }) });
       const [next] = await db.insert(heartbeatRuns).values({ companyId: f.companyId, agentId: f.assignedAgentId,
@@ -3145,7 +3145,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       await db.update(chatActions).set({ result: null }).where(and(eq(chatActions.endpointId, f.endpoint.id),
         eq(chatActions.kind, "github_pr_response_comment")));
       await db.update(heartbeatRuns).set({ status: "succeeded" }).where(eq(heartbeatRuns.id, f.run.id));
-      const thread = makeThread({ channelId: "paperclipai/paperclip", id: f.conversation.externalThreadId }).thread;
+      const thread = makeThread({ channelId: "letslego/octopus", id: f.conversation.externalThreadId }).thread;
       await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread,
         trigger: "mention", message: makeMessage({ id: "41802", text: "Review again", userId: "42", userName: "octocat", mentioned: true }) });
       await githubResponseCommentService(db, f.providerFetch).processPending();
@@ -3166,7 +3166,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       expect(f.responseWrites.filter(write => write.method === "POST")).toHaveLength(1);
     });
     it("ignores a review request addressed to an external GitHub bot", async () => {
-      const f = await subscribedGitHubFixture("github:paperclipai/paperclip:419");
+      const f = await subscribedGitHubFixture("github:letslego/octopus:419");
       const wakeCount = f.wakeup.mock.calls.length;
       await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread: f.thread,
         trigger: "subscribed_message", message: makeMessage({ id: "41902", text: "@greptile review", userId: "42", userName: "octocat" }) });
@@ -3178,7 +3178,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       expect(f.responseWrites).toHaveLength(1);
     });
     it("retains a provider-verified GitHub mention when its plain text uses an alias", async () => {
-      const f = await subscribedGitHubFixture("github:paperclipai/paperclip:419");
+      const f = await subscribedGitHubFixture("github:letslego/octopus:419");
       const wakeCount = f.wakeup.mock.calls.length;
       await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread: f.thread,
         trigger: "mention", message: makeMessage({ id: "41902", text: "@rendered-alias review", userId: "42", userName: "octocat", mentioned: true }) });
@@ -3186,14 +3186,14 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       expect(await readIssueCommentsByIssueId(f.conversation.issueId!)).toHaveLength(2);
     });
     it("reconciles a GitHub working comment when execution stops without a publication", async () => {
-      const f = await toolReplyFixture("github:paperclipai/paperclip:418");
+      const f = await toolReplyFixture("github:letslego/octopus:418");
       await db.update(heartbeatRuns).set({ status: "failed", errorCode: "execution_finalization_deadline_exceeded" })
         .where(eq(heartbeatRuns.id, f.run.id));
       await db.update(issues).set({ status: "blocked" }).where(eq(issues.id, f.conversation.issueId!));
       await githubResponseCommentService(db, f.providerFetch).processPending();
       expect(f.responseComments.size).toBe(1);
       expect([...f.responseComments.values()][0].body).toContain("stopped before completing");
-      const thread = makeThread({ channelId: "paperclipai/paperclip", id: f.conversation.externalThreadId }).thread;
+      const thread = makeThread({ channelId: "letslego/octopus", id: f.conversation.externalThreadId }).thread;
       await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread,
         trigger: "mention", message: makeMessage({ id: "41802", text: "Review again", userId: "42", userName: "octocat", mentioned: true }) });
       await githubResponseCommentService(db, f.providerFetch).processPending();
@@ -3201,9 +3201,9 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       expect([...f.responseComments.values()][0].body).toContain("paused");
     });
     it("preserves newer GitHub PR progress when an older run fails", async () => {
-      const f = await toolReplyFixture("github:paperclipai/paperclip:418");
+      const f = await toolReplyFixture("github:letslego/octopus:418");
       await db.update(heartbeatRuns).set({ status: "failed" }).where(eq(heartbeatRuns.id, f.run.id));
-      const thread = makeThread({ channelId: "paperclipai/paperclip", id: f.conversation.externalThreadId }).thread;
+      const thread = makeThread({ channelId: "letslego/octopus", id: f.conversation.externalThreadId }).thread;
       await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread,
         trigger: "mention", message: makeMessage({ id: "41802", text: "Review again", userId: "42", userName: "octocat", mentioned: true }) });
       const [next] = await db.insert(heartbeatRuns).values({ companyId: f.companyId, agentId: f.assignedAgentId,
@@ -3219,7 +3219,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       expect([...f.responseComments.values()][0].body).toContain("Reviewing the new request");
     });
     it("adopts an existing GitHub PR placeholder and retires earlier duplicate placeholders", async () => {
-      const f = await toolReplyFixture("github:paperclipai/paperclip:418");
+      const f = await toolReplyFixture("github:letslego/octopus:418");
       const original = [...f.responseComments.values()][0];
       original.body = original.body.replace(/<!-- paperclip-pr-response:[^>]+ -->\n/, "");
       await db.delete(chatActions).where(and(eq(chatActions.endpointId, f.endpoint.id), eq(chatActions.kind, "github_pr_response_comment")));
@@ -3229,7 +3229,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       await githubResponseCommentService(db, f.providerFetch).processPending();
       expect(f.responseComments.size).toBe(1);
       expect(original.body).toContain("paperclip-pr-response:");
-      const thread = makeThread({ channelId: "paperclipai/paperclip", id: f.conversation.externalThreadId }).thread;
+      const thread = makeThread({ channelId: "letslego/octopus", id: f.conversation.externalThreadId }).thread;
       await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread,
         trigger: "mention", message: makeMessage({ id: "41802", text: "Review again", userId: "42", userName: "octocat", mentioned: true }) });
       const [second] = await db.select().from(chatActions).where(and(eq(chatActions.endpointId, f.endpoint.id),
@@ -3249,8 +3249,8 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       expect(original.body).toContain("Final result");
     });
     it("keeps a newer GitHub request open when its acknowledgement follows older progress", async () => {
-      const f = await toolReplyFixture("github:paperclipai/paperclip:418");
-      const thread = makeThread({ channelId: "paperclipai/paperclip", id: f.conversation.externalThreadId }).thread;
+      const f = await toolReplyFixture("github:letslego/octopus:418");
+      const thread = makeThread({ channelId: "letslego/octopus", id: f.conversation.externalThreadId }).thread;
       await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread,
         trigger: "mention", message: makeMessage({ id: "41802", text: "Review again", userId: "42", userName: "octocat", mentioned: true }) });
       const [link] = await db.select().from(chatMessageLinks).where(and(eq(chatMessageLinks.endpointId, f.endpoint.id), eq(chatMessageLinks.providerMessageId, "41802")));
@@ -3270,7 +3270,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     });
     it.each([false, true])("closes a GitHub placeholder after a formal review (legacy receipt: %s)", async legacy => {
       const f = await publicationRetryFixture();
-      const formal = { id: 991, html_url: "https://github.com/paperclipai/paperclip/pull/418#pullrequestreview-991" };
+      const formal = { id: 991, html_url: "https://github.com/letslego/octopus/pull/418#pullrequestreview-991" };
       if (legacy) {
         await db.insert(chatActions).values({ companyId: f.companyId, endpointId: f.endpoint.id, conversationId: f.conversation.id,
           kind: "github_review_publication", providerActionId: randomUUID(), status: "processed",
@@ -3295,13 +3295,13 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       const f = await publicationRetryFixture();
       const original = { ...[...f.responseComments.values()][0] };
       const [first] = await db.select().from(chatActions).where(and(eq(chatActions.endpointId, f.endpoint.id), eq(chatActions.kind, "github_response_comment")));
-      const thread = makeThread({ channelId: "paperclipai/paperclip", id: f.conversation.externalThreadId }).thread;
+      const thread = makeThread({ channelId: "letslego/octopus", id: f.conversation.externalThreadId }).thread;
       await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread,
         trigger: "mention", message: makeMessage({ id: "41802", text: "Review again", userId: "42", userName: "octocat", mentioned: true }) });
       const duplicateId = 799999;
       f.responseComments.set(duplicateId, { ...original, id: duplicateId,
         body: original.body.replace(/<!-- paperclip-pr-response:[^>]+ -->\n/, ""),
-        html_url: "https://github.com/paperclipai/paperclip/pull/418#issuecomment-799999" });
+        html_url: "https://github.com/letslego/octopus/pull/418#issuecomment-799999" });
       await db.update(chatActions).set({ result: { ...first.result, id: String(duplicateId) } }).where(eq(chatActions.id, first.id));
       const links = await db.select().from(chatMessageLinks).where(and(eq(chatMessageLinks.endpointId, f.endpoint.id), eq(chatMessageLinks.direction, "inbound")));
       const latest = await chatWakeContext({ endpointId: f.endpoint.id, issueId: f.conversation.issueId, provider: "github", providerMessageId: "41802" });
@@ -3313,11 +3313,11 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       expect([...f.responseComments.values()].some(comment => comment.body.includes("Advisory review"))).toBe(true);
     });
     it("does not handle a blocked new GitHub request with an older run's final reply", async () => {
-      const f = await toolReplyFixture("github:paperclipai/paperclip:418");
+      const f = await toolReplyFixture("github:letslego/octopus:418");
       await githubChatReviewService(db, f.providerFetch).execute(f.session, "comment", { body: "Earlier result", idempotencyKey: "earlier-result" });
       await db.update(heartbeatRuns).set({ status: "succeeded" }).where(eq(heartbeatRuns.id, f.run.id));
       await db.update(issues).set({ status: "blocked" }).where(eq(issues.id, f.conversation.issueId!));
-      const thread = makeThread({ channelId: "paperclipai/paperclip", id: f.conversation.externalThreadId }).thread;
+      const thread = makeThread({ channelId: "letslego/octopus", id: f.conversation.externalThreadId }).thread;
       await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread,
         trigger: "mention", message: makeMessage({ id: "41802", text: "New request", userId: "42", userName: "octocat", mentioned: true }) });
       await githubResponseCommentService(db, f.providerFetch).processPending();
@@ -3328,10 +3328,10 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     });
     it.each([["failed", false], ["failed", true], ["queued", false], ["queued", true]] as const)(
       "resumes a paused GitHub request and reconciles stopped execution (prior run: %s, progress: %s)", async (status, progress) => {
-        const f = await toolReplyFixture("github:paperclipai/paperclip:418");
+        const f = await toolReplyFixture("github:letslego/octopus:418");
         await db.update(heartbeatRuns).set({ status }).where(eq(heartbeatRuns.id, f.run.id));
         await db.update(issues).set({ status: "blocked" }).where(eq(issues.id, f.conversation.issueId!));
-        const thread = makeThread({ channelId: "paperclipai/paperclip", id: f.conversation.externalThreadId }).thread;
+        const thread = makeThread({ channelId: "letslego/octopus", id: f.conversation.externalThreadId }).thread;
         await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread,
           trigger: "mention", message: makeMessage({ id: "41802", text: "New request", userId: "42", userName: "octocat", mentioned: true }) });
         const responses = githubResponseCommentService(db, f.providerFetch);
@@ -3370,7 +3370,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       expect(settled.result?.final).toBe(true);
     });
     it("reconciles stopped GitHub work from native identity without legacy wake fields", async () => {
-      const f = await toolReplyFixture("github:paperclipai/paperclip:418");
+      const f = await toolReplyFixture("github:letslego/octopus:418");
       await initializeRunIdentity(db, { companyId: f.companyId, runId: f.run.id, issueId: f.conversation.issueId!,
         responsibleUserId: "owner-user", messageIds: [String(f.run.contextSnapshot?.wakeCommentId)], cause: "instruction" });
       await db.update(heartbeatRuns).set({ nativeIssueId: f.conversation.issueId, contextSnapshot: {}, status: "failed", updatedAt: new Date() })
@@ -3381,15 +3381,15 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       expect(f.responseComments.size).toBe(1);
     });
     it("retires a legacy GitHub placeholder when its acknowledgement is superseded", async () => {
-      const f = await toolReplyFixture("github:paperclipai/paperclip:418");
+      const f = await toolReplyFixture("github:letslego/octopus:418");
       const original = { ...[...f.responseComments.values()][0] };
       const [first] = await db.select().from(chatActions).where(and(eq(chatActions.endpointId, f.endpoint.id), eq(chatActions.kind, "github_response_comment")));
       const duplicateId = 799999;
       f.responseComments.set(duplicateId, { ...original, id: duplicateId,
         body: original.body.replace(/<!-- paperclip-pr-response:[^>]+ -->\n/, ""),
-        html_url: "https://github.com/paperclipai/paperclip/pull/418#issuecomment-799999" });
+        html_url: "https://github.com/letslego/octopus/pull/418#issuecomment-799999" });
       await db.update(chatActions).set({ status: "received", result: { ...first.result, id: String(duplicateId) } }).where(eq(chatActions.id, first.id));
-      const thread = makeThread({ channelId: "paperclipai/paperclip", id: f.conversation.externalThreadId }).thread;
+      const thread = makeThread({ channelId: "letslego/octopus", id: f.conversation.externalThreadId }).thread;
       await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread,
         trigger: "mention", message: makeMessage({ id: "41802", text: "Review again", userId: "42", userName: "octocat", mentioned: true }) });
       const links = await db.select().from(chatMessageLinks).where(and(eq(chatMessageLinks.endpointId, f.endpoint.id), eq(chatMessageLinks.direction, "inbound")));
@@ -3545,7 +3545,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       expect(attempts).toBe(mode === "exhausted" ? 8 : 1);
     });
     it.each([503, 429])("automatically retries a transient GitHub review publication (HTTP %s)", async providerStatus => {
-      const f = await toolReplyFixture("github:paperclipai/paperclip:418", true);
+      const f = await toolReplyFixture("github:letslego/octopus:418", true);
       const head = "b".repeat(40);
       let summaryAttempts = 0;
       const checks: Record<string, unknown>[] = [];
@@ -3685,12 +3685,12 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       }
     });
     it("lists each GitHub bot tool once when an inline thread shares the task", async () => {
-      const f = await toolReplyFixture("github:paperclipai/paperclip:418");
+      const f = await toolReplyFixture("github:letslego/octopus:418");
       const { id: _id, ...conversation } = f.conversation;
       await db.insert(chatConversations).values({
         ...conversation,
-        externalThreadId: "github:paperclipai/paperclip:418:rc:41901",
-        providerUrl: "https://github.com/paperclipai/paperclip/pull/418#discussion_r41901",
+        externalThreadId: "github:letslego/octopus:418:rc:41901",
+        providerUrl: "https://github.com/letslego/octopus/pull/418#discussion_r41901",
       });
       const tools = await githubBotToolsForSession(db, f.session);
       expect(tools).toHaveLength(7);
@@ -3699,7 +3699,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       expect(await readChatConversationsByEndpointId(f.endpoint.id)).toHaveLength(2);
     });
     describe("replies in review finding threads behind an active run", () => {
-      const pr = "github:paperclipai/paperclip:17044";
+      const pr = "github:letslego/octopus:17044";
       async function findingThreadFixture() {
         vi.stubEnv("PAPERCLIP_API_URL", "https://paperclip.example.test");
         onTestFinished(() => vi.unstubAllEnvs());
@@ -3724,9 +3724,9 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
         // Published findings bind their inline threads to the PR review task.
         const { id: _id, ...base } = f.conversation;
         const threads = await Promise.all(["4332012267", "4332012626"].map(async (commentId) => {
-          const thread = makeThread({ channelId: "paperclipai/paperclip", id: `${pr}:rc:${commentId}` }).thread;
+          const thread = makeThread({ channelId: "letslego/octopus", id: `${pr}:rc:${commentId}` }).thread;
           const [conversation] = await db.insert(chatConversations).values({ ...base, externalThreadId: thread.id,
-            providerUrl: `https://github.com/paperclipai/paperclip/pull/17044#discussion_r${commentId}` }).returning();
+            providerUrl: `https://github.com/letslego/octopus/pull/17044#discussion_r${commentId}` }).returning();
           return { thread, conversation };
         }));
         // The review-request run still holds the task when the linked user replies.
@@ -3799,7 +3799,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       { label: "returns the confirmed GitHub assessment when publication takes longer than ten seconds", delayMs: 11_000, timeoutMs: undefined },
       { label: "preserves an explicit shorter GitHub tool deadline and reconciles without duplicate publication", delayMs: 200, timeoutMs: 50 },
     ])("recovers a durable GitHub publication receipt ($label)", async ({ delayMs, timeoutMs }) => {
-      const f = await toolReplyFixture("github:paperclipai/paperclip:418", true);
+      const f = await toolReplyFixture("github:letslego/octopus:418", true);
       const head = "b".repeat(40);
       const checks: Record<string, unknown>[] = [];
       f.setSupplementalProviderFetch(async (input, init) => {
@@ -4132,7 +4132,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     });
 
     it.each(["passive", "missing"] as const)("keeps native presentation idle until its committed GitHub outcome: %s", async outcome => {
-      const f = await toolReplyFixture("github:paperclipai/paperclip:418");
+      const f = await toolReplyFixture("github:letslego/octopus:418");
       await db.update(heartbeatRuns).set({ status: "succeeded", nativePhase: "observed", resultJson: null })
         .where(eq(heartbeatRuns.id, f.run.id));
       const [action] = await db.select().from(chatActions).where(and(eq(chatActions.endpointId, f.endpoint.id),
@@ -4209,10 +4209,10 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     });
 
     it("keeps an acknowledged paused GitHub request quiet until its new run finishes", async () => {
-      const f = await toolReplyFixture("github:paperclipai/paperclip:418");
+      const f = await toolReplyFixture("github:letslego/octopus:418");
       await db.update(heartbeatRuns).set({ status: "failed" }).where(eq(heartbeatRuns.id, f.run.id));
       await db.update(issues).set({ status: "blocked" }).where(eq(issues.id, f.conversation.issueId!));
-      const thread = makeThread({ channelId: "paperclipai/paperclip", id: f.conversation.externalThreadId }).thread;
+      const thread = makeThread({ channelId: "letslego/octopus", id: f.conversation.externalThreadId }).thread;
       await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread,
         trigger: "mention", message: makeMessage({ id: "41802", text: "New request", userId: "42", userName: "octocat", mentioned: true }) });
       const responses = githubResponseCommentService(db, f.providerFetch);
@@ -4321,7 +4321,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     });
 
     it("finds owed terminal GitHub work beyond a full page of unrelated request history", async () => {
-      const f = await toolReplyFixture("github:paperclipai/paperclip:418");
+      const f = await toolReplyFixture("github:letslego/octopus:418");
       const [original] = await db.select().from(chatActions).where(and(eq(chatActions.endpointId, f.endpoint.id), eq(chatActions.kind, "github_response_comment")));
       const [delivery] = await db.select().from(chatDeliveries).where(eq(chatDeliveries.id, original.deliveryId!));
       await db.update(heartbeatRuns).set({ status: "failed", updatedAt: new Date() }).where(eq(heartbeatRuns.id, f.run.id));
@@ -4401,12 +4401,12 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     });
 
     it.each(["tree restore", "workspace admission", "exhausted recovery"] as const)("wakes a paused GitHub response from %s", async producer => {
-      const f = await toolReplyFixture("github:paperclipai/paperclip:418");
+      const f = await toolReplyFixture("github:letslego/octopus:418");
       const issueId = f.conversation.issueId!;
       await db.update(heartbeatRuns).set({ status: "failed" }).where(eq(heartbeatRuns.id, f.run.id));
       await db.update(chatActions).set({ result: sql`coalesce(${chatActions.result}, '{}'::jsonb) || '{"final":true}'::jsonb` })
         .where(and(eq(chatActions.endpointId, f.endpoint.id), eq(chatActions.kind, "github_response_comment")));
-      const thread = makeThread({ channelId: "paperclipai/paperclip", id: f.conversation.externalThreadId }).thread;
+      const thread = makeThread({ channelId: "letslego/octopus", id: f.conversation.externalThreadId }).thread;
       await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread,
         trigger: "mention", message: makeMessage({ id: "41802", text: "New request", userId: "42", userName: "octocat", mentioned: true }) });
       const [link] = await db.select().from(chatMessageLinks).where(and(eq(chatMessageLinks.endpointId, f.endpoint.id), eq(chatMessageLinks.providerMessageId, "41802")));
@@ -4486,7 +4486,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
         await claimed;
         if (mode === "restart") await coordinator.stop();
         if (mode === "drain" || mode === "standby") canRun = false;
-        const thread = makeThread({ channelId: "paperclipai/paperclip", id: "github:paperclipai/paperclip:issue:418" }).thread;
+        const thread = makeThread({ channelId: "letslego/octopus", id: "github:letslego/octopus:issue:418" }).thread;
         await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread,
           trigger: "mention", message: makeMessage({ id: "41801", text: "Fix this", userId: "42", userName: "octocat", mentioned: true }) });
         const [action] = await db.select().from(chatActions).where(and(eq(chatActions.endpointId, f.endpoint.id), eq(chatActions.kind, "github_response_comment")));
@@ -4530,7 +4530,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       vi.useFakeTimers({ toFake: ["Date", "setTimeout", "clearTimeout"], shouldAdvanceTime: true });
       try {
         await f.service.registerGitHubAcknowledgementWork(coordinator, () => true).ready;
-        const thread = makeThread({ channelId: "paperclipai/paperclip", id: "github:paperclipai/paperclip:issue:418" }).thread;
+        const thread = makeThread({ channelId: "letslego/octopus", id: "github:letslego/octopus:issue:418" }).thread;
         await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread,
           trigger: "mention", message: makeMessage({ id: "41801", text: "Fix this", userId: "42", userName: "octocat", mentioned: true }) });
         const [job] = await db.select().from(fastResponseRequests).where(eq(fastResponseRequests.companyId, f.companyId));
@@ -4584,7 +4584,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       const binding = await aiConnectionService(db).save(f.companyId, "owner-user", { provider: "openrouter", method: "api_key", name: "Fast GitHub", ownership: "shared", apiKey: "fixture-key", agentIds: [], allAgents: true }, "fixture-key");
       const fast = fastResponseService(db, { authorizeExternal: f.service.authorizeFastResponse });
       await fast.configure(f.companyId, "owner-user", { enabled: true, ...binding, model: "openai/gpt-oss-120b", allowSponsored: true });
-      const thread = makeThread({ channelId: "paperclipai/paperclip", id: "github:paperclipai/paperclip:issue:418" }).thread;
+      const thread = makeThread({ channelId: "letslego/octopus", id: "github:letslego/octopus:issue:418" }).thread;
       await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread,
         trigger: "mention", message: makeMessage({ id: "41801", text: "Fix this", userId: "42", userName: "octocat", mentioned: true }) });
       const [job] = await db.update(fastResponseRequests).set({ expiresAt: new Date(Date.now() + 60_000) })
@@ -4620,7 +4620,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     it.each(["drain", "standby", "shutdown"] as const)("stops GitHub acknowledgement sends at %s between provider requests", async mode => {
       const f = await reviewBotFixture();
       f.setSupplementalProviderFetch(async (input, init) => String(input).includes("/issues/418/comments") && init?.method === "POST" ? new Response("unavailable", { status: 503 }) : undefined);
-      const thread = makeThread({ channelId: "paperclipai/paperclip", id: "github:paperclipai/paperclip:issue:418" }).thread;
+      const thread = makeThread({ channelId: "letslego/octopus", id: "github:letslego/octopus:issue:418" }).thread;
       await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread,
         trigger: "mention", message: makeMessage({ id: "41801", text: "Fix this", userId: "42", userName: "octocat", mentioned: true }) });
       const [action] = await db.select().from(chatActions).where(and(eq(chatActions.endpointId, f.endpoint.id), eq(chatActions.kind, "github_response_comment")));
@@ -4666,7 +4666,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       vi.useFakeTimers({ toFake: ["Date", "setTimeout", "clearTimeout"], shouldAdvanceTime: true });
       try {
         await f.service.registerGitHubAcknowledgementWork(coordinator, () => true).ready;
-        const thread = makeThread({ channelId: "paperclipai/paperclip", id: "github:paperclipai/paperclip:issue:418" }).thread;
+        const thread = makeThread({ channelId: "letslego/octopus", id: "github:letslego/octopus:issue:418" }).thread;
         await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread,
           trigger: "mention", message: makeMessage({ id: "41801", text: "Fix this", userId: "42", userName: "octocat", mentioned: true }) });
         const [action] = await db.select().from(chatActions).where(and(eq(chatActions.endpointId, f.endpoint.id), eq(chatActions.kind, "github_response_comment")));
@@ -4710,7 +4710,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
         });
         return null;
       });
-      const thread = makeThread({ channelId: "paperclipai/paperclip", id: "github:paperclipai/paperclip:issue:418" }).thread;
+      const thread = makeThread({ channelId: "letslego/octopus", id: "github:letslego/octopus:issue:418" }).thread;
       await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread,
         trigger: "mention", message: makeMessage({ id: "41801", text: "Are you there?", userId: "42", userName: "octocat", mentioned: true }) });
       const [action] = await db.select().from(chatActions).where(and(eq(chatActions.endpointId, f.endpoint.id), eq(chatActions.kind, "inbound_wakeup")));
@@ -4727,7 +4727,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
         provider: async () => ({ ...(outcome === "failed" ? { errorCode: "invalid_output", noProviderWork: true } : { text: "I’ll check the border styling." }), receipt: fastResponseReceipt({ usage: { inputTokens: 80, outputTokens: 8 } }) }) });
       await fast.configure(f.companyId, "owner-user", { enabled: true, ...binding, model: "openai/gpt-oss-120b", allowSponsored: true });
       const now = vi.spyOn(Date, "now").mockReturnValue(Date.now()); onTestFinished(() => now.mockRestore());
-      const thread = makeThread({ channelId: "paperclipai/paperclip", id: "github:paperclipai/paperclip:issue:418" }).thread;
+      const thread = makeThread({ channelId: "letslego/octopus", id: "github:letslego/octopus:issue:418" }).thread;
       await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread,
         trigger: "mention", message: makeMessage({ id: "41801", text: "Fix the border styling", userId: "42", userName: "octocat", mentioned: true }) });
       const [job] = await db.select().from(fastResponseRequests).where(eq(fastResponseRequests.companyId, f.companyId));
@@ -4756,7 +4756,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     it("acknowledges a GitHub request after a durable scheduler retry succeeds", async () => {
       const f = await reviewBotFixture();
       f.wakeup.mockRejectedValueOnce(new Error("Temporary scheduler outage"));
-      const thread = makeThread({ channelId: "paperclipai/paperclip", id: "github:paperclipai/paperclip:issue:418" }).thread;
+      const thread = makeThread({ channelId: "letslego/octopus", id: "github:letslego/octopus:issue:418" }).thread;
       await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread,
         trigger: "mention", message: makeMessage({ id: "41801", text: "Are you there?", userId: "42", userName: "octocat", mentioned: true }) });
       const [action] = await db.select().from(chatActions).where(and(eq(chatActions.endpointId, f.endpoint.id), eq(chatActions.kind, "inbound_wakeup")));
@@ -4771,7 +4771,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     });
     it("finalizes every working comment in a coalesced GitHub run", async () => {
       const f = await toolReplyFixture();
-      const thread = makeThread({ channelId: "paperclipai/paperclip", id: f.conversation.externalThreadId }).thread;
+      const thread = makeThread({ channelId: "letslego/octopus", id: f.conversation.externalThreadId }).thread;
       await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread,
         trigger: "mention", message: makeMessage({ id: "41802", text: "And this too", userId: "42", userName: "octocat", mentioned: true }) });
       // Acknowledgements use a best-effort publication lane. Establish both
@@ -4790,7 +4790,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     });
     it("settles a deleted coalesced working comment without blocking the current GitHub response", async () => {
       const f = await toolReplyFixture();
-      const thread = makeThread({ channelId: "paperclipai/paperclip", id: f.conversation.externalThreadId }).thread;
+      const thread = makeThread({ channelId: "letslego/octopus", id: f.conversation.externalThreadId }).thread;
       await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread,
         trigger: "mention", message: makeMessage({ id: "41802", text: "And this too", userId: "42", userName: "octocat", mentioned: true }) });
       await expect.poll(async () => { await githubResponseCommentService(db, f.providerFetch).processPending(); return f.responseComments.size; }, { timeout: 10_000 }).toBe(2);
@@ -4885,8 +4885,8 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       await expect(githubRunReplyState(db, { ...f.session, endpointId: f.endpoint.id })).resolves.toBe("unsettled");
     });
     it("loads an old GitHub review directly without crossing endpoint or company boundaries", async () => {
-      const f = await toolReplyFixture("github:paperclipai/paperclip:418");
-      const event = githubAutomaticReviewEvent({ action: "opened", repository: { id: 97531, full_name: "paperclipai/paperclip" }, sender: { id: 42, login: "octocat" },
+      const f = await toolReplyFixture("github:letslego/octopus:418");
+      const event = githubAutomaticReviewEvent({ action: "opened", repository: { id: 97531, full_name: "letslego/octopus" }, sender: { id: 42, login: "octocat" },
         pull_request: { number: 418, title: "Review", body: "", draft: false, base: { sha: "a".repeat(40), ref: "master" }, head: { sha: "b".repeat(40) }, user: { id: 42, login: "octocat" }, labels: [] } }, randomUUID())!;
       const records = await db.insert(chatGitHubReviews).values(Array.from({ length: 101 }, (_, index) => ({ companyId: f.companyId, endpointId: f.endpoint.id,
         issueId: f.conversation.issueId!, repositoryId: "97531", repository: event.repository, pullNumber: 418, headSha: event.headSha,
@@ -4898,13 +4898,13 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       const other = await reviewBotFixture();
       await expect(other.management.review(other.endpoint.id, records[0].id)).rejects.toMatchObject({ status: 404 });
     });
-    it.each(["github:paperclipai/paperclip:issue:418", "github:paperclipai/paperclip:418", "github:paperclipai/paperclip:418:rc:41799"])(
+    it.each(["github:letslego/octopus:issue:418", "github:letslego/octopus:418", "github:letslego/octopus:418:rc:41799"])(
       "updates one GitHub acknowledgement through progress and final answer in %s", async threadId => {
       const f = await toolReplyFixture(threadId);
       const service = githubChatReviewService(db, f.providerFetch);
       expect(f.responseWrites).toHaveLength(1);
       expect(f.responseWrites[0]).toMatchObject({ method: "POST", body: expect.stringContaining(
-        threadId === "github:paperclipai/paperclip:418" ? "Review queued" : "Working on this") });
+        threadId === "github:letslego/octopus:418" ? "Review queued" : "Working on this") });
       expect(f.runtime.endpoints.get(f.endpoint.id)?.reactions).toEqual([]);
       const progress = await service.execute(f.session, "update_comment", { body: "Checking the request", idempotencyKey: "progress-1" });
       expect(progress.status).toBe("processed");
@@ -5025,9 +5025,9 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       expect([...f.responseComments.values()][0].body).toContain("Done");
     });
     it.each([false, true])("closes an inline-only GitHub review when an earlier working comment was deleted: %s", async deletedSibling => {
-      const f = await toolReplyFixture("github:paperclipai/paperclip:418");
+      const f = await toolReplyFixture("github:letslego/octopus:418");
       if (deletedSibling) {
-        const thread = makeThread({ channelId: "paperclipai/paperclip", id: f.conversation.externalThreadId }).thread;
+        const thread = makeThread({ channelId: "letslego/octopus", id: f.conversation.externalThreadId }).thread;
         await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread,
           trigger: "mention", message: makeMessage({ id: "41802", text: "Review this too", userId: "42", userName: "octocat", mentioned: true }) });
         await expect.poll(async () => { await githubResponseCommentService(db, f.providerFetch).processPending(); return f.responseWrites.length; }, { timeout: 10_000 }).toBe(2);
@@ -5052,7 +5052,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
         if (url.includes("/pulls/418/comments?")) return Response.json([]);
         if (url.endsWith("/pulls/418/comments") && init?.method === "POST") {
           inlineWrites.push(JSON.parse(String(init.body)));
-          return Response.json({ id: 420, html_url: "https://github.com/paperclipai/paperclip/pull/418#discussion_r420" });
+          return Response.json({ id: 420, html_url: "https://github.com/letslego/octopus/pull/418#discussion_r420" });
         }
         return undefined;
       });
@@ -5069,14 +5069,14 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       const comment = [...f.responseComments.values()][0];
       if (!deletedSibling) {
         expect(comment.body).toContain("Review complete.");
-        expect(comment.body).toContain("https://github.com/paperclipai/paperclip/pull/418");
+        expect(comment.body).toContain("https://github.com/letslego/octopus/pull/418");
         expect(comment.body).not.toContain("Disabled summary");
         expect(comment.body).toContain("paperclip-response-state:final");
       }
       await expect(githubRunReplyState(db, { ...f.session, endpointId: f.endpoint.id })).resolves.toBe("confirmed");
     });
     it.each(["during_summary", "after_summary"] as const)("keeps partial review delivery authoritative when the head changes %s", async phase => {
-      const f = await toolReplyFixture("github:paperclipai/paperclip:418");
+      const f = await toolReplyFixture("github:letslego/octopus:418");
       const original = "b".repeat(40);
       let head = original;
       let summaryDelivered = false;
@@ -5156,7 +5156,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
             status: scenario === "unsettled" ? "processing" : scenario === "denied" || scenario === "cancelled_after_ambiguous" ? "cancelled" : scenario === "ambiguous_exhausted" ? "failed" : "processed",
             result: scenario === "check_only" || scenario === "missing_receipt" ? {} : scenario === "denied" ? { code: "authorization_changed", attempts: 1 } : scenario === "cancelled_after_ambiguous" ? { code: "authorization_changed", attempts: 2 }
               : scenario === "ambiguous_exhausted" ? { code: "publication_failed", retryable: false, attempts: 8 }
-              : { id: "41802", url: "https://github.com/paperclipai/paperclip/issues/418#issuecomment-41802" },
+              : { id: "41802", url: "https://github.com/letslego/octopus/issues/418#issuecomment-41802" },
           });
         }
         const unresolved = ["unsettled", "ambiguous_exhausted", "cancelled_after_ambiguous", "missing_receipt"].includes(scenario);
@@ -6263,15 +6263,15 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       context.setRepositories([
         {
           id: 97531,
-          full_name: "paperclipai/paperclip",
-          html_url: "https://github.com/paperclipai/paperclip",
+          full_name: "letslego/octopus",
+          html_url: "https://github.com/letslego/octopus",
           owner: { id: 1357, login: "paperclipai" },
           private: false,
         },
         {
           id: 97532,
           full_name: "paperclipai/later",
-          html_url: "https://github.com/paperclipai/later",
+          html_url: "https://github.com/letslego/later",
           owner: { id: 1357, login: "paperclipai" },
           private: true,
         },
@@ -6353,7 +6353,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       const response = await f.service.handleWebhook(endpoint.publicId, "github", signedGitHubWebhookRequest({
         event: "issue_comment", delivery: randomUUID(), webhookSecret: kind === "invalid_signature" ? "wrong-secret" : f.webhookSecret,
         payload: { action: "created", ...(kind === "missing_installation" ? {} : { installation: { id: kind === "foreign" ? 9999 : 2468 } }),
-          repository: { id: 97531, full_name: "paperclipai/paperclip", owner: { id: 1357, login: "paperclipai" } },
+          repository: { id: 97531, full_name: "letslego/octopus", owner: { id: 1357, login: "paperclipai" } },
           issue: { number: 418 }, comment: { id: 41801, body: status === "attention" ? `@${endpoint.botUsername} please review` : "Ordinary comment", user: { id: 42, login: "octocat" } }, sender: { id: 42, login: "octocat" } },
       }));
       if (kind === "invalid_signature") expect(response.status).toBe(401);
@@ -6842,8 +6842,8 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
         "owner-user",
       );
       const thread = makeThread({
-        channelId: "paperclipai/paperclip",
-        id: "github:paperclipai/paperclip:94",
+        channelId: "letslego/octopus",
+        id: "github:letslego/octopus:94",
         name: "Guest review",
       }).thread;
       await deliverMessage({
@@ -6939,7 +6939,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
         const [conversation] = await readChatConversationsByEndpointId(f.endpoint.id);
         expect(conversation.externalThreadId).toBe(`github:PaperclipAI/Paperclip:${event === "issues" || event === "issue_comment" ? "issue:" : ""}83${event === "pull_request_review_comment" ? ":rc:83000" : ""}`);
         expect(conversation.providerUrl).not.toContain("mention-event");
-        if (event === "issues") expect(conversation.providerUrl).toBe("https://github.com/paperclipai/paperclip/issues/83");
+        if (event === "issues") expect(conversation.providerUrl).toBe("https://github.com/letslego/octopus/issues/83");
         const [task] = await readIssuesById(conversation.issueId!);
         expect(task).toMatchObject({ assigneeAgentId: f.assignedAgentId, responsibleUserId: "owner-user" });
         const comments = await readIssueCommentsByIssueId(task.id);
@@ -6966,7 +6966,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       const file = "https://github.com/user-attachments/files/31917991/proof.txt";
       const body = `@${f.endpoint.botUsername!} read [this proof](${file})`;
       const payload = { action, installation: { id: 2468 },
-        repository: { id: 97531, full_name: "paperclipai/paperclip", name: "paperclip", owner: { id: 1357, login: "paperclipai" } },
+        repository: { id: 97531, full_name: "letslego/octopus", name: "paperclip", owner: { id: 1357, login: "paperclipai" } },
         sender: { id: 42, login: "octocat", type: "User" }, issue: { number: 83, body: "", title: "Proof", user: { id: 42, login: "octocat" } },
         comment: { id: 83001, body, user: { id: 42, login: "octocat" }, created_at: new Date().toISOString(), updated_at: new Date().toISOString() },
         ...(action === "edited" ? { changes: { body: { from: "No mention" } } } : {}) };
@@ -6982,7 +6982,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       const body = `@${f.endpoint.botUsername!} help`;
       const payload = {
         action: "edited", installation: { id: 2468 },
-        repository: { id: 97531, full_name: "paperclipai/paperclip", name: "paperclip", owner: { id: 1357, login: "paperclipai" } },
+        repository: { id: 97531, full_name: "letslego/octopus", name: "paperclip", owner: { id: 1357, login: "paperclipai" } },
         sender: { id: 77, login: "unlinked-editor", type: "User" },
         issue: { number: 84, title: "Say hello", body, user: { id: 42, login: "octocat", type: "User" }, labels: [] },
         changes: { body: { from: "No mention" } },
@@ -7012,7 +7012,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       const target = { number: 83, title: "Say hello", body: "Description", user: { id: 42, login: "octocat", type: "User" } };
       const payload = {
         action: "edited", installation: { id: 2468 },
-        repository: { id: 97531, full_name: "paperclipai/paperclip", name: "paperclip", owner: { id: 1357, login: "paperclipai" } },
+        repository: { id: 97531, full_name: "letslego/octopus", name: "paperclip", owner: { id: 1357, login: "paperclipai" } },
         sender: target.user, issue: target, pull_request: target,
         comment: { id: 83001, body: `@${f.endpoint.botUsername!} help`, user: target.user, updated_at: new Date().toISOString() },
         changes: { body: { from: "No mention" } },
@@ -7037,7 +7037,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       await f.management.saveConfiguration(f.endpoint.id, { expectedRevision: saved.revision, configuration: { ...saved.configuration, defaults: { ...saved.configuration.defaults, invocation: "mentions_only" } } }, "owner-user");
       const payload = {
         action: "opened", installation: { id: 2468 },
-        repository: { id: 97531, full_name: "paperclipai/paperclip", name: "paperclip", owner: { id: 1357, login: "paperclipai" } },
+        repository: { id: 97531, full_name: "letslego/octopus", name: "paperclip", owner: { id: 1357, login: "paperclipai" } },
         sender: { id: 42, login: "octocat" },
         issue: { number: 86, title: "Private title", body: "Private body", user: { id: 42, login: "octocat", type: "User" }, labels: [] },
       };
@@ -7065,7 +7065,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       const instruction = `Use [/automatic-playbook](${buildSkillMentionHref(skill.id, skill.slug)}).`;
       const payload = {
         action: "opened", installation: { id: 2468 },
-        repository: { id: 97531, full_name: "paperclipai/paperclip", name: "paperclip", owner: { id: 1357, login: "paperclipai" } },
+        repository: { id: 97531, full_name: "letslego/octopus", name: "paperclip", owner: { id: 1357, login: "paperclipai" } },
         sender: { id: 77, login: "maintainer" },
         issue: { number: 83, title: "Say hello", body: "Untrusted issue body", user: { id: 42, login: "octocat", type: "User" }, labels: [] },
       };
@@ -7086,7 +7086,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       const [conversation] = await readChatConversationsByEndpointId(f.endpoint.id);
       const [task] = await readIssuesById(conversation.issueId!);
       expect(task).toMatchObject({ title: "GitHub issue #83: Say hello", assigneeAgentId: f.assignedAgentId, responsibleUserId: "owner-user", originKind: "chat_channel" });
-      expect(conversation.providerUrl).toBe("https://github.com/paperclipai/paperclip/issues/83");
+      expect(conversation.providerUrl).toBe("https://github.com/letslego/octopus/issues/83");
       const comments = await readIssueCommentsByIssueId(task.id);
       expect(comments).toHaveLength(1);
       expect(comments[0].body).toContain(instruction);
@@ -7120,7 +7120,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
         event: "issues", delivery: randomUUID(), webhookSecret: f.webhookSecret,
         payload: {
           action: "opened", installation: { id: 2468 },
-          repository: { id: 97531, full_name: "paperclipai/paperclip", name: "paperclip", owner: { id: 1357, login: "paperclipai" } },
+          repository: { id: 97531, full_name: "letslego/octopus", name: "paperclip", owner: { id: 1357, login: "paperclipai" } },
           sender: { id: 42, login: "octocat" },
           issue: { number: 84, title: "No authority", body: "", user: { id: 999, login: "unknown", type: "User" }, labels: [] },
         },
@@ -7146,7 +7146,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
         installation: { id: 2468 },
         repository: {
           id: 97531,
-          full_name: "paperclipai/paperclip",
+          full_name: "letslego/octopus",
           name: "paperclip",
           owner: { id: 1357, login: "paperclipai" },
         },
@@ -7194,7 +7194,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
         originKind: "chat_channel",
       });
       const [conversation] = await db.select().from(chatConversations).where(eq(chatConversations.issueId, task.id));
-      expect(conversation.providerUrl).toBe("https://github.com/paperclipai/paperclip/pull/81");
+      expect(conversation.providerUrl).toBe("https://github.com/letslego/octopus/pull/81");
       expect(reviews[0].event.sender.id).toBe("77");
       expect(reviews[0].event.author.id).toBe("42");
       expect(reviews[0].policySnapshot.ratingThreshold).toBe(5);
@@ -7236,7 +7236,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       expect(await resolveGitHubReviewInstructions({ ...configArgs, commentIds: [comments[0].id, newComment.id] })).toEqual(updatedConfigs);
       expect(await resolveGitHubReviewInstructions({ ...configArgs, commentIds: [newComment.id, comments[0].id] })).toEqual(configs);
       const manualMarker = "Explain this review without starting a new assessment";
-      const manualThread = makeThread({ channelId: "paperclipai/paperclip", id: "github:paperclipai/paperclip:81" }).thread;
+      const manualThread = makeThread({ channelId: "letslego/octopus", id: "github:letslego/octopus:81" }).thread;
       await deliverMessage({ callbacks: f.callbacks, endpointId: f.endpoint.id, provider: "github", thread: manualThread,
         trigger: "mention", message: makeMessage({ id: "81001", text: `@${f.endpoint.botUsername} ${manualMarker}`,
           userId: "42", userName: "octocat", mentioned: true }) });
@@ -7287,9 +7287,9 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       }, "read_pull_request", { section: "metadata" })).rejects.toThrow("older pull request head");
     });
     async function reviewCheckWorkerFixture(status: "running" | "failed" = "failed") {
-      const f = await toolReplyFixture("github:paperclipai/paperclip:418");
+      const f = await toolReplyFixture("github:letslego/octopus:418");
       const config = await f.management.configuration(f.endpoint.id, "owner-user");
-      const event = githubAutomaticReviewEvent({ action: "opened", repository: { id: 97531, full_name: "paperclipai/paperclip" }, sender: { id: 42, login: "octocat" },
+      const event = githubAutomaticReviewEvent({ action: "opened", repository: { id: 97531, full_name: "letslego/octopus" }, sender: { id: 42, login: "octocat" },
         pull_request: { number: 418, title: "Review", body: "", draft: false, base: { sha: "a".repeat(40), ref: "master" }, head: { sha: "b".repeat(40) }, user: { id: 42, login: "octocat" }, labels: [] } }, randomUUID())!;
       const [review] = await db.insert(chatGitHubReviews).values({ companyId: f.companyId, endpointId: f.endpoint.id,
         issueId: f.conversation.issueId!, runId: f.run.id, repositoryId: "97531", repository: event.repository, pullNumber: 418, headSha: event.headSha,
@@ -7521,7 +7521,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       const f = await reviewBotFixture();
       const deliveryId = randomUUID();
       const payload = { action: "synchronize", installation: { id: 2468 },
-        repository: { id: 97531, full_name: "paperclipai/paperclip", name: "paperclip", owner: { id: 1357, login: "paperclipai" } },
+        repository: { id: 97531, full_name: "letslego/octopus", name: "paperclip", owner: { id: 1357, login: "paperclipai" } },
         sender: { id: 42, login: "octocat" },
         pull_request: { number: 82, title: "Rapid pushes", body: "", draft: false,
           base: { sha: "a".repeat(40), ref: "master" }, head: { sha: "b".repeat(40) },
@@ -7740,7 +7740,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       const payload = {
         action: "synchronize",
         installation: { id: 2468 },
-        repository: { id: 97531, full_name: "paperclipai/paperclip", name: "paperclip", owner: { id: 1357, login: "paperclipai" } },
+        repository: { id: 97531, full_name: "letslego/octopus", name: "paperclip", owner: { id: 1357, login: "paperclipai" } },
         sender: { id: 42, login: "octocat" },
         pull_request: {
           number: 82, title: "Rapid pushes", body: "", draft: false,
@@ -7783,7 +7783,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       const head = "b".repeat(40);
       const event = githubAutomaticReviewEvent({
         action: "opened", installation: { id: 2468 },
-        repository: { id: 97531, full_name: "paperclipai/paperclip", name: "paperclip", owner: { id: 1357, login: "paperclipai" } },
+        repository: { id: 97531, full_name: "letslego/octopus", name: "paperclip", owner: { id: 1357, login: "paperclipai" } },
         sender: { id: 42, login: "octocat" },
         pull_request: {
           number: 83, title: "Manual review required", body: "", draft: false,
@@ -7813,12 +7813,12 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       expect(await readChatGitHubReviewsByEndpointId(f.endpoint.id)).toHaveLength(0);
     });
     it.each(["succeeded", "failed", "cancelled"] as const)("keeps a report-only GitHub check neutral after a %s run without an assessment", async status => {
-      const f = await toolReplyFixture("github:paperclipai/paperclip:418");
+      const f = await toolReplyFixture("github:letslego/octopus:418");
       const config = await f.management.configuration(f.endpoint.id, "owner-user");
       await f.management.saveConfiguration(f.endpoint.id, { expectedRevision: config.revision,
         configuration: { ...config.configuration, defaults: { ...config.configuration.defaults, ratingThreshold: null } },
       }, "owner-user");
-      const event = githubAutomaticReviewEvent({ action: "opened", repository: { id: 97531, full_name: "paperclipai/paperclip" }, sender: { id: 42, login: "octocat" },
+      const event = githubAutomaticReviewEvent({ action: "opened", repository: { id: 97531, full_name: "letslego/octopus" }, sender: { id: 42, login: "octocat" },
         pull_request: { number: 418, title: "Review", body: "", draft: false, base: { sha: "a".repeat(40), ref: "master" }, head: { sha: "b".repeat(40) }, user: { id: 42, login: "octocat" }, labels: [] } }, randomUUID())!;
       const [review] = await db.insert(chatGitHubReviews).values({ companyId: f.companyId, endpointId: f.endpoint.id,
         issueId: f.conversation.issueId!, runId: f.run.id, repositoryId: "97531", repository: event.repository, pullNumber: 418, headSha: event.headSha,
@@ -7849,8 +7849,8 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       const f = await reviewBotFixture();
       const [company] = await db.select().from(companies).where(eq(companies.id, f.companyId));
       const thread = makeThread({
-        channelId: "paperclipai/paperclip",
-        id: "github:paperclipai/paperclip:91",
+        channelId: "letslego/octopus",
+        id: "github:letslego/octopus:91",
         name: "Review PR",
       }).thread;
       await deliverMessage({
@@ -7931,7 +7931,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       });
       f.setSupplementalProviderFetch(async (input, init) => {
         const url = String(input);
-        if (!url.includes("/repos/paperclipai/paperclip/")) return undefined;
+        if (!url.includes("/repos/letslego/octopus/")) return undefined;
         const commentId = /\/issues\/comments\/([1-9][0-9]*)$/.exec(url)?.[1];
         if (commentId && init?.method === "GET") return Response.json(comments.get(Number(commentId)));
         if (init?.method === "POST" || init?.method === "PATCH") {
@@ -8003,7 +8003,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       expect(await readChatGitHubReviewsByEndpointId(f.endpoint.id)).toHaveLength(1);
       await githubReviewCheckService(db, f.providerFetch).processPending();
       expect(mutations.at(-1)).toMatchObject({
-        url: "https://api.github.com/repos/paperclipai/paperclip/check-runs",
+        url: "https://api.github.com/repos/letslego/octopus/check-runs",
         body: {
           status: "in_progress", external_id: `${f.endpoint.id}:91:${head}`,
           details_url: `https://current-vanity.example/${company.issuePrefix}/issues/${conversation.issueId}`,
@@ -8079,7 +8079,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       const postedSummary = mutations.find((m) => typeof m.body.body === "string" && m.body.body.includes("Addition subtracts"));
       expect(postedSummary?.body.body).toContain(`## ${f.endpoint.botLabel} — 2/5`);
       const publishedCheck = mutations.find((m) => m.body.conclusion === "failure");
-      expect(publishedCheck?.url).toBe(`https://api.github.com/repos/paperclipai/paperclip/check-runs/${check.id}`);
+      expect(publishedCheck?.url).toBe(`https://api.github.com/repos/letslego/octopus/check-runs/${check.id}`);
       expect(mutations.some((m) => /\/check-runs\/990[12]$/.test(m.url))).toBe(false);
       const publishedCount = mutations.length;
       const retried = await service.execute(
@@ -9117,11 +9117,11 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       ...(event === "issue_comment"
         ? {
             issue_url:
-              "https://api.github.com/repos/paperclipai/paperclip/issues/91",
+              "https://api.github.com/repos/letslego/octopus/issues/91",
           }
         : {
             pull_request_url:
-              "https://api.github.com/repos/paperclipai/paperclip/pulls/91",
+              "https://api.github.com/repos/letslego/octopus/pulls/91",
           }),
     };
     const payload = {
@@ -9129,7 +9129,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       installation: { id: 2468 },
       repository: {
         id: 97531,
-        full_name: "paperclipai/paperclip",
+        full_name: "letslego/octopus",
         name: "paperclip",
         owner: { id: 1357, login: "paperclipai" },
       },
@@ -9163,7 +9163,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     let beforePost: (() => Promise<void>) | undefined;
     const requests: Array<{ method: string; pathname: string }> = [];
     const posts: string[] = [];
-    const commentPath = `/repos/paperclipai/paperclip/${event === "issue_comment" ? "issues" : "pulls"}/comments/9191`;
+    const commentPath = `/repos/letslego/octopus/${event === "issue_comment" ? "issues" : "pulls"}/comments/9191`;
     // Emit the actual unsafe JSON numeric literal, not a string-only mock.
     const json = (value: unknown) =>
       new Response(
@@ -10637,7 +10637,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     await fast.configure(fixture.companyId, "owner-user", { enabled: true, ...binding, model: "openai/gpt-oss-120b", allowSponsored: true });
     const now = vi.spyOn(Date, "now").mockReturnValue(Date.now()); onTestFinished(() => now.mockRestore());
     const current = await service.get(endpoint.id);
-    const channel = makeThread(channelProvider === "github" ? { channelId: "paperclipai/paperclip", id: "github:paperclipai/paperclip:903" } : { channelId: "CFAST", id: "slack:CFAST:9000.1", name: "fast response test" });
+    const channel = makeThread(channelProvider === "github" ? { channelId: "letslego/octopus", id: "github:letslego/octopus:903" } : { channelId: "CFAST", id: "slack:CFAST:9000.1", name: "fast response test" });
     await deliverMessage({ callbacks, provider: channelProvider, endpointId: endpoint.id, thread: channel.thread,
       message: makeMessage({ id: "9000.1", text: `@${current.botUsername ?? "maya"} fix the border styling`, mentioned: true, ...(channelProvider === "github" ? { userId: "42", userName: "octocat" } : {}) }), trigger: "mention" });
     const [job] = await db.select().from(fastResponseRequests).where(eq(fastResponseRequests.companyId, fixture.companyId));
@@ -12641,15 +12641,15 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
               repositories: [
                 {
                   id: 97531,
-                  full_name: "paperclipai/paperclip",
-                  html_url: "https://github.com/paperclipai/paperclip",
+                  full_name: "letslego/octopus",
+                  html_url: "https://github.com/letslego/octopus",
                   owner: { id: 1357, login: "paperclipai" },
                   private: false,
                 },
                 {
                   id: 97532,
-                  full_name: "paperclipai/paperclip-disabled",
-                  html_url: "https://github.com/paperclipai/paperclip-disabled",
+                  full_name: "letslego/octopus-disabled",
+                  html_url: "https://github.com/letslego/octopus-disabled",
                   owner: { id: 1357, login: "paperclipai" },
                   private: false,
                 },
@@ -12782,12 +12782,12 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       })),
     ).toEqual([
       {
-        providerResourceId: "paperclipai/paperclip",
+        providerResourceId: "letslego/octopus",
         availability: "available",
         enabled: false,
       },
       {
-        providerResourceId: "paperclipai/paperclip-disabled",
+        providerResourceId: "letslego/octopus-disabled",
         availability: "available",
         enabled: false,
       },
@@ -12801,7 +12801,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       thread: makeThread({
         channelId: "PaperclipAI/Paperclip",
         id: "github:PaperclipAI/Paperclip:issue:17",
-        name: "paperclipai/paperclip",
+        name: "letslego/octopus",
       }).thread,
       message: makeMessage({
         id: "github-root-17",
@@ -12819,9 +12819,9 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
         enabled: resource.enabled,
       })),
     ).toEqual([
-      { providerResourceId: "paperclipai/paperclip", enabled: true },
+      { providerResourceId: "letslego/octopus", enabled: true },
       {
-        providerResourceId: "paperclipai/paperclip-disabled",
+        providerResourceId: "letslego/octopus-disabled",
         enabled: false,
       },
     ]);
@@ -12837,8 +12837,8 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
           repositories_removed: [
             {
               id: 97531,
-              full_name: "paperclipai/paperclip",
-              html_url: "https://github.com/paperclipai/paperclip",
+              full_name: "letslego/octopus",
+              html_url: "https://github.com/letslego/octopus",
               owner: { id: 1357, login: "paperclipai" },
             },
           ],
@@ -12848,12 +12848,12 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     );
     await expect(service.listResources(endpoint.id)).resolves.toEqual([
       expect.objectContaining({
-        providerResourceId: "paperclipai/paperclip",
+        providerResourceId: "letslego/octopus",
         availability: "available",
         enabled: true,
       }),
       expect.objectContaining({
-        providerResourceId: "paperclipai/paperclip-disabled",
+        providerResourceId: "letslego/octopus-disabled",
         availability: "available",
         enabled: false,
       }),
@@ -12901,7 +12901,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       installation: { id: 2468 },
       repository: {
         id: 97531,
-        full_name: "paperclipai/paperclip",
+        full_name: "letslego/octopus",
         name: "paperclip",
         owner: { id: 1357, login: "paperclipai" },
       },
@@ -12948,7 +12948,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     expect(accepted.status).toBe(202);
     await expect(service.listResources(endpoint.id)).resolves.toEqual([
       expect.objectContaining({
-        providerResourceId: "paperclipai/paperclip",
+        providerResourceId: "letslego/octopus",
         enabled: true,
       }),
     ]);
@@ -12963,8 +12963,8 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       await configuredGitHubEndpoint(fixture);
     const current = await service.get(endpoint.id);
     const { thread, subscribe } = makeThread({
-      channelId: "paperclipai/paperclip",
-      id: "github:paperclipai/paperclip:903",
+      channelId: "letslego/octopus",
+      id: "github:letslego/octopus:903",
     });
     let release!: () => void;
     let acquired!: () => void;
@@ -13053,20 +13053,20 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       companyId: endpoint.companyId,
       endpointId: endpoint.id,
       type: "repository",
-      providerResourceId: "paperclipai/paperclip-second",
-      label: "paperclipai/paperclip-second",
+      providerResourceId: "letslego/octopus-second",
+      label: "letslego/octopus-second",
       availability: "available",
       enabled: false,
     });
     const roots = [
       {
-        channelId: "paperclipai/paperclip",
+        channelId: "letslego/octopus",
         issueNumber: 901,
         messageId: 901001,
         repositoryId: 97531,
       },
       {
-        channelId: "paperclipai/paperclip-second",
+        channelId: "letslego/octopus-second",
         issueNumber: 902,
         messageId: 902001,
         repositoryId: 97532,
@@ -13249,8 +13249,8 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
             repositories: [
               {
                 id: 97531,
-                full_name: "paperclipai/paperclip",
-                html_url: "https://github.com/paperclipai/paperclip",
+                full_name: "letslego/octopus",
+                html_url: "https://github.com/letslego/octopus",
                 owner: { id: 1357, login: "paperclipai" },
                 private: false,
               },
@@ -13291,7 +13291,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     });
     await expect(service.listResources(endpoint.id)).resolves.toEqual([
       expect.objectContaining({
-        providerResourceId: "paperclipai/paperclip",
+        providerResourceId: "letslego/octopus",
         availability: "available",
       }),
     ]);
@@ -13880,9 +13880,9 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     const { callbacks, endpoint, service } =
       await configuredGitHubEndpoint(fixture);
     const setupThread = makeThread({
-      channelId: "paperclipai/paperclip",
-      id: "github:paperclipai/paperclip:issue:811",
-      name: "paperclipai/paperclip",
+      channelId: "letslego/octopus",
+      id: "github:letslego/octopus:issue:811",
+      name: "letslego/octopus",
     });
     await deliverMessage({
       callbacks,
@@ -14263,9 +14263,9 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       receiptReactionTransportBarrier: async () => { reactionTransportCalls += 1; },
     });
     const thread = makeThread({
-      channelId: "github:paperclipai/paperclip",
-      id: "github:paperclipai/paperclip:issue:909",
-      name: "paperclipai/paperclip",
+      channelId: "github:letslego/octopus",
+      id: "github:letslego/octopus:issue:909",
+      name: "letslego/octopus",
     });
     await deliverMessage({
       callbacks, endpointId: endpoint.id, provider: "github", thread: thread.thread,
@@ -14290,9 +14290,9 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     const obsoleteRuntime = runtime.endpoints.get(endpoint.id);
     if (!obsoleteRuntime) throw new Error("Expected initial GitHub runtime");
     const thread = makeThread({
-      channelId: "github:paperclipai/paperclip",
-      id: "github:paperclipai/paperclip:issue:910",
-      name: "paperclipai/paperclip",
+      channelId: "github:letslego/octopus",
+      id: "github:letslego/octopus:issue:910",
+      name: "letslego/octopus",
     });
     await deliverMessage({
       callbacks,
@@ -14405,20 +14405,20 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     const { callbacks, endpoint } = await configuredGitHubEndpoint(fixture);
     const cases = [
       {
-        id: "github:paperclipai/paperclip:issue:51",
+        id: "github:letslego/octopus:issue:51",
         rootId: "51001",
       },
-      { id: "github:paperclipai/paperclip:52", rootId: "52001" },
+      { id: "github:letslego/octopus:52", rootId: "52001" },
       {
-        id: "github:paperclipai/paperclip:52:rc:88001",
+        id: "github:letslego/octopus:52:rc:88001",
         rootId: "88001",
       },
     ];
     for (const item of cases) {
       const thread = makeThread({
-        channelId: "github:paperclipai/paperclip",
+        channelId: "github:letslego/octopus",
         id: item.id,
-        name: "paperclipai/paperclip",
+        name: "letslego/octopus",
       });
       const rootDelivery = {
         callbacks,
@@ -14479,9 +14479,9 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     );
     const githubUserId = "18446744073709551";
     const thread = makeThread({
-      channelId: "paperclipai/paperclip",
-      id: "github:paperclipai/paperclip:issue:59",
-      name: "paperclipai/paperclip",
+      channelId: "letslego/octopus",
+      id: "github:letslego/octopus:issue:59",
+      name: "letslego/octopus",
     });
     const send = (
       id: string,
@@ -14616,9 +14616,9 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
         scheduleDeferredWork: (task) => deferred.push(task),
       });
     const thread = makeThread({
-      channelId: "github:paperclipai/paperclip",
-      id: "github:paperclipai/paperclip:issue:71",
-      name: "paperclipai/paperclip",
+      channelId: "github:letslego/octopus",
+      id: "github:letslego/octopus:issue:71",
+      name: "letslego/octopus",
     });
     const providerSentAt = new Date("2026-09-05T18:00:00.000Z");
     const laterReply = makeMessage({
@@ -14693,9 +14693,9 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
         scheduleDeferredWork: (task) => deferred.push(task),
       });
     const thread = makeThread({
-      channelId: "github:paperclipai/paperclip",
-      id: "github:paperclipai/paperclip:issue:72",
-      name: "paperclipai/paperclip",
+      channelId: "github:letslego/octopus",
+      id: "github:letslego/octopus:issue:72",
+      name: "letslego/octopus",
     });
     const laterReply = makeMessage({
       id: "72002",
@@ -14793,9 +14793,9 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
         scheduleDeferredWork: (task) => deferred.push(task),
       });
     const thread = makeThread({
-      channelId: "github:paperclipai/paperclip",
-      id: "github:paperclipai/paperclip:issue:73",
-      name: "paperclipai/paperclip",
+      channelId: "github:letslego/octopus",
+      id: "github:letslego/octopus:issue:73",
+      name: "letslego/octopus",
     });
     await deliverMessage({
       callbacks,
@@ -14835,9 +14835,9 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     const context = await configuredGitHubEndpoint(fixture);
     const { callbacks, endpoint, runtime, service, webhookSecret } = context;
     const thread = makeThread({
-      channelId: "github:paperclipai/paperclip",
-      id: "github:paperclipai/paperclip:issue:61",
-      name: "paperclipai/paperclip",
+      channelId: "github:letslego/octopus",
+      id: "github:letslego/octopus:issue:61",
+      name: "letslego/octopus",
     });
     await deliverMessage({
       callbacks,
@@ -14946,7 +14946,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     });
     await expect(service.listResources(endpoint.id)).resolves.toEqual([
       expect.objectContaining({
-        providerResourceId: "paperclipai/paperclip",
+        providerResourceId: "letslego/octopus",
         availability: "available",
         enabled: true,
       }),
@@ -14979,9 +14979,9 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     const context = await configuredGitHubEndpoint(fixture);
     const { callbacks, endpoint, runtime, service, webhookSecret } = context;
     const thread = makeThread({
-      channelId: "github:paperclipai/paperclip",
-      id: "github:paperclipai/paperclip:issue:62",
-      name: "paperclipai/paperclip",
+      channelId: "github:letslego/octopus",
+      id: "github:letslego/octopus:issue:62",
+      name: "letslego/octopus",
     });
     await deliverMessage({
       callbacks,
@@ -15093,9 +15093,9 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     const context = await configuredGitHubEndpoint(fixture);
     const { callbacks, endpoint, service, webhookSecret } = context;
     const thread = makeThread({
-      channelId: "github:paperclipai/paperclip",
-      id: "github:paperclipai/paperclip:issue:63",
-      name: "paperclipai/paperclip",
+      channelId: "github:letslego/octopus",
+      id: "github:letslego/octopus:issue:63",
+      name: "letslego/octopus",
     });
     await deliverMessage({
       callbacks,
@@ -15169,8 +15169,8 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     const { endpoint, runtime, service, webhookSecret } = context;
     const repository = {
       id: 97531,
-      full_name: "paperclipai/paperclip",
-      html_url: "https://github.com/paperclipai/paperclip",
+      full_name: "letslego/octopus",
+      html_url: "https://github.com/letslego/octopus",
       owner: { id: 1357, login: "paperclipai" },
       private: false,
     };
@@ -15198,7 +15198,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     );
     await expect(service.listResources(endpoint.id)).resolves.toEqual([
       expect.objectContaining({
-        providerResourceId: "paperclipai/paperclip",
+        providerResourceId: "letslego/octopus",
         availability: "removed",
         enabled: true,
       }),
@@ -15232,7 +15232,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     });
     await expect(service.listResources(endpoint.id)).resolves.toEqual([
       expect.objectContaining({
-        providerResourceId: "paperclipai/paperclip",
+        providerResourceId: "letslego/octopus",
         availability: "available",
         enabled: true,
       }),
@@ -15369,7 +15369,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
           repository: {
             id: 86420,
             full_name: "paperclipai/stale-secret-repository",
-            html_url: "https://github.com/paperclipai/stale-secret-repository",
+            html_url: "https://github.com/letslego/stale-secret-repository",
             owner: { id: 1357, login: "paperclipai" },
             private: false,
           },
@@ -15548,7 +15548,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     });
     await expect(service.listResources(endpoint.id)).resolves.toEqual([
       expect.objectContaining({
-        providerResourceId: "paperclipai/paperclip",
+        providerResourceId: "letslego/octopus",
         availability: "unavailable",
       }),
     ]);
@@ -15591,7 +15591,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     });
     await expect(service.listResources(endpoint.id)).resolves.toEqual([
       expect.objectContaining({
-        providerResourceId: "paperclipai/paperclip",
+        providerResourceId: "letslego/octopus",
         availability: "available",
       }),
     ]);
@@ -16017,7 +16017,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
           installation: { id: 2468 },
           repository: {
             id: 97531,
-            full_name: "paperclipai/paperclip",
+            full_name: "letslego/octopus",
             name: "paperclip",
             owner: { id: 1357, login: "paperclipai" },
           },
@@ -16062,7 +16062,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
           installation: { id: 2468 },
           repository: {
             id: 97531,
-            full_name: "paperclipai/paperclip",
+            full_name: "letslego/octopus",
             name: "paperclip",
             owner: { id: 1357, login: "paperclipai" },
           },
@@ -16134,7 +16134,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
           installation: { id: 2468 },
           repository: {
             id: 97531,
-            full_name: "paperclipai/paperclip",
+            full_name: "letslego/octopus",
             name: "paperclip",
             owner: { id: 1357, login: "paperclipai" },
           },
@@ -17224,7 +17224,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
         installation: { id: 2468 },
         repository: {
           id: 97531,
-          full_name: "paperclipai/paperclip",
+          full_name: "letslego/octopus",
           name: "paperclip",
           owner: { id: 1357, login: "paperclipai" },
         },
@@ -17291,7 +17291,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
           installation: { id: 2468 },
           repository: {
             id: 97531,
-            full_name: "paperclipai/paperclip",
+            full_name: "letslego/octopus",
             name: "paperclip",
             owner: { id: 1357, login: "paperclipai" },
           },
@@ -17837,8 +17837,8 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
 
     const renamedRepository = {
       id: 97531,
-      full_name: "paperclipai/paperclip-renamed",
-      html_url: "https://github.com/paperclipai/paperclip-renamed",
+      full_name: "letslego/octopus-renamed",
+      html_url: "https://github.com/letslego/octopus-renamed",
       owner: { id: 1357, login: "paperclipai" },
       private: false,
     };
@@ -17861,7 +17861,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     await expect(service.listResources(endpoint.id)).resolves.toEqual([
       expect.objectContaining({
         id: originalResource.id,
-        providerResourceId: "paperclipai/paperclip-renamed",
+        providerResourceId: "letslego/octopus-renamed",
         enabled: true,
         metadata: expect.objectContaining({ providerRepositoryId: "97531" }),
       }),
@@ -28124,13 +28124,13 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
         scheduleDeferredWork: (work) => deferred.push(work),
       });
       const { service, endpoint, callbacks } = context;
-      const sourceThreadId = "github:paperclipai/paperclip:issue:93";
+      const sourceThreadId = "github:letslego/octopus:issue:93";
       const sourceUrl =
         "https://github.com/user-attachments/files/31917991/public-proof.txt";
       const thread = makeThread({
         id: sourceThreadId,
-        channelId: "github:paperclipai/paperclip",
-        name: "paperclipai/paperclip",
+        channelId: "github:letslego/octopus",
+        name: "letslego/octopus",
       });
       const publicBody = Buffer.from("exact current GitHub public file");
       const batch = new AbortController();
@@ -28169,7 +28169,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
               type: "issue_comment",
               threadType: "issue",
               prNumber: 93,
-              repository: { full_name: "paperclipai/paperclip" },
+              repository: { full_name: "letslego/octopus" },
               comment: {
                 id: Number(id),
                 body: urls.map((url) => `[file](${url})`).join("\n"),
@@ -28365,7 +28365,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
         scheduleDeferredWork: () => {},
       });
       const { service, endpoint, callbacks } = context;
-      const sourceThreadId = "github:paperclipai/paperclip:issue:93";
+      const sourceThreadId = "github:letslego/octopus:issue:93";
       const sourceUrl =
         "https://github.com/user-attachments/assets/11111111-2222-3333-4444-555555555555";
       const signedUrl =
@@ -28388,9 +28388,9 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
         .spyOn(FakeEndpointRuntime.prototype, "resolveGitHubAttachmentComment")
         .mockResolvedValue({
           id: 93002,
-          url: "https://api.github.com/repos/paperclipai/paperclip/issues/comments/93002",
+          url: "https://api.github.com/repos/letslego/octopus/issues/comments/93002",
           issue_url:
-            "https://api.github.com/repos/paperclipai/paperclip/issues/93",
+            "https://api.github.com/repos/letslego/octopus/issues/93",
           body,
           body_html:
             `<a href="${["signed_anchor", "ambiguous_anchor"].includes(revokeAt) ? signedUrl : sourceUrl}"><img src="${signedUrl}"></a>`.repeat(
@@ -28491,8 +28491,8 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       try {
         const thread = makeThread({
           id: sourceThreadId,
-          channelId: "github:paperclipai/paperclip",
-          name: "paperclipai/paperclip",
+          channelId: "github:letslego/octopus",
+          name: "letslego/octopus",
         });
         const message = makeMessage({
           id: "93002",
@@ -28503,7 +28503,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
             type: "issue_comment",
             threadType: "issue",
             prNumber: 93,
-            repository: { full_name: "paperclipai/paperclip" },
+            repository: { full_name: "letslego/octopus" },
             comment: { id: 93002, body, user: { id: 42 } },
           },
         });
@@ -28539,7 +28539,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
         if (receiptMutation) expect(await receiptMutation).toBeNull();
         expect(resolve).toHaveBeenCalledExactlyOnceWith(
           {
-            url: "https://api.github.com/repos/paperclipai/paperclip/issues/comments/93002",
+            url: "https://api.github.com/repos/letslego/octopus/issues/comments/93002",
             accept: "application/vnd.github.full+json",
           },
           expect.any(AbortSignal),
@@ -30550,8 +30550,8 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
         .set({ status: "active" })
         .where(eq(chatEndpoints.id, endpoint.id));
       const thread = makeThread({
-        channelId: "github:paperclipai/paperclip",
-        id: "github:paperclipai/paperclip:issue:5",
+        channelId: "github:letslego/octopus",
+        id: "github:letslego/octopus:issue:5",
       });
       await deliverLegacyGitHubReceipt({
         callbacks,
@@ -30799,8 +30799,8 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       const originalRuntime = runtime.endpoints.get(endpoint.id)!;
       attach(originalRuntime);
       const thread = makeThread({
-        channelId: "github:paperclipai/paperclip",
-        id: "github:paperclipai/paperclip:issue:5",
+        channelId: "github:letslego/octopus",
+        id: "github:letslego/octopus:issue:5",
       });
       const runId = randomUUID();
       const publish = async () => {
@@ -31070,9 +31070,9 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       const endpointRuntime = runtime.endpoints.get(endpoint.id);
       if (!endpointRuntime) throw new Error("Expected GitHub runtime");
       const github = makeThread({
-        channelId: "github:paperclipai/paperclip",
-        id: "github:paperclipai/paperclip:issue:receipt-reaction",
-        name: "paperclipai/paperclip",
+        channelId: "github:letslego/octopus",
+        id: "github:letslego/octopus:issue:receipt-reaction",
+        name: "letslego/octopus",
       });
       for (const failure of failures) {
         endpointRuntime.reactionErrors.push(failure);
@@ -33268,7 +33268,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
   it("suppresses persisted GitHub queued, progress and completion comments on replay", async () => {
     const fixture = await seedCompany();
     const { callbacks, endpoint, runtime, service } = await configuredGitHubEndpoint(fixture);
-    const thread = makeThread({ channelId: "github:paperclipai/paperclip", id: "github:paperclipai/paperclip:issue:417" });
+    const thread = makeThread({ channelId: "github:letslego/octopus", id: "github:letslego/octopus:issue:417" });
     await deliverMessage({ callbacks, endpointId: endpoint.id, provider: "github", thread: thread.thread,
       message: makeMessage({ id: "41701", text: "@maya produce one quiet response", mentioned: true }), trigger: "mention" });
     const config = await githubChatManagementService(db).configuration(endpoint.id, "owner-user");
@@ -33304,7 +33304,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
   it("preserves automatic final replies for legacy GitHub connections without saved review configuration", async () => {
     const fixture = await seedCompany();
     const { callbacks, endpoint, runtime, service } = await configuredGitHubEndpoint(fixture);
-    const thread = makeThread({ channelId: "github:paperclipai/paperclip", id: "github:paperclipai/paperclip:issue:417" });
+    const thread = makeThread({ channelId: "github:letslego/octopus", id: "github:letslego/octopus:issue:417" });
     await deliverMessage({ callbacks, endpointId: endpoint.id, provider: "github", thread: thread.thread,
       message: makeMessage({ id: "41701", text: "@maya answer", mentioned: true }), trigger: "mention" });
     const [conversation] = await readChatConversationsByEndpointId(endpoint.id);
@@ -35436,12 +35436,12 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
         channelId:
           provider === "slack"
             ? "C-MULTI-FINAL"
-            : "github:paperclipai/paperclip",
+            : "github:letslego/octopus",
         id:
           provider === "slack"
             ? "slack:C-MULTI-FINAL:4045.1"
-            : "github:paperclipai/paperclip:issue:418",
-        name: provider === "slack" ? "multi-final" : "paperclipai/paperclip",
+            : "github:letslego/octopus:issue:418",
+        name: provider === "slack" ? "multi-final" : "letslego/octopus",
       });
       await deliverMessage({
         callbacks,
@@ -48550,9 +48550,9 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       const { callbacks, endpoint, runtime, service } =
         await configuredGitHubEndpoint(fixture);
       const thread = makeThread({
-        channelId: "paperclipai/paperclip",
-        id: "github:paperclipai/paperclip:issue:451",
-        name: "paperclipai/paperclip",
+        channelId: "letslego/octopus",
+        id: "github:letslego/octopus:issue:451",
+        name: "letslego/octopus",
       });
       await deliverMessage({
         callbacks,
@@ -48671,9 +48671,9 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       const { callbacks, endpoint, runtime, service } =
         await configuredGitHubEndpoint(fixture, { wakeup });
       const thread = makeThread({
-        channelId: "paperclipai/paperclip",
-        id: "github:paperclipai/paperclip:issue:455",
-        name: "paperclipai/paperclip",
+        channelId: "letslego/octopus",
+        id: "github:letslego/octopus:issue:455",
+        name: "letslego/octopus",
       });
       await deliverMessage({
         callbacks,
@@ -48827,9 +48827,9 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     const { callbacks, endpoint, runtime, service, wakeup } =
       await configuredGitHubEndpoint(fixture);
     const thread = makeThread({
-      channelId: "paperclipai/paperclip",
-      id: "github:paperclipai/paperclip:issue:454",
-      name: "paperclipai/paperclip",
+      channelId: "letslego/octopus",
+      id: "github:letslego/octopus:issue:454",
+      name: "letslego/octopus",
     });
     await deliverMessage({
       callbacks,
@@ -48971,9 +48971,9 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
           storage: storage.storage,
         });
       const thread = makeThread({
-        channelId: "paperclipai/paperclip",
-        id: "github:paperclipai/paperclip:issue:452",
-        name: "paperclipai/paperclip",
+        channelId: "letslego/octopus",
+        id: "github:letslego/octopus:issue:452",
+        name: "letslego/octopus",
       });
       await deliverMessage({
         callbacks,
@@ -49304,9 +49304,9 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       const thread =
         provider === "github"
           ? makeThread({
-              channelId: "paperclipai/paperclip",
-              id: "github:paperclipai/paperclip:issue:97",
-              name: "paperclipai/paperclip",
+              channelId: "letslego/octopus",
+              id: "github:letslego/octopus:issue:97",
+              name: "letslego/octopus",
             })
           : makeThread({
               channelId: "teams-personal-cleanup",
@@ -61579,7 +61579,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
             installation: { id: 2468 },
             repository: {
               id: 97531,
-              full_name: "paperclipai/paperclip",
+              full_name: "letslego/octopus",
               name: "paperclip",
               owner: { id: 1357, login: "paperclipai" },
             },
@@ -64983,8 +64983,8 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
         const response = await context.service.handleWebhook(endpoint.publicId, "github", signedGitHubWebhookRequest({
           delivery: randomUUID(), event: "issue_comment", webhookSecret: secret,
           payload: { action: "created", installation: { id: 2468 },
-            repository: { id: 97531, full_name: "paperclipai/paperclip", owner: { id: 1357, login: "paperclipai" } },
-            issue: { number: 791, pull_request: { url: "https://api.github.com/repos/paperclipai/paperclip/pulls/791" } },
+            repository: { id: 97531, full_name: "letslego/octopus", owner: { id: 1357, login: "paperclipai" } },
+            issue: { number: 791, pull_request: { url: "https://api.github.com/repos/letslego/octopus/pulls/791" } },
             sender: { id: 42, login: "octocat", type: "User" },
             comment: { id: 990092, body: `@${endpoint.botUsername} review using the selected instructions`,
               user: { id: 42, login: "octocat", type: "User" }, created_at: new Date().toISOString() } },
@@ -68394,9 +68394,9 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
           })
         : provider === "github"
           ? makeThread({
-              channelId: currentGitHubPr ? "paperclipai/paperclip" : "github:paperclipai/paperclip",
-              id: currentGitHubPr ? `github:paperclipai/paperclip:${700 + Number(suffix)}` : `github:paperclipai/paperclip:issue:${700 + Number(suffix)}`,
-              name: "paperclipai/paperclip",
+              channelId: currentGitHubPr ? "letslego/octopus" : "github:letslego/octopus",
+              id: currentGitHubPr ? `github:letslego/octopus:${700 + Number(suffix)}` : `github:letslego/octopus:issue:${700 + Number(suffix)}`,
+              name: "letslego/octopus",
             })
           : provider === "discord"
             ? makeThread({
@@ -68464,7 +68464,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
         (provider === "telegram" ? telegramChatId : "U-SAFE-PROGRESS"),
     });
     if (currentGitHubPr) sourceMessage.raw = { action: "created", installation: { id: 2468 },
-      repository: { id: 97531, full_name: "paperclipai/paperclip" }, issue: { number: 791, pull_request: {} },
+      repository: { id: 97531, full_name: "letslego/octopus" }, issue: { number: 791, pull_request: {} },
       sender: { id: 42, login: "octocat", type: "User" }, comment: { id: Number(messageId), body: sourceMessage.text, user: { id: 42 } } };
     if (githubUnavailableFile) {
       const url =
@@ -68475,7 +68475,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
         type: "issue_comment",
         threadType: "issue",
         prNumber: 700 + Number(suffix),
-        repository: { full_name: "paperclipai/paperclip" },
+        repository: { full_name: "letslego/octopus" },
         comment: {
           id: Number(messageId),
           body: sourceMessage.text,
@@ -71835,12 +71835,12 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       const fixtureWakeups = () =>
         wakeup.mock.calls.filter((call) => call[0] === fixture.assignedAgentId);
       const thread = makeThread({
-        channelId: "paperclipai/paperclip",
+        channelId: "letslego/octopus",
         id:
           mode === "outbound_review_link"
-            ? "github:paperclipai/paperclip:84:rc:99080"
-            : "github:paperclipai/paperclip:issue:84",
-        name: "paperclipai/paperclip",
+            ? "github:letslego/octopus:84:rc:99080"
+            : "github:letslego/octopus:issue:84",
+        name: "letslego/octopus",
       });
       try {
         await deliverMessage({
@@ -71872,7 +71872,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
                     .values({
                       ...conversation!,
                       id: randomUUID(),
-                      externalThreadId: "github:paperclipai/paperclip:issue:85",
+                      externalThreadId: "github:letslego/octopus:issue:85",
                     })
                     .returning()
                 )[0]!
@@ -71920,7 +71920,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
                 pull_request: { number: 84 },
                 repository: {
                   id: 97531,
-                  full_name: "paperclipai/paperclip",
+                  full_name: "letslego/octopus",
                   name: "paperclip",
                   owner: { id: 1357, login: "paperclipai" },
                 },
@@ -72217,9 +72217,9 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     const { service, wakeup, endpoint, webhookSecret, callbacks } =
       await configuredGitHubEndpoint(fixture);
     const thread = makeThread({
-      channelId: "paperclipai/paperclip",
-      id: "github:paperclipai/paperclip:issue:42",
-      name: "paperclipai/paperclip",
+      channelId: "letslego/octopus",
+      id: "github:letslego/octopus:issue:42",
+      name: "letslego/octopus",
     });
     await deliverMessage({
       callbacks,
@@ -72236,18 +72236,18 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
     });
     for (const item of [
       {
-        id: "github:paperclipai/paperclip:43",
+        id: "github:letslego/octopus:43",
         messageId: "77002",
       },
       {
-        id: "github:paperclipai/paperclip:43:rc:88001",
+        id: "github:letslego/octopus:43:rc:88001",
         messageId: "88001",
       },
     ]) {
       const nativeThread = makeThread({
-        channelId: "paperclipai/paperclip",
+        channelId: "letslego/octopus",
         id: item.id,
-        name: "paperclipai/paperclip",
+        name: "letslego/octopus",
       });
       await deliverMessage({
         callbacks,
@@ -72303,7 +72303,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
             pull_request: { number: input.number },
             repository: {
               id: 97531,
-              full_name: "paperclipai/paperclip",
+              full_name: "letslego/octopus",
               name: "paperclip",
               owner: { id: 1357, login: "paperclipai" },
             },
@@ -72382,9 +72382,9 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
       await configuredGitHubEndpoint(fixture);
     try {
       const thread = makeThread({
-        channelId: "paperclipai/paperclip",
-        id: "github:paperclipai/paperclip:issue:91",
-        name: "paperclipai/paperclip",
+        channelId: "letslego/octopus",
+        id: "github:letslego/octopus:issue:91",
+        name: "letslego/octopus",
       });
       await deliverMessage({
         callbacks,
@@ -72500,7 +72500,7 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
             issue: { number: 91 },
             repository: {
               id: 97531,
-              full_name: "paperclipai/paperclip",
+              full_name: "letslego/octopus",
               name: "paperclip",
               owner: { id: 1357, login: "paperclipai" },
             },
@@ -81575,13 +81575,13 @@ describeEmbeddedPostgres("chat channel control-plane integration", () => {
             provider === "slack"
               ? "C-LONG-BOARD"
               : provider === "github"
-                ? "paperclipai/paperclip"
+                ? "letslego/octopus"
                 : teamsChannel,
           id:
             provider === "slack"
               ? "slack:C-LONG-BOARD:9900.1"
               : provider === "github"
-                ? "github:paperclipai/paperclip:issue:9900"
+                ? "github:letslego/octopus:issue:9900"
                 : `teams:${Buffer.from("19:long-publication@thread.tacv2;messageid=99001").toString("base64url")}:${Buffer.from("https://smba.trafficmanager.net/amer/").toString("base64url")}`,
           name: "long-board",
         });
