@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "packageName": "@paperclipai/teams-catalog",
   "packageVersion": "0.1.0",
-  "generatedAt": "2026-10-08T10:35:56.448Z",
+  "generatedAt": "2026-10-31T15:18:17.373Z",
   "teams": [
     {
       "id": "paperclipai:bundled:company-defaults:core-exec-team",
@@ -102,8 +102,8 @@
         {
           "path": "agents/ceo/AGENTS.md",
           "kind": "agent",
-          "sizeBytes": 263,
-          "sha256": "75848c6f794646a93e23bc73b80d31ef0eb8b83c105423eb98ea29e7685d2fd0"
+          "sizeBytes": 261,
+          "sha256": "925887c713b9c86d2bddb9ddfba41f30309344cf62e6d8584725983fffd6f051"
         },
         {
           "path": "agents/cto/AGENTS.md",
@@ -132,7 +132,7 @@
       ],
       "trustLevel": "markdown_only",
       "compatibility": "compatible",
-      "contentHash": "sha256:9d0416ebc0a81585dc51b73efb25decba9e1e3f3741940fc9fca74f3238f344d"
+      "contentHash": "sha256:3c60adbe42d2b4626405c7b0430d849da1eaa9fe80c7848ae3450c2ddc98f081"
     },
     {
       "id": "paperclipai:bundled:product:product-design",
@@ -376,6 +376,103 @@
       "contentHash": "sha256:b9076b17a551b704a97df2e0204cefb83edfda4d36e909889071bb02d251e5ea"
     },
     {
+      "id": "paperclipai:optional:communications:meeting-agent",
+      "key": "paperclipai/optional/communications/meeting-agent",
+      "kind": "optional",
+      "category": "communications",
+      "slug": "meeting-agent",
+      "name": "Meeting Agent",
+      "description": "Optional meeting coverage desk that joins authorized calendar meetings, writes notes and summaries, extracts follow-ups, and delivers the packet to the requester.",
+      "path": "catalog/optional/communications/meeting-agent",
+      "entrypoint": "TEAM.md",
+      "schema": "agentcompanies/v1",
+      "defaultInstall": false,
+      "recommendedForCompanyTypes": [
+        "agency",
+        "services",
+        "software",
+        "product"
+      ],
+      "tags": [
+        "meetings",
+        "notes",
+        "calendar",
+        "fireflies",
+        "follow-ups"
+      ],
+      "counts": {
+        "agents": 1,
+        "projects": 1,
+        "tasks": 0,
+        "routines": 1,
+        "localSkills": 0,
+        "catalogSkills": 2,
+        "externalSkillSources": 0
+      },
+      "rootAgentSlugs": [
+        "meeting-agent"
+      ],
+      "agentSlugs": [
+        "meeting-agent"
+      ],
+      "projectSlugs": [
+        "meeting-ops"
+      ],
+      "requiredSkills": [
+        {
+          "type": "catalog",
+          "ref": "meeting-notes",
+          "agentSlugs": [
+            "meeting-agent"
+          ],
+          "resolved": true,
+          "catalogSkillId": "paperclipai:optional:communications:meeting-notes",
+          "catalogSkillKey": "paperclipai/optional/communications/meeting-notes"
+        },
+        {
+          "type": "catalog",
+          "ref": "task-planning",
+          "agentSlugs": [
+            "meeting-agent"
+          ],
+          "resolved": true,
+          "catalogSkillId": "paperclipai:bundled:paperclip-operations:task-planning",
+          "catalogSkillKey": "paperclipai/bundled/paperclip-operations/task-planning"
+        }
+      ],
+      "envInputs": [],
+      "sourceRefs": [],
+      "files": [
+        {
+          "path": "TEAM.md",
+          "kind": "team",
+          "sizeBytes": 1858,
+          "sha256": "04032d716ded38ff83ccde8c6b1244466d4efd006dc828f04888d80e4284307f"
+        },
+        {
+          "path": "agents/meeting-agent/AGENTS.md",
+          "kind": "agent",
+          "sizeBytes": 1238,
+          "sha256": "63d95c0d684dc341e81eee84498cd1b9e5c59bc3770d64c85763c1bcdc3bf313"
+        },
+        {
+          "path": "projects/meeting-ops/PROJECT.md",
+          "kind": "project",
+          "sizeBytes": 259,
+          "sha256": "14fd11b53a267234f95bdb9d446e57a10af7dbfbb968fc287875db6d1a9549a9"
+        },
+        {
+          "path": "projects/meeting-ops/tasks/weekly-meeting-desk-review/TASK.md",
+          "kind": "task",
+          "sizeBytes": 350,
+          "sha256": "fd1aaf9fc5645b0f4bf748ffdbc759dd788f4e0468491542312a5fe3ad9245f6"
+        }
+      ],
+      "trustLevel": "markdown_only",
+      "compatibility": "compatible",
+      "contentHash": "sha256:5c40802ee5d79905fb81c27ecdc544581a8b01615bdbf7bacf7139f32889f7bd"
+    },
+    {
       "id": "paperclipai:optional:communications:speko-company-phone-agent",
       "key": "paperclipai/optional/communications/speko-company-phone-agent",
       "kind": "optional",
@@ -427,25 +524,25 @@
         {
           "path": "agents/speko-company-phone-agent/AGENTS.md",
           "kind": "agent",
-          "sizeBytes": 3199,
-          "sha256": "922d60cfae8a469876390b3434a513f0b3eff09c8263b51c3f222d388417ac1d"
+          "sizeBytes": 3191,
+          "sha256": "3133b65b9a0baa417a8986d1fb830125db17ea8bb7ba55ca7e3879f026df8e6c"
         },
         {
           "path": "LICENSE",
           "kind": "other",
-          "sizeBytes": 1069,
-          "sha256": "7f8a27f0979bded50e240caa8c8c29f3088ddf87032cb83e5a9732bff91d18b4"
+          "sizeBytes": 1064,
+          "sha256": "e51a38a705303b9ce00d52d12bae90199ec022600c64722fe000f539e2298f2e"
         },
         {
           "path": "README.md",
           "kind": "readme",
-          "sizeBytes": 1417,
-          "sha256": "445c4b7ec5a201b73123aba1ce5dbb5a52352ed488364eed62a041c30656c7d7"
+          "sizeBytes": 1404,
+          "sha256": "6dc5ed33be1459b8d5c0a1ea04953cd5602a5108ef994744e6483cc62fc0fc12"
         }
       ],
       "trustLevel": "assets",
       "compatibility": "compatible",
-      "contentHash": "sha256:e723a036948dcb292382fbcb116c68500c2247b004d0a8d8ef818b6725f91215"
+      "contentHash": "sha256:31a576dc65926443614c54fe529b1056fe4634362c21a6aeaddb72d6418176fb"
     },
     {
       "id": "paperclipai:optional:content:content-machine",
@@ -534,6 +631,114 @@
       "trustLevel": "markdown_only",
       "compatibility": "compatible",
       "contentHash": "sha256:06822cec5f2b6910cb37ba0ebd5e04ed5c7e34f77225564ddddc2470779cdaa6"
+    },
+    {
+      "id": "paperclipai:optional:research:investment-research",
+      "key": "paperclipai/optional/research/investment-research",
+      "kind": "optional",
+      "category": "research",
+      "slug": "investment-research",
+      "name": "Investment Research",
+      "description": "Optional research desk for company and industry investment theses, including SEC EDGAR 10-K and 10-Q analysis with browser or Browser Use access.",
+      "path": "catalog/optional/research/investment-research",
+      "entrypoint": "TEAM.md",
+      "schema": "agentcompanies/v1",
+      "defaultInstall": false,
+      "recommendedForCompanyTypes": [
+        "finance",
+        "venture",
+        "consulting",
+        "software"
+      ],
+      "tags": [
+        "research",
+        "investment",
+        "thesis",
+        "sec",
+        "edgar",
+        "browser"
+      ],
+      "counts": {
+        "agents": 1,
+        "projects": 1,
+        "tasks": 0,
+        "routines": 1,
+        "localSkills": 0,
+        "catalogSkills": 3,
+        "externalSkillSources": 0
+      },
+      "rootAgentSlugs": [
+        "research-analyst"
+      ],
+      "agentSlugs": [
+        "research-analyst"
+      ],
+      "projectSlugs": [
+        "investment-research"
+      ],
+      "requiredSkills": [
+        {
+          "type": "catalog",
+          "ref": "agent-browser",
+          "agentSlugs": [
+            "research-analyst"
+          ],
+          "resolved": true,
+          "catalogSkillId": "paperclipai:optional:browser:agent-browser",
+          "catalogSkillKey": "paperclipai/optional/browser/agent-browser"
+        },
+        {
+          "type": "catalog",
+          "ref": "investment-thesis",
+          "agentSlugs": [
+            "research-analyst"
+          ],
+          "resolved": true,
+          "catalogSkillId": "paperclipai:optional:research:investment-thesis",
+          "catalogSkillKey": "paperclipai/optional/research/investment-thesis"
+        },
+        {
+          "type": "catalog",
+          "ref": "task-planning",
+          "agentSlugs": [
+            "research-analyst"
+          ],
+          "resolved": true,
+          "catalogSkillId": "paperclipai:bundled:paperclip-operations:task-planning",
+          "catalogSkillKey": "paperclipai/bundled/paperclip-operations/task-planning"
+        }
+      ],
+      "envInputs": [],
+      "sourceRefs": [],
+      "files": [
+        {
+          "path": "TEAM.md",
+          "kind": "team",
+          "sizeBytes": 1935,
+          "sha256": "53abfdf5d6ab56ec26dc84ad357aa80eaa1e6eacfcb35df7549a1cbaabd51254"
+        },
+        {
+          "path": "agents/research-analyst/AGENTS.md",
+          "kind": "agent",
+          "sizeBytes": 1253,
+          "sha256": "3b866d4ba5b136e82d06aae1f7d7cf129c360817095b1cfb743c341a220d1702"
+        },
+        {
+          "path": "projects/investment-research/PROJECT.md",
+          "kind": "project",
+          "sizeBytes": 267,
+          "sha256": "522413cff7cb15a1ba539f207e89b90e0674ab3096e22af7859760b68599579e"
+        },
+        {
+          "path": "projects/investment-research/tasks/weekly-research-review/TASK.md",
+          "kind": "task",
+          "sizeBytes": 325,
+          "sha256": "63ab4302ab847ad369e93c069a9e33d731814a99634f267e1ae460706d96bf0c"
+        }
+      ],
+      "trustLevel": "markdown_only",
+      "compatibility": "compatible",
+      "contentHash": "sha256:1cad62b34d422eb8df0f7dc3195b0bdb472d51ed854f04502c91037fb1400a54"
     }
   ]
 }

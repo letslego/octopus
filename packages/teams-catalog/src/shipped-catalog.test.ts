@@ -14,8 +14,10 @@ const EXPECTED_BUNDLED_KEYS = [
 ];
 
 const EXPECTED_OPTIONAL_KEYS = [
+  "paperclipai/optional/communications/meeting-agent",
   "paperclipai/optional/communications/speko-company-phone-agent",
   "paperclipai/optional/content/content-machine",
+  "paperclipai/optional/research/investment-research",
 ];
 
 const PACKAGE_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -101,6 +103,12 @@ describe("shipped teams catalog", () => {
       "product-engineering/senior-coder": { role: "engineer", reportsTo: "cto", skills: ["github-pr-workflow", "doc-maintenance"] },
       "product-design/ux-designer": { role: "designer", reportsTo: null, skills: ["wireframe", "design-critique", "task-planning"] },
       "speko-company-phone-agent/speko-company-phone-agent": { role: "general", reportsTo: null, skills: undefined },
+      "meeting-agent/meeting-agent": { role: "meeting-agent", reportsTo: null, skills: ["meeting-notes", "task-planning"] },
+      "investment-research/research-analyst": {
+        role: "research-analyst",
+        reportsTo: null,
+        skills: ["investment-thesis", "agent-browser", "task-planning"],
+      },
       "content-machine/content-lead": { role: "content-strategist", reportsTo: null, skills: ["content-calendar"] },
     };
     const observed: Record<string, unknown> = {};

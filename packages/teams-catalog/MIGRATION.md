@@ -24,6 +24,8 @@ The approved plan for this package lives at [PAP-10206 plan document](/PAP/issue
 ## Optional entries shipped in Phase H
 
 - `paperclipai/optional/content/content-machine` — vendored local `content-calendar` skill, single content lead, recurring weekly content review. Kept from Phase B as the canonical fixture for local-skill resolution.
+- `paperclipai/optional/communications/meeting-agent` — meeting coverage desk with `meeting-notes` skill, calendar/Fireflies-oriented notes packet, and weekly desk review routine.
+- `paperclipai/optional/research/investment-research` — research analyst desk with `investment-thesis` + `agent-browser` for SEC 10-K/10-Q diligence memos.
 
 ## Intentionally deferred
 
