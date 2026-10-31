@@ -23,7 +23,7 @@ tags:
 
 Produce durable meeting output: notes, an executive summary, and a follow-up
 list with owners. Deliver the packet to the user who requested coverage. Prefer
-authorized Paperclip connections (Calendar, Fireflies, Gmail/chat) over inventing
+authorized company connections (Calendar, Fireflies, Gmail/chat) over inventing
 attendance or outreach channels.
 
 ## When to use

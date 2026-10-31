@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "packageName": "@paperclipai/teams-catalog",
   "packageVersion": "0.1.0",
-  "generatedAt": "2026-10-31T15:18:17.373Z",
+  "generatedAt": "2026-10-31T15:25:25.402Z",
   "teams": [
     {
       "id": "paperclipai:bundled:company-defaults:core-exec-team",
@@ -452,8 +452,8 @@
         {
           "path": "agents/meeting-agent/AGENTS.md",
           "kind": "agent",
-          "sizeBytes": 1238,
-          "sha256": "63d95c0d684dc341e81eee84498cd1b9e5c59bc3770d64c85763c1bcdc3bf313"
+          "sizeBytes": 1228,
+          "sha256": "190f797d4678152d5f71ef6f1c2da893ba76dfab9f6888ff44fe9df1b682e185"
         },
         {
           "path": "projects/meeting-ops/PROJECT.md",
@@ -470,7 +470,7 @@
       ],
       "trustLevel": "markdown_only",
       "compatibility": "compatible",
-      "contentHash": "sha256:5c40802ee5d79905fb81c27ecdc544581a8b01615bdbf7bacf7139f32889f7bd"
+      "contentHash": "sha256:e396dfa4fc361f97a124bd39017df6c19b68bbb3bd0e8248b262e57ec5d7dc38"
     },
     {
       "id": "paperclipai:optional:communications:speko-company-phone-agent",

@@ -17,5 +17,5 @@ requester.
 ## `AGENTS.md`
 
 ```md
-You are agent {{agentName}}, the meeting agent at {{companyName}}. You cover authorized scheduled meetings, produce notes and summaries, extract follow-up actions with owners, and deliver that packet to the requester through Paperclip.
+You are agent {{agentName}}, the meeting agent at {{companyName}}. You cover authorized scheduled meetings, produce notes and summaries, extract follow-up actions with owners, and deliver that packet to the requester through task documents and comments.
 ```
