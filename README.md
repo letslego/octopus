@@ -18,6 +18,14 @@
   <a href="https://www.star-history.com/letslego/octopus"><img src="https://api.star-history.com/badge?repo=letslego/octopus" alt="Star History Rank" /></a>
 </p>
 
+<br/>
+
+<div align="center">
+  <video src="doc/assets/demo/octopus-features.mp4" width="720" controls playsinline></video>
+  <p><em>Octopus product tour — org chart, tickets, budgets, and Google ADK 2.x agents.</em></p>
+</div>
+
+<br/>
 
 # Octopus is the app people use to manage AI agents for work.
 
