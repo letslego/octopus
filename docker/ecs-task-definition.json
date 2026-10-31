@@ -1,5 +1,5 @@
 {
-  "family": "paperclip-server",
+  "family": "octopus-server",
   "networkMode": "awsvpc",
   "requiresCompatibilities": ["FARGATE"],
   "cpu": "2048",
@@ -8,8 +8,8 @@
   "taskRoleArn": "arn:aws:iam::<ACCOUNT_ID>:role/paperclip-ecs-task",
   "containerDefinitions": [
     {
-      "name": "paperclip-server",
-      "image": "<ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/paperclip-server:latest",
+      "name": "octopus-server",
+      "image": "<ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/octopus-server:latest",
       "essential": true,
       "portMappings": [
         {

@@ -29,7 +29,7 @@ const manifest: PaperclipPluginManifestV1 = {
           inCluster: {
             type: "boolean",
             description:
-              "When true, the plugin uses the in-pod ServiceAccount credentials. Requires paperclip-server to be running inside the target cluster.",
+              "When true, the plugin uses the in-pod ServiceAccount credentials. Requires octopus-server to be running inside the target cluster.",
           },
           kubeconfig: {
             type: "string",

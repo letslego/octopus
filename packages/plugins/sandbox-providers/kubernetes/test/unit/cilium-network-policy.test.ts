@@ -41,10 +41,10 @@ describe("buildCiliumNetworkPolicyManifest", () => {
     expect(dnsRule).toBeDefined();
   });
 
-  it("includes a rule for paperclip-server callback", () => {
+  it("includes a rule for octopus-server callback", () => {
     const cnp = buildCiliumNetworkPolicyManifest(baseInput);
     const cb = cnp.spec.egress.find((e: { toEndpoints?: { matchLabels: Record<string, string> }[] }) =>
-      e.toEndpoints?.some((ep) => ep.matchLabels.app === "paperclip-server"),
+      e.toEndpoints?.some((ep) => ep.matchLabels.app === "octopus-server"),
     );
     expect(cb).toBeDefined();
   });

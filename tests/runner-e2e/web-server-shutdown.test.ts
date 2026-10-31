@@ -118,7 +118,7 @@ it("lets Playwright reap a restarted server through the production bounded shutd
 
 
 it("owns the actual server PID so a forced restart cannot leave a late database closer", async () => {
-  const root = await mkdtemp(path.join(os.tmpdir(), "paperclip-server-pid-"));
+  const root = await mkdtemp(path.join(os.tmpdir(), "octopus-server-pid-"));
   const entry = path.join(root, "server.mts");
   let candidate: ReturnType<typeof spawn> | undefined;
   let actualPid: number | undefined;

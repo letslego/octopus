@@ -1,7 +1,7 @@
 # Manual smoke test — `@paperclipai/plugin-kubernetes`
 
 Manual sanity check that the plugin works end-to-end against a real
-paperclip-server instance and a real Kubernetes cluster (kind for local
+octopus-server instance and a real Kubernetes cluster (kind for local
 dev). Future work may automate this in CI.
 
 ## Prerequisites
@@ -24,7 +24,7 @@ pnpm build
 
 Expected: `dist/` populated with compiled `.js` and `.d.ts` files. No errors.
 
-### 2. Start paperclip-server in dev mode
+### 2. Start octopus-server in dev mode
 
 In a separate terminal:
 
@@ -120,7 +120,7 @@ Expected:
 
 ```bash
 kubectl --context kind-paperclip delete namespace paperclip-smoke
-kill %1  # paperclip-server
+kill %1  # octopus-server
 ```
 
 ### 9. Document the result
